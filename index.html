@@ -7,6 +7,10 @@
 <title>goSNOB.ai — Network-Operated Brain</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
+  /* Fallback ensures size is correct even before font loads */
+  #hero-word { font-family: 'Bebas Neue', Impact, Arial Narrow, sans-serif !important; }
+</style>
+<style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html,body{background:#fff;color:#0a0a0a;font-family:'DM Mono',monospace;overflow-x:hidden;cursor:crosshair;}
 
@@ -36,25 +40,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:fl
 @media(max-width:768px){nav{padding:14px 20px;}.n-r{gap:10px;}.lang-sw li{padding:3px 5px;font-size:8px;}}
 
 /* ── HERO ── */
-#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 40px 56px;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
-#hero-word{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(88px,20vw,280px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;}
-#hero.big #hero-word{font-size:clamp(140px,32vw,440px);}
-.hero-sarcastic{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:16px;}
-.hero-tagline{font-size:clamp(12px,1.4vw,15px);color:#888;margin-top:24px;line-height:1.8;max-width:480px;}
+#hero{height:100svh;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:0 40px 56px;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
+#hero-word{font-family:‘Bebas Neue’,Impact,‘Arial Narrow’,sans-serif;font-size:clamp(120px,24vw,360px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;}
+#hero.big #hero-word{font-size:clamp(160px,36vw,480px);}
+.hero-sarcastic{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-top:12px;}
+.hero-tagline{font-size:12px;color:#aaa;margin-top:20px;line-height:1.8;max-width:480px;letter-spacing:.04em;}
 .hero-tagline strong{color:#0a0a0a;font-weight:400;}
-.hero-hint{position:absolute;bottom:24px;right:40px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;transition:opacity .3s;}
+.hero-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#ccc;white-space:nowrap;transition:opacity .3s;}
 #hero.big .hero-hint{opacity:0;}
-@media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(72px,18vw,200px);}#hero.big #hero-word{font-size:clamp(110px,26vw,280px);}.hero-hint{right:20px;}}
+@media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(96px,20vw,220px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}}
 
 /* ── STMT ── */
-#stmt{min-height:80svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;cursor:pointer;padding:60px 40px;text-align:center;}
+#stmt{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;cursor:pointer;padding:60px 40px;text-align:center;}
 #stmt-txt{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(40px,9vw,128px);line-height:.88;user-select:none;transition:none;}
 #stmt-txt .g{color:#e0e0e0;transition:color .4s;}
 #stmt:hover #stmt-txt .g{color:#0a0a0a;}
-@media(max-width:768px){#stmt{padding:60px 20px;min-height:60svh;}}
+@media(max-width:768px){#stmt{padding:60px 20px;height:auto;min-height:80svh;}}
 
 /* ── CTA1 ── */
-#cta1{min-height:80svh;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;padding:80px 40px;text-align:center;}
+#cta1{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;padding:80px 40px;text-align:center;}
 .cta1-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#bbb;margin-bottom:20px;}
 .cta1-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(44px,9vw,120px);line-height:.88;margin-bottom:52px;}
 .call-btn{display:inline-flex;align-items:center;justify-content:center;background:#0a0a0a;color:#fff;font-family:‘Bebas Neue’,sans-serif;font-size:clamp(20px,3vw,28px);letter-spacing:.08em;padding:20px 56px;text-decoration:none;position:relative;overflow:hidden;transition:transform .2s;}
@@ -66,7 +70,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:fl
 @media(max-width:768px){#cta1{padding:64px 20px;}}
 
 /* ── CALC ── */
-#calc{padding:80px 40px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+#calc{padding:80px 40px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
 @media(max-width:768px){#calc{grid-template-columns:1fr;gap:40px;padding:56px 20px;}}
 .calc-label-txt{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:10px;}
 .calc-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(40px,6vw,80px);line-height:.9;margin-bottom:16px;}
@@ -83,9 +87,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .appt-row{margin-bottom:32px;}
 .appt-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;margin-bottom:14px;}
 .appt-opts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f0f0f0;}
-.appt-opt{background:#fff;padding:14px 16px;cursor:pointer;transition:background .2s;border:2px solid transparent;}
+.appt-opt{background:#fff;padding:16px;cursor:pointer;transition:all .2s;border:1px solid #f0f0f0;}
 .appt-opt:hover{background:#fafafa;}
-.appt-opt.active{border-color:#0a0a0a;background:#fff;}
+.appt-opt.active{border-color:#0a0a0a;background:#fff;} .appt-opt:hover{background:#fafafa;}
 .appt-opt-name{font-family:‘Bebas Neue’,sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:3px;}
 .appt-opt-desc{font-size:9px;color:#bbb;line-height:1.5;letter-spacing:.05em;}
 .appt-opt.active .appt-opt-name{color:#0a0a0a;}
@@ -104,7 +108,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .pr-head-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;}
 .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);}
 @media(max-width:640px){.pr-grid{grid-template-columns:1fr;}.pr-head{padding:40px 20px 24px;}}
-.pr-col{padding:40px 32px;border-right:1px solid #f0f0f0;display:flex;flex-direction:column;cursor:pointer;transition:background .25s;}
+.pr-col{padding:44px 36px;border-right:1px solid #f0f0f0;display:flex;flex-direction:column;cursor:pointer;transition:background .25s;}
 .pr-col:last-child{border-right:none;}
 .pr-col:hover{background:#0a0a0a;}
 .pr-tier{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#bbb;margin-bottom:16px;transition:color .25s;}
@@ -122,7 +126,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 @media(max-width:640px){.pr-col{border-right:none;border-bottom:1px solid #f0f0f0;padding:28px 20px;}}
 
 /* ── CTA2 ── */
-#cta2{border-bottom:1px solid #f0f0f0;padding:80px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+#cta2{border-bottom:1px solid #f0f0f0;padding:80px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;min-height:50vh;}
 .cta2-text{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(36px,6vw,80px);line-height:.9;}
 .cta2-right{display:flex;flex-direction:column;align-items:flex-end;gap:16px;}
 .cta2-tel{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(20px,3vw,32px);letter-spacing:.04em;}
@@ -146,7 +150,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 @media(max-width:768px){#legalhub{padding:56px 20px;}.lh-doc-tag{display:none;}}
 
 /* ── FOOTER SPAM ── */
-.footer-spam{border-top:1px solid #f0f0f0;padding:20px 40px;text-align:center;}
+.footer-spam{border-top:1px solid #f0f0f0;padding:24px 40px;text-align:center;}
 .footer-spam p{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#bbb;}
 @media(max-width:768px){.footer-spam{padding:16px 20px;}}
 
@@ -216,8 +220,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 <!-- HERO -->
 
 <div id="hero" onclick="this.classList.toggle('big')">
-  <div class="hero-sarcastic" data-i="hero_s">S = Sarcastic</div>
   <div id="hero-word">SNOB</div>
+  <div class="hero-sarcastic" data-i="hero_s">S = Sarcastic</div>
   <div class="hero-tagline" data-i="hero_tag"><strong>AI Voice Agents.</strong> Von Experten gebaut. Swiss Made.</div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
 </div>
