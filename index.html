@@ -45,8 +45,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:fl
 .hero-acro-line{font-size:11px;letter-spacing:.15em;color:#bbb;line-height:2;transition:color .2s;}
 .hero-acro-line b{color:#0a0a0a;font-weight:400;}
 .hero-acro-line em{color:#d946ef;font-style:normal;}
-.hero-tagline{position:absolute;bottom:28px;right:40px;font-size:11px;color:#bbb;line-height:1.6;letter-spacing:.06em;text-align:right;}
+.hero-tagline{position:absolute;bottom:28px;right:40px;font-size:11px;color:#bbb;line-height:1.8;letter-spacing:.06em;text-align:right;}
 .hero-tagline strong{color:#0a0a0a;font-weight:400;}
+.swiss-plus{color:#ef4444;font-size:16px;font-weight:700;margin-right:4px;line-height:1;}
 .hero-hint{position:absolute;top:28px;right:40px;padding-top:64px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;}
 @media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(100px,28vw,260px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}.hero-tagline{font-size:10px;}.hero-acro-line{font-size:10px;}}
 
@@ -293,7 +294,12 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   #acro-s{transition:opacity .3s ease;}
   #acro-s.fade{opacity:0;}
   </style>
-  <div class="hero-tagline" data-i="hero_tag"><strong>AI Voice Agents.</strong> Von Experten gebaut. Swiss Made.</div>
+  <div class="hero-tagline" id="hero-swiss">
+    <span class="swiss-plus">+</span>
+    <span id="t-swiss-l1">Swiss Hosted. Swiss Secure. Swiss Made.</span><br>
+    <span id="t-swiss-l2">GDPR · revDSG konform · Maximale Sicherheit</span><br>
+    <span id="t-swiss-l3">Auf Wunsch direkt beim Auftraggeber gehostet.</span>
+  </div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
 </div>
 
@@ -492,7 +498,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="da-label">Delicate AI</div>
   <div class="da-title" data-i="da_title">Massgeschneidert.</div>
   <p class="da-sub" data-i="da_sub">SNOB für dein spezifisches Problem. Wir bauen hochspezialisierte AI-Tools, die exakt auf deinen Auftraggeber, deine Prozesse und deine Herausforderungen zugeschnitten sind — kein generisches Produkt, sondern dein digitaler Mitarbeiter.</p>
-  <a class="call-btn" href="https://app.gosnob.ai"><span data-i="call_btn">CALL SNOB</span></a>
 </div>
 
 <!-- CTA 2 -->
@@ -606,6 +611,9 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 // ── TRANSLATIONS ──────────────────────────────────────────────
 var T = {
   nav_signin:  {de:'Anmelden',en:'Sign In',fr:'Connexion'},
+  swiss_l1:    {de:'Swiss Hosted. Swiss Secure. Swiss Made.',en:'Swiss Hosted. Swiss Secure. Swiss Made.',fr:'Hébergé en Suisse. Sécurisé. Swiss Made.'},
+  swiss_l2:    {de:'GDPR · revDSG konform · Maximale Sicherheit',en:'GDPR · revDSG compliant · Maximum Security',fr:'Conforme GDPR · revDSG · Sécurité maximale'},
+  swiss_l3:    {de:'Auf Wunsch direkt beim Auftraggeber gehostet.',en:'Hosted on-premise on request.',fr:'Hébergement chez le mandataire sur demande.'},
   hero_tag:    {de:'<strong>AI Voice Agents.</strong> Von Experten gebaut. Swiss Made.',en:'<strong>AI Voice Agents.</strong> Built by experts. Swiss Made.',fr:'<strong>Agents IA vocaux.</strong> Conçus par des experts. Swiss Made.'},
   hero_hint:   {de:'— Tippen —',en:'— Tap —',fr:'— Appuyer —'},
   acro_s:      {de:'Sophisticated',en:'Sophisticated',fr:'Sophisticated'},
@@ -779,6 +787,13 @@ function setLang(lang) {
     if(el1) el1.textContent = val;
     if(el2) el2.textContent = val;
   });
+  // Swiss tagline
+  var sl1 = document.getElementById('t-swiss-l1');
+  var sl2 = document.getElementById('t-swiss-l2');
+  var sl3 = document.getElementById('t-swiss-l3');
+  if(sl1) sl1.textContent = T.swiss_l1[lang];
+  if(sl2) sl2.textContent = T.swiss_l2[lang];
+  if(sl3) sl3.textContent = T.swiss_l3[lang];
   // slider label
   var cV = document.getElementById('vC') ? document.getElementById('vC').textContent : '50';
   var lc = document.getElementById('lbl_calls');
