@@ -40,15 +40,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:fl
 @media(max-width:768px){nav{padding:14px 20px;}.n-r{gap:10px;}.lang-sw li{padding:3px 5px;font-size:8px;}}
 
 /* ── HERO ── */
-#hero{height:100svh;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:0 40px 56px;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
-#hero-word{font-family:‘Bebas Neue’,Impact,‘Arial Narrow’,sans-serif;font-size:clamp(120px,24vw,360px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;}
-#hero.big #hero-word{font-size:clamp(160px,36vw,480px);}
-.hero-sarcastic{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-top:12px;}
-.hero-tagline{font-size:12px;color:#aaa;margin-top:20px;line-height:1.8;max-width:480px;letter-spacing:.04em;}
+#hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
+#hero-word{font-family:‘Bebas Neue’,Impact,‘Arial Narrow’,sans-serif;font-size:clamp(140px,30vw,440px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;text-align:center;}
+#hero.big #hero-word{font-size:clamp(200px,44vw,600px);}
+.hero-sarcastic{position:absolute;bottom:52px;left:40px;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;}
+.hero-tagline{position:absolute;bottom:28px;left:40px;font-size:10px;color:#bbb;line-height:1.6;letter-spacing:.06em;}
 .hero-tagline strong{color:#0a0a0a;font-weight:400;}
-.hero-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#ccc;white-space:nowrap;transition:opacity .3s;}
-#hero.big .hero-hint{opacity:0;}
-@media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(96px,20vw,220px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}}
+.hero-hint{position:absolute;bottom:28px;right:40px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;transition:opacity .3s;}
+
+@media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(100px,28vw,260px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}}
 
 /* ── STMT ── */
 #stmt{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;cursor:pointer;padding:60px 40px;text-align:center;}
