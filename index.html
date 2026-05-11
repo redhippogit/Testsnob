@@ -179,7 +179,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-btn span{position:relative;z-index:1;}
 .da-btn:hover::before{transform:scaleX(1);}
 .da-btn:hover{transform:scale(1.02);}
-.da-note{font-size:11px;color:#ccc;letter-spacing:.1em;margin-top:16px;}
+.da-note-hidden{display:none;}
 @media(max-width:640px){
 #delicate{padding:64px 20px;}
 .da-form{grid-template-columns:1fr;}
@@ -288,6 +288,11 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <div class="hero-acro-line"><em>O</em> = <b id="acro-o">Operated</b></div>
     <div class="hero-acro-line"><em>B</em> = <b id="acro-b">Brain</b></div>
   </div>
+  <!-- S blink animation -->
+  <style>
+  #acro-s{transition:opacity .3s ease;}
+  #acro-s.fade{opacity:0;}
+  </style>
   <div class="hero-tagline" data-i="hero_tag"><strong>AI Voice Agents.</strong> Von Experten gebaut. Swiss Made.</div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
 </div>
@@ -313,41 +318,11 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="ws-label">S.N.O.B.</div>
   <div class="ws-title" data-i="ws_title">Was ist SNOB?</div>
 
-  <div class="ws-blocks">
-    <!-- Block 1 -->
-    <div class="ws-block" onclick="toggleWsBlock(this)">
-      <div class="ws-block-num">01</div>
-      <div class="ws-block-title" data-i="ws_b1t">Sprechen</div>
-      <div class="ws-block-sub" data-i="ws_b1s">Er telefoniert. Für dich. Immer.</div>
-      <div class="ws-block-body">
-        <div class="ws-block-body-inner" data-i="ws_b1b">Inbound & Outbound Calls, 24/7, in 100+ Sprachen. SNOB nimmt an, qualifiziert, leitet weiter — ohne dass du etwas tun musst.</div>
-      </div>
-    </div>
-    <!-- Block 2 -->
-    <div class="ws-block" onclick="toggleWsBlock(this)">
-      <div class="ws-block-num">02</div>
-      <div class="ws-block-title" data-i="ws_b2t">Schreiben</div>
-      <div class="ws-block-sub" data-i="ws_b2s">Er chattet. WhatsApp, Web, überall.</div>
-      <div class="ws-block-body">
-        <div class="ws-block-body-inner" data-i="ws_b2b">WhatsApp Business, Web-Widget, Live-Chat — SNOB kommuniziert in Echtzeit auf jedem Kanal, in jeder Sprache.</div>
-      </div>
-    </div>
-    <!-- Block 3 -->
-    <div class="ws-block" onclick="toggleWsBlock(this)">
-      <div class="ws-block-num">03</div>
-      <div class="ws-block-title" data-i="ws_b3t">Handeln</div>
-      <div class="ws-block-sub" data-i="ws_b3s">Er erledigt Tasks. Automatisch.</div>
-      <div class="ws-block-body">
-        <div class="ws-block-body-inner" data-i="ws_b3b">Termine buchen, CRM updaten, Erinnerungen senden, Formulare ausfüllen — SNOB ist mit 300+ Tools verbunden und handelt eigenständig.</div>
-      </div>
-    </div>
-  </div>
+  <!-- ACRO GRID — first -->
 
-  <!-- ACRO -->
-
-  <div class="ws-acro">
+  <div class="ws-acro" style="margin-bottom:64px;">
     <div class="ws-acro-item">
-      <div class="ws-acro-letter">S</div>
+      <div class="ws-acro-letter" id="ws-acro-letter-s">S</div>
       <div class="ws-acro-word" id="ws-acro-s">Sophisticated</div>
       <div class="ws-acro-desc" data-i="ws_as">Er denkt mit. Versteht Kontext. Reagiert intelligent.</div>
     </div>
@@ -365,6 +340,35 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <div class="ws-acro-letter">B</div>
       <div class="ws-acro-word" id="ws-acro-b">Brain</div>
       <div class="ws-acro-desc" data-i="ws_ab">Das KI-Gehirn deines Unternehmens. Lernt. Wächst. Liefert.</div>
+    </div>
+  </div>
+
+  <!-- 3 BLOCKS — second -->
+
+  <div class="ws-blocks">
+    <div class="ws-block" onclick="toggleWsBlock(this)">
+      <div class="ws-block-num">01</div>
+      <div class="ws-block-title" data-i="ws_b1t">Sprechen</div>
+      <div class="ws-block-sub" data-i="ws_b1s">Er telefoniert. Für dich. Immer.</div>
+      <div class="ws-block-body">
+        <div class="ws-block-body-inner" data-i="ws_b1b">Inbound & Outbound Calls, 24/7, in 100+ Sprachen. SNOB nimmt an, qualifiziert, leitet weiter — ohne dass du etwas tun musst.</div>
+      </div>
+    </div>
+    <div class="ws-block" onclick="toggleWsBlock(this)">
+      <div class="ws-block-num">02</div>
+      <div class="ws-block-title" data-i="ws_b2t">Schreiben</div>
+      <div class="ws-block-sub" data-i="ws_b2s">Er chattet. WhatsApp, Web, überall.</div>
+      <div class="ws-block-body">
+        <div class="ws-block-body-inner" data-i="ws_b2b">WhatsApp Business, Web-Widget, Live-Chat — SNOB kommuniziert in Echtzeit auf jedem Kanal, in jeder Sprache.</div>
+      </div>
+    </div>
+    <div class="ws-block" onclick="toggleWsBlock(this)">
+      <div class="ws-block-num">03</div>
+      <div class="ws-block-title" data-i="ws_b3t">Handeln</div>
+      <div class="ws-block-sub" data-i="ws_b3s">Er erledigt Tasks. Automatisch.</div>
+      <div class="ws-block-body">
+        <div class="ws-block-body-inner" data-i="ws_b3b">Termine buchen, CRM updaten, Erinnerungen senden, Formulare ausfüllen — SNOB ist mit 300+ Tools verbunden und handelt eigenständig.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -488,32 +492,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="da-label">Delicate AI</div>
   <div class="da-title" data-i="da_title">Massgeschneidert.</div>
   <p class="da-sub" data-i="da_sub">SNOB für dein spezifisches Problem. Wir bauen hochspezialisierte AI-Tools, die exakt auf deinen Auftraggeber, deine Prozesse und deine Herausforderungen zugeschnitten sind — kein generisches Produkt, sondern dein digitaler Mitarbeiter.</p>
-  <form class="da-form" onsubmit="submitDelicate(event)">
-    <div class="da-field">
-      <label class="da-label-f" data-i="da_f1">Name</label>
-      <input class="da-input" id="da-name" type="text" data-i-ph="da_ph1" placeholder="Dein Name" required>
-    </div>
-    <div class="da-field">
-      <label class="da-label-f" data-i="da_f2">Firma</label>
-      <input class="da-input" id="da-firma" type="text" data-i-ph="da_ph2" placeholder="Deine Firma" required>
-    </div>
-    <div class="da-field">
-      <label class="da-label-f" data-i="da_f3">E-Mail</label>
-      <input class="da-input" id="da-email" type="email" data-i-ph="da_ph3" placeholder="deine@email.com" required>
-    </div>
-    <div class="da-field">
-      <label class="da-label-f" data-i="da_f4">Problem</label>
-      <input class="da-input" id="da-prob" type="text" data-i-ph="da_ph4" placeholder="Welches Problem lösen wir?" required>
-    </div>
-    <div class="da-field full">
-      <label class="da-label-f" data-i="da_f5">Was brauchst du?</label>
-      <textarea class="da-textarea" id="da-msg" data-i-ph="da_ph5" placeholder="Beschreib dein Projekt — je mehr Details, desto besser." rows="3"></textarea>
-    </div>
-    <div class="da-submit">
-      <button class="da-btn" type="submit"><span data-i="da_btn">→ Anfrage senden</span></button>
-      <div class="da-note" data-i="da_note">Wir melden uns innert 24h. Kein Spam. Versprochen.</div>
-    </div>
-  </form>
+  <a class="call-btn" href="https://app.gosnob.ai"><span data-i="call_btn">CALL SNOB</span></a>
 </div>
 
 <!-- CTA 2 -->
@@ -840,20 +819,6 @@ function doCalc(){
 }
 doCalc();
 
-// ── DELICATE AI FORM ─────────────────────────────────────────
-function submitDelicate(e){
-  e.preventDefault();
-  var name  = document.getElementById('da-name').value;
-  var firma = document.getElementById('da-firma').value;
-  var email = document.getElementById('da-email').value;
-  var prob  = document.getElementById('da-prob').value;
-  var msg   = document.getElementById('da-msg').value;
-  var body  = encodeURIComponent(
-    'Name: '+name+'\nFirma: '+firma+'\nE-Mail: '+email+'\n\nProblem: '+prob+'\n\nProjekt:\n'+msg
-  );
-  var subject = encodeURIComponent('Delicate AI Anfrage — '+firma);
-  window.location.href = 'mailto:team@gosnob.com?subject='+subject+'&body='+body;
-}
 
 // ── CHAT ─────────────────────────────────────────────────────
 var chatOpen = false;
@@ -903,6 +868,37 @@ function toggleChat(){
     setTimeout(function(){ rmTyping();addMsg(g[currentLang]||g.de,'bot'); },450);
   }
 }
+
+// ── S BLINK: Sophisticated ↔ Sarcastic ───────────────────────
+(function(){
+  var sVals = {
+    de: {soph:'Sophisticated', sarc:'Sarcastic'},
+    en: {soph:'Sophisticated', sarc:'Sarcastic'},
+    fr: {soph:'Sophisticated', sarc:'Sarcastique'}
+  };
+  var isSoph = true;
+
+  function blinkS(){
+    var heroS = document.getElementById('acro-s');
+    var wsS   = document.getElementById('ws-acro-s');
+    var lang  = currentLang || 'de';
+    var vals  = sVals[lang] || sVals.de;
+
+    // fade out
+    if(heroS) heroS.classList.add('fade');
+    if(wsS)   wsS.style.opacity = '0';
+
+    setTimeout(function(){
+      isSoph = !isSoph;
+      var next = isSoph ? vals.soph : vals.sarc;
+      if(heroS){ heroS.textContent = next; heroS.classList.remove('fade'); }
+      if(wsS)  { wsS.textContent = next;  wsS.style.transition = 'opacity .3s'; wsS.style.opacity = '1'; }
+    }, 320);
+  }
+
+  // run every 2.8s
+  setInterval(blinkS, 2800);
+})();
 
 // ── INTRO ─────────────────────────────────────────────────────
 (function(){
