@@ -7,7 +7,12 @@
 <title>goSNOB.ai — Network-Operated Brain</title>
 <style>
   #hero-word { font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif !important; }
+  .tl.big    { font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif !important; }
+  .n-logo    { font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif !important; }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html,body{background:#fff;color:#0a0a0a;font-family:'DM Mono',monospace;overflow-x:hidden;cursor:crosshair;}
@@ -45,14 +50,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:fl
 .hero-acro-line{font-size:11px;letter-spacing:.15em;color:#bbb;line-height:2;transition:color .2s;}
 .hero-acro-line b{color:#0a0a0a;font-weight:400;}
 .hero-acro-line em{color:#d946ef;font-style:normal;}
-.hero-tagline{position:absolute;bottom:28px;right:40px;font-size:11px;color:#bbb;line-height:1.8;letter-spacing:.06em;text-align:right;}
+.hero-tagline{position:absolute;bottom:28px;right:40px;font-size:11px;color:#bbb;line-height:2;letter-spacing:.06em;text-align:right;}
 .hero-tagline strong{color:#0a0a0a;font-weight:400;}
-.swiss-plus{color:#ef4444;font-size:16px;font-weight:700;margin-right:4px;line-height:1;}
+.swiss-plus{color:#ef4444;font-size:16px;font-weight:700;margin-right:8px;line-height:1;}
 .hero-hint{position:absolute;top:28px;right:40px;padding-top:64px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;}
 @media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(100px,28vw,260px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}.hero-tagline{font-size:10px;}.hero-acro-line{font-size:10px;}
 #hero{flex-direction:column;align-items:flex-start;justify-content:center;}
 .hero-acro{position:static;margin-top:32px;}
-#hero-swiss{position:static;text-align:left;margin-top:12px;font-size:10px;}
+#hero-swiss{position:static;text-align:left;margin-top:20px;font-size:10px;}
 }
 
 /* ── STMT ── */
@@ -318,7 +323,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 <div id="cta1">
   <div class="cta1-label" data-i="cta1_lbl">Dein erster SNOB-Anruf</div>
   <div class="cta1-title" data-i="cta1_title">Hör es selbst.</div>
-  <a class="call-btn" href="https://app.gosnob.ai"><span data-i="call_btn">CALL SNOB</span></a>
+  <a class="call-btn" href="tel:+41615391399"><span data-i="call_btn">CALL SNOB</span></a>
   <div class="cta1-note" data-i="cta1_note">Kostenlos. Kein Pitch. Nur Antworten.</div>
 </div>
 
@@ -509,7 +514,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 <div id="cta2">
   <div class="cta2-text" data-i="cta2_title">Fragen?<br>Ruf SNOB an.</div>
   <div class="cta2-right">
-    <a class="call-btn" href="https://app.gosnob.ai"><span data-i="call_btn">CALL SNOB</span></a>
+    <a class="call-btn" href="tel:+41615391399"><span data-i="call_btn">CALL SNOB</span></a>
   </div>
 </div>
 
@@ -888,16 +893,16 @@ function toggleChat(){
   }
 }
 
-// ── S BLINK: Sophisticated ↔ Sarcastic ───────────────────────
+// ── S ROTATE: Sophisticated → Sarcastic → Superior ───────────
 (function(){
   var sVals = {
-    de: {soph:'Sophisticated', sarc:'Sarcastic'},
-    en: {soph:'Sophisticated', sarc:'Sarcastic'},
-    fr: {soph:'Sophisticated', sarc:'Sarcastique'}
+    de: ['Sophisticated','Sarcastic','Superior'],
+    en: ['Sophisticated','Sarcastic','Superior'],
+    fr: ['Sophisticated','Sarcastique','Superior']
   };
-  var isSoph = true;
+  var idx = 0;
 
-  function blinkS(){
+  function rotateS(){
     var heroS = document.getElementById('acro-s');
     var wsS   = document.getElementById('ws-acro-s');
     var lang  = currentLang || 'de';
@@ -908,15 +913,14 @@ function toggleChat(){
     if(wsS)   wsS.style.opacity = '0';
 
     setTimeout(function(){
-      isSoph = !isSoph;
-      var next = isSoph ? vals.soph : vals.sarc;
+      idx = (idx + 1) % 3;
+      var next = vals[idx];
       if(heroS){ heroS.textContent = next; heroS.classList.remove('fade'); }
       if(wsS)  { wsS.textContent = next;  wsS.style.transition = 'opacity .3s'; wsS.style.opacity = '1'; }
     }, 320);
   }
 
-  // run every 2.8s
-  setInterval(blinkS, 2800);
+  setInterval(rotateS, 2800);
 })();
 
 // ── INTRO ─────────────────────────────────────────────────────
