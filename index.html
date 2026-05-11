@@ -190,6 +190,20 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-btn:hover::before{transform:scaleX(1);}
 .da-btn:hover{transform:scale(1.02);}
 .da-note-hidden{display:none;}
+.da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;margin-top:0;}
+.da-block{background:#fff;padding:36px 28px;cursor:crosshair;transition:background .2s;position:relative;overflow:hidden;}
+.da-block::after{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);}
+.da-block:hover::after,.da-block.open::after{transform:scaleX(1);}
+.da-block:hover{background:#fafafa;}
+.da-block.open{background:#fafafa;}
+.da-block-num{font-size:10px;letter-spacing:.2em;color:#ccc;margin-bottom:16px;text-transform:uppercase;}
+.da-block-title{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:10px;transition:color .2s;color:#0a0a0a;}
+.da-block:hover .da-block-title,.da-block.open .da-block-title{color:#d946ef;}
+.da-block-sub{font-size:12px;color:#bbb;line-height:1.6;}
+.da-block-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1),opacity .3s;opacity:0;}
+.da-block.open .da-block-body{max-height:200px;opacity:1;}
+.da-block-body-inner{padding-top:16px;font-size:12px;color:#555;line-height:1.8;border-top:1px solid #f0f0f0;margin-top:12px;}
+@media(max-width:640px){.da-blocks{grid-template-columns:1fr;}.da-block{padding:24px 20px;}}
 @media(max-width:640px){
 #delicate{padding:64px 20px;}
 .da-form{grid-template-columns:1fr;}
@@ -506,7 +520,33 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 <div id="delicate">
   <div class="da-label">Delicate AI</div>
   <div class="da-title" data-i="da_title">Massgeschneidert.</div>
-  <p class="da-sub" data-i="da_sub">SNOB für dein spezifisches Problem. Wir bauen hochspezialisierte AI-Tools, die exakt auf deinen Auftraggeber, deine Prozesse und deine Herausforderungen zugeschnitten sind — kein generisches Produkt, sondern dein digitaler Mitarbeiter.</p>
+  <p class="da-sub" data-i="da_sub">Nicht einfach Tech injizieren und vergessen. Zuerst verstehen wir dein Business — dann bauen wir SNOB exakt darauf.</p>
+  <div class="da-blocks">
+    <div class="da-block" onclick="toggleDaBlock(this)">
+      <div class="da-block-num">01</div>
+      <div class="da-block-title" data-i="da_b1t">Mappen</div>
+      <div class="da-block-sub" data-i="da_b1s">Dein Business. Deine Prozesse. Deine Engpässe.</div>
+      <div class="da-block-body">
+        <div class="da-block-body-inner" data-i="da_b1b">Wir verstehen dein Business zuerst. Prozesse, Engpässe, echte Hebel — bevor eine einzige Zeile Code geschrieben wird.</div>
+      </div>
+    </div>
+    <div class="da-block" onclick="toggleDaBlock(this)">
+      <div class="da-block-num">02</div>
+      <div class="da-block-title" data-i="da_b2t">Empfehlen</div>
+      <div class="da-block-sub" data-i="da_b2s">Wo wirkt AI wirklich? Wir zeigen es dir.</div>
+      <div class="da-block-body">
+        <div class="da-block-body-inner" data-i="da_b2b">Wo wirkt AI wirklich? Wir zeigen dir genau, was sich lohnt — und was nicht. Ehrlich. Direkt. SNOB.</div>
+      </div>
+    </div>
+    <div class="da-block" onclick="toggleDaBlock(this)">
+      <div class="da-block-num">03</div>
+      <div class="da-block-title" data-i="da_b3t">Bauen</div>
+      <div class="da-block-sub" data-i="da_b3s">Massgeschneidert. Nicht von der Stange.</div>
+      <div class="da-block-body">
+        <div class="da-block-body-inner" data-i="da_b3b">Dann bauen wir. Massgeschneidert auf dein Problem. Kein generisches Produkt, sondern dein digitaler Mitarbeiter — der wächst.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- CTA 2 -->
@@ -708,7 +748,16 @@ var T = {
   p3_12:{de:'Aktives Performance-Monitoring',en:'Active performance monitoring',fr:'Surveillance active des performances'},
   // DELICATE AI
   da_title:    {de:'Massgeschneidert.',en:'Tailored.',fr:'Sur mesure.'},
-  da_sub:      {de:'SNOB für dein spezifisches Problem. Wir bauen hochspezialisierte AI-Tools, die exakt auf deine Prozesse und Herausforderungen zugeschnitten sind — kein generisches Produkt, sondern dein digitaler Mitarbeiter.',en:'SNOB for your specific problem. We build highly specialised AI tools tailored exactly to your processes and challenges — not a generic product, but your digital employee.',fr:'SNOB pour votre problème spécifique. Nous construisons des outils IA hautement spécialisés, adaptés exactement à vos processus et défis — pas un produit générique, mais votre employé numérique.'},
+  da_sub:      {de:'Nicht einfach Tech injizieren und vergessen. Zuerst verstehen wir dein Business — dann bauen wir SNOB exakt darauf.',en:'Not just inject tech and forget. First we understand your business — then we build SNOB exactly on that.',fr:"Pas simplement injecter la technologie et oublier. D'abord nous comprenons votre entreprise — puis nous construisons SNOB exactement sur cette base."},
+  da_b1t:      {de:'Mappen',en:'Map',fr:'Cartographier'},
+  da_b1s:      {de:'Dein Business. Deine Prozesse. Deine Engpässe.',en:'Your business. Your processes. Your bottlenecks.',fr:'Votre entreprise. Vos processus. Vos goulots.'},
+  da_b1b:      {de:'Wir verstehen dein Business zuerst. Prozesse, Engpässe, echte Hebel — bevor eine einzige Zeile Code geschrieben wird.',en:'We understand your business first. Processes, bottlenecks, real levers — before a single line of code is written.',fr:"Nous comprenons d'abord votre entreprise. Processus, goulots d'étranglement, vrais leviers — avant d'écrire la moindre ligne de code."},
+  da_b2t:      {de:'Empfehlen',en:'Recommend',fr:'Recommander'},
+  da_b2s:      {de:'Wo wirkt AI wirklich? Wir zeigen es dir.',en:'Where does AI really work? We show you.',fr:"Où l'IA fonctionne-t-elle vraiment? Nous vous le montrons."},
+  da_b2b:      {de:'Wo wirkt AI wirklich? Wir zeigen dir genau, was sich lohnt — und was nicht. Ehrlich. Direkt. SNOB.',en:"Where does AI really work? We show you exactly what's worth it — and what isn't. Honest. Direct. SNOB.",fr:"Où l'IA fonctionne-t-elle vraiment? Nous vous montrons exactement ce qui vaut la peine — et ce qui ne vaut pas. Honnête. Direct. SNOB."},
+  da_b3t:      {de:'Bauen',en:'Build',fr:'Construire'},
+  da_b3s:      {de:'Massgeschneidert. Nicht von der Stange.',en:'Tailored. Not off the shelf.',fr:'Sur mesure. Pas générique.'},
+  da_b3b:      {de:'Dann bauen wir. Massgeschneidert auf dein Problem. Kein generisches Produkt, sondern dein digitaler Mitarbeiter — der wächst.',en:'Then we build. Tailored to your problem. Not a generic product, but your digital employee — that grows.',fr:'Ensuite nous construisons. Sur mesure pour votre problème. Pas un produit générique, mais votre employé numérique — qui grandit.'},
   da_f1:       {de:'Name',en:'Name',fr:'Nom'},
   da_f2:       {de:'Firma',en:'Company',fr:'Entreprise'},
   da_f3:       {de:'E-Mail',en:'Email',fr:'E-mail'},
@@ -814,6 +863,13 @@ function setLang(lang) {
 function toggleWsBlock(el){
   var isOpen = el.classList.contains('open');
   document.querySelectorAll('.ws-block').forEach(function(b){ b.classList.remove('open'); });
+  if(!isOpen) el.classList.add('open');
+}
+
+// ── DELICATE AI BLOCKS ────────────────────────────────────────
+function toggleDaBlock(el){
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.da-block').forEach(function(b){ b.classList.remove('open'); });
   if(!isOpen) el.classList.add('open');
 }
 
