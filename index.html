@@ -92,6 +92,7 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 /* ═══════════════════════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════════════════════ */
+#hero-wrap{position:relative;}
 #hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:none;}
 #hero-inner{position:relative;display:flex;align-items:center;justify-content:center;will-change:transform;}
 #hero-word{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-size:clamp(140px,30vw,440px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;text-align:center;will-change:transform;}
@@ -366,6 +367,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 ═══════════════════════════════════════════════════════════ */
 #acro-s{transition:opacity .3s ease;}
 #acro-s.fade{opacity:0;}
+
 </style>
 </head>
 <body>
@@ -396,6 +398,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 </nav>
 
 <!-- HERO -->
+<div id="hero-wrap">
 <div id="hero" onclick="this.classList.toggle('big')">
   <div class="hero-ping"></div>
   <div id="hero-inner">
@@ -416,6 +419,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <span id="t-swiss-l3">Auf Wunsch direkt beim Auftraggeber gehostet.</span>
   </div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
+</div>
 </div>
 
 <!-- STATEMENT -->
@@ -800,19 +804,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   if(stmtTxt) stmtIo.observe(stmtTxt);
 })();
 
-// ════════════════════════════════════════════════════════════
-// HERO PARALLAX
-// ════════════════════════════════════════════════════════════
-(function(){
-  var hw = document.getElementById('hero-word');
-  var hi = document.getElementById('hero-inner');
-  window.addEventListener('scroll', function(){
-    var s = window.scrollY;
-    if(s < window.innerHeight){
-      hi.style.transform = 'translateY(' + (s * 0.25) + 'px)';
-    }
-  }, {passive:true});
-})();
+// HERO PARALLAX — handled by scroll-driven canvas below
 
 // ════════════════════════════════════════════════════════════
 // HERO MOUSE PARALLAX
@@ -1311,8 +1303,7 @@ function toggleChat(){
 })();
 
 // ════════════════════════════════════════════════════════════
-// MEGA 3D HERO CANVAS — Torus ring + 200-node neural net
-// + glow halos + pulse waves — mouse hover to rotate
+// HERO CANVAS — clean idle neural net + torus, pink crisp dots
 // ════════════════════════════════════════════════════════════
 (function(){
   var hero = document.getElementById('hero');
@@ -1332,7 +1323,6 @@ function toggleChat(){
   hero.addEventListener('mouseenter', function(){ isHovering=true; });
   hero.addEventListener('mouseleave', function(){ isHovering=false; });
   hero.addEventListener('mousemove', function(e){
-    if(window.scrollY > window.innerHeight*.5) return;
     tgtRY =  (e.clientX/window.innerWidth  - .5) * 2.8;
     tgtRX = -(e.clientY/window.innerHeight - .5) * 2.0;
   });
@@ -1347,29 +1337,31 @@ function toggleChat(){
 
   // Torus ring (R=230, r=26)
   var TU=56, TV=18, TR=230, Tr=26, torus=[];
-  for(var u=0;u<TU;u++) for(var v=0;v<TV;v++){
-    var ua=(u/TU)*Math.PI*2, va=(v/TV)*Math.PI*2;
+  for(var u2=0;u2<TU;u2++) for(var v2=0;v2<TV;v2++){
+    var ua=(u2/TU)*Math.PI*2, va=(v2/TV)*Math.PI*2;
     torus.push({ox:(TR+Tr*Math.cos(va))*Math.cos(ua), oy:(TR+Tr*Math.cos(va))*Math.sin(ua), oz:Tr*Math.sin(va),
-      u:u,v:v, x:0,y:0,z:0,px:0,py:0,sc:1});
+      x:0,y:0,z:0,px:0,py:0,sc:1});
   }
 
   function rot3D(x,y,z,rx,ry){
     var cy=Math.cos(ry),sy=Math.sin(ry); var x1=x*cy-z*sy, z1=x*sy+z*cy;
     var cx=Math.cos(rx),sx=Math.sin(rx); return {x:x1, y:y*cx-z1*sx, z:y*sx+z1*cx};
   }
-  function proj(x,y,z){ var s=520/(520+z); return {px:x*s+W/2, py:y*s+H/2, sc:s}; }
+  function proj(x,y,z,zOff){
+    var s=520/(520+z+(zOff||0)); if(s<=0) s=0.001;
+    return {px:x*s+W/2, py:y*s+H/2, sc:s};
+  }
 
   var raf;
   function draw(){
     raf=requestAnimationFrame(draw);
     ctx.clearRect(0,0,W,H);
-    pulse+=.02;
-    autoRY+=.0022;
+    pulse+=.02; autoRY+=.0022;
     var aRX=Math.sin(autoRY*.5)*.32;
     if(isHovering){ rotX+=(tgtRX-rotX)*.055; rotY+=(tgtRY-rotY)*.055; }
     else { rotX+=(aRX-rotX)*.03; rotY+=(autoRY-rotY)*.03; }
 
-    // Animate + project nodes
+    // Project nodes
     nodes.forEach(function(n){
       n.th+=n.vt; n.ph+=n.vp;
       n.ox=n.r*Math.sin(n.ph)*Math.cos(n.th); n.oy=n.r*Math.sin(n.ph)*Math.sin(n.th); n.oz=n.r*Math.cos(n.ph);
@@ -1383,65 +1375,61 @@ function toggleChat(){
       var pr=proj(p.x,p.y,p.z); p.px=pr.px;p.py=pr.py;p.sc=pr.sc;
     });
 
-    // Draw torus wireframe
+    // Torus wireframe
     for(var u=0;u<TU;u++) for(var v=0;v<TV;v++){
       var idx=u*TV+v, pt=torus[idx];
       var nU=((u+1)%TU)*TV+v, nV=u*TV+((v+1)%TV);
       var bright=Math.max(0,Math.min(1,(pt.z+300)/600));
-      var a=.05+bright*.14;
-      var ptU=torus[nU];
-      ctx.beginPath(); ctx.moveTo(pt.px,pt.py); ctx.lineTo(ptU.px,ptU.py);
-      ctx.strokeStyle='rgba(217,70,239,'+a+')'; ctx.lineWidth=.7; ctx.stroke();
+      var a=0.04+bright*.12;
+      ctx.beginPath(); ctx.moveTo(pt.px,pt.py); ctx.lineTo(torus[nU].px,torus[nU].py);
+      ctx.strokeStyle='rgba(217,70,239,'+a+')'; ctx.lineWidth=.6; ctx.stroke();
       if(v%3===0){
-        var ptV=torus[nV];
-        ctx.beginPath(); ctx.moveTo(pt.px,pt.py); ctx.lineTo(ptV.px,ptV.py);
-        ctx.strokeStyle='rgba(160,50,220,'+(a*.6)+')'; ctx.lineWidth=.4; ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(pt.px,pt.py); ctx.lineTo(torus[nV].px,torus[nV].py);
+        ctx.strokeStyle='rgba(160,50,220,'+(a*.5)+')'; ctx.lineWidth=.35; ctx.stroke();
       }
     }
 
-    // Neural connections with glow
+    // Neural connections
     var LINK=108;
     for(var i=0;i<NODES;i++) for(var j=i+1;j<NODES;j++){
-      var a=nodes[i], b=nodes[j];
-      var dx=a.ox-b.ox, dy=a.oy-b.oy, dz=a.oz-b.oz;
-      var dist=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      var na=nodes[i], nb=nodes[j];
+      var dx=na.ox-nb.ox, dy=na.oy-nb.oy, dz2=na.oz-nb.oz;
+      var dist=Math.sqrt(dx*dx+dy*dy+dz2*dz2);
       if(dist<LINK){
-        var t=1-dist/LINK, avgZ=(a.z+b.z)*.5;
+        var t=1-dist/LINK, avgZ=(na.z+nb.z)*.5;
         var br=Math.max(0,Math.min(1,(avgZ+240)/480));
-        ctx.beginPath(); ctx.moveTo(a.px,a.py); ctx.lineTo(b.px,b.py);
-        ctx.strokeStyle='rgba(217,70,239,'+(t*.24*br)+')';
-        ctx.lineWidth=t*1.4*Math.min(a.sc,b.sc); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(na.px,na.py); ctx.lineTo(nb.px,nb.py);
+        ctx.strokeStyle='rgba(217,70,239,'+(t*.22*br)+')';
+        ctx.lineWidth=t*1.2*Math.min(na.sc,nb.sc); ctx.stroke();
       }
     }
 
-    // Pulse rings from center
+    // Pulse rings
     for(var p2=0;p2<3;p2++){
       var phase=(pulse+p2*2.09)%6.28, psc=phase/6.28;
-      var pa=Math.max(0,.35-psc*.35), pr2=psc*280;
-      ctx.beginPath(); ctx.arc(W/2,H/2,pr2,0,Math.PI*2);
-      ctx.strokeStyle='rgba(217,70,239,'+pa+')';
-      ctx.lineWidth=(1-psc)*2.5; ctx.stroke();
+      ctx.beginPath(); ctx.arc(W/2,H/2,psc*280,0,Math.PI*2);
+      ctx.strokeStyle='rgba(217,70,239,'+Math.max(0,.3-psc*.3)+')';
+      ctx.lineWidth=(1-psc)*2.2; ctx.stroke();
     }
 
-    // Draw nodes with glow halos
+    // Nodes — crisp dots, no shadowBlur
     nodes.forEach(function(n){
+      if(n.sc<=0) return;
       var br=Math.max(0,Math.min(1,(n.z+240)/480));
-      var sz=Math.max(.8,4*n.sc), al=.2+br*.7;
-      ctx.shadowColor='rgba(217,70,239,'+al+')'; ctx.shadowBlur=sz*5;
+      var sz=Math.max(.6,3.5*n.sc), al=0.18+br*.65;
       ctx.beginPath(); ctx.arc(n.px,n.py,sz,0,Math.PI*2);
       ctx.fillStyle='rgba(217,70,239,'+al+')'; ctx.fill();
     });
-    ctx.shadowBlur=0;
   }
 
   var heroIO=new IntersectionObserver(function(e){
-    e.forEach(function(e){ if(e.isIntersecting){if(!raf)draw();}else{if(raf){cancelAnimationFrame(raf);raf=null;}} });
+    e.forEach(function(en){ if(en.isIntersecting){if(!raf)draw();}else{if(raf){cancelAnimationFrame(raf);raf=null;}} });
   });
   heroIO.observe(hero);
 })();
 
 // ════════════════════════════════════════════════════════════
-// HERO WORD: TRUE 3D ROTATION — ±35/45° extreme tilt
+// HERO WORD: 3D mouse tilt only
 // ════════════════════════════════════════════════════════════
 (function(){
   var hero=document.getElementById('hero'), inner=document.getElementById('hero-inner');
@@ -1461,7 +1449,7 @@ function toggleChat(){
     requestAnimationFrame(loop);
     curRX+=(tgtRX-curRX)*.07; curRY+=(tgtRY-curRY)*.07;
     if(inner) inner.style.transform='rotateX('+curRX+'deg) rotateY('+curRY+'deg)';
-    if(acro)  acro.style.transform ='rotateX('+(-curRX*.5)+'deg) rotateY('+(-curRY*.5)+'deg)';
+    if(acro)  acro.style.transform='rotateX('+(-curRX*.5)+'deg) rotateY('+(-curRY*.5)+'deg)';
     if(swiss) swiss.style.transform='rotateX('+(-curRX*.3)+'deg) rotateY('+(-curRY*.3)+'deg)';
   })();
 })();
@@ -1487,21 +1475,6 @@ function toggleChat(){
   })();
 })();
 
-// ════════════════════════════════════════════════════════════
-// SNOB TEXT: 3D CSS Extrusion — 40-layer text-shadow depth
-// ════════════════════════════════════════════════════════════
-(function(){
-  var word=document.getElementById('hero-word');
-  if(!word) return;
-  var sh=[];
-  for(var i=1;i<=40;i++){
-    var a=Math.max(0,.72-i/40*.68);
-    var r=Math.round(10+(i/40)*15), g=0, b=Math.round(12+(i/40)*18);
-    sh.push((i*.55)+'px '+(i*.55)+'px 0px rgba('+r+','+g+','+b+','+a+')');
-  }
-  sh.push('0 0 80px rgba(217,70,239,.1)');
-  word.style.textShadow=sh.join(',');
-})();
 
 // ════════════════════════════════════════════════════════════
 // CURSOR TRAIL — 14 dots, cascading lag
@@ -1538,8 +1511,8 @@ function toggleChat(){
       var r=card.getBoundingClientRect();
       var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
       card.style.transition='transform 0s,box-shadow 0s';
-      card.style.transform='perspective(480px) rotateX('+(-y*30)+'deg) rotateY('+(x*30)+'deg) translateZ(24px)';
-      card.style.boxShadow=(x*30)+'px '+(y*30)+'px 60px rgba(217,70,239,.22),0 20px 40px rgba(0,0,0,.14)';
+      card.style.transform='perspective(900px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateZ(8px)';
+      card.style.boxShadow='0 12px 28px rgba(217,70,239,.12),0 4px 12px rgba(0,0,0,.06)';
       card.style.zIndex='10';
     });
     card.addEventListener('mouseleave', function(){
@@ -1648,6 +1621,53 @@ function toggleChat(){
   stmt.addEventListener('mouseleave', function(){
     words.forEach(function(w){ w.style.transition='transform .6s cubic-bezier(.16,1,.3,1)'; w.style.transform=''; });
   });
+})();
+
+// ════════════════════════════════════════════════════════════
+// STATEMENT: SNOB letters scatter in from particles on reveal
+// ════════════════════════════════════════════════════════════
+(function(){
+  var stmtTxt=document.getElementById('stmt-txt');
+  if(!stmtTxt) return;
+  // Find the last .w span — the "SNOB." word
+  var wDivs=stmtTxt.querySelectorAll('.w');
+  var snobDiv=wDivs[wDivs.length-1];
+  if(!snobDiv) return;
+  var snobSpan=snobDiv.querySelector('span');
+  if(!snobSpan) return;
+
+  // Split into individual letter spans
+  var text=snobSpan.textContent;
+  snobSpan.innerHTML=text.split('').map(function(c){
+    return '<span style="display:inline-block;will-change:transform,opacity;">'+c+'</span>';
+  }).join('');
+  var ltrs=snobSpan.querySelectorAll('span');
+
+  // Give each letter a random starting offset (hidden until IO fires)
+  ltrs.forEach(function(l){
+    var rx=(Math.random()-.5)*320, ry=(Math.random()-.5)*220, rs=(Math.random()*.6);
+    l.style.transform='translate('+rx+'px,'+ry+'px) scale('+rs+')';
+    l.style.opacity='0';
+    l.style.transition='none';
+  });
+
+  var fired=false;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !fired){
+        fired=true;
+        ltrs.forEach(function(l,i){
+          setTimeout(function(){
+            l.style.transition='transform .75s cubic-bezier(.16,1,.3,1), opacity .5s ease';
+            l.style.transform='none';
+            l.style.opacity='1';
+          },i*90);
+        });
+        io.disconnect();
+      }
+    });
+  },{threshold:0.5});
+  io.observe(snobDiv);
 })();
 
 // ════════════════════════════════════════════════════════════
