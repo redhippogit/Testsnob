@@ -159,18 +159,16 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .ws-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:12px;}
 .ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:64px;}
 .ws-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;margin-bottom:64px;}
-.ws-block{background:#fff;padding:36px 28px;cursor:none;transition:background .2s;position:relative;overflow:hidden;}
-.ws-block::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
-.ws-block:hover::after,.ws-block.open::after{transform:scaleX(1);}
-.ws-block:hover{background:#fafafa;}
-.ws-block.open{background:#fafafa;}
+.ws-block{background:#fff;padding:36px 28px;cursor:none;}
 .ws-block-num{font-size:10px;letter-spacing:.2em;color:#ccc;margin-bottom:16px;text-transform:uppercase;}
-.ws-block-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:10px;transition:color .2s;}
-.ws-block:hover .ws-block-title,.ws-block.open .ws-block-title{color:#d946ef;}
-.ws-block-sub{font-size:12px;color:#bbb;line-height:1.6;margin-bottom:0;}
-.ws-block-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s;opacity:0;}
-.ws-block.open .ws-block-body{max-height:200px;opacity:1;}
-.ws-block-body-inner{padding-top:16px;font-size:12px;color:#555;line-height:1.8;border-top:1px solid #f0f0f0;margin-top:12px;}
+.ws-block-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:10px;}
+.ws-block-sub{font-size:12px;color:#bbb;line-height:1.6;}
+.ws-block-body{display:none;}
+/* SNOB FLOW */
+#snob-flow{padding:80px 40px 96px;border-bottom:1px solid #f0f0f0;}
+.sf-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:56px;text-align:center;}
+#snob-flow-cvs{display:block;margin:0 auto;width:100%;max-width:700px;}
+@media(max-width:768px){#snob-flow{padding:60px 20px 72px;}}
 
 /* ACRO GRID */
 .ws-acro{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0f0f0;}
@@ -473,25 +471,28 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 
   <div class="ws-blocks">
-    <div class="ws-block" data-r="up" data-delay="1" onclick="toggleWsBlock(this)">
+    <div class="ws-block" data-r="up" data-delay="1">
       <div class="ws-block-num">01</div>
       <div class="ws-block-title" data-i="ws_b1t">Sprechen</div>
       <div class="ws-block-sub" data-i="ws_b1s">Er telefoniert. Für dich. Immer.</div>
-      <div class="ws-block-body"><div class="ws-block-body-inner" data-i="ws_b1b">Inbound & Outbound Calls, 24/7, in 100+ Sprachen. SNOB nimmt an, qualifiziert, leitet weiter — ohne dass du etwas tun musst.</div></div>
     </div>
-    <div class="ws-block" data-r="up" data-delay="2" onclick="toggleWsBlock(this)">
+    <div class="ws-block" data-r="up" data-delay="2">
       <div class="ws-block-num">02</div>
       <div class="ws-block-title" data-i="ws_b2t">Schreiben</div>
       <div class="ws-block-sub" data-i="ws_b2s">Er chattet. WhatsApp, Web, überall.</div>
-      <div class="ws-block-body"><div class="ws-block-body-inner" data-i="ws_b2b">WhatsApp Business, Web-Widget, Live-Chat — SNOB kommuniziert in Echtzeit auf jedem Kanal, in jeder Sprache.</div></div>
     </div>
-    <div class="ws-block" data-r="up" data-delay="3" onclick="toggleWsBlock(this)">
+    <div class="ws-block" data-r="up" data-delay="3">
       <div class="ws-block-num">03</div>
       <div class="ws-block-title" data-i="ws_b3t">Handeln</div>
       <div class="ws-block-sub" data-i="ws_b3s">Er erledigt Tasks. Automatisch.</div>
-      <div class="ws-block-body"><div class="ws-block-body-inner" data-i="ws_b3b">Termine buchen, CRM updaten, Erinnerungen senden, Formulare ausfüllen — SNOB ist mit 300+ Tools verbunden und handelt eigenständig.</div></div>
     </div>
   </div>
+</div>
+
+<!-- SNOB FLOW -->
+<div id="snob-flow" data-r="up">
+  <div class="sf-lbl" data-i="sf_lbl">Wie SNOB arbeitet</div>
+  <canvas id="snob-flow-cvs" height="260"></canvas>
 </div>
 
 <!-- CALC -->
@@ -1022,7 +1023,8 @@ var T = {
   qb1:         {de:'Preise',en:'Pricing',fr:'Tarifs'},
   qb2:         {de:'AI Calls',en:'AI Calls',fr:'Appels IA'},
   qb3:         {de:'Demo',en:'Demo',fr:'Démo'},
-  qb4:         {de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"}
+  qb4:         {de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
+  sf_lbl:      {de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'}
 };
 
 var SL_CALLS = {de:'Calls / Woche',en:'Calls / week',fr:'Appels / semaine'};
@@ -1303,7 +1305,7 @@ function toggleChat(){
 })();
 
 // ════════════════════════════════════════════════════════════
-// HERO CANVAS — clean idle neural net + torus, pink crisp dots
+// HERO CANVAS — neural brain: dots + synapses + traveling pulses
 // ════════════════════════════════════════════════════════════
 (function(){
   var hero = document.getElementById('hero');
@@ -1312,118 +1314,177 @@ function toggleChat(){
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
   hero.insertBefore(canvas, hero.firstChild);
   var ctx = canvas.getContext('2d');
-  var W, H;
+  var W, H, particles = [], edges = [], pulses = [], startTime = null, raf = null, lastPulseTs = 0;
 
-  function resize(){ W=canvas.offsetWidth; H=canvas.offsetHeight; canvas.width=W; canvas.height=H; }
+  function sampleBrain(N, bw, bh) {
+    var oc = document.createElement('canvas');
+    oc.width = bw; oc.height = bh;
+    var ox = oc.getContext('2d');
+    var cx = bw / 2, cy = bh / 2;
+    ox.beginPath();
+    ox.moveTo(cx, cy + bh * 0.38);
+    ox.bezierCurveTo(cx + bw*0.12, cy + bh*0.42, cx + bw*0.52, cy + bh*0.38, cx + bw*0.50, cy + bh*0.04);
+    ox.bezierCurveTo(cx + bw*0.50, cy - bh*0.30, cx + bw*0.38, cy - bh*0.44, cx + bw*0.10, cy - bh*0.42);
+    ox.bezierCurveTo(cx + bw*0.04, cy - bh*0.44, cx + bw*0.01, cy - bh*0.36, cx,           cy - bh*0.30);
+    ox.bezierCurveTo(cx - bw*0.01, cy - bh*0.36, cx - bw*0.04, cy - bh*0.44, cx - bw*0.10, cy - bh*0.42);
+    ox.bezierCurveTo(cx - bw*0.38, cy - bh*0.44, cx - bw*0.50, cy - bh*0.30, cx - bw*0.50, cy + bh*0.04);
+    ox.bezierCurveTo(cx - bw*0.52, cy + bh*0.38, cx - bw*0.12, cy + bh*0.42, cx,           cy + bh*0.38);
+    ox.closePath();
+    ox.fillStyle = '#fff'; ox.fill();
+    var pts = [], tries = 0, id = ox.getImageData(0, 0, bw, bh);
+    while (pts.length < N && tries < N * 80) {
+      tries++;
+      var rx = Math.random() * bw, ry = Math.random() * bh;
+      if (id.data[(Math.floor(ry) * bw + Math.floor(rx)) * 4 + 3] > 128)
+        pts.push({ x: rx - cx, y: ry - cy });
+    }
+    return pts;
+  }
+
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function buildEdges() {
+    edges = [];
+    var THRESH = 56;
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].tx - particles[j].tx, dy = particles[i].ty - particles[j].ty;
+        var d = Math.sqrt(dx*dx + dy*dy);
+        if (d < THRESH) edges.push({ a: i, b: j, d: d, inv: 1 - d/THRESH });
+      }
+    }
+  }
+
+  function initParticles() {
+    var scale = Math.min(W, H) * 0.72;
+    var bw = Math.round(scale * 1.05), bh = Math.round(scale * 0.88);
+    var pts = sampleBrain(280, bw, bh);
+    particles = pts.map(function(b) {
+      var ang = Math.random() * Math.PI * 2, burst = 20 + Math.random() * 30;
+      return {
+        tx: W/2 + b.x, ty: H/2 + b.y,
+        sx: W/2 + Math.cos(ang)*burst, sy: H/2 + Math.sin(ang)*burst,
+        delay: Math.random() * 1.5, dur: 1.3 + Math.random() * 0.9,
+        maxR: 2.0 + Math.random() * 2.8, al: 0.6 + Math.random() * 0.4,
+        driftX: (Math.random()-.5)*0.22, driftY: (Math.random()-.5)*0.22,
+        prog: 0, cx: 0, cy: 0
+      };
+    });
+    buildEdges();
+    pulses = [];
+  }
+
+  function resize() {
+    W = canvas.offsetWidth; H = canvas.offsetHeight;
+    canvas.width = W; canvas.height = H;
+    initParticles();
+  }
   resize();
-  window.addEventListener('resize', resize, {passive:true});
+  window.addEventListener('resize', function(){ resize(); startTime = null; }, {passive:true});
 
-  var rotX=0, rotY=0, tgtRX=0, tgtRY=0, autoRY=0, isHovering=false, pulse=0;
-
-  hero.addEventListener('mouseenter', function(){ isHovering=true; });
-  hero.addEventListener('mouseleave', function(){ isHovering=false; });
-  hero.addEventListener('mousemove', function(e){
-    tgtRY =  (e.clientX/window.innerWidth  - .5) * 2.8;
-    tgtRX = -(e.clientY/window.innerHeight - .5) * 2.0;
-  });
-
-  // 200-node neural sphere
-  var NODES=200, nodes=[];
-  for(var i=0;i<NODES;i++){
-    var th=Math.random()*Math.PI*2, ph=Math.acos(2*Math.random()-1), rr=155+Math.random()*110;
-    nodes.push({ox:rr*Math.sin(ph)*Math.cos(th), oy:rr*Math.sin(ph)*Math.sin(th), oz:rr*Math.cos(ph),
-      th:th, ph:ph, r:rr, vt:(Math.random()-.5)*.003, vp:(Math.random()-.5)*.002, x:0,y:0,z:0,px:0,py:0,sc:1});
+  function spawnPulses() {
+    var count = 2 + Math.floor(Math.random() * 3);
+    for (var s = 0; s < count; s++) {
+      if (!edges.length) return;
+      var e = edges[Math.floor(Math.random() * edges.length)];
+      if (particles[e.a].prog < 0.85 || particles[e.b].prog < 0.85) continue;
+      pulses.push({ e: e, fwd: Math.random() > 0.5, t: 0, spd: 0.5 + Math.random() * 0.8 });
+    }
   }
 
-  // Torus ring (R=230, r=26)
-  var TU=56, TV=18, TR=230, Tr=26, torus=[];
-  for(var u2=0;u2<TU;u2++) for(var v2=0;v2<TV;v2++){
-    var ua=(u2/TU)*Math.PI*2, va=(v2/TV)*Math.PI*2;
-    torus.push({ox:(TR+Tr*Math.cos(va))*Math.cos(ua), oy:(TR+Tr*Math.cos(va))*Math.sin(ua), oz:Tr*Math.sin(va),
-      x:0,y:0,z:0,px:0,py:0,sc:1});
-  }
+  function draw(ts) {
+    raf = requestAnimationFrame(draw);
+    if (!startTime) startTime = ts;
+    var el = (ts - startTime) / 1000;
+    var dt = 0.016;
 
-  function rot3D(x,y,z,rx,ry){
-    var cy=Math.cos(ry),sy=Math.sin(ry); var x1=x*cy-z*sy, z1=x*sy+z*cy;
-    var cx=Math.cos(rx),sx=Math.sin(rx); return {x:x1, y:y*cx-z1*sx, z:y*sx+z1*cx};
-  }
-  function proj(x,y,z,zOff){
-    var s=520/(520+z+(zOff||0)); if(s<=0) s=0.001;
-    return {px:x*s+W/2, py:y*s+H/2, sc:s};
-  }
+    ctx.clearRect(0, 0, W, H);
 
-  var raf;
-  function draw(){
-    raf=requestAnimationFrame(draw);
-    ctx.clearRect(0,0,W,H);
-    pulse+=.02; autoRY+=.0022;
-    var aRX=Math.sin(autoRY*.5)*.32;
-    if(isHovering){ rotX+=(tgtRX-rotX)*.055; rotY+=(tgtRY-rotY)*.055; }
-    else { rotX+=(aRX-rotX)*.03; rotY+=(autoRY-rotY)*.03; }
+    // Global breath — gentle sine
+    var breath = 1 + Math.sin(el * 0.85) * 0.028;
+    // Global glow pulse for connections
+    var gPulse = 0.5 + 0.5 * Math.sin(el * 1.4);
 
-    // Project nodes
-    nodes.forEach(function(n){
-      n.th+=n.vt; n.ph+=n.vp;
-      n.ox=n.r*Math.sin(n.ph)*Math.cos(n.th); n.oy=n.r*Math.sin(n.ph)*Math.sin(n.th); n.oz=n.r*Math.cos(n.ph);
-      var r=rot3D(n.ox,n.oy,n.oz,rotX,rotY); n.x=r.x;n.y=r.y;n.z=r.z;
-      var p=proj(n.x,n.y,n.z); n.px=p.px;n.py=p.py;n.sc=p.sc;
+    // Update particle positions
+    particles.forEach(function(p) {
+      var t = Math.max(0, Math.min(1, (el - p.delay) / p.dur));
+      var e2 = easeOutQuart(t);
+      p.prog = t;
+      var bx = p.tx + p.driftX * Math.sin(el * 0.7 + p.delay);
+      var by = p.ty + p.driftY * Math.cos(el * 0.5 + p.delay * 1.3);
+      // Apply breath around canvas centre
+      var brx = W/2 + (bx - W/2) * breath;
+      var bry = H/2 + (by - H/2) * breath;
+      if (t >= 1) { p.cx = brx; p.cy = bry; }
+      else { p.cx = p.sx + (brx - p.sx) * e2; p.cy = p.sy + (bry - p.sy) * e2; }
     });
 
-    // Project torus
-    torus.forEach(function(p){
-      var r=rot3D(p.ox,p.oy,p.oz,rotX,rotY); p.x=r.x;p.y=r.y;p.z=r.z;
-      var pr=proj(p.x,p.y,p.z); p.px=pr.px;p.py=pr.py;p.sc=pr.sc;
-    });
+    // ── Synapse lines ──
+    var connFade = Math.max(0, Math.min(1, (el - 0.8) / 1.2));
+    if (connFade > 0) {
+      edges.forEach(function(e2) {
+        var pa = particles[e2.a], pb = particles[e2.b];
+        var minProg = Math.min(pa.prog, pb.prog);
+        if (minProg < 0.55) return;
+        var pf = Math.max(0, (minProg - 0.55) / 0.45);
+        var al = connFade * pf * e2.inv * (0.25 + gPulse * 0.12);
+        if (al < 0.008) return;
+        ctx.beginPath();
+        ctx.moveTo(pa.cx, pa.cy);
+        ctx.lineTo(pb.cx, pb.cy);
+        ctx.strokeStyle = 'rgba(217,70,239,' + al + ')';
+        ctx.lineWidth = 0.5 + e2.inv * 1.1;
+        ctx.stroke();
+      });
+    }
 
-    // Torus wireframe
-    for(var u=0;u<TU;u++) for(var v=0;v<TV;v++){
-      var idx=u*TV+v, pt=torus[idx];
-      var nU=((u+1)%TU)*TV+v, nV=u*TV+((v+1)%TV);
-      var bright=Math.max(0,Math.min(1,(pt.z+300)/600));
-      var a=0.04+bright*.12;
-      ctx.beginPath(); ctx.moveTo(pt.px,pt.py); ctx.lineTo(torus[nU].px,torus[nU].py);
-      ctx.strokeStyle='rgba(217,70,239,'+a+')'; ctx.lineWidth=.6; ctx.stroke();
-      if(v%3===0){
-        ctx.beginPath(); ctx.moveTo(pt.px,pt.py); ctx.lineTo(torus[nV].px,torus[nV].py);
-        ctx.strokeStyle='rgba(160,50,220,'+(a*.5)+')'; ctx.lineWidth=.35; ctx.stroke();
+    // ── Traveling synaptic pulses ──
+    if (el > 2.8 && ts - lastPulseTs > 90) { spawnPulses(); lastPulseTs = ts; }
+
+    pulses = pulses.filter(function(pu) {
+      pu.t += pu.spd * dt;
+      if (pu.t > 1.15) return false;
+      var pa = particles[pu.e.a], pb = particles[pu.e.b];
+      var t2 = Math.min(1, pu.t);
+      var px = pu.fwd ? pa.cx + (pb.cx - pa.cx)*t2 : pb.cx + (pa.cx - pb.cx)*t2;
+      var py = pu.fwd ? pa.cy + (pb.cy - pa.cy)*t2 : pb.cy + (pa.cy - pb.cy)*t2;
+      var pal = Math.max(0, 1 - Math.abs(pu.t - 0.5) * 2.2);
+      if (pal > 0.01) {
+        var grd = ctx.createRadialGradient(px, py, 0, px, py, 7);
+        grd.addColorStop(0,   'rgba(255,210,255,' + pal*0.95 + ')');
+        grd.addColorStop(0.3, 'rgba(217,70,239,'  + pal*0.7  + ')');
+        grd.addColorStop(1,   'rgba(217,70,239,0)');
+        ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI*2);
+        ctx.fillStyle = grd; ctx.fill();
       }
-    }
+      return true;
+    });
 
-    // Neural connections
-    var LINK=108;
-    for(var i=0;i<NODES;i++) for(var j=i+1;j<NODES;j++){
-      var na=nodes[i], nb=nodes[j];
-      var dx=na.ox-nb.ox, dy=na.oy-nb.oy, dz2=na.oz-nb.oz;
-      var dist=Math.sqrt(dx*dx+dy*dy+dz2*dz2);
-      if(dist<LINK){
-        var t=1-dist/LINK, avgZ=(na.z+nb.z)*.5;
-        var br=Math.max(0,Math.min(1,(avgZ+240)/480));
-        ctx.beginPath(); ctx.moveTo(na.px,na.py); ctx.lineTo(nb.px,nb.py);
-        ctx.strokeStyle='rgba(217,70,239,'+(t*.22*br)+')';
-        ctx.lineWidth=t*1.2*Math.min(na.sc,nb.sc); ctx.stroke();
-      }
-    }
-
-    // Pulse rings
-    for(var p2=0;p2<3;p2++){
-      var phase=(pulse+p2*2.09)%6.28, psc=phase/6.28;
-      ctx.beginPath(); ctx.arc(W/2,H/2,psc*280,0,Math.PI*2);
-      ctx.strokeStyle='rgba(217,70,239,'+Math.max(0,.3-psc*.3)+')';
-      ctx.lineWidth=(1-psc)*2.2; ctx.stroke();
-    }
-
-    // Nodes — crisp dots, no shadowBlur
-    nodes.forEach(function(n){
-      if(n.sc<=0) return;
-      var br=Math.max(0,Math.min(1,(n.z+240)/480));
-      var sz=Math.max(.6,3.5*n.sc), al=0.18+br*.65;
-      ctx.beginPath(); ctx.arc(n.px,n.py,sz,0,Math.PI*2);
-      ctx.fillStyle='rgba(217,70,239,'+al+')'; ctx.fill();
+    // ── Neuron dots ──
+    particles.forEach(function(p) {
+      var e2 = easeOutQuart(p.prog);
+      var r = p.maxR * e2 * (0.96 + (breath - 1) * 10);
+      var al = p.al * Math.min(1, e2 * 2.2);
+      if (r < 0.3 || al < 0.02) return;
+      // Soft glow halo
+      var grd = ctx.createRadialGradient(p.cx, p.cy, 0, p.cx, p.cy, r * 2.6);
+      grd.addColorStop(0,   'rgba(255,210,255,' + al*0.9 + ')');
+      grd.addColorStop(0.4, 'rgba(217,70,239,'  + al*0.75 + ')');
+      grd.addColorStop(1,   'rgba(217,70,239,0)');
+      ctx.beginPath(); ctx.arc(p.cx, p.cy, r * 2.6, 0, Math.PI*2);
+      ctx.fillStyle = grd; ctx.fill();
+      // Bright core
+      ctx.beginPath(); ctx.arc(p.cx, p.cy, r * 0.5, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(255,230,255,' + Math.min(1, al*1.4) + ')';
+      ctx.fill();
     });
   }
 
-  var heroIO=new IntersectionObserver(function(e){
-    e.forEach(function(en){ if(en.isIntersecting){if(!raf)draw();}else{if(raf){cancelAnimationFrame(raf);raf=null;}} });
+  var heroIO = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting) { if (!raf) { startTime = null; raf = requestAnimationFrame(draw); } }
+      else { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+    });
   });
   heroIO.observe(hero);
 })();
@@ -1714,6 +1775,178 @@ function toggleChat(){
     });
   };
   document.head.appendChild(l);
+})();
+
+// ════════════════════════════════════════════════════════════
+// SNOB FLOW — input cluster → SNOB secure → output cluster
+// ════════════════════════════════════════════════════════════
+(function(){
+  var sec = document.getElementById('snob-flow');
+  var canvas = document.getElementById('snob-flow-cvs');
+  if (!sec || !canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H = 260, DPR = window.devicePixelRatio || 1;
+  var startTime = null, raf = null;
+  var CYCLE = 5.8;
+
+  // Labels read live from currentLang each frame
+  var LBL = {
+    in:  [{de:'Anruf',en:'Call',fr:'Appel'},{de:'Chat',en:'Chat',fr:'Chat'},{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'}],
+    sec: {de:'GDPR · Swiss · Sicher',en:'GDPR · Swiss · Secure',fr:'RGPD · Suisse · Sécurisé'},
+    out: [{de:'Kalender',en:'Calendar',fr:'Calendrier'},{de:'CRM',en:'CRM',fr:'CRM'},{de:'E-Mail',en:'E-Mail',fr:'E-Mail'}]
+  };
+  function gl(o){ var l=typeof currentLang!=='undefined'?currentLang:'de'; return o[l]||o.de; }
+
+  function resize(){
+    var rect=sec.getBoundingClientRect();
+    W=Math.min(rect.width-80,720);
+    canvas.width=Math.round(W*DPR); canvas.height=Math.round(H*DPR);
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+
+  function easeIO(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
+  function easeOut(t){return 1-Math.pow(1-t,3);}
+
+  function pulse(x,y,al){
+    if(al<0.01)return;
+    var g=ctx.createRadialGradient(x,y,0,x,y,10);
+    g.addColorStop(0,'rgba(255,230,255,'+al+')');
+    g.addColorStop(0.3,'rgba(217,70,239,'+al*0.85+')');
+    g.addColorStop(1,'rgba(217,70,239,0)');
+    ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);
+    ctx.fillStyle='rgba(217,70,239,'+al+')';ctx.fill();
+  }
+
+  function glow(x,y,r,al){
+    if(al<0.01)return;
+    var g=ctx.createRadialGradient(x,y,r,x,y,r+20);
+    g.addColorStop(0,'rgba(217,70,239,'+al*0.42+')');
+    g.addColorStop(1,'rgba(217,70,239,0)');
+    ctx.beginPath();ctx.arc(x,y,r+20,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+  }
+
+  function draw(ts){
+    raf=requestAnimationFrame(draw);
+    if(!startTime)startTime=ts;
+    var el=(ts-startTime)/1000, cyc=(el%CYCLE)/CYCLE;
+    ctx.clearRect(0,0,W,H);
+
+    var NY=H*0.43, SR=13, H1R=21, H2R=30, H3R=21;
+    var h1x=W*0.23, h2x=W*0.50, h3x=W*0.77;
+    var sp=H*0.21;
+    var iPos=[{x:W*0.04,y:NY-sp},{x:W*0.04,y:NY},{x:W*0.04,y:NY+sp}];
+    var oPos=[{x:W*0.96,y:NY-sp},{x:W*0.96,y:NY},{x:W*0.96,y:NY+sp}];
+
+    // phase timing
+    // 0→0.17  : in-sats → h1
+    // 0.17→0.45: h1 → h2
+    // 0.45→0.60: h2 glow (secure processing)
+    // 0.60→0.83: h2 → h3
+    // 0.83→0.97: h3 → out-sats
+    // 0.97→1.0 : pause
+    var h1G=0,h2G=0,h3G=0,inT=0,inAl=0,m1T=-1,m1Al=0,m2T=-1,m2Al=0,outT=0,outAl=0,oSG=[0,0,0];
+
+    if(cyc<0.17){
+      var p=easeOut(cyc/0.17); inT=p; inAl=Math.sin(p*Math.PI);
+      h1G=Math.max(0,(p-0.8)/0.2);
+    } else if(cyc<0.45){
+      var p=easeIO((cyc-0.17)/0.28); m1T=p; m1Al=Math.sin(p*Math.PI);
+      h1G=Math.max(0,1-p*3); h2G=Math.max(0,(p-0.8)/0.2);
+    } else if(cyc<0.60){
+      h2G=1-(cyc-0.45)/0.15;
+    } else if(cyc<0.83){
+      var p=easeIO((cyc-0.60)/0.23); m2T=p; m2Al=Math.sin(p*Math.PI);
+      h3G=Math.max(0,(p-0.8)/0.2);
+    } else if(cyc<0.97){
+      var p=easeOut((cyc-0.83)/0.14); outT=p; outAl=Math.sin(p*Math.PI);
+      h3G=Math.max(0,1-p*3);
+      oSG=oPos.map(function(){return Math.max(0,(p-0.72)/0.28);});
+    }
+
+    // ── background lines ──
+    ctx.strokeStyle='#ebebeb'; ctx.lineWidth=1;
+    iPos.forEach(function(s){ctx.beginPath();ctx.moveTo(s.x+SR,s.y);ctx.lineTo(h1x-H1R,NY);ctx.stroke();});
+    ctx.beginPath();ctx.moveTo(h1x+H1R,NY);ctx.lineTo(h2x-H2R,NY);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(h2x+H2R,NY);ctx.lineTo(h3x-H3R,NY);ctx.stroke();
+    oPos.forEach(function(s){ctx.beginPath();ctx.moveTo(h3x+H3R,NY);ctx.lineTo(s.x-SR,s.y);ctx.stroke();});
+
+    // ── traveling pulses ──
+    iPos.forEach(function(s){
+      if(inAl<0.01)return;
+      pulse(s.x+SR+(h1x-H1R-s.x-SR)*inT, s.y+(NY-s.y)*inT, inAl*0.82);
+    });
+    if(m1T>=0) pulse(h1x+H1R+(h2x-H2R-h1x-H1R)*m1T, NY, m1Al);
+    if(m2T>=0) pulse(h2x+H2R+(h3x-H3R-h2x-H2R)*m2T, NY, m2Al);
+    oPos.forEach(function(s,i){
+      if(outAl<0.01)return;
+      pulse(h3x+H3R+(s.x-SR-h3x-H3R)*outT, NY+(s.y-NY)*outT, outAl*0.82);
+    });
+
+    // ── input satellites ──
+    iPos.forEach(function(s,i){
+      ctx.beginPath();ctx.arc(s.x,s.y,SR,0,Math.PI*2);
+      ctx.fillStyle='#fff';ctx.fill();
+      ctx.strokeStyle='rgba(10,10,10,0.11)';ctx.lineWidth=0.8;ctx.stroke();
+      ctx.textAlign='center';ctx.fillStyle='#aaa';
+      ctx.font='400 9px -apple-system,sans-serif';
+      ctx.fillText(gl(LBL.in[i]),s.x,s.y+3.5);
+    });
+
+    // ── output satellites ──
+    oPos.forEach(function(s,i){
+      glow(s.x,s.y,SR,oSG[i]);
+      ctx.beginPath();ctx.arc(s.x,s.y,SR,0,Math.PI*2);
+      ctx.fillStyle='#fff';ctx.fill();
+      ctx.strokeStyle='rgba(10,10,10,'+(0.1+oSG[i]*0.9)+')';ctx.lineWidth=0.8;ctx.stroke();
+      ctx.textAlign='center';
+      ctx.fillStyle=oSG[i]>0.3?'#0a0a0a':'#aaa';
+      ctx.font='400 9px -apple-system,sans-serif';
+      ctx.fillText(gl(LBL.out[i]),s.x,s.y+3.5);
+    });
+
+    // ── hub 1 ──
+    glow(h1x,NY,H1R,h1G);
+    ctx.beginPath();ctx.arc(h1x,NY,H1R,0,Math.PI*2);
+    ctx.fillStyle='#fff';ctx.fill();
+    ctx.strokeStyle='rgba(10,10,10,'+(0.13+h1G*0.87)+')';ctx.lineWidth=1;ctx.stroke();
+    ctx.textAlign='center';ctx.fillStyle='#0a0a0a';
+    ctx.font='700 11px "Bebas Neue",Impact,sans-serif';
+    ctx.fillText('01',h1x,NY+4.5);
+
+    // ── SNOB hub ──
+    glow(h2x,NY,H2R,h2G);
+    ctx.beginPath();ctx.arc(h2x,NY,H2R,0,Math.PI*2);
+    ctx.fillStyle='#fff';ctx.fill();
+    ctx.strokeStyle='rgba(217,70,239,'+(0.5+h2G*0.5)+')';ctx.lineWidth=1.6;ctx.stroke();
+    ctx.textAlign='center';
+    ctx.fillStyle='rgba(217,70,239,'+(0.6+h2G*0.4)+')';
+    ctx.font='400 15px "Bebas Neue",Impact,sans-serif';
+    ctx.fillText('SNOB',h2x,NY+5);
+    ctx.fillStyle='rgba(180,180,180,'+(0.6+h2G*0.4)+')';
+    ctx.font='400 8px -apple-system,sans-serif';
+    ctx.fillText(gl(LBL.sec),h2x,NY+H2R+16);
+
+    // ── hub 3 ──
+    glow(h3x,NY,H3R,h3G);
+    ctx.beginPath();ctx.arc(h3x,NY,H3R,0,Math.PI*2);
+    ctx.fillStyle='#fff';ctx.fill();
+    ctx.strokeStyle='rgba(10,10,10,'+(0.13+h3G*0.87)+')';ctx.lineWidth=1;ctx.stroke();
+    ctx.textAlign='center';ctx.fillStyle='#0a0a0a';
+    ctx.font='700 11px "Bebas Neue",Impact,sans-serif';
+    ctx.fillText('03',h3x,NY+4.5);
+  }
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){if(!raf){startTime=null;raf=requestAnimationFrame(draw);}}
+      else{if(raf){cancelAnimationFrame(raf);raf=null;}}
+    });
+  });
+  io.observe(sec);
 })();
 </script>
 </body>
