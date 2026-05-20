@@ -142,9 +142,9 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 
 /* CTA 1 */
 #cta1{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
-.cta1-label{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#bbb;margin-bottom:20px;}
+.cta1-label{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:#999;margin-bottom:20px;}
 .cta1-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,120px);line-height:.88;margin-bottom:52px;}
-.cta1-note{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#ccc;margin-top:20px;}
+.cta1-note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#aaa;margin-top:20px;}
 
 /* Orbiting ring behind CTA */
 .cta1-ring{position:absolute;width:600px;height:600px;border:1px solid #f5f5f5;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:orbit 12s linear infinite;}
@@ -162,17 +162,23 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .ws-block{background:#fff;padding:36px 28px;cursor:none;position:relative;overflow:hidden;transition:background .3s;}
 .ws-block::before{content:'';position:absolute;inset:0;background:#0a0a0a;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
 .ws-block:hover::before{transform:translateY(0);}
-.ws-block-num{font-size:10px;letter-spacing:.2em;color:#ccc;margin-bottom:16px;text-transform:uppercase;position:relative;z-index:1;transition:color .3s;}
-.ws-block:hover .ws-block-num{color:#555;}
+.ws-block-num{font-size:11px;letter-spacing:.2em;color:#aaa;margin-bottom:16px;text-transform:uppercase;position:relative;z-index:1;transition:color .3s;}
+.ws-block:hover .ws-block-num{color:#666;}
 .ws-block-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:10px;position:relative;z-index:1;transition:color .3s;}
 .ws-block:hover .ws-block-title{color:#d946ef;}
-.ws-block-sub{font-size:12px;color:#bbb;line-height:1.6;position:relative;z-index:1;transition:color .3s;}
-.ws-block:hover .ws-block-sub{color:#777;}
+.ws-block-sub{font-size:13px;color:#999;line-height:1.6;position:relative;z-index:1;transition:color .3s;}
+.ws-block:hover .ws-block-sub{color:#888;}
 .ws-block-body{display:none;}
 /* SNOB FLOW */
 #snob-flow{padding:80px 40px 96px;border-bottom:1px solid #f0f0f0;}
-.sf-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:56px;text-align:center;}
-#snob-flow-cvs{display:block;margin:0 auto;width:100%;max-width:700px;}
+.sf-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:24px;text-align:center;}
+.sf-toggle{display:flex;justify-content:center;gap:8px;margin-bottom:36px;}
+.sf-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
+.sf-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
+.sf-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
+.sf-chip.active:hover{background:#d946ef;border-color:#d946ef;}
+#snob-flow-cvs{display:block;margin:0 auto;width:100%;max-width:840px;touch-action:none;}
+.sf-sub-lbl{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;text-align:center;margin-top:16px;min-height:1.2em;}
 @media(max-width:768px){#snob-flow{padding:60px 20px 72px;}}
 
 /* ACRO GRID */
@@ -184,8 +190,8 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .ws-acro-item:hover .ws-acro-letter{color:#d946ef;}
 .ws-acro-word{font-size:12px;font-weight:500;color:#0a0a0a;transition:color .3s;margin-bottom:4px;letter-spacing:.04em;position:relative;z-index:1;}
 .ws-acro-item:hover .ws-acro-word{color:#fff;}
-.ws-acro-desc{font-size:11px;color:#bbb;line-height:1.6;transition:color .3s;position:relative;z-index:1;}
-.ws-acro-item:hover .ws-acro-desc{color:#777;}
+.ws-acro-desc{font-size:12px;color:#888;line-height:1.6;transition:color .3s;position:relative;z-index:1;}
+.ws-acro-item:hover .ws-acro-desc{color:#888;}
 @media(max-width:768px){#whatssnob{padding:64px 20px;}.ws-blocks{grid-template-columns:1fr;}.ws-acro{grid-template-columns:1fr 1fr;}.ws-block{padding:24px 20px;}}
 
 /* ═══════════════════════════════════════════════════════════
@@ -216,7 +222,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .appt-opt.active .appt-opt-name{color:#0a0a0a;}
 .calc-out{display:flex;align-items:baseline;gap:12px;margin:32px 0 8px;}
 .calc-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,120px);line-height:1;color:#d946ef;transition:transform .15s cubic-bezier(.16,1,.3,1);}
-.calc-unit{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#bbb;line-height:1.6;}
+.calc-unit{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#888;line-height:1.6;}
 .calc-rec{font-size:12px;letter-spacing:.1em;color:#999;margin-bottom:24px;}
 .calc-rec b{color:#0a0a0a;font-weight:400;}
 .cta-link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:none;border:none;border-bottom:1px solid #0a0a0a;color:#0a0a0a;padding-bottom:2px;cursor:none;transition:color .2s,border-color .2s;}
@@ -234,15 +240,15 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .pr-col{padding:44px 36px;border-right:1px solid #f0f0f0;display:flex;flex-direction:column;cursor:none;transition:background .3s,box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1);transform-style:preserve-3d;will-change:transform;}
 .pr-col:last-child{border-right:none;}
 .pr-col:hover{background:#0a0a0a;box-shadow:0 40px 80px rgba(0,0,0,.12);}
-.pr-tier{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#bbb;margin-bottom:16px;transition:color .3s;}
-.pr-col:hover .pr-tier{color:#444;}
+.pr-tier{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#888;margin-bottom:16px;transition:color .3s;}
+.pr-col:hover .pr-tier{color:#555;}
 .pr-num{font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;margin-bottom:2px;transition:color .3s;}
 .pr-col:hover .pr-num{color:#d946ef;}
-.pr-chf{font-size:11px;letter-spacing:.12em;color:#bbb;margin-bottom:24px;transition:color .3s;}
-.pr-col:hover .pr-chf{color:#444;}
+.pr-chf{font-size:12px;letter-spacing:.12em;color:#888;margin-bottom:24px;transition:color .3s;}
+.pr-col:hover .pr-chf{color:#555;}
 .pr-list{list-style:none;flex:1;margin-bottom:24px;}
-.pr-list li{font-size:11px;color:#aaa;padding:6px 0;border-bottom:1px solid #f5f5f5;line-height:1.5;transition:color .3s,border-color .3s;letter-spacing:.04em;}
-.pr-col:hover .pr-list li{color:#555;border-color:#1a1a1a;}
+.pr-list li{font-size:12px;color:#888;padding:6px 0;border-bottom:1px solid #f5f5f5;line-height:1.5;transition:color .3s,border-color .3s;letter-spacing:.04em;}
+.pr-col:hover .pr-list li{color:#666;border-color:#1a1a1a;}
 .pr-list li::before{content:'→';margin-right:8px;opacity:0;transition:opacity .2s,color .3s;color:#d946ef;font-size:10px;}
 .pr-col:hover .pr-list li::before{opacity:1;}
 .pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #e8e8e8;color:#ccc;padding:12px;cursor:none;transition:all .3s;}
@@ -259,14 +265,14 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-sub{font-size:15px;color:#888;line-height:1.8;max-width:560px;margin-bottom:56px;}
 .da-int-wrap{margin-bottom:56px;}
 .da-industry{margin-bottom:24px;}
-.da-ind-q{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#bbb;margin-bottom:14px;}
+.da-ind-q{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:14px;}
 .da-ind-chips{display:flex;flex-wrap:wrap;gap:8px;}
 .da-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
 .da-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .da-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
 .da-chip.active:hover{background:#d946ef;border-color:#d946ef;}
 #da-force-cvs{display:block;width:100%;touch-action:none;}
-.da-ctx{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#bbb;margin-top:10px;min-height:1.2em;}
+.da-ctx{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-top:12px;min-height:1.2em;}
 .da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
 .da-block{background:#fff;padding:36px 28px;cursor:none;transition:background .2s;position:relative;overflow:hidden;}
 .da-block::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
@@ -276,7 +282,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-block-num{font-size:10px;letter-spacing:.2em;color:#ccc;margin-bottom:16px;text-transform:uppercase;}
 .da-block-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:10px;transition:color .2s;color:#0a0a0a;}
 .da-block:hover .da-block-title,.da-block.open .da-block-title{color:#d946ef;}
-.da-block-sub{font-size:12px;color:#bbb;line-height:1.6;}
+.da-block-sub{font-size:13px;color:#999;line-height:1.6;}
 .da-block-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s;opacity:0;}
 .da-block.open .da-block-body{max-height:200px;opacity:1;}
 .da-block-body-inner{padding-top:16px;font-size:12px;color:#555;line-height:1.8;border-top:1px solid #f0f0f0;margin-top:12px;}
@@ -304,7 +310,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .lh-doc{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f0f0f0;text-decoration:none;color:#0a0a0a;transition:color .2s,padding-left .3s cubic-bezier(.16,1,.3,1);}
 .lh-doc:hover{color:#d946ef;padding-left:8px;}
 .lh-doc-l{display:flex;align-items:center;gap:16px;}
-.lh-doc-tag{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#ccc;width:80px;flex-shrink:0;}
+.lh-doc-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;width:84px;flex-shrink:0;}
 .lh-doc-name{font-size:13px;letter-spacing:.08em;}
 .lh-doc-arr{font-size:14px;color:#ccc;transition:color .2s,transform .3s cubic-bezier(.16,1,.3,1);}
 .lh-doc:hover .lh-doc-arr{color:#d946ef;transform:translateX(4px);}
@@ -416,7 +422,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <span id="t-swiss-l3">Auf Wunsch direkt beim Auftraggeber gehostet.</span>
   </div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
-  <button id="gyro-btn" onclick="activateGyro()" style="display:none;position:absolute;bottom:72px;left:50%;transform:translateX(-50%);background:none;border:1px solid rgba(217,70,239,.5);color:#d946ef;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:8px 18px;cursor:pointer;z-index:10;white-space:nowrap;">◉ Motion aktivieren</button>
+  <button id="gyro-btn" onclick="activateGyro()" data-i="gyro_btn" style="display:none;position:absolute;bottom:72px;left:50%;transform:translateX(-50%);background:none;border:1px solid rgba(217,70,239,.5);color:#d946ef;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:8px 18px;cursor:pointer;z-index:10;white-space:nowrap;">◉ Motion aktivieren</button>
 </div>
 </div>
 
@@ -492,7 +498,12 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 <!-- SNOB FLOW -->
 <div id="snob-flow" data-r="up">
   <div class="sf-lbl" data-i="sf_lbl">Wie SNOB arbeitet</div>
-  <canvas id="snob-flow-cvs" height="260"></canvas>
+  <div class="sf-toggle">
+    <button class="sf-chip active" data-mode="inbound" onclick="setSFMode('inbound')" data-i="sf_mode_in">Inbound</button>
+    <button class="sf-chip" data-mode="outbound" onclick="setSFMode('outbound')" data-i="sf_mode_out">Outbound</button>
+  </div>
+  <canvas id="snob-flow-cvs"></canvas>
+  <div class="sf-sub-lbl" id="sf-sub-lbl" data-i="sf_sub_in">Kundenanfragen · SNOB verarbeitet · Automatische Aktionen</div>
 </div>
 
 <!-- CALC -->
@@ -604,11 +615,13 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <div class="da-industry">
       <div class="da-ind-q" data-i="da_ind_q">Welche Branche?</div>
       <div class="da-ind-chips">
-        <button class="da-chip" data-ind="hotel"   onclick="setDAIndustry('hotel')"><span data-i="dac_hotel">Hotel</span></button>
-        <button class="da-chip" data-ind="arzt"    onclick="setDAIndustry('arzt')"><span data-i="dac_arzt">Arztpraxis</span></button>
-        <button class="da-chip" data-ind="kanzlei" onclick="setDAIndustry('kanzlei')"><span data-i="dac_kanzlei">Kanzlei</span></button>
-        <button class="da-chip" data-ind="ecom"    onclick="setDAIndustry('ecom')"><span data-i="dac_ecom">E-Commerce</span></button>
-        <button class="da-chip" data-ind="resto"   onclick="setDAIndustry('resto')"><span data-i="dac_resto">Restaurant</span></button>
+        <button class="da-chip" data-ind="pharma"   onclick="setDAIndustry('pharma')"><span data-i="dac_pharma">Pharma</span></button>
+        <button class="da-chip" data-ind="industrie" onclick="setDAIndustry('industrie')"><span data-i="dac_industrie">Industrie</span></button>
+        <button class="da-chip" data-ind="handel"   onclick="setDAIndustry('handel')"><span data-i="dac_handel">Handel</span></button>
+        <button class="da-chip" data-ind="gastro"   onclick="setDAIndustry('gastro')"><span data-i="dac_gastro">Gastronomie</span></button>
+        <button class="da-chip" data-ind="it"       onclick="setDAIndustry('it')"><span data-i="dac_it">IT & Komm.</span></button>
+        <button class="da-chip" data-ind="finanzen" onclick="setDAIndustry('finanzen')"><span data-i="dac_finanzen">Finanzen</span></button>
+        <button class="da-chip" data-ind="gesund"   onclick="setDAIndustry('gesund')"><span data-i="dac_gesund">Gesundheit</span></button>
       </div>
     </div>
     <canvas id="da-force-cvs"></canvas>
@@ -974,13 +987,15 @@ var T = {
   da_b3t:      {de:'Bauen',en:'Build',fr:'Construire'},
   da_b3s:      {de:'Massgeschneidert. Nicht von der Stange.',en:'Tailored. Not off the shelf.',fr:'Sur mesure. Pas générique.'},
   da_b3b:      {de:'Dann bauen wir. Massgeschneidert auf dein Problem. Kein generisches Produkt, sondern dein digitaler Mitarbeiter — der wächst.',en:'Then we build. Tailored to your problem. Not a generic product, but your digital employee — that grows.',fr:'Ensuite nous construisons. Sur mesure pour votre problème. Pas un produit générique, mais votre employé numérique — qui grandit.'},
-  da_ind_q:    {de:'Welche Branche?',en:'Which industry?',fr:'Votre secteur?'},
-  dac_hotel:   {de:'Hotel',en:'Hotel',fr:'Hôtel'},
-  dac_arzt:    {de:'Arztpraxis',en:'Medical',fr:'Médecine'},
-  dac_kanzlei: {de:'Kanzlei',en:'Law Firm',fr:'Avocats'},
-  dac_ecom:    {de:'E-Commerce',en:'E-Commerce',fr:'E-Commerce'},
-  dac_resto:   {de:'Restaurant',en:'Restaurant',fr:'Restaurant'},
-  da_ctx_def:  {de:'Integrationen & Kanäle',en:'Integrations & Channels',fr:'Intégrations & Canaux'},
+  da_ind_q:      {de:'Welche Branche?',en:'Which industry?',fr:'Votre secteur?'},
+  dac_pharma:    {de:'Pharma',en:'Pharma',fr:'Pharma'},
+  dac_industrie: {de:'Industrie',en:'Industry',fr:'Industrie'},
+  dac_handel:    {de:'Handel',en:'Retail',fr:'Commerce'},
+  dac_gastro:    {de:'Gastronomie',en:'Hospitality',fr:'Restauration'},
+  dac_it:        {de:'IT & Komm.',en:'IT & Comm.',fr:'IT & Comm.'},
+  dac_finanzen:  {de:'Finanzen',en:'Finance',fr:'Finance'},
+  dac_gesund:    {de:'Gesundheit',en:'Healthcare',fr:'Santé'},
+  da_ctx_def:    {de:'Integrationen & Kanäle',en:'Integrations & Channels',fr:'Intégrations & Canaux'},
   cta2_title:  {de:'Fragen?<br>Ruf SNOB an.',en:'Questions?<br>Call SNOB.',fr:'Des questions?<br>Appelez SNOB.'},
   lh_lbl:      {de:'Rechtsdokumente',en:'Legal Documents',fr:'Documents Légaux'},
   lh_title:    {de:'LEGAL HUB',en:'LEGAL HUB',fr:'LEGAL HUB'},
@@ -1003,7 +1018,12 @@ var T = {
   qb2:         {de:'AI Calls',en:'AI Calls',fr:'Appels IA'},
   qb3:         {de:'Demo',en:'Demo',fr:'Démo'},
   qb4:         {de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
-  sf_lbl:      {de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'}
+  sf_lbl:      {de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'},
+  sf_mode_in:  {de:'Inbound',en:'Inbound',fr:'Entrant'},
+  sf_mode_out: {de:'Outbound',en:'Outbound',fr:'Sortant'},
+  sf_sub_in:   {de:'Kundenanfragen · SNOB verarbeitet · Automatische Aktionen',en:'Customer inquiries · SNOB processes · Automated actions',fr:'Demandes clients · SNOB traite · Actions automatisées'},
+  sf_sub_out:  {de:'Leads & Kampagnen · SNOB sendet · Messbare Ergebnisse',en:'Leads & campaigns · SNOB sends · Measurable results',fr:'Leads & campagnes · SNOB envoie · Résultats mesurables'},
+  gyro_btn:    {de:'◉ Motion aktivieren',en:'◉ Activate Motion',fr:'◉ Activer le mouvement'}
 };
 
 var SL_CALLS = {de:'Calls / Woche',en:'Calls / week',fr:'Appels / semaine'};
@@ -1064,6 +1084,7 @@ function setLang(lang){
   if(lc) lc.innerHTML=SL_CALLS[lang]+' <span class="sl-val" id="vC">'+cV+'</span>';
   doCalc();
   if(window._updateDACtx) window._updateDACtx(lang);
+  if(window._updateSFLbl) window._updateSFLbl(lang);
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1750,175 +1771,464 @@ function toggleChat(){
 })();
 
 // ════════════════════════════════════════════════════════════
-// SNOB FLOW — input cluster → SNOB secure → output cluster
+// SNOB FLOW v3 — INBOUND / OUTBOUND + icons + readable text
 // ════════════════════════════════════════════════════════════
 (function(){
-  var sec = document.getElementById('snob-flow');
-  var canvas = document.getElementById('snob-flow-cvs');
-  if (!sec || !canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W, H = 260, DPR = window.devicePixelRatio || 1;
-  var startTime = null, raf = null;
-  var CYCLE = 5.8;
+  var cvs = document.getElementById('snob-flow-cvs');
+  if(!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var DPR = window.devicePixelRatio || 1;
+  var W, H;
+  var raf = null, visible = false;
+  var sfMode = 'inbound';
+  var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  var pulses = [];
+  var lastPulse = 0;
 
-  // Labels read live from currentLang each frame
+  function gl(o){ var l = typeof currentLang !== 'undefined' ? currentLang : 'de'; return o[l] || o.de; }
+  function glArr(o){ var l = typeof currentLang !== 'undefined' ? currentLang : 'de'; return o[l] || o.de; }
+
   var LBL = {
-    in:  [{de:'Anruf',en:'Call',fr:'Appel'},{de:'Chat',en:'Chat',fr:'Chat'},{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'}],
-    sec: {de:'GDPR · Swiss · Sicher',en:'GDPR · Swiss · Secure',fr:'RGPD · Suisse · Sécurisé'},
-    out: [{de:'Kalender',en:'Calendar',fr:'Calendrier'},{de:'CRM',en:'CRM',fr:'CRM'},{de:'E-Mail',en:'E-Mail',fr:'E-Mail'}]
+    phone:    {de:'Anruf',           en:'Phone Call',      fr:'Appel tél.'},
+    voice:    {de:'Web Voice',       en:'Web Voice',       fr:'Voix Web'},
+    chat:     {de:'Web Chat',        en:'Web Chat',        fr:'Chat Web'},
+    whats:    {de:'WhatsApp',        en:'WhatsApp',        fr:'WhatsApp'},
+    langs:    {de:'100+ Sprachen',   en:'100+ Languages',  fr:'100+ Langues'},
+    sheets:   {de:'Google Sheets',   en:'Google Sheets',   fr:'Google Sheets'},
+    crm:      {de:'CRM',             en:'CRM',             fr:'CRM'},
+    platform: {de:'goSNOB Platform', en:'goSNOB Platform', fr:'goSNOB Platform'},
+    campaign: {de:'Campaign\nMgr',   en:'Campaign\nMgr',   fr:'Campagnes'},
+    analytics:{de:'Analytics',       en:'Analytics',       fr:'Analytique'},
+    an_sub:   {de:'Fakten · Verhalten · Zufriedenheit', en:'Facts · Behavior · Satisfaction', fr:'Faits · Comportement · Satisfaction'},
+    storage:  {de:'Datenspeicher',   en:'Data Storage',    fr:'Stockage'},
+    st_sub:   {de:'CRM · Email · Webhooks', en:'CRM · Email · Webhooks', fr:'CRM · Email · Webhooks'},
+    appts:    {de:'Termine',         en:'Appointments',    fr:'Rendez-vous'},
+    ap_sub:   {de:'Buchen · Stornieren · Verschieben', en:'Book · Cancel · Reschedule', fr:'Réserver · Annuler · Reporter'},
+    sources:  {de:'300+\nDatenquellen', en:'300+\nData Sources', fr:'300+\nSources'},
+    knowledge:{de:'Knowledge\nLibrary', en:'Knowledge\nLibrary', fr:'Base de\nConnaissance'},
+    gdpr:     {de:'GDPR · Swiss · Sicher', en:'GDPR · Swiss · Secure', fr:'RGPD · Suisse · Sécurisé'},
+    src_list: {
+      de:['Task Mgmt','Kalender','Bestellungen','Tabellen','APIs & Webhooks','Kundendaten','Produktkatalog','Social Media'],
+      en:['Task Mgmt','Calendar','Orders','Spreadsheets','APIs & Webhooks','Customer Data','Product Catalog','Social Media'],
+      fr:['Gestion tâches','Calendrier','Commandes','Tableurs','APIs & Webhooks','Données clients','Catalogue','Réseaux sociaux']
+    },
+    kn_list: {
+      de:['PDF','DOCX','TXT','Web'],
+      en:['PDF','DOCX','TXT','Web'],
+      fr:['PDF','DOCX','TXT','Web']
+    },
+    mode_lbl: {
+      inbound:  {de:'INBOUND', en:'INBOUND', fr:'ENTRANT'},
+      outbound: {de:'OUTBOUND',en:'OUTBOUND',fr:'SORTANT'}
+    }
   };
-  function gl(o){ var l=typeof currentLang!=='undefined'?currentLang:'de'; return o[l]||o.de; }
 
   function resize(){
-    var rect=sec.getBoundingClientRect();
-    W=Math.min(rect.width-80,720);
-    canvas.width=Math.round(W*DPR); canvas.height=Math.round(H*DPR);
-    canvas.style.width=W+'px'; canvas.style.height=H+'px';
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-
-  function easeIO(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
-  function easeOut(t){return 1-Math.pow(1-t,3);}
-
-  function pulse(x,y,al){
-    if(al<0.01)return;
-    var g=ctx.createRadialGradient(x,y,0,x,y,10);
-    g.addColorStop(0,'rgba(255,230,255,'+al+')');
-    g.addColorStop(0.3,'rgba(217,70,239,'+al*0.85+')');
-    g.addColorStop(1,'rgba(217,70,239,0)');
-    ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
-    ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);
-    ctx.fillStyle='rgba(217,70,239,'+al+')';ctx.fill();
+    var sec = document.getElementById('snob-flow');
+    var pw = sec ? sec.getBoundingClientRect().width : 600;
+    W = Math.max(280, Math.min(pw - (isTouch ? 40 : 80), 840));
+    H = isTouch ? Math.min(Math.round(window.innerHeight * 0.68), 520) : 540;
+    cvs.width  = Math.round(W * DPR);
+    cvs.height = Math.round(H * DPR);
+    cvs.style.width  = W + 'px';
+    cvs.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   }
 
-  function glow(x,y,r,al){
-    if(al<0.01)return;
-    var g=ctx.createRadialGradient(x,y,r,x,y,r+20);
-    g.addColorStop(0,'rgba(217,70,239,'+al*0.42+')');
-    g.addColorStop(1,'rgba(217,70,239,0)');
-    ctx.beginPath();ctx.arc(x,y,r+20,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+  function lo(){
+    var snobR = isTouch ? 30 : 38;
+    var nodeR = isTouch ? 14 : 18;
+    var clR   = isTouch ? 19 : 24;
+    var snobX = W * 0.5,  snobY = H * 0.33;
+    var clY   = snobY + snobR + (isTouch ? 90 : 108);
+    var srcX  = W * 0.34, knX = W * 0.66;
+    var lx    = isTouch ? W * 0.11 : W * 0.08;
+    var rx    = isTouch ? W * 0.89 : W * 0.92;
+    var inputs, campNode = null;
+    if(sfMode === 'inbound'){
+      var dy = isTouch ? 58 : 72;
+      inputs = [
+        {x:lx, y:snobY - dy*1.5, lbl:LBL.phone,    icn:'phone'},
+        {x:lx, y:snobY - dy*0.5, lbl:LBL.voice,    icn:'mic'},
+        {x:lx, y:snobY + dy*0.5, lbl:LBL.chat,     icn:'chat'},
+        {x:lx, y:snobY + dy*1.5, lbl:LBL.whats,    icn:'whatsapp'}
+      ];
+    } else {
+      var dy2 = isTouch ? 55 : 68;
+      inputs = [
+        {x:lx, y:snobY - dy2,   lbl:LBL.sheets,   icn:'grid'},
+        {x:lx, y:snobY,          lbl:LBL.crm,      icn:'person'},
+        {x:lx, y:snobY + dy2,   lbl:LBL.platform,  icn:'hexagon'}
+      ];
+      campNode = {x: W * 0.27, y: snobY, r: isTouch ? 18 : 22, icn:'megaphone'};
+    }
+    var ody = isTouch ? 64 : 80;
+    var outputs = [
+      {x:rx, y:snobY - ody, lbl:LBL.analytics, sub:LBL.an_sub, pink:true,  icn:'bars'},
+      {x:rx, y:snobY,        lbl:LBL.storage,   sub:LBL.st_sub, pink:false, icn:'db'},
+      {x:rx, y:snobY + ody,  lbl:LBL.appts,     sub:LBL.ap_sub, pink:false, icn:'calendar'}
+    ];
+    return {snobX:snobX, snobY:snobY, snobR:snobR, nodeR:nodeR, clR:clR,
+            clY:clY, srcX:srcX, knX:knX, inputs:inputs, campNode:campNode, outputs:outputs};
   }
 
-  function draw(ts){
-    raf=requestAnimationFrame(draw);
-    if(!startTime)startTime=ts;
-    var el=(ts-startTime)/1000, cyc=(el%CYCLE)/CYCLE;
-    ctx.clearRect(0,0,W,H);
+  function circ(x, y, r, fill, strok, sw){
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+    if(fill){  ctx.fillStyle = fill; ctx.fill(); }
+    if(strok){ ctx.strokeStyle = strok; ctx.lineWidth = sw||1; ctx.stroke(); }
+  }
 
-    var NY=H*0.43, SR=13, H1R=21, H2R=30, H3R=21;
-    var h1x=W*0.23, h2x=W*0.50, h3x=W*0.77;
-    var sp=H*0.21;
-    var iPos=[{x:W*0.04,y:NY-sp},{x:W*0.04,y:NY},{x:W*0.04,y:NY+sp}];
-    var oPos=[{x:W*0.96,y:NY-sp},{x:W*0.96,y:NY},{x:W*0.96,y:NY+sp}];
+  function drawTxt(x, y, text, size, color, align){
+    ctx.textAlign = align || 'center';
+    ctx.fillStyle = color || '#888';
+    ctx.font = '400 ' + size + 'px "DM Mono",monospace';
+    var lines = String(text).split('\n');
+    var lh = size * 1.35;
+    var oy = -(lines.length - 1) * lh * 0.5;
+    lines.forEach(function(line, i){ ctx.fillText(line, x, y + oy + i * lh + size * 0.35); });
+  }
 
-    // phase timing
-    // 0→0.17  : in-sats → h1
-    // 0.17→0.45: h1 → h2
-    // 0.45→0.60: h2 glow (secure processing)
-    // 0.60→0.83: h2 → h3
-    // 0.83→0.97: h3 → out-sats
-    // 0.97→1.0 : pause
-    var h1G=0,h2G=0,h3G=0,inT=0,inAl=0,m1T=-1,m1Al=0,m2T=-1,m2Al=0,outT=0,outAl=0,oSG=[0,0,0];
+  // ── Lineart icons ──
+  function icn(type, x, y, r, col) {
+    var s = r * 0.46;
+    ctx.strokeStyle = col; ctx.fillStyle = col;
+    ctx.lineWidth = isTouch ? 0.8 : 1;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.save(); ctx.translate(x, y);
+    if(type === 'phone') {
+      ctx.beginPath();
+      ctx.moveTo(-s*.55, s*.45);
+      ctx.bezierCurveTo(-s*.55, 0, 0, -s*.55, s*.55, -s*.55);
+      ctx.stroke();
+      ctx.beginPath(); ctx.arc(-s*.5, s*.4, s*.18, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(s*.5, -s*.5, s*.18, 0, Math.PI*2); ctx.fill();
+    } else if(type === 'mic') {
+      ctx.beginPath();
+      ctx.arc(0, -s*.2, s*.28, Math.PI, 0);
+      ctx.rect(-s*.28, -s*.2, s*.56, s*.5);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-s*.42, s*.1);
+      ctx.quadraticCurveTo(-s*.42, s*.55, 0, s*.55);
+      ctx.quadraticCurveTo(s*.42, s*.55, s*.42, s*.1);
+      ctx.moveTo(0, s*.55); ctx.lineTo(0, s*.75);
+      ctx.moveTo(-s*.28, s*.75); ctx.lineTo(s*.28, s*.75);
+      ctx.stroke();
+    } else if(type === 'chat') {
+      ctx.beginPath();
+      ctx.moveTo(-s*.5, s*.25);
+      ctx.lineTo(-s*.5, -s*.5);
+      ctx.quadraticCurveTo(-s*.5, -s*.65, -s*.3, -s*.65);
+      ctx.lineTo(s*.3, -s*.65);
+      ctx.quadraticCurveTo(s*.5, -s*.65, s*.5, -s*.5);
+      ctx.lineTo(s*.5, s*.15);
+      ctx.quadraticCurveTo(s*.5, s*.35, s*.3, s*.35);
+      ctx.lineTo(-s*.05, s*.35);
+      ctx.lineTo(-s*.3, s*.65);
+      ctx.lineTo(-s*.3, s*.35);
+      ctx.lineTo(-s*.5, s*.35);
+      ctx.quadraticCurveTo(-s*.5, s*.35, -s*.5, s*.25);
+      ctx.stroke();
+    } else if(type === 'whatsapp') {
+      ctx.beginPath(); ctx.arc(0, 0, s*.58, 0, Math.PI*2); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-s*.2, s*.32);
+      ctx.bezierCurveTo(-s*.22, 0, s*.12, -s*.28, s*.28, -s*.2);
+      ctx.stroke();
+    } else if(type === 'grid') {
+      ctx.beginPath();
+      ctx.rect(-s*.5, -s*.5, s, s);
+      ctx.moveTo(0, -s*.5); ctx.lineTo(0, s*.5);
+      ctx.moveTo(-s*.5, 0); ctx.lineTo(s*.5, 0);
+      ctx.stroke();
+    } else if(type === 'person') {
+      ctx.beginPath(); ctx.arc(0, -s*.3, s*.27, 0, Math.PI*2); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-s*.5, s*.65);
+      ctx.quadraticCurveTo(-s*.5, s*.08, 0, s*.08);
+      ctx.quadraticCurveTo(s*.5, s*.08, s*.5, s*.65);
+      ctx.stroke();
+    } else if(type === 'hexagon') {
+      ctx.beginPath();
+      for(var i=0;i<6;i++){
+        var a=i/6*Math.PI*2-Math.PI/6;
+        i?ctx.lineTo(Math.cos(a)*s*.6,Math.sin(a)*s*.6):ctx.moveTo(Math.cos(a)*s*.6,Math.sin(a)*s*.6);
+      }
+      ctx.closePath(); ctx.stroke();
+    } else if(type === 'megaphone') {
+      ctx.beginPath();
+      ctx.moveTo(-s*.5,-s*.22); ctx.lineTo(-s*.5,s*.22);
+      ctx.lineTo(s*.5,s*.58); ctx.lineTo(s*.5,-s*.58); ctx.closePath(); ctx.stroke();
+      ctx.beginPath(); ctx.rect(-s*.78,-s*.24,s*.3,s*.48); ctx.stroke();
+    } else if(type === 'bars') {
+      ctx.beginPath();
+      ctx.rect(-s*.5, s*.08, s*.28, s*.48);
+      ctx.rect(-s*.12, -s*.18, s*.28, s*.74);
+      ctx.rect(s*.25, -s*.52, s*.28, s*1.08);
+      ctx.fill();
+      ctx.beginPath(); ctx.moveTo(-s*.54,s*.6); ctx.lineTo(s*.58,s*.6); ctx.stroke();
+    } else if(type === 'db') {
+      for(var j=0;j<3;j++){
+        ctx.beginPath();
+        ctx.ellipse(0, -s*.38+j*s*.4, s*.48, s*.16, 0, 0, Math.PI*2);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.moveTo(-s*.48,-s*.38); ctx.lineTo(-s*.48,s*.22);
+      ctx.moveTo(s*.48,-s*.38); ctx.lineTo(s*.48,s*.22);
+      ctx.stroke();
+    } else if(type === 'calendar') {
+      ctx.beginPath();
+      ctx.rect(-s*.5,-s*.3,s,s*.85);
+      ctx.moveTo(-s*.5,s*.05); ctx.lineTo(s*.5,s*.05);
+      ctx.moveTo(-s*.2,-s*.5); ctx.lineTo(-s*.2,-s*.15);
+      ctx.moveTo(s*.2,-s*.5); ctx.lineTo(s*.2,-s*.15);
+      ctx.stroke();
+    } else if(type === 'book') {
+      ctx.beginPath();
+      ctx.rect(-s*.5,-s*.55,s,s*1.1);
+      ctx.moveTo(0,-s*.55); ctx.lineTo(0,s*.55);
+      ctx.moveTo(-s*.38,-s*.2); ctx.lineTo(-s*.08,-s*.2);
+      ctx.moveTo(-s*.38,s*.1); ctx.lineTo(-s*.08,s*.1);
+      ctx.stroke();
+    } else if(type === 'network') {
+      ctx.beginPath();
+      ctx.arc(0,-s*.42,s*.17,0,Math.PI*2);
+      ctx.arc(-s*.38,s*.25,s*.17,0,Math.PI*2);
+      ctx.arc(s*.38,s*.25,s*.17,0,Math.PI*2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0,-s*.25); ctx.lineTo(-s*.28,s*.12);
+      ctx.moveTo(0,-s*.25); ctx.lineTo(s*.28,s*.12);
+      ctx.moveTo(-s*.22,s*.25); ctx.lineTo(s*.22,s*.25);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
 
-    if(cyc<0.17){
-      var p=easeOut(cyc/0.17); inT=p; inAl=Math.sin(p*Math.PI);
-      h1G=Math.max(0,(p-0.8)/0.2);
-    } else if(cyc<0.45){
-      var p=easeIO((cyc-0.17)/0.28); m1T=p; m1Al=Math.sin(p*Math.PI);
-      h1G=Math.max(0,1-p*3); h2G=Math.max(0,(p-0.8)/0.2);
-    } else if(cyc<0.60){
-      h2G=1-(cyc-0.45)/0.15;
-    } else if(cyc<0.83){
-      var p=easeIO((cyc-0.60)/0.23); m2T=p; m2Al=Math.sin(p*Math.PI);
-      h3G=Math.max(0,(p-0.8)/0.2);
-    } else if(cyc<0.97){
-      var p=easeOut((cyc-0.83)/0.14); outT=p; outAl=Math.sin(p*Math.PI);
-      h3G=Math.max(0,1-p*3);
-      oSG=oPos.map(function(){return Math.max(0,(p-0.72)/0.28);});
+  function pDot(x, y, al){
+    if(al < 0.01) return;
+    var g = ctx.createRadialGradient(x, y, 0, x, y, 9);
+    g.addColorStop(0,    'rgba(255,215,255,' + al + ')');
+    g.addColorStop(0.35, 'rgba(217,70,239,'  + (al * 0.9) + ')');
+    g.addColorStop(1,    'rgba(217,70,239,0)');
+    ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+    ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(217,70,239,' + al + ')'; ctx.fill();
+  }
+
+  function ln(x1, y1, x2, y2, col, w){
+    ctx.strokeStyle = col || 'rgba(0,0,0,0.05)';
+    ctx.lineWidth = w || 1;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  }
+
+  function nodeGlow(x, y, r, intensity){
+    var g = ctx.createRadialGradient(x, y, r * 0.4, x, y, r + 28);
+    g.addColorStop(0, 'rgba(217,70,239,' + intensity * 0.22 + ')');
+    g.addColorStop(1, 'rgba(217,70,239,0)');
+    ctx.beginPath(); ctx.arc(x, y, r + 28, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+  }
+
+  function spawnPulse(layout){
+    var r = Math.random();
+    if(r < 0.40){
+      // input → SNOB (or campaign → SNOB for outbound)
+      if(layout.campNode){
+        pulses.push({x1:layout.campNode.x + layout.campNode.r, y1:layout.campNode.y,
+                     x2:layout.snobX - layout.snobR, y2:layout.snobY, t:0, s:0.0065});
+      } else {
+        var inp = layout.inputs[Math.floor(Math.random() * layout.inputs.length)];
+        pulses.push({x1:inp.x + layout.nodeR, y1:inp.y,
+                     x2:layout.snobX - layout.snobR, y2:layout.snobY, t:0, s:0.007 + Math.random()*0.003});
+      }
+    } else if(r < 0.78){
+      // SNOB → output
+      var out = layout.outputs[Math.floor(Math.random() * layout.outputs.length)];
+      pulses.push({x1:layout.snobX + layout.snobR, y1:layout.snobY,
+                   x2:out.x - layout.nodeR, y2:out.y, t:0, s:0.007 + Math.random()*0.003});
+    } else {
+      // data cluster → SNOB
+      var clX = Math.random() > 0.5 ? layout.srcX : layout.knX;
+      pulses.push({x1:clX, y1:layout.clY - layout.clR,
+                   x2:layout.snobX, y2:layout.snobY + layout.snobR, t:0, s:0.005 + Math.random()*0.003});
+    }
+  }
+
+  function draw(now){
+    raf = requestAnimationFrame(draw);
+    ctx.clearRect(0, 0, W, H);
+    var layout = lo();
+    if(now - lastPulse > 450){ spawnPulse(layout); lastPulse = now; }
+
+    var lc = 'rgba(0,0,0,0.05)';
+    var dc = 'rgba(217,70,239,0.08)';
+
+    // — Lines: inputs → SNOB (or campaign) —
+    if(layout.campNode){
+      layout.inputs.forEach(function(n){
+        ln(n.x + layout.nodeR, n.y, layout.campNode.x - layout.campNode.r, layout.campNode.y, lc);
+      });
+      ln(layout.campNode.x + layout.campNode.r, layout.campNode.y,
+         layout.snobX - layout.snobR, layout.snobY, lc);
+    } else {
+      layout.inputs.forEach(function(n){
+        ln(n.x + layout.nodeR, n.y, layout.snobX - layout.snobR, layout.snobY, lc);
+      });
+    }
+    // — Lines: SNOB → outputs —
+    layout.outputs.forEach(function(o){
+      ln(layout.snobX + layout.snobR, layout.snobY, o.x - layout.nodeR, o.y, lc);
+    });
+    // — Lines: data clusters → SNOB (dashed-style thin pink) —
+    ln(layout.srcX, layout.clY - layout.clR, layout.snobX, layout.snobY + layout.snobR, dc, 0.8);
+    ln(layout.knX,  layout.clY - layout.clR, layout.snobX, layout.snobY + layout.snobR, dc, 0.8);
+
+    // — Pulses —
+    pulses = pulses.filter(function(p){ return p.t < 1; });
+    pulses.forEach(function(p){
+      p.t += p.s;
+      pDot(p.x1 + (p.x2 - p.x1) * p.t, p.y1 + (p.y2 - p.y1) * p.t, Math.sin(p.t * Math.PI));
+    });
+
+    // — Data clusters —
+    var t = now * 0.001;
+    var clLblSz = isTouch ? 8 : 9;
+    nodeGlow(layout.srcX, layout.clY, layout.clR, 0.55 + 0.3 * Math.sin(t * 1.7));
+    circ(layout.srcX, layout.clY, layout.clR, '#fff', 'rgba(217,70,239,0.22)', 1);
+    icn('network', layout.srcX, layout.clY, layout.clR, '#d946ef');
+    drawTxt(layout.srcX, layout.clY + layout.clR + 13, gl(LBL.sources), clLblSz, '#d946ef');
+
+    nodeGlow(layout.knX, layout.clY, layout.clR, 0.35 + 0.28 * Math.sin(t * 1.9 + 1));
+    circ(layout.knX, layout.clY, layout.clR, '#fff', 'rgba(217,70,239,0.15)', 1);
+    icn('book', layout.knX, layout.clY, layout.clR, 'rgba(185,65,205,0.7)');
+    drawTxt(layout.knX, layout.clY + layout.clR + 13, gl(LBL.knowledge), clLblSz, 'rgba(175,65,200,0.8)');
+
+    // Cluster sub-items — stacked below each cluster node (clean, no overlap)
+    var lang2 = typeof currentLang !== 'undefined' ? currentLang : 'de';
+    var srcList = LBL.src_list[lang2] || LBL.src_list.de;
+    var knList  = LBL.kn_list[lang2]  || LBL.kn_list.de;
+    var subSz = isTouch ? 7 : 8;
+    var subCol = 'rgba(185,110,205,0.55)';
+    ctx.font = '400 ' + subSz + 'px "DM Mono",monospace';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = subCol;
+    var clLblBottom = layout.clY + layout.clR + 13 + clLblSz * 1.6;
+    srcList.slice(0, isTouch ? 3 : 5).forEach(function(s, i){
+      ctx.fillText(s, layout.srcX, clLblBottom + i * (subSz * 1.5));
+    });
+    knList.forEach(function(s, i){
+      ctx.fillText(s, layout.knX, clLblBottom + i * (subSz * 1.5));
+    });
+
+    // — Input nodes —
+    var nodeLblSz = isTouch ? 8.5 : 10;
+    layout.inputs.forEach(function(n){
+      circ(n.x, n.y, layout.nodeR, '#fff', 'rgba(0,0,0,0.10)', 0.8);
+      icn(n.icn, n.x, n.y, layout.nodeR, '#999');
+      drawTxt(n.x, n.y + layout.nodeR + 13, gl(n.lbl), nodeLblSz, '#666');
+    });
+
+    // — Campaign node (outbound) —
+    if(layout.campNode){
+      circ(layout.campNode.x, layout.campNode.y, layout.campNode.r, '#fff', 'rgba(0,0,0,0.12)', 1);
+      icn(layout.campNode.icn, layout.campNode.x, layout.campNode.y, layout.campNode.r, '#555');
+      drawTxt(layout.campNode.x, layout.campNode.y + layout.campNode.r + 13, gl(LBL.campaign), nodeLblSz, '#555');
     }
 
-    // ── background lines ──
-    ctx.strokeStyle='#ebebeb'; ctx.lineWidth=1;
-    iPos.forEach(function(s){ctx.beginPath();ctx.moveTo(s.x+SR,s.y);ctx.lineTo(h1x-H1R,NY);ctx.stroke();});
-    ctx.beginPath();ctx.moveTo(h1x+H1R,NY);ctx.lineTo(h2x-H2R,NY);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(h2x+H2R,NY);ctx.lineTo(h3x-H3R,NY);ctx.stroke();
-    oPos.forEach(function(s){ctx.beginPath();ctx.moveTo(h3x+H3R,NY);ctx.lineTo(s.x-SR,s.y);ctx.stroke();});
-
-    // ── traveling pulses ──
-    iPos.forEach(function(s){
-      if(inAl<0.01)return;
-      pulse(s.x+SR+(h1x-H1R-s.x-SR)*inT, s.y+(NY-s.y)*inT, inAl*0.82);
-    });
-    if(m1T>=0) pulse(h1x+H1R+(h2x-H2R-h1x-H1R)*m1T, NY, m1Al);
-    if(m2T>=0) pulse(h2x+H2R+(h3x-H3R-h2x-H2R)*m2T, NY, m2Al);
-    oPos.forEach(function(s,i){
-      if(outAl<0.01)return;
-      pulse(h3x+H3R+(s.x-SR-h3x-H3R)*outT, NY+(s.y-NY)*outT, outAl*0.82);
-    });
-
-    // ── input satellites ──
-    iPos.forEach(function(s,i){
-      ctx.beginPath();ctx.arc(s.x,s.y,SR,0,Math.PI*2);
-      ctx.fillStyle='#fff';ctx.fill();
-      ctx.strokeStyle='rgba(10,10,10,0.11)';ctx.lineWidth=0.8;ctx.stroke();
-      ctx.textAlign='center';ctx.fillStyle='#aaa';
-      ctx.font='400 9px -apple-system,sans-serif';
-      ctx.fillText(gl(LBL.in[i]),s.x,s.y+3.5);
+    // — Output nodes —
+    layout.outputs.forEach(function(o){
+      circ(o.x, o.y, layout.nodeR, '#fff',
+           o.pink ? 'rgba(217,70,239,0.3)' : 'rgba(0,0,0,0.10)',
+           o.pink ? 1.2 : 0.8);
+      icn(o.icn, o.x, o.y, layout.nodeR, o.pink ? 'rgba(217,70,239,0.75)' : '#999');
+      drawTxt(o.x, o.y + layout.nodeR + 13, gl(o.lbl), nodeLblSz, o.pink ? '#d946ef' : '#666');
+      if(!isTouch && W > 680){
+        ctx.textAlign = 'left';
+        ctx.fillStyle = 'rgba(150,150,150,0.65)';
+        ctx.font = '400 8px "DM Mono",monospace';
+        var subParts = gl(o.sub).split(' · ');
+        subParts.forEach(function(part, si){
+          ctx.fillText(part, o.x + layout.nodeR + 8, o.y - 4 + si * 11);
+        });
+      }
     });
 
-    // ── output satellites ──
-    oPos.forEach(function(s,i){
-      glow(s.x,s.y,SR,oSG[i]);
-      ctx.beginPath();ctx.arc(s.x,s.y,SR,0,Math.PI*2);
-      ctx.fillStyle='#fff';ctx.fill();
-      ctx.strokeStyle='rgba(10,10,10,'+(0.1+oSG[i]*0.9)+')';ctx.lineWidth=0.8;ctx.stroke();
-      ctx.textAlign='center';
-      ctx.fillStyle=oSG[i]>0.3?'#0a0a0a':'#aaa';
-      ctx.font='400 9px -apple-system,sans-serif';
-      ctx.fillText(gl(LBL.out[i]),s.x,s.y+3.5);
-    });
+    // — SNOB center node —
+    var pulseAl = 0.05 + 0.04 * Math.sin(now * 0.002);
+    var gg = ctx.createRadialGradient(layout.snobX, layout.snobY, layout.snobR,
+                                       layout.snobX, layout.snobY, layout.snobR + 30);
+    gg.addColorStop(0, 'rgba(217,70,239,' + pulseAl + ')');
+    gg.addColorStop(1, 'rgba(217,70,239,0)');
+    ctx.beginPath(); ctx.arc(layout.snobX, layout.snobY, layout.snobR + 30, 0, Math.PI*2);
+    ctx.fillStyle = gg; ctx.fill();
+    circ(layout.snobX, layout.snobY, layout.snobR, '#0a0a0a');
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#fff';
+    ctx.font = '400 ' + (isTouch ? 15 : 17) + 'px "Bebas Neue",sans-serif';
+    ctx.fillText('SNOB', layout.snobX, layout.snobY - 3);
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.font = '400 ' + (isTouch ? 7 : 8) + 'px "DM Mono",monospace';
+    ctx.fillText(gl(LBL.mode_lbl[sfMode]), layout.snobX, layout.snobY + 12);
 
-    // ── hub 1 ──
-    glow(h1x,NY,H1R,h1G);
-    ctx.beginPath();ctx.arc(h1x,NY,H1R,0,Math.PI*2);
-    ctx.fillStyle='#fff';ctx.fill();
-    ctx.strokeStyle='rgba(10,10,10,'+(0.13+h1G*0.87)+')';ctx.lineWidth=1;ctx.stroke();
-    ctx.textAlign='center';ctx.fillStyle='#0a0a0a';
-    ctx.font='700 11px "Bebas Neue",Impact,sans-serif';
-    ctx.fillText('01',h1x,NY+4.5);
+    // GDPR note
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(180,180,180,0.4)';
+    ctx.font = '400 ' + (isTouch ? 6.5 : 7.5) + 'px "DM Mono",monospace';
+    ctx.fillText(gl(LBL.gdpr), layout.snobX, layout.snobY + layout.snobR + 16);
 
-    // ── SNOB hub ──
-    glow(h2x,NY,H2R,h2G);
-    ctx.beginPath();ctx.arc(h2x,NY,H2R,0,Math.PI*2);
-    ctx.fillStyle='#fff';ctx.fill();
-    ctx.strokeStyle='rgba(217,70,239,'+(0.5+h2G*0.5)+')';ctx.lineWidth=1.6;ctx.stroke();
-    ctx.textAlign='center';
-    ctx.fillStyle='rgba(217,70,239,'+(0.6+h2G*0.4)+')';
-    ctx.font='400 15px "Bebas Neue",Impact,sans-serif';
-    ctx.fillText('SNOB',h2x,NY+5);
-    ctx.fillStyle='rgba(180,180,180,'+(0.6+h2G*0.4)+')';
-    ctx.font='400 8px -apple-system,sans-serif';
-    ctx.fillText(gl(LBL.sec),h2x,NY+H2R+16);
-
-    // ── hub 3 ──
-    glow(h3x,NY,H3R,h3G);
-    ctx.beginPath();ctx.arc(h3x,NY,H3R,0,Math.PI*2);
-    ctx.fillStyle='#fff';ctx.fill();
-    ctx.strokeStyle='rgba(10,10,10,'+(0.13+h3G*0.87)+')';ctx.lineWidth=1;ctx.stroke();
-    ctx.textAlign='center';ctx.fillStyle='#0a0a0a';
-    ctx.font='700 11px "Bebas Neue",Impact,sans-serif';
-    ctx.fillText('03',h3x,NY+4.5);
+    // "100+ Langs" badge (inbound only)
+    if(sfMode === 'inbound'){
+      var topInput = layout.inputs[0];
+      var bx = topInput.x, by = topInput.y - layout.nodeR - 16;
+      var bw = isTouch ? 68 : 82, bh = 14;
+      ctx.fillStyle = 'rgba(217,70,239,0.07)';
+      ctx.strokeStyle = 'rgba(217,70,239,0.22)';
+      ctx.lineWidth = 0.7;
+      ctx.beginPath(); ctx.rect(bx - bw*0.5, by - bh*0.5, bw, bh);
+      ctx.fill(); ctx.stroke();
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(217,70,239,0.65)';
+      ctx.font = '400 ' + (isTouch ? 6.5 : 7.5) + 'px "DM Mono",monospace';
+      ctx.fillText(gl(LBL.langs), bx, by + 2.5);
+    }
   }
 
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){if(!raf){startTime=null;raf=requestAnimationFrame(draw);}}
-      else{if(raf){cancelAnimationFrame(raf);raf=null;}}
+  // — Global mode switcher —
+  window.setSFMode = function(newMode){
+    if(sfMode === newMode) return;
+    sfMode = newMode;
+    pulses = [];
+    document.querySelectorAll('.sf-chip').forEach(function(c){
+      c.classList.toggle('active', c.getAttribute('data-mode') === newMode);
+    });
+    var subEl = document.getElementById('sf-sub-lbl');
+    if(subEl){
+      var key = newMode === 'inbound' ? 'sf_sub_in' : 'sf_sub_out';
+      subEl.setAttribute('data-i', key);
+      var lang = typeof currentLang !== 'undefined' ? currentLang : 'de';
+      if(window.T && window.T[key]) subEl.textContent = window.T[key][lang] || window.T[key].de;
+    }
+  };
+
+  window._updateSFLbl = function(lang){
+    var subEl = document.getElementById('sf-sub-lbl');
+    if(!subEl) return;
+    var key = subEl.getAttribute('data-i') || 'sf_sub_in';
+    if(window.T && window.T[key]) subEl.textContent = window.T[key][lang] || window.T[key].de;
+  };
+
+  resize();
+  window.addEventListener('resize', function(){ resize(); }, {passive:true});
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      visible = e.isIntersecting;
+      if(visible && !raf){ raf = requestAnimationFrame(draw); }
+      else if(!visible && raf){ cancelAnimationFrame(raf); raf = null; }
     });
   });
-  io.observe(sec);
+  io.observe(cvs);
 })();
 
 // DA FORCE GRAPH
@@ -1947,59 +2257,46 @@ function toggleChat(){
   ];
 
   var IDATA={
-    hotel:[
-      {id:'u1',lbl:{de:'Reservierung',en:'Booking',fr:'Réservation'},type:'usecase'},
-      {id:'u2',lbl:{de:'Guest Service',en:'Guest Service',fr:'Accueil client'},type:'usecase'},
-      {id:'u3',lbl:{de:'Upselling AI',en:'Upselling AI',fr:'Vente additionnelle'},type:'usecase'},
-      {id:'u4',lbl:{de:'Reviews',en:'Reviews',fr:'Avis'},type:'usecase'},
-      {id:'u5',lbl:{de:'Housekeeping',en:'Housekeeping',fr:'Entretien'},type:'usecase'},
-      {id:'u6',lbl:{de:'Preise AI',en:'Pricing AI',fr:'Prix IA'},type:'usecase'},
-      {id:'u7',lbl:{de:'Check-in Bot',en:'Check-in Bot',fr:'Bot check-in'},type:'usecase'},
-      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'c2',lbl:{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'},type:'channel'},
-      {id:'i1',lbl:{de:'PMS-System',en:'PMS System',fr:'PMS'},type:'integration'},
-      {id:'i2',lbl:{de:'Kalender',en:'Calendar',fr:'Calendrier'},type:'integration'},
-    ],
-    arzt:[
-      {id:'u1',lbl:{de:'Terminbuchung',en:'Scheduling',fr:'Rendez-vous'},type:'usecase'},
-      {id:'u2',lbl:{de:'Erinnerungen',en:'Reminders',fr:'Rappels'},type:'usecase'},
-      {id:'u3',lbl:{de:'Triage IA',en:'Triage AI',fr:'Triage IA'},type:'usecase'},
-      {id:'u4',lbl:{de:'Abrechnung',en:'Billing AI',fr:'Facturation'},type:'usecase'},
-      {id:'u5',lbl:{de:'Warteliste',en:'Waitlist',fr:"Liste d'att."},type:'usecase'},
-      {id:'u6',lbl:{de:'Rezepte AI',en:'Prescription',fr:'Ordonnances'},type:'usecase'},
-      {id:'u7',lbl:{de:'Nachsorge',en:'Follow-up',fr:'Suivi'},type:'usecase'},
-      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'c2',lbl:{de:'SMS',en:'SMS',fr:'SMS'},type:'channel'},
-      {id:'i1',lbl:{de:'Praxissoftware',en:'PMS',fr:'Logiciel'},type:'integration'},
-      {id:'i2',lbl:{de:'DSGVO',en:'GDPR',fr:'RGPD'},type:'integration'},
-    ],
-    kanzlei:[
-      {id:'u1',lbl:{de:'Vertragsanalyse',en:'Contract AI',fr:'Analyse contrats'},type:'usecase'},
-      {id:'u2',lbl:{de:'Legal Research',en:'Legal Research',fr:'Recherche légale'},type:'usecase'},
-      {id:'u3',lbl:{de:'Dokumente AI',en:'Document AI',fr:'Docs IA'},type:'usecase'},
-      {id:'u4',lbl:{de:'Mandanten Bot',en:'Client Bot',fr:'Bot client'},type:'usecase'},
-      {id:'u5',lbl:{de:'Zeiterfassung',en:'Time Tracking',fr:'Temps'},type:'usecase'},
-      {id:'u6',lbl:{de:'Compliance',en:'Compliance',fr:'Conformité'},type:'usecase'},
-      {id:'u7',lbl:{de:'Akquise AI',en:'Lead AI',fr:'Prospection'},type:'usecase'},
+    pharma:[
+      {id:'u1',lbl:{de:'Regulatory AI',en:'Regulatory AI',fr:'Conformité IA'},type:'usecase'},
+      {id:'u2',lbl:{de:'Drug Discovery',en:'Drug Discovery',fr:'R&D IA'},type:'usecase'},
+      {id:'u3',lbl:{de:'Klinische Trials',en:'Clinical Trials',fr:'Essais cliniques'},type:'usecase'},
+      {id:'u4',lbl:{de:'Sales Force AI',en:'Sales Force AI',fr:'Force vente IA'},type:'usecase'},
+      {id:'u5',lbl:{de:'Patient Outreach',en:'Patient Outreach',fr:'Suivi patients'},type:'usecase'},
+      {id:'u6',lbl:{de:'Market Access',en:'Market Access',fr:'Accès marché'},type:'usecase'},
+      {id:'u7',lbl:{de:'Pharmacovigilanz',en:'Pharmacovigilance',fr:'Pharmacovigilance'},type:'usecase'},
       {id:'c1',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
       {id:'c2',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'i1',lbl:{de:'DMS',en:'DMS',fr:'GED'},type:'integration'},
-      {id:'i2',lbl:{de:'Kalender',en:'Calendar',fr:'Agenda'},type:'integration'},
+      {id:'i1',lbl:{de:'CRM',en:'CRM',fr:'CRM'},type:'integration'},
+      {id:'i2',lbl:{de:'ERP',en:'ERP',fr:'ERP'},type:'integration'},
     ],
-    ecom:[
-      {id:'u1',lbl:{de:'Support 24/7',en:'Support 24/7',fr:'Support 24/7'},type:'usecase'},
-      {id:'u2',lbl:{de:'Produkttexte',en:'Product Copy',fr:'Textes produits'},type:'usecase'},
-      {id:'u3',lbl:{de:'Retouren AI',en:'Returns AI',fr:'Retours IA'},type:'usecase'},
-      {id:'u4',lbl:{de:'Empfehlungen',en:'Recommendations',fr:'Recommandations'},type:'usecase'},
-      {id:'u5',lbl:{de:'Inventar AI',en:'Inventory AI',fr:'Inventaire IA'},type:'usecase'},
-      {id:'u6',lbl:{de:'Preis-Dynamik',en:'Dynamic Pricing',fr:'Prix dynamiques'},type:'usecase'},
-      {id:'u7',lbl:{de:'Checkout Bot',en:'Checkout Bot',fr:'Bot achat'},type:'usecase'},
+    industrie:[
+      {id:'u1',lbl:{de:'Predictive Maint.',en:'Predictive Maint.',fr:'Maintenance IA'},type:'usecase'},
+      {id:'u2',lbl:{de:'Qualitätskontrolle',en:'Quality Control',fr:'Contrôle qualité'},type:'usecase'},
+      {id:'u3',lbl:{de:'Supply Chain AI',en:'Supply Chain AI',fr:'Chaîne log. IA'},type:'usecase'},
+      {id:'u4',lbl:{de:'Produktionsplan.',en:'Production Plan.',fr:'Planif. prod.'},type:'usecase'},
+      {id:'u5',lbl:{de:'IoT Analytics',en:'IoT Analytics',fr:'IoT Analytics'},type:'usecase'},
+      {id:'u6',lbl:{de:'Arbeitssicherheit',en:'Worker Safety',fr:'Sécurité travail'},type:'usecase'},
+      {id:'u7',lbl:{de:'Energieoptimierung',en:'Energy Optim.',fr:'Optim. énergie'},type:'usecase'},
+      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
+      {id:'c2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
+      {id:'i1',lbl:{de:'ERP',en:'ERP',fr:'ERP'},type:'integration'},
+      {id:'i2',lbl:{de:'SCADA',en:'SCADA',fr:'SCADA'},type:'integration'},
+    ],
+    handel:[
+      {id:'u1',lbl:{de:'Inventar AI',en:'Inventory AI',fr:'Inventaire IA'},type:'usecase'},
+      {id:'u2',lbl:{de:'Preis-Dynamik',en:'Dynamic Pricing',fr:'Prix dynamiques'},type:'usecase'},
+      {id:'u3',lbl:{de:'Kundenservice AI',en:'Customer Service',fr:'Service client'},type:'usecase'},
+      {id:'u4',lbl:{de:'Loyalty AI',en:'Loyalty AI',fr:'Fidélité IA'},type:'usecase'},
+      {id:'u5',lbl:{de:'Visual Merch.',en:'Visual Merch.',fr:'Merch. visuel'},type:'usecase'},
+      {id:'u6',lbl:{de:'Demand Forecast',en:'Demand Forecast',fr:'Prévision demande'},type:'usecase'},
+      {id:'u7',lbl:{de:'Retouren AI',en:'Returns AI',fr:'Retours IA'},type:'usecase'},
       {id:'c1',lbl:{de:'Chat',en:'Chat',fr:'Chat'},type:'channel'},
       {id:'c2',lbl:{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'},type:'channel'},
-      {id:'i1',lbl:{de:'Shopify',en:'Shopify',fr:'Shopify'},type:'integration'},
-      {id:'i2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'integration'},
+      {id:'i1',lbl:{de:'POS',en:'POS',fr:'Caisse'},type:'integration'},
+      {id:'i2',lbl:{de:'E-Commerce',en:'E-Commerce',fr:'E-Commerce'},type:'integration'},
     ],
-    resto:[
+    gastro:[
       {id:'u1',lbl:{de:'Reservierung',en:'Reservation',fr:'Réservation'},type:'usecase'},
       {id:'u2',lbl:{de:'Bestellannahme',en:'Orders AI',fr:'Commandes IA'},type:'usecase'},
       {id:'u3',lbl:{de:'Menü-Optimizer',en:'Menu Optimizer',fr:'Optimis. menu'},type:'usecase'},
@@ -2012,15 +2309,56 @@ function toggleChat(){
       {id:'i1',lbl:{de:'POS-System',en:'POS System',fr:'Caisse'},type:'integration'},
       {id:'i2',lbl:{de:'Delivery',en:'Delivery',fr:'Livraison'},type:'integration'},
     ],
+    it:[
+      {id:'u1',lbl:{de:'IT-Helpdesk AI',en:'IT Helpdesk AI',fr:'Helpdesk IA'},type:'usecase'},
+      {id:'u2',lbl:{de:'Network Monitor',en:'Network Monitor',fr:'Réseau IA'},type:'usecase'},
+      {id:'u3',lbl:{de:'Security AI',en:'Security AI',fr:'Sécurité IA'},type:'usecase'},
+      {id:'u4',lbl:{de:'Code Review AI',en:'Code Review AI',fr:'Revue code IA'},type:'usecase'},
+      {id:'u5',lbl:{de:'DevOps AI',en:'DevOps AI',fr:'DevOps IA'},type:'usecase'},
+      {id:'u6',lbl:{de:'Support 24/7',en:'Support 24/7',fr:'Support 24/7'},type:'usecase'},
+      {id:'u7',lbl:{de:'SLA Management',en:'SLA Management',fr:'Gestion SLA'},type:'usecase'},
+      {id:'c1',lbl:{de:'Chat',en:'Chat',fr:'Chat'},type:'channel'},
+      {id:'c2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
+      {id:'i1',lbl:{de:'Ticketing',en:'Ticketing',fr:'Ticketing'},type:'integration'},
+      {id:'i2',lbl:{de:'Slack',en:'Slack',fr:'Slack'},type:'integration'},
+    ],
+    finanzen:[
+      {id:'u1',lbl:{de:'Risikoanalyse',en:'Risk Analysis',fr:'Analyse risque'},type:'usecase'},
+      {id:'u2',lbl:{de:'Fraud Detection',en:'Fraud Detection',fr:'Détection fraude'},type:'usecase'},
+      {id:'u3',lbl:{de:'Portfolio AI',en:'Portfolio AI',fr:'Portefeuille IA'},type:'usecase'},
+      {id:'u4',lbl:{de:'Compliance AI',en:'Compliance AI',fr:'Conformité IA'},type:'usecase'},
+      {id:'u5',lbl:{de:'Kundenberatung',en:'Client Advisory',fr:'Conseil client'},type:'usecase'},
+      {id:'u6',lbl:{de:'Marktanalyse',en:'Market Intel.',fr:'Intel. marché'},type:'usecase'},
+      {id:'u7',lbl:{de:'Reporting AI',en:'Reporting AI',fr:'Reporting IA'},type:'usecase'},
+      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
+      {id:'c2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
+      {id:'i1',lbl:{de:'CRM',en:'CRM',fr:'CRM'},type:'integration'},
+      {id:'i2',lbl:{de:'Core Banking',en:'Core Banking',fr:'Core Banking'},type:'integration'},
+    ],
+    gesund:[
+      {id:'u1',lbl:{de:'Terminbuchung',en:'Appointment AI',fr:'Rendez-vous IA'},type:'usecase'},
+      {id:'u2',lbl:{de:'Patienten-Triage',en:'Patient Triage',fr:'Triage patient'},type:'usecase'},
+      {id:'u3',lbl:{de:'EHR Integration',en:'EHR Integration',fr:'DME Intégration'},type:'usecase'},
+      {id:'u4',lbl:{de:'Medikamente AI',en:'Medication AI',fr:'Médicaments IA'},type:'usecase'},
+      {id:'u5',lbl:{de:'Abrechnung AI',en:'Billing AI',fr:'Facturation IA'},type:'usecase'},
+      {id:'u6',lbl:{de:'Remote Monitoring',en:'Remote Monitoring',fr:'Télésurveillance'},type:'usecase'},
+      {id:'u7',lbl:{de:'Nachsorge AI',en:'Follow-up AI',fr:'Suivi IA'},type:'usecase'},
+      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
+      {id:'c2',lbl:{de:'SMS',en:'SMS',fr:'SMS'},type:'channel'},
+      {id:'i1',lbl:{de:'EMR/KIS',en:'EMR/HIS',fr:'DME/SIH'},type:'integration'},
+      {id:'i2',lbl:{de:'DSGVO',en:'GDPR',fr:'RGPD'},type:'integration'},
+    ],
   };
 
   var CTX_LABELS={
-    'null':{de:'Integrationen & Kanäle',en:'Integrations & Channels',fr:'Intégrations & Canaux'},
-    hotel:{de:'AI-Möglichkeiten: Hotel & Hospitality',en:'AI Possibilities: Hotel & Hospitality',fr:'IA Hôtellerie & Hospitality'},
-    arzt:{de:'AI-Möglichkeiten: Arztpraxis',en:'AI Possibilities: Medical Practice',fr:'IA Cabinet médical'},
-    kanzlei:{de:'AI-Möglichkeiten: Kanzlei',en:'AI Possibilities: Law Firm',fr:"IA Cabinet d'avocats"},
-    ecom:{de:'AI-Möglichkeiten: E-Commerce',en:'AI Possibilities: E-Commerce',fr:'IA E-Commerce'},
-    resto:{de:'AI-Möglichkeiten: Restaurant',en:'AI Possibilities: Restaurant',fr:'IA Restaurant'},
+    'null':     {de:'Integrationen & Kanäle',en:'Integrations & Channels',fr:'Intégrations & Canaux'},
+    pharma:     {de:'AI in der Pharmaindustrie',en:'AI in Pharma',fr:'IA dans la pharma'},
+    industrie:  {de:'AI in der Industrie',en:'AI in Manufacturing',fr:'IA dans l\'industrie'},
+    handel:     {de:'AI im Handel & Retail',en:'AI in Retail',fr:'IA dans le commerce'},
+    gastro:     {de:'AI in der Gastronomie',en:'AI in Hospitality',fr:'IA dans la restauration'},
+    it:         {de:'AI in IT & Kommunikation',en:'AI in IT & Communication',fr:'IA en IT & Communication'},
+    finanzen:   {de:'AI in Finanzen & Banking',en:'AI in Finance & Banking',fr:'IA en Finance & Banque'},
+    gesund:     {de:'AI im Gesundheitswesen',en:'AI in Healthcare',fr:'IA dans la santé'},
   };
 
   window._daCtxLabels=CTX_LABELS;
@@ -2182,9 +2520,9 @@ function toggleChat(){
       ctx.lineWidth=n.type==='usecase'?1:0.8;
       ctx.stroke();ctx.globalAlpha=1;
       ctx.textAlign='center';
-      ctx.fillStyle=n.type==='usecase'?'rgba(217,70,239,'+n.alpha+')':'rgba(153,153,153,'+n.alpha+')';
-      ctx.font='400 '+(isTouch?'7.5':'8.5')+'px "DM Mono",monospace';
-      ctx.fillText(gl(n.lbl),n.x,n.y+r+11);
+      ctx.fillStyle=n.type==='usecase'?'rgba(217,70,239,'+n.alpha+')':'rgba(110,110,110,'+n.alpha+')';
+      ctx.font='400 '+(isTouch?'9':'10.5')+'px "DM Mono",monospace';
+      ctx.fillText(gl(n.lbl),n.x,n.y+r+13);
     });
     var pulse=0.06+0.035*Math.sin(now*0.0022);
     var gg=ctx.createRadialGradient(snob.x,snob.y,snob.r,snob.x,snob.y,snob.r+24);
