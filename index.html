@@ -94,7 +94,7 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 ═══════════════════════════════════════════════════════════ */
 #hero-wrap{position:relative;}
 #hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:none;}
-#hero-inner{position:relative;display:flex;align-items:center;justify-content:center;will-change:transform;}
+#hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;will-change:transform;}
 #hero-word{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-size:clamp(140px,30vw,440px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;text-align:center;will-change:transform;}
 #hero-word .hl{display:inline-block;opacity:0;transform:translateY(80px) rotate(5deg);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
 #hero-word .hl.in{opacity:1;transform:none;}
@@ -1305,69 +1305,112 @@ function toggleChat(){
 })();
 
 // ════════════════════════════════════════════════════════════
-// HERO CANVAS — neural brain: dots + synapses + traveling pulses
+// HERO CANVAS — brain over text · mouse attraction · gyro
 // ════════════════════════════════════════════════════════════
 (function(){
   var hero = document.getElementById('hero');
   var canvas = document.createElement('canvas');
   canvas.id = 'hero-canvas';
-  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+  // z-index:2 → floats above hero-inner (z-index:1) so dots go over letters
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;';
   hero.insertBefore(canvas, hero.firstChild);
   var ctx = canvas.getContext('2d');
   var W, H, particles = [], edges = [], pulses = [], startTime = null, raf = null, lastPulseTs = 0;
 
+  // ── Input (mouse / gyro) ──────────────────────────────────
+  var inputX = 0, inputY = 0, inputActive = false;
+  var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (!isMobile) {
+    hero.addEventListener('mousemove', function(e) {
+      var r = canvas.getBoundingClientRect();
+      inputX = e.clientX - r.left;
+      inputY = e.clientY - r.top;
+      inputActive = true;
+    }, {passive:true});
+    hero.addEventListener('mouseleave', function(){ inputActive = false; });
+  }
+
+  function startGyro() {
+    window.addEventListener('deviceorientation', function(e) {
+      if (e.gamma == null) return;
+      inputActive = true;
+      // gamma: left/right (-90→90), beta: tilt forward/back (-180→180, natural hold ≈45-90)
+      var gx = Math.max(-45, Math.min(45, e.gamma));
+      var gy = Math.max(-45, Math.min(45, (e.beta || 45) - 45));
+      inputX = W / 2 + (gx / 45) * W * 0.44;
+      inputY = H / 2 + (gy / 45) * H * 0.44;
+    }, {passive:true});
+  }
+
+  if (isMobile) {
+    if (typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iOS 13+ — request on first touch
+      document.addEventListener('touchstart', function handler() {
+        DeviceOrientationEvent.requestPermission()
+          .then(function(s){ if (s === 'granted') startGyro(); })
+          .catch(function(){});
+        document.removeEventListener('touchstart', handler);
+      }, {once:true, passive:true});
+    } else {
+      startGyro(); // Android — no permission dialog
+    }
+  }
+
+  // ── Brain shape sampler ───────────────────────────────────
   function sampleBrain(N, bw, bh) {
     var oc = document.createElement('canvas');
     oc.width = bw; oc.height = bh;
     var ox = oc.getContext('2d');
-    var cx = bw / 2, cy = bh / 2;
+    var cx = bw/2, cy = bh/2;
     ox.beginPath();
-    ox.moveTo(cx, cy + bh * 0.38);
-    ox.bezierCurveTo(cx + bw*0.12, cy + bh*0.42, cx + bw*0.52, cy + bh*0.38, cx + bw*0.50, cy + bh*0.04);
-    ox.bezierCurveTo(cx + bw*0.50, cy - bh*0.30, cx + bw*0.38, cy - bh*0.44, cx + bw*0.10, cy - bh*0.42);
-    ox.bezierCurveTo(cx + bw*0.04, cy - bh*0.44, cx + bw*0.01, cy - bh*0.36, cx,           cy - bh*0.30);
-    ox.bezierCurveTo(cx - bw*0.01, cy - bh*0.36, cx - bw*0.04, cy - bh*0.44, cx - bw*0.10, cy - bh*0.42);
-    ox.bezierCurveTo(cx - bw*0.38, cy - bh*0.44, cx - bw*0.50, cy - bh*0.30, cx - bw*0.50, cy + bh*0.04);
-    ox.bezierCurveTo(cx - bw*0.52, cy + bh*0.38, cx - bw*0.12, cy + bh*0.42, cx,           cy + bh*0.38);
+    ox.moveTo(cx, cy + bh*0.38);
+    ox.bezierCurveTo(cx+bw*0.12, cy+bh*0.42, cx+bw*0.52, cy+bh*0.38, cx+bw*0.50, cy+bh*0.04);
+    ox.bezierCurveTo(cx+bw*0.50, cy-bh*0.30, cx+bw*0.38, cy-bh*0.44, cx+bw*0.10, cy-bh*0.42);
+    ox.bezierCurveTo(cx+bw*0.04, cy-bh*0.44, cx+bw*0.01, cy-bh*0.36, cx,          cy-bh*0.30);
+    ox.bezierCurveTo(cx-bw*0.01, cy-bh*0.36, cx-bw*0.04, cy-bh*0.44, cx-bw*0.10, cy-bh*0.42);
+    ox.bezierCurveTo(cx-bw*0.38, cy-bh*0.44, cx-bw*0.50, cy-bh*0.30, cx-bw*0.50, cy+bh*0.04);
+    ox.bezierCurveTo(cx-bw*0.52, cy+bh*0.38, cx-bw*0.12, cy+bh*0.42, cx,          cy+bh*0.38);
     ox.closePath();
     ox.fillStyle = '#fff'; ox.fill();
-    var pts = [], tries = 0, id = ox.getImageData(0, 0, bw, bh);
-    while (pts.length < N && tries < N * 80) {
+    var pts = [], tries = 0, id = ox.getImageData(0,0,bw,bh);
+    while (pts.length < N && tries < N*80) {
       tries++;
-      var rx = Math.random() * bw, ry = Math.random() * bh;
-      if (id.data[(Math.floor(ry) * bw + Math.floor(rx)) * 4 + 3] > 128)
-        pts.push({ x: rx - cx, y: ry - cy });
+      var rx = Math.random()*bw, ry = Math.random()*bh;
+      if (id.data[(Math.floor(ry)*bw+Math.floor(rx))*4+3] > 128)
+        pts.push({x: rx-cx, y: ry-cy});
     }
     return pts;
   }
 
-  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+  function easeOutQuart(t){ return 1-Math.pow(1-t,4); }
 
   function buildEdges() {
     edges = [];
     var THRESH = 56;
-    for (var i = 0; i < particles.length; i++) {
-      for (var j = i + 1; j < particles.length; j++) {
-        var dx = particles[i].tx - particles[j].tx, dy = particles[i].ty - particles[j].ty;
-        var d = Math.sqrt(dx*dx + dy*dy);
-        if (d < THRESH) edges.push({ a: i, b: j, d: d, inv: 1 - d/THRESH });
+    for (var i = 0; i < particles.length; i++)
+      for (var j = i+1; j < particles.length; j++) {
+        var dx = particles[i].tx-particles[j].tx, dy = particles[i].ty-particles[j].ty;
+        var d = Math.sqrt(dx*dx+dy*dy);
+        if (d < THRESH) edges.push({a:i, b:j, d:d, inv:1-d/THRESH});
       }
-    }
   }
 
   function initParticles() {
-    var scale = Math.min(W, H) * 0.72;
-    var bw = Math.round(scale * 1.05), bh = Math.round(scale * 0.88);
+    var scale = Math.min(W,H)*0.72;
+    var bw = Math.round(scale*1.05), bh = Math.round(scale*0.88);
     var pts = sampleBrain(280, bw, bh);
     particles = pts.map(function(b) {
-      var ang = Math.random() * Math.PI * 2, burst = 20 + Math.random() * 30;
+      var ang = Math.random()*Math.PI*2, burst = 20+Math.random()*30;
       return {
-        tx: W/2 + b.x, ty: H/2 + b.y,
-        sx: W/2 + Math.cos(ang)*burst, sy: H/2 + Math.sin(ang)*burst,
-        delay: Math.random() * 1.5, dur: 1.3 + Math.random() * 0.9,
-        maxR: 2.0 + Math.random() * 2.8, al: 0.6 + Math.random() * 0.4,
+        tx: W/2+b.x, ty: H/2+b.y,
+        sx: W/2+Math.cos(ang)*burst, sy: H/2+Math.sin(ang)*burst,
+        delay: Math.random()*1.5, dur: 1.3+Math.random()*0.9,
+        maxR: 2.0+Math.random()*2.8, al: 0.6+Math.random()*0.4,
         driftX: (Math.random()-.5)*0.22, driftY: (Math.random()-.5)*0.22,
-        prog: 0, cx: 0, cy: 0
+        prog: 0, cx: 0, cy: 0,
+        vx: 0, vy: 0   // spring velocity
       };
     });
     buildEdges();
@@ -1380,110 +1423,132 @@ function toggleChat(){
     initParticles();
   }
   resize();
-  window.addEventListener('resize', function(){ resize(); startTime = null; }, {passive:true});
+  window.addEventListener('resize', function(){ resize(); startTime=null; }, {passive:true});
 
   function spawnPulses() {
-    var count = 2 + Math.floor(Math.random() * 3);
+    var count = 2+Math.floor(Math.random()*3);
     for (var s = 0; s < count; s++) {
       if (!edges.length) return;
-      var e = edges[Math.floor(Math.random() * edges.length)];
+      var e = edges[Math.floor(Math.random()*edges.length)];
       if (particles[e.a].prog < 0.85 || particles[e.b].prog < 0.85) continue;
-      pulses.push({ e: e, fwd: Math.random() > 0.5, t: 0, spd: 0.5 + Math.random() * 0.8 });
+      pulses.push({e:e, fwd:Math.random()>0.5, t:0, spd:0.5+Math.random()*0.8});
     }
   }
+
+  // Physics constants
+  var SPRING = 0.034, DAMP = 0.76;
+  var PULL_STR = 0.072;
 
   function draw(ts) {
     raf = requestAnimationFrame(draw);
     if (!startTime) startTime = ts;
-    var el = (ts - startTime) / 1000;
-    var dt = 0.016;
+    var el = (ts-startTime)/1000, dt = 0.016;
 
-    ctx.clearRect(0, 0, W, H);
+    ctx.clearRect(0,0,W,H);
 
-    // Global breath — gentle sine
-    var breath = 1 + Math.sin(el * 0.85) * 0.028;
-    // Global glow pulse for connections
-    var gPulse = 0.5 + 0.5 * Math.sin(el * 1.4);
+    var breath  = 1+Math.sin(el*0.85)*0.028;
+    var gPulse  = 0.5+0.5*Math.sin(el*1.4);
+    var pullRad = Math.min(W,H)*0.30;
 
-    // Update particle positions
+    // ── Update positions ──
     particles.forEach(function(p) {
-      var t = Math.max(0, Math.min(1, (el - p.delay) / p.dur));
+      var t = Math.max(0,Math.min(1,(el-p.delay)/p.dur));
       var e2 = easeOutQuart(t);
       p.prog = t;
-      var bx = p.tx + p.driftX * Math.sin(el * 0.7 + p.delay);
-      var by = p.ty + p.driftY * Math.cos(el * 0.5 + p.delay * 1.3);
-      // Apply breath around canvas centre
-      var brx = W/2 + (bx - W/2) * breath;
-      var bry = H/2 + (by - H/2) * breath;
-      if (t >= 1) { p.cx = brx; p.cy = bry; }
-      else { p.cx = p.sx + (brx - p.sx) * e2; p.cy = p.sy + (bry - p.sy) * e2; }
+
+      // Rest (brain) position with drift + breath
+      var bx = p.tx + p.driftX*Math.sin(el*0.7+p.delay);
+      var by = p.ty + p.driftY*Math.cos(el*0.5+p.delay*1.3);
+      var rx = W/2+(bx-W/2)*breath, ry = H/2+(by-H/2)*breath;
+
+      if (t < 1) {
+        // Still flying in — follow eased path, no physics yet
+        p.cx = p.sx+(rx-p.sx)*e2;
+        p.cy = p.sy+(ry-p.sy)*e2;
+        p.vx = 0; p.vy = 0;
+      } else {
+        // Assembled — spring physics
+        // 1. Spring toward rest position
+        p.vx += (rx-p.cx)*SPRING;
+        p.vy += (ry-p.cy)*SPRING;
+
+        // 2. Mouse / gyro attraction
+        if (inputActive) {
+          var dx = inputX-p.cx, dy = inputY-p.cy;
+          var dist = Math.sqrt(dx*dx+dy*dy);
+          if (dist < pullRad && dist > 1) {
+            var falloff = 1-dist/pullRad;
+            var force   = PULL_STR*falloff*falloff;
+            p.vx += (dx/dist)*force*13;
+            p.vy += (dy/dist)*force*13;
+          }
+        }
+
+        // 3. Damp & integrate
+        p.vx *= DAMP; p.vy *= DAMP;
+        p.cx += p.vx; p.cy += p.vy;
+      }
     });
 
     // ── Synapse lines ──
-    var connFade = Math.max(0, Math.min(1, (el - 0.8) / 1.2));
+    var connFade = Math.max(0,Math.min(1,(el-0.8)/1.2));
     if (connFade > 0) {
       edges.forEach(function(e2) {
         var pa = particles[e2.a], pb = particles[e2.b];
-        var minProg = Math.min(pa.prog, pb.prog);
-        if (minProg < 0.55) return;
-        var pf = Math.max(0, (minProg - 0.55) / 0.45);
-        var al = connFade * pf * e2.inv * (0.25 + gPulse * 0.12);
+        var minP = Math.min(pa.prog, pb.prog);
+        if (minP < 0.55) return;
+        var pf = Math.max(0,(minP-0.55)/0.45);
+        var al = connFade*pf*e2.inv*(0.25+gPulse*0.12);
         if (al < 0.008) return;
-        ctx.beginPath();
-        ctx.moveTo(pa.cx, pa.cy);
-        ctx.lineTo(pb.cx, pb.cy);
-        ctx.strokeStyle = 'rgba(217,70,239,' + al + ')';
-        ctx.lineWidth = 0.5 + e2.inv * 1.1;
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(pa.cx,pa.cy); ctx.lineTo(pb.cx,pb.cy);
+        ctx.strokeStyle = 'rgba(217,70,239,'+al+')';
+        ctx.lineWidth = 0.5+e2.inv*1.1; ctx.stroke();
       });
     }
 
     // ── Traveling synaptic pulses ──
-    if (el > 2.8 && ts - lastPulseTs > 90) { spawnPulses(); lastPulseTs = ts; }
-
+    if (el > 2.8 && ts-lastPulseTs > 90) { spawnPulses(); lastPulseTs = ts; }
     pulses = pulses.filter(function(pu) {
-      pu.t += pu.spd * dt;
+      pu.t += pu.spd*dt;
       if (pu.t > 1.15) return false;
       var pa = particles[pu.e.a], pb = particles[pu.e.b];
-      var t2 = Math.min(1, pu.t);
-      var px = pu.fwd ? pa.cx + (pb.cx - pa.cx)*t2 : pb.cx + (pa.cx - pb.cx)*t2;
-      var py = pu.fwd ? pa.cy + (pb.cy - pa.cy)*t2 : pb.cy + (pa.cy - pb.cy)*t2;
-      var pal = Math.max(0, 1 - Math.abs(pu.t - 0.5) * 2.2);
+      var t2 = Math.min(1,pu.t);
+      var px = pu.fwd ? pa.cx+(pb.cx-pa.cx)*t2 : pb.cx+(pa.cx-pb.cx)*t2;
+      var py = pu.fwd ? pa.cy+(pb.cy-pa.cy)*t2 : pb.cy+(pa.cy-pb.cy)*t2;
+      var pal = Math.max(0,1-Math.abs(pu.t-0.5)*2.2);
       if (pal > 0.01) {
-        var grd = ctx.createRadialGradient(px, py, 0, px, py, 7);
-        grd.addColorStop(0,   'rgba(255,210,255,' + pal*0.95 + ')');
-        grd.addColorStop(0.3, 'rgba(217,70,239,'  + pal*0.7  + ')');
-        grd.addColorStop(1,   'rgba(217,70,239,0)');
-        ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI*2);
+        var grd = ctx.createRadialGradient(px,py,0,px,py,7);
+        grd.addColorStop(0,  'rgba(255,210,255,'+pal*0.95+')');
+        grd.addColorStop(0.3,'rgba(217,70,239,'+pal*0.7+')');
+        grd.addColorStop(1,  'rgba(217,70,239,0)');
+        ctx.beginPath(); ctx.arc(px,py,7,0,Math.PI*2);
         ctx.fillStyle = grd; ctx.fill();
       }
       return true;
     });
 
-    // ── Neuron dots ──
+    // ── Neuron dots (above text via z-index:2) ──
     particles.forEach(function(p) {
       var e2 = easeOutQuart(p.prog);
-      var r = p.maxR * e2 * (0.96 + (breath - 1) * 10);
-      var al = p.al * Math.min(1, e2 * 2.2);
+      var r  = p.maxR*e2*(0.96+(breath-1)*10);
+      var al = p.al*Math.min(1,e2*2.2);
       if (r < 0.3 || al < 0.02) return;
-      // Soft glow halo
-      var grd = ctx.createRadialGradient(p.cx, p.cy, 0, p.cx, p.cy, r * 2.6);
-      grd.addColorStop(0,   'rgba(255,210,255,' + al*0.9 + ')');
-      grd.addColorStop(0.4, 'rgba(217,70,239,'  + al*0.75 + ')');
-      grd.addColorStop(1,   'rgba(217,70,239,0)');
-      ctx.beginPath(); ctx.arc(p.cx, p.cy, r * 2.6, 0, Math.PI*2);
+      var grd = ctx.createRadialGradient(p.cx,p.cy,0,p.cx,p.cy,r*2.6);
+      grd.addColorStop(0,  'rgba(255,210,255,'+al*0.9+')');
+      grd.addColorStop(0.4,'rgba(217,70,239,'+al*0.75+')');
+      grd.addColorStop(1,  'rgba(217,70,239,0)');
+      ctx.beginPath(); ctx.arc(p.cx,p.cy,r*2.6,0,Math.PI*2);
       ctx.fillStyle = grd; ctx.fill();
-      // Bright core
-      ctx.beginPath(); ctx.arc(p.cx, p.cy, r * 0.5, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(255,230,255,' + Math.min(1, al*1.4) + ')';
+      ctx.beginPath(); ctx.arc(p.cx,p.cy,r*0.5,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(255,230,255,'+Math.min(1,al*1.4)+')';
       ctx.fill();
     });
   }
 
   var heroIO = new IntersectionObserver(function(entries) {
     entries.forEach(function(en) {
-      if (en.isIntersecting) { if (!raf) { startTime = null; raf = requestAnimationFrame(draw); } }
-      else { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+      if (en.isIntersecting) { if (!raf){ startTime=null; raf=requestAnimationFrame(draw); } }
+      else { if (raf){ cancelAnimationFrame(raf); raf=null; } }
     });
   });
   heroIO.observe(hero);
