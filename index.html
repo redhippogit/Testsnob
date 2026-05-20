@@ -1536,10 +1536,8 @@ function setLang(lang){
   document.querySelectorAll('.lh-lang').forEach(function(el){el.style.display='none';});
   document.querySelectorAll('.lh-lang-'+lang).forEach(function(el){el.style.display='block';});
 }
-// Initialise language divs on page load
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.lh-lang-de').forEach(function(el){el.style.display='block';});
-});
+// Initialise language divs on page load (script runs after DOM is ready)
+document.querySelectorAll('.lh-lang-de').forEach(function(el){el.style.display='block';});
 
 // ════════════════════════════════════════════════════════════
 // BLOCKS
