@@ -94,21 +94,21 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 ═══════════════════════════════════════════════════════════ */
 #hero-wrap{position:relative;}
 #hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:none;}
-#hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;will-change:transform;}
+#hero-inner{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;will-change:transform;}
 #hero-word{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-size:clamp(140px,30vw,440px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;text-align:center;will-change:transform;}
 #hero-word .hl{display:inline-block;opacity:0;transform:translateY(80px) rotate(5deg);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
 #hero-word .hl.in{opacity:1;transform:none;}
 #hero.big #hero-word{font-size:clamp(200px,44vw,600px);}
-.hero-acro{position:absolute;bottom:52px;left:40px;}
+.hero-acro{position:absolute;bottom:52px;left:40px;z-index:3;}
 .hero-acro-line{font-size:11px;letter-spacing:.15em;color:#bbb;line-height:2;transition:color .2s;opacity:0;transform:translateX(-20px);}
 .hero-acro-line.in{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),color .2s;}
 .hero-acro-line b{color:#0a0a0a;font-weight:400;}
 .hero-acro-line em{color:#d946ef;font-style:normal;}
-.hero-tagline{position:absolute;bottom:28px;right:40px;font-size:11px;color:#bbb;line-height:2;letter-spacing:.06em;text-align:right;opacity:0;transform:translateX(20px);transition:opacity .7s .6s cubic-bezier(.16,1,.3,1),transform .7s .6s cubic-bezier(.16,1,.3,1);}
+.hero-tagline{position:absolute;bottom:28px;right:40px;z-index:3;font-size:11px;color:#bbb;line-height:2;letter-spacing:.06em;text-align:right;opacity:0;transform:translateX(20px);transition:opacity .7s .6s cubic-bezier(.16,1,.3,1),transform .7s .6s cubic-bezier(.16,1,.3,1);}
 .hero-tagline.in{opacity:1;transform:none;}
 .hero-tagline strong{color:#0a0a0a;font-weight:400;}
 .swiss-plus{color:#ef4444;font-size:16px;font-weight:700;margin-right:8px;line-height:1;}
-.hero-hint{position:absolute;top:28px;right:40px;padding-top:64px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;opacity:0;animation:fadeup .6s 1.5s forwards;}
+.hero-hint{position:absolute;top:28px;right:40px;padding-top:64px;z-index:3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;opacity:0;animation:fadeup .6s 1.5s forwards;}
 @keyframes fadeup{to{opacity:1;}}
 
 /* Floating ping on hero */
@@ -1312,37 +1312,40 @@ function toggleChat(){
   var hero = document.getElementById('hero');
   var canvas = document.createElement('canvas');
   canvas.id = 'hero-canvas';
-  // z-index:2 → floats above hero-inner (z-index:1) so dots go over letters
-  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;';
+  // z-index:0 — canvas sits BEHIND all text (hero-inner z-index:3)
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
   hero.insertBefore(canvas, hero.firstChild);
   var ctx = canvas.getContext('2d');
   var W, H, particles = [], edges = [], pulses = [], startTime = null, raf = null, lastPulseTs = 0;
 
-  // ── Input: mouse (desktop) + gyro (mobile) ───────────────
-  var inputX = 0, inputY = 0, inputActive = false;
+  // ── Shared input object (read by tilt + letter-depth blocks too) ──
+  window._heroInput = window._heroInput || {mx:0, my:0, sx:0, sy:0, active:false};
+  var HI = window._heroInput;
 
   // Mouse
   hero.addEventListener('mousemove', function(e) {
-    var r = canvas.getBoundingClientRect();
-    inputX = e.clientX - r.left;
-    inputY = e.clientY - r.top;
-    inputActive = true;
+    HI.mx = e.clientX/window.innerWidth  - 0.5;
+    HI.my = e.clientY/window.innerHeight - 0.5;
+    HI.sx = e.clientX - hero.getBoundingClientRect().left;
+    HI.sy = e.clientY - hero.getBoundingClientRect().top;
+    HI.active = true;
   }, {passive:true});
-  hero.addEventListener('mouseleave', function(){ inputActive = false; });
+  hero.addEventListener('mouseleave', function(){ HI.active = false; });
 
-  // Gyro listener — called after permission granted (or immediately on Android)
+  // Gyro — writes same _heroInput so ALL blocks react
   function startGyro() {
     window.addEventListener('deviceorientation', function(e) {
       if (e.gamma == null && e.beta == null) return;
-      inputActive = true;
       var gx = Math.max(-50, Math.min(50, e.gamma || 0));
-      var gy = Math.max(-50, Math.min(50, (e.beta || 55) - 55));
-      inputX = W/2 + (gx / 50) * W * 0.46;
-      inputY = H/2 + (gy / 50) * H * 0.46;
+      var gy = Math.max(-50, Math.min(50, (e.beta  || 55) - 55));
+      HI.mx = gx / 50 * 0.5;
+      HI.my = gy / 50 * 0.5;
+      HI.sx = W/2 + HI.mx * 2 * W * 0.46;
+      HI.sy = H/2 + HI.my * 2 * H * 0.46;
+      HI.active = true;
     }, {passive:true});
   }
 
-  // Exposed globally so the button onclick can call it directly
   window.activateGyro = function() {
     var btn = document.getElementById('gyro-btn');
     if (typeof DeviceOrientationEvent !== 'undefined' &&
@@ -1359,18 +1362,13 @@ function toggleChat(){
     }
   };
 
-  // Show gyro button only on touch-capable devices
   if (('ontouchstart' in window) || navigator.maxTouchPoints > 0) {
     var gyroBtn = document.getElementById('gyro-btn');
-    if (gyroBtn) {
-      if (typeof DeviceOrientationEvent !== 'undefined' &&
-          typeof DeviceOrientationEvent.requestPermission !== 'function') {
-        // Android — no button needed, start directly
-        startGyro();
-      } else {
-        // iOS — show button
-        gyroBtn.style.display = 'block';
-      }
+    if (typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission !== 'function') {
+      startGyro(); // Android — direct
+    } else if (gyroBtn) {
+      gyroBtn.style.display = 'block'; // iOS — show button
     }
   }
 
@@ -1472,25 +1470,21 @@ function toggleChat(){
       var e2 = easeOutQuart(t);
       p.prog = t;
 
-      // Rest (brain) position with drift + breath
       var bx = p.tx + p.driftX*Math.sin(el*0.7+p.delay);
       var by = p.ty + p.driftY*Math.cos(el*0.5+p.delay*1.3);
       var rx = W/2+(bx-W/2)*breath, ry = H/2+(by-H/2)*breath;
 
       if (t < 1) {
-        // Still flying in — follow eased path, no physics yet
         p.cx = p.sx+(rx-p.sx)*e2;
         p.cy = p.sy+(ry-p.sy)*e2;
         p.vx = 0; p.vy = 0;
       } else {
-        // Assembled — spring physics
-        // 1. Spring toward rest position
         p.vx += (rx-p.cx)*SPRING;
         p.vy += (ry-p.cy)*SPRING;
 
-        // 2. Mouse / gyro attraction
-        if (inputActive) {
-          var dx = inputX-p.cx, dy = inputY-p.cy;
+        // Attraction toward shared input (mouse or gyro)
+        if (HI.active) {
+          var dx = HI.sx-p.cx, dy = HI.sy-p.cy;
           var dist = Math.sqrt(dx*dx+dy*dy);
           if (dist < pullRad && dist > 1) {
             var falloff = 1-dist/pullRad;
@@ -1500,7 +1494,6 @@ function toggleChat(){
           }
         }
 
-        // 3. Damp & integrate
         p.vx *= DAMP; p.vy *= DAMP;
         p.cx += p.vx; p.cy += p.vy;
       }
@@ -1571,7 +1564,7 @@ function toggleChat(){
 })();
 
 // ════════════════════════════════════════════════════════════
-// HERO WORD: 3D mouse tilt only
+// HERO WORD: 3D tilt — mouse + gyro via shared _heroInput
 // ════════════════════════════════════════════════════════════
 (function(){
   var hero=document.getElementById('hero'), inner=document.getElementById('hero-inner');
@@ -1581,14 +1574,11 @@ function toggleChat(){
   hero.style.perspective='700px'; hero.style.perspectiveOrigin='50% 50%';
   if(inner){ inner.style.transformStyle='preserve-3d'; inner.style.willChange='transform'; }
 
-  hero.addEventListener('mousemove', function(e){
-    tgtRX=-(e.clientY/window.innerHeight-.5)*35;
-    tgtRY= (e.clientX/window.innerWidth -.5)*45;
-  });
-  hero.addEventListener('mouseleave', function(){ tgtRX=0; tgtRY=0; });
-
   (function loop(){
     requestAnimationFrame(loop);
+    var HI = window._heroInput || {mx:0, my:0, active:false};
+    tgtRX = HI.active ? -HI.my * 35 : 0;
+    tgtRY = HI.active ?  HI.mx * 45 : 0;
     curRX+=(tgtRX-curRX)*.07; curRY+=(tgtRY-curRY)*.07;
     if(inner) inner.style.transform='rotateX('+curRX+'deg) rotateY('+curRY+'deg)';
     if(acro)  acro.style.transform='rotateX('+(-curRX*.5)+'deg) rotateY('+(-curRY*.5)+'deg)';
@@ -1597,18 +1587,16 @@ function toggleChat(){
 })();
 
 // ════════════════════════════════════════════════════════════
-// HERO LETTERS: Deep individual Z-depths — 120px spread
+// HERO LETTERS: Deep individual Z-depths — mouse + gyro
 // ════════════════════════════════════════════════════════════
 (function(){
   var letters=document.querySelectorAll('#hero-word .hl');
-  var depths=[120,-70,100,-120], curZ=[0,0,0,0], mx=0, my=0;
+  var depths=[120,-70,100,-120], curZ=[0,0,0,0];
 
-  document.addEventListener('mousemove', function(e){
-    if(window.scrollY>window.innerHeight) return;
-    mx=(e.clientX/window.innerWidth-.5); my=(e.clientY/window.innerHeight-.5);
-  });
   (function loop(){
     requestAnimationFrame(loop);
+    var HI = window._heroInput || {mx:0, my:0};
+    var mx = HI.mx, my = HI.my;
     letters.forEach(function(l,i){
       var tz=depths[i]*Math.abs(mx)*1.1, tx=depths[i]*mx*.45, ty=depths[i]*my*.28;
       curZ[i]+=(tz-curZ[i])*.08;
