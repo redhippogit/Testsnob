@@ -1624,51 +1624,11 @@ function toggleChat(){
   })();
 })();
 
-// ════════════════════════════════════════════════════════════
-// GLOBAL PAGE TILT — gyro/mouse drives all major sections
-// ════════════════════════════════════════════════════════════
-(function(){
-  // Selectors for all text elements that should tilt across the page
-  var TARGETS = [
-    {sel:'#stmt-txt',           rx:12, ry:16},
-    {sel:'.ws-title',           rx:6,  ry:10},
-    {sel:'.ws-acro-item',       rx:4,  ry:7 },
-    {sel:'.ws-block',           rx:3,  ry:6 },
-    {sel:'.cta1-title',         rx:6,  ry:10},
-    {sel:'.cta2-text',          rx:5,  ry:8 },
-    {sel:'.da-title',           rx:5,  ry:8 },
-    {sel:'.pr-head-title',      rx:4,  ry:7 },
-    {sel:'.calc-title',         rx:4,  ry:6 },
-  ];
-
-  var targets = [];
-  TARGETS.forEach(function(t) {
-    document.querySelectorAll(t.sel).forEach(function(el) {
-      el.style.willChange = 'transform';
-      el.style.transition = 'transform .12s ease-out';
-      targets.push({el:el, rx:t.rx, ry:t.ry, crx:0, cry:0});
-    });
-  });
-
-  function inView(el) {
-    var r = el.getBoundingClientRect();
-    return r.top < window.innerHeight * 1.1 && r.bottom > -50;
-  }
-
-  (function loop(){
-    requestAnimationFrame(loop);
-    var HI = window._heroInput || {mx:0, my:0, active:false};
-    var mx = HI.active ? HI.mx : 0;
-    var my = HI.active ? HI.my : 0;
-    targets.forEach(function(t) {
-      if (!inView(t.el)) return;
-      var tRX = -my * t.rx, tRY = mx * t.ry;
-      t.crx += (tRX - t.crx) * 0.06;
-      t.cry += (tRY - t.cry) * 0.06;
-      t.el.style.transform = 'rotateX('+t.crx.toFixed(2)+'deg) rotateY('+t.cry.toFixed(2)+'deg)';
-    });
-  })();
-})();
+// Reset any leftover transforms on non-hero elements
+['#stmt-txt','.ws-title','.ws-acro-item','.ws-block','.cta1-title',
+ '.cta2-text','.da-title','.pr-head-title','.calc-title'].forEach(function(sel){
+  document.querySelectorAll(sel).forEach(function(el){ el.style.transform=''; el.style.willChange=''; });
+});
 
 // ════════════════════════════════════════════════════════════
 // CURSOR TRAIL — 14 dots, cascading lag
