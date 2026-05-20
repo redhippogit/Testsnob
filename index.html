@@ -417,6 +417,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <span id="t-swiss-l3">Auf Wunsch direkt beim Auftraggeber gehostet.</span>
   </div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
+  <button id="gyro-btn" onclick="activateGyro()" style="display:none;position:absolute;bottom:72px;left:50%;transform:translateX(-50%);background:none;border:1px solid rgba(217,70,239,.5);color:#d946ef;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:8px 18px;cursor:pointer;z-index:10;white-space:nowrap;">◉ Motion aktivieren</button>
 </div>
 </div>
 
@@ -1320,7 +1321,7 @@ function toggleChat(){
   // ── Input: mouse (desktop) + gyro (mobile) ───────────────
   var inputX = 0, inputY = 0, inputActive = false;
 
-  // Mouse — always listen (desktop)
+  // Mouse
   hero.addEventListener('mousemove', function(e) {
     var r = canvas.getBoundingClientRect();
     inputX = e.clientX - r.left;
@@ -1329,36 +1330,47 @@ function toggleChat(){
   }, {passive:true});
   hero.addEventListener('mouseleave', function(){ inputActive = false; });
 
-  // Gyro — try unconditionally, don't gate on userAgent
+  // Gyro listener — called after permission granted (or immediately on Android)
   function startGyro() {
     window.addEventListener('deviceorientation', function(e) {
       if (e.gamma == null && e.beta == null) return;
       inputActive = true;
-      // gamma: left/right tilt (-90→90)
-      // beta:  forward/back tilt; natural portrait hold ≈ 45-70°, we offset by 55
       var gx = Math.max(-50, Math.min(50, e.gamma || 0));
-      var gy = Math.max(-50, Math.min(50, (e.beta  || 55) - 55));
-      inputX = W/2 + (gx / 50) * W * 0.44;
-      inputY = H/2 + (gy / 50) * H * 0.44;
+      var gy = Math.max(-50, Math.min(50, (e.beta || 55) - 55));
+      inputX = W/2 + (gx / 50) * W * 0.46;
+      inputY = H/2 + (gy / 50) * H * 0.46;
     }, {passive:true});
   }
 
-  if (typeof DeviceOrientationEvent !== 'undefined') {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      // iOS 13+ — must call from a user gesture
-      var gyroRequested = false;
-      function requestGyro() {
-        if (gyroRequested) return;
-        gyroRequested = true;
-        DeviceOrientationEvent.requestPermission()
-          .then(function(s){ if (s === 'granted') startGyro(); })
-          .catch(function(){});
-      }
-      document.addEventListener('touchstart', requestGyro, {once:true, passive:true});
-      document.addEventListener('click',      requestGyro, {once:true});
+  // Exposed globally so the button onclick can call it directly
+  window.activateGyro = function() {
+    var btn = document.getElementById('gyro-btn');
+    if (typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then(function(s) {
+          if (s === 'granted') { startGyro(); if (btn) btn.style.display = 'none'; }
+          else { if (btn) btn.textContent = '✕ Zugriff verweigert'; }
+        })
+        .catch(function(){ if (btn) btn.textContent = '✕ Fehler'; });
     } else {
-      // Android & other browsers — no permission needed
       startGyro();
+      if (btn) btn.style.display = 'none';
+    }
+  };
+
+  // Show gyro button only on touch-capable devices
+  if (('ontouchstart' in window) || navigator.maxTouchPoints > 0) {
+    var gyroBtn = document.getElementById('gyro-btn');
+    if (gyroBtn) {
+      if (typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission !== 'function') {
+        // Android — no button needed, start directly
+        startGyro();
+      } else {
+        // iOS — show button
+        gyroBtn.style.display = 'block';
+      }
     }
   }
 
