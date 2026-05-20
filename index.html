@@ -272,8 +272,17 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .da-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
 .da-chip.active:hover{background:#d946ef;border-color:#d946ef;}
-#da-force-cvs{display:block;width:100%;touch-action:none;}
-.da-ctx{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-top:12px;min-height:1.2em;}
+/* DA counter display */
+.da-counter-wrap{padding:56px 0 40px;border-top:1px solid #f0f0f0;min-height:220px;display:flex;align-items:center;gap:80px;}
+.da-counter-left{flex:0 0 auto;}
+.da-counter-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,160px);line-height:1;color:#0a0a0a;letter-spacing:-.02em;transition:opacity .3s;}
+.da-counter-unit{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3vw,36px);color:#d946ef;letter-spacing:.04em;margin-top:-8px;}
+.da-counter-right{flex:1;}
+.da-counter-desc{font-size:clamp(15px,2vw,20px);color:#333;line-height:1.6;max-width:480px;opacity:0;transform:translateY(8px);transition:opacity .4s .1s,transform .4s .1s cubic-bezier(.16,1,.3,1);}
+.da-counter-desc.visible{opacity:1;transform:none;}
+.da-counter-sub{font-size:12px;color:#aaa;margin-top:12px;letter-spacing:.06em;opacity:0;transition:opacity .3s .25s;}
+.da-counter-sub.visible{opacity:1;}
+@media(max-width:640px){.da-counter-wrap{flex-direction:column;gap:16px;padding:40px 0 32px;}.da-counter-right{max-width:100%;}}
 .da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
 .da-block{background:#fff;padding:36px 28px;cursor:none;transition:background .2s;position:relative;overflow:hidden;}
 .da-block::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
@@ -588,16 +597,15 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <div class="pr-col tilt" data-r="up" data-delay="1" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t0">Free Trial</div>
       <div class="pr-num" data-count="0">0</div>
-      <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
+      <div class="pr-chf" data-i="pr_chf0">CHF — kein Abo</div>
       <ul class="pr-list">
-        <li data-i="p0_01">AI Concierge Voice Agent</li>
-        <li data-i="p0_02">Dedizierte Telefonnummer</li>
-        <li data-i="p0_03">Editierbare Wissensbibliothek</li>
-        <li data-i="p0_04">Einfache Terminierung (6 Terminarten)</li>
-        <li data-i="p0_05">100 Minuten inklusive</li>
-        <li data-i="p0_06">DE / EN / FR</li>
-        <li data-i="p0_07">Call-Weiterleitungen</li>
-        <li data-i="p0_08">Enterprise-Sicherheit & Compliance</li>
+        <li data-i="p0_01">Inbound Concierge Agent (Template)</li>
+        <li data-i="p0_02">Automatische Telefonnummer</li>
+        <li data-i="p0_03">77 Freiminuten (30–40 Calls)</li>
+        <li data-i="p0_04">1 CHF / Extra-Minute</li>
+        <li data-i="p0_05">DE / EN / FR</li>
+        <li data-i="p0_06">1 Monat oder bis Minuten aufgebraucht</li>
+        <li data-i="p0_07">Kein Setup-Fee</li>
       </ul>
       <button class="pr-btn" data-i="pr_btn0">Jetzt testen</button>
     </div>
@@ -682,8 +690,16 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <button class="da-chip" data-ind="gesund"   onclick="setDAIndustry('gesund')"><span data-i="dac_gesund">Gesundheit</span></button>
       </div>
     </div>
-    <canvas id="da-force-cvs"></canvas>
-    <div class="da-ctx" id="da-ctx-lbl" data-i="da_ctx_def">Integrationen &amp; Kanäle</div>
+    <div class="da-counter-wrap" id="da-counter-wrap">
+      <div class="da-counter-left">
+        <div class="da-counter-num" id="da-counter-num">—</div>
+        <div class="da-counter-unit" id="da-counter-unit"></div>
+      </div>
+      <div class="da-counter-right">
+        <div class="da-counter-desc" id="da-counter-desc" data-i="da_pick">← Branche wählen</div>
+        <div class="da-counter-sub" id="da-counter-sub"></div>
+      </div>
+    </div>
   </div>
 
   <div class="da-blocks">
@@ -1341,14 +1357,15 @@ var T = {
   pr_corp_s:   {de:'Individuell',en:'Individual',fr:'Individuel'},
   pr_btn1:     {de:'Anfragen',en:'Get started',fr:'Démarrer'},
   pr_btn2:     {de:'Gespräch',en:'Talk',fr:'Parler'},
-  p0_01:{de:'AI Concierge Voice Agent',en:'AI Concierge Voice Agent',fr:'Agent vocal IA concierge'},
-  p0_02:{de:'Dedizierte Telefonnummer',en:'Dedicated phone line',fr:'Ligne téléphonique dédiée'},
-  p0_03:{de:'Editierbare Wissensbibliothek',en:'Editable knowledge library',fr:'Bibliothèque de connaissances éditable'},
-  p0_04:{de:'Einfache Terminierung (6 Terminarten)',en:'Simple scheduling (6 appointment types)',fr:'Planification simple (6 types)'},
-  p0_05:{de:'100 Minuten inklusive',en:'100 minutes included',fr:'100 minutes incluses'},
-  p0_06:{de:'DE / EN / FR',en:'DE / EN / FR',fr:'DE / EN / FR'},
-  p0_07:{de:'Call-Weiterleitungen',en:'Call transfers',fr:"Transferts d'appels"},
-  p0_08:{de:'Enterprise-Sicherheit & Compliance',en:'Enterprise security & compliance',fr:'Sécurité & conformité enterprise'},
+  pr_chf0:    {de:'CHF — kein Abo',en:'CHF — no subscription',fr:'CHF — sans abonnement'},
+  da_pick:    {de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'},
+  p0_01:{de:'Inbound Concierge Agent (Template)',en:'Inbound concierge agent (template)',fr:'Agent concierge entrant (modèle)'},
+  p0_02:{de:'Automatische Telefonnummer',en:'Auto-assigned phone number',fr:'Numéro de téléphone automatique'},
+  p0_03:{de:'77 Freiminuten (30–40 Calls)',en:'77 free minutes (30–40 calls)',fr:'77 minutes offertes (30–40 appels)'},
+  p0_04:{de:'1 CHF / Extra-Minute',en:'1 CHF / extra minute',fr:'1 CHF / minute supplémentaire'},
+  p0_05:{de:'DE / EN / FR',en:'DE / EN / FR',fr:'DE / EN / FR'},
+  p0_06:{de:'1 Monat oder bis Minuten aufgebraucht',en:'1 month or until minutes used',fr:"1 mois ou jusqu'aux minutes épuisées"},
+  p0_07:{de:'Kein Setup-Fee',en:'No setup fee',fr:'Sans frais de configuration'},
   p1_01:{de:'AI Concierge Voice Agent',en:'AI Concierge Voice Agent',fr:'Agent vocal IA concierge'},
   p1_02:{de:'Dedizierte Telefonnummer',en:'Dedicated phone line',fr:'Ligne téléphonique dédiée'},
   p1_03:{de:'Editierbare Wissensbibliothek',en:'Editable knowledge library',fr:'Bibliothèque de connaissances éditable'},
@@ -2692,7 +2709,75 @@ function toggleChat(){
   io.observe(cvs);
 })();
 
-// DA FORCE GRAPH
+// DA COUNTER
+(function(){
+  var DA_DATA={
+    pharma:{num:1240,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB beantwortet Compliance-Anfragen, terminiert Arztgespräche und entlastet deinen Innendienst rund um die Uhr.',en:'SNOB handles compliance inquiries, schedules physician meetings and relieves your back office around the clock.',fr:'SNOB gère les demandes de conformité, planifie les réunions médicales et soulage votre back-office.'},sub:{de:'Compliance · Terminierung · Innendienst',en:'Compliance · Scheduling · Back office',fr:'Conformité · Planification · Back-office'}},
+    industrie:{num:890,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB nimmt Serviceanfragen entgegen, koordiniert Techniker-Einsätze und meldet Störungen — ohne dass dein Team eingreift.',en:'SNOB handles service requests, coordinates technician deployments and reports incidents — without your team intervening.',fr:'SNOB gère les demandes de service, coordonne les techniciens et signale les incidents automatiquement.'},sub:{de:'Servicedesk · Einsatzplanung · Störungsmanagement',en:'Service desk · Dispatch · Incident management',fr:'Service desk · Planification · Gestion incidents'}},
+    handel:{num:2100,unit:{de:'Anfragen/Monat',en:'inquiries/mo',fr:'demandes/mois'},desc:{de:'SNOB bearbeitet Produktfragen, Bestellstatus und Reklamationen automatisch — 24/7, auf Deutsch, Französisch und Englisch.',en:'SNOB handles product questions, order status and complaints automatically — 24/7, in German, French and English.',fr:'SNOB traite les questions produits, le suivi de commandes et les réclamations — 24/7, en 3 langues.'},sub:{de:'Produktberatung · Bestellstatus · Reklamationen',en:'Product advice · Order status · Complaints',fr:'Conseil produit · Statut commande · Réclamations'}},
+    gastro:{num:847,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB nimmt Reservationen entgegen, beantwortet Stammgäste beim Namen und hält deinen Kalender frei — während du kochst.',en:'SNOB takes reservations, greets regulars by name and keeps your calendar clear — while you cook.',fr:'SNOB prend les réservations, accueille les habitués par leur nom et gère votre agenda — pendant que vous cuisinez.'},sub:{de:'Reservationen · Stammgäste · Tischplanung',en:'Reservations · Regulars · Table management',fr:'Réservations · Habitués · Gestion des tables'}},
+    it:{num:3400,unit:{de:'Tickets/Jahr',en:'tickets/year',fr:'tickets/an'},desc:{de:'SNOB beantwortet First-Level-Support-Anfragen, qualifiziert Tickets und leitet komplexe Fälle direkt an dein Team weiter.',en:'SNOB handles first-level support, qualifies tickets and routes complex cases directly to your team.',fr:'SNOB gère le support premier niveau, qualifie les tickets et achemine les cas complexes vers votre équipe.'},sub:{de:'First-Level-Support · Ticket-Routing · Onboarding',en:'First-level support · Ticket routing · Onboarding',fr:'Support N1 · Routage tickets · Onboarding'}},
+    finanzen:{num:560,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB beantwortet Kontoanfragen, bucht Beratungstermine und qualifiziert Leads — FINMA-konform und mehrsprachig.',en:'SNOB handles account inquiries, books advisory appointments and qualifies leads — FINMA-compliant and multilingual.',fr:'SNOB répond aux demandes de compte, prend les rendez-vous et qualifie les leads — conforme FINMA.'},sub:{de:'Kontoauskunft · Beratungstermine · Lead-Qualifizierung',en:'Account info · Advisory booking · Lead qualification',fr:'Info compte · Prise de RDV · Qualification leads'}},
+    gesund:{num:1650,unit:{de:'Anrufe/Jahr',en:'calls/year',fr:'appels/an'},desc:{de:'SNOB übernimmt Terminbuchungen, beantwortet Patientenfragen und entlastet deine Praxis — damit du dich auf die Patienten konzentrieren kannst.',en:'SNOB handles appointment bookings, answers patient questions and relieves your practice — so you can focus on patients.',fr:'SNOB gère les prises de RDV, répond aux questions patients et soulage votre cabinet médical.'},sub:{de:'Terminbuchung · Patientenanfragen · Praxisentlastung',en:'Appointment booking · Patient inquiries · Practice relief',fr:'Prise de RDV · Questions patients · Décharge cabinet'}}
+  };
+  var animFrame=null;
+  function countUp(target,el,duration){
+    if(animFrame) cancelAnimationFrame(animFrame);
+    var start=null,from=0;
+    var sep=target>=1000?' ':'';
+    function step(ts){
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/duration,1);
+      var ease=1-Math.pow(1-p,3);
+      var val=Math.round(from+(target-from)*ease);
+      el.textContent=val>=1000?(Math.floor(val/100)/10).toFixed(0).replace('.','')+sep+(val%1000<100?'0':''): val;
+      if(target>=1000) el.textContent=Math.round(from+(target-from)*ease).toLocaleString('de-CH');
+      else el.textContent=Math.round(from+(target-from)*ease);
+      if(p<1) animFrame=requestAnimationFrame(step);
+      else el.textContent=target.toLocaleString('de-CH');
+    }
+    animFrame=requestAnimationFrame(step);
+  }
+  function setIndustry(key){
+    var d=DA_DATA[key];
+    if(!d)return;
+    var lang=typeof currentLang!=='undefined'?currentLang:'de';
+    var numEl=document.getElementById('da-counter-num');
+    var unitEl=document.getElementById('da-counter-unit');
+    var descEl=document.getElementById('da-counter-desc');
+    var subEl=document.getElementById('da-counter-sub');
+    if(!numEl)return;
+    descEl.classList.remove('visible');
+    subEl.classList.remove('visible');
+    numEl.style.opacity='.3';
+    setTimeout(function(){
+      numEl.style.opacity='1';
+      unitEl.textContent=d.unit[lang]||d.unit.de;
+      descEl.textContent=d.desc[lang]||d.desc.de;
+      subEl.textContent=d.sub[lang]||d.sub.de;
+      countUp(d.num,numEl,900);
+      setTimeout(function(){descEl.classList.add('visible');subEl.classList.add('visible');},100);
+    },120);
+  }
+  window.setDAIndustry=function(key){
+    document.querySelectorAll('.da-chip').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ind')===key);});
+    setIndustry(key);
+  };
+  window._updateDACtx=function(lang){
+    var activeChip=document.querySelector('.da-chip.active');
+    if(activeChip) setIndustry(activeChip.getAttribute('data-ind'));
+    var pick=document.getElementById('da-counter-desc');
+    if(pick&&!document.querySelector('.da-chip.active')){
+      var T2={de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'};
+      pick.textContent=T2[lang]||T2.de;
+    }
+  };
+  // init pick hint
+  var pickEl=document.getElementById('da-counter-desc');
+  if(pickEl){pickEl.style.opacity='1';pickEl.style.transform='none';}
+})();
+
+// DA FORCE GRAPH (removed — replaced by counter)
 (function(){
   var cvs=document.getElementById('da-force-cvs');
   if(!cvs)return;
