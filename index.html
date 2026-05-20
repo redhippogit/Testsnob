@@ -26,7 +26,7 @@ body.cursor-hover #cx-dot{width:10px;height:10px;background:#d946ef;}
 body.cursor-hover #cx-ring{width:56px;height:56px;border-color:#d946ef;opacity:.5;}
 body.cursor-click #cx-dot{transform:translate(-50%,-50%) scale(.7);}
 body.cursor-click #cx-ring{width:24px;height:24px;}
-@media(max-width:768px){#cx{display:none;}body{cursor:auto;}a,button{cursor:auto;}}
+@media(max-width:768px){body{cursor:auto;}a,button{cursor:auto;}}
 
 /* ═══════════════════════════════════════════════════════════
    SCROLL PROGRESS BAR
@@ -627,7 +627,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <li data-i="p1_11">Anpassbare Call-Analytics</li>
         <li data-i="p1_12">Enterprise-Sicherheit & Compliance</li>
       </ul>
-      <button class="pr-btn" data-i="pr_btn1">Anfragen</button>
+      <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn1">Anfragen</a>
     </div>
     <div class="pr-col tilt" data-r="up" data-delay="3" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t2">GoFULL</div>
@@ -646,7 +646,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <li data-i="p2_10">WhatsApp ready</li>
         <li data-i="p2_11">Web-Widget Calls & Chat</li>
       </ul>
-      <button class="pr-btn" data-i="pr_btn2">Gespräch</button>
+      <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn2">Gespräch</a>
     </div>
     <div class="pr-col tilt" data-r="up" data-delay="4" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t3">Corporate</div>
@@ -666,7 +666,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <li data-i="p3_11">Dedicated Manager</li>
         <li data-i="p3_12">Aktives Performance-Monitoring</li>
       </ul>
-      <button class="pr-btn">→</button>
+      <a class="pr-btn" href="tel:+41615391399" data-i="pr_btn3">CALL SNOB</a>
     </div>
   </div>
 </div>
@@ -1165,6 +1165,27 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     el.addEventListener('mouseleave', function(){ document.body.classList.remove('cursor-hover'); });
   });
 
+  // Touch cursor — finger follows dot + ring
+  function moveCursorTo(x, y){
+    mx = x; my = y;
+    dot.style.left = x + 'px';
+    dot.style.top  = y + 'px';
+  }
+  document.addEventListener('touchstart', function(e){
+    var t = e.touches[0];
+    moveCursorTo(t.clientX, t.clientY);
+    document.body.classList.add('cursor-click');
+  }, {passive:true});
+  document.addEventListener('touchmove', function(e){
+    var t = e.touches[0];
+    moveCursorTo(t.clientX, t.clientY);
+    document.body.classList.remove('cursor-click');
+  }, {passive:true});
+  document.addEventListener('touchend', function(){
+    document.body.classList.remove('cursor-click');
+    document.body.classList.remove('cursor-hover');
+  }, {passive:true});
+
   function loop(){
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
@@ -1357,6 +1378,7 @@ var T = {
   pr_corp_s:   {de:'Individuell',en:'Individual',fr:'Individuel'},
   pr_btn1:     {de:'Anfragen',en:'Get started',fr:'Démarrer'},
   pr_btn2:     {de:'Gespräch',en:'Talk',fr:'Parler'},
+  pr_btn3:     {de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
   pr_chf0:    {de:'CHF — kein Abo',en:'CHF — no subscription',fr:'CHF — sans abonnement'},
   da_pick:    {de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'},
   p0_01:{de:'Inbound Concierge Agent (Template)',en:'Inbound concierge agent (template)',fr:'Agent concierge entrant (modèle)'},
@@ -1838,9 +1860,9 @@ function toggleChat(){
       DeviceOrientationEvent.requestPermission()
         .then(function(s) {
           if (s === 'granted') { startGyro(); if (btn) btn.style.display = 'none'; }
-          else { if (btn) btn.textContent = '✕ Zugriff verweigert'; }
+          else { if (btn) btn.style.display = 'none'; }
         })
-        .catch(function(){ if (btn) btn.textContent = '✕ Fehler'; });
+        .catch(function(){ if (btn) btn.style.display = 'none'; });
     } else {
       startGyro();
       if (btn) btn.style.display = 'none';
@@ -1848,13 +1870,21 @@ function toggleChat(){
   };
 
   if (('ontouchstart' in window) || navigator.maxTouchPoints > 0) {
+    // Touchmove drives hero particles — no permission needed on iOS or Android
+    hero.addEventListener('touchmove', function(e) {
+      var t = e.touches[0];
+      var r = hero.getBoundingClientRect();
+      HI.mx = (t.clientX - r.left) / r.width - 0.5;
+      HI.my = (t.clientY - r.top)  / r.height - 0.5;
+      HI.sx = t.clientX - r.left;
+      HI.sy = t.clientY - r.top;
+      HI.active = true;
+    }, {passive:true});
+    hero.addEventListener('touchend',   function(){ HI.active = false; }, {passive:true});
+    hero.addEventListener('touchcancel',function(){ HI.active = false; }, {passive:true});
+    // Hide gyro button — not needed
     var gyroBtn = document.getElementById('gyro-btn');
-    if (typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission !== 'function') {
-      startGyro(); // Android — direct
-    } else if (gyroBtn) {
-      gyroBtn.style.display = 'block'; // iOS — show button
-    }
+    if (gyroBtn) gyroBtn.style.display = 'none';
   }
 
   // ── Brain shape sampler ───────────────────────────────────
