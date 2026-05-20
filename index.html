@@ -252,7 +252,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .pr-col:hover .pr-list li{color:#666;border-color:#1a1a1a;}
 .pr-list li::before{content:'→';margin-right:8px;opacity:0;transition:opacity .2s,color .3s;color:#d946ef;font-size:10px;}
 .pr-col:hover .pr-list li::before{opacity:1;}
-.pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #e8e8e8;color:#ccc;padding:12px;cursor:none;transition:all .3s;}
+.pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #e8e8e8;color:#ccc;padding:12px;cursor:none;transition:all .3s;display:inline-block;text-decoration:none;}
 .pr-col:hover .pr-btn{border-color:#333;color:#666;}
 .pr-col:hover .pr-btn:hover{border-color:#d946ef;color:#d946ef;}
 @media(max-width:640px){.pr-col{border-right:none;border-bottom:1px solid #f0f0f0;padding:28px 20px;}}
@@ -607,7 +607,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <li data-i="p0_06">1 Monat oder bis Minuten aufgebraucht</li>
         <li data-i="p0_07">Kein Setup-Fee</li>
       </ul>
-      <button class="pr-btn" data-i="pr_btn0">Jetzt testen</button>
+      <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn0">Jetzt testen</a>
     </div>
     <div class="pr-col tilt" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t1">GoSTART</div>
@@ -1594,7 +1594,7 @@ function doCalc(){
   var mins=Math.round(calls*3*4.33);
   document.getElementById('vC').textContent=calls;
   var n=document.getElementById('rN');
-  n.textContent=mins.toLocaleString('de-CH');
+  n.textContent=mins.toLocaleString(typeof currentLang!=='undefined'&&currentLang==='en'?'en-US':typeof currentLang!=='undefined'&&currentLang==='fr'?'fr-CH':'de-CH');
   n.style.transform='scale(1.06)';
   setTimeout(function(){n.style.transform='';},120);
   var pct=(calls-10)/290*100;
@@ -2731,10 +2731,11 @@ function toggleChat(){
       var ease=1-Math.pow(1-p,3);
       var val=Math.round(from+(target-from)*ease);
       el.textContent=val>=1000?(Math.floor(val/100)/10).toFixed(0).replace('.','')+sep+(val%1000<100?'0':''): val;
-      if(target>=1000) el.textContent=Math.round(from+(target-from)*ease).toLocaleString('de-CH');
+      var loc=typeof currentLang!=='undefined'&&currentLang==='en'?'en-US':typeof currentLang!=='undefined'&&currentLang==='fr'?'fr-CH':'de-CH';
+      if(target>=1000) el.textContent=Math.round(from+(target-from)*ease).toLocaleString(loc);
       else el.textContent=Math.round(from+(target-from)*ease);
       if(p<1) animFrame=requestAnimationFrame(step);
-      else el.textContent=target.toLocaleString('de-CH');
+      else el.textContent=target.toLocaleString(loc);
     }
     animFrame=requestAnimationFrame(step);
   }
