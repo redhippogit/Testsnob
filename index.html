@@ -3055,17 +3055,5 @@ function toggleChat(){
   io.observe(cvs);
 })();
 </script>
-<script>
-/* ── FRESH LINK: always open app.gosnob.ai with cache-busting timestamp ── */
-document.addEventListener('click', function(e) {
-  var a = e.target.closest('a[href*="app.gosnob.ai"]');
-  if (!a) return;
-  var url = a.getAttribute('href');
-  if (url.indexOf('embed.js') !== -1) return;
-  e.preventDefault();
-  var fresh = url + (url.indexOf('?') !== -1 ? '&' : '?') + '_=' + Date.now();
-  window.open(fresh, a.target || '_blank');
-});
-</script>
 </body>
 </html>
