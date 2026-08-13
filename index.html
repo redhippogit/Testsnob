@@ -9,17 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:#fff;color:#0a0a0a;font-family:'DM Mono',monospace;overflow-x:hidden;cursor:none;}
 a,button{cursor:none;}
-
-/* ═══════════════════════════════════════════════════════════
-   CUSTOM CURSOR
-═══════════════════════════════════════════════════════════ */
 #cx{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;}
 #cx-dot{position:absolute;width:6px;height:6px;background:#0a0a0a;border-radius:50%;transform:translate(-50%,-50%);transition:transform .1s,background .2s,width .2s,height .2s;}
 #cx-ring{position:absolute;width:36px;height:36px;border:1px solid #0a0a0a;border-radius:50%;transform:translate(-50%,-50%);transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),border-color .2s,opacity .2s;}
@@ -28,21 +21,9 @@ body.cursor-hover #cx-ring{width:56px;height:56px;border-color:#d946ef;opacity:.
 body.cursor-click #cx-dot{transform:translate(-50%,-50%) scale(.7);}
 body.cursor-click #cx-ring{width:24px;height:24px;}
 @media(max-width:768px){body{cursor:auto;}a,button{cursor:auto;}}
-
-/* ═══════════════════════════════════════════════════════════
-   SCROLL PROGRESS BAR
-═══════════════════════════════════════════════════════════ */
 #spb{position:fixed;top:0;left:0;height:2px;background:#d946ef;z-index:9999;width:0%;transition:width .05s linear;transform-origin:left;}
-
-/* ═══════════════════════════════════════════════════════════
-   GRAIN OVERLAY
-═══════════════════════════════════════════════════════════ */
 #grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;animation:grainshift 0.5s steps(1) infinite;}
 @keyframes grainshift{0%{background-position:0 0}10%{background-position:-5% -10%}20%{background-position:-15% 5%}30%{background-position:7% -25%}40%{background-position:20% 25%}50%{background-position:-25% 10%}60%{background-position:15% 5%}70%{background-position:0% 15%}80%{background-position:25% 35%}90%{background-position:-10% 10%}100%{background-position:0 0}}
-
-/* ═══════════════════════════════════════════════════════════
-   SCROLL REVEAL SYSTEM
-═══════════════════════════════════════════════════════════ */
 [data-r]{opacity:0;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
 [data-r="up"]{transform:translateY(60px);}
 [data-r="left"]{transform:translateX(-60px);}
@@ -58,10 +39,6 @@ body.cursor-click #cx-ring{width:24px;height:24px;}
 [data-delay="6"]{transition-delay:.6s;}
 [data-delay="7"]{transition-delay:.7s;}
 [data-delay="8"]{transition-delay:.8s;}
-
-/* ═══════════════════════════════════════════════════════════
-   INTRO SCREEN
-═══════════════════════════════════════════════════════════ */
 #intro{position:fixed;inset:0;z-index:9000;background:#fff;display:flex;align-items:flex-start;justify-content:flex-start;padding:clamp(28px,5vw,64px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
 #intro.hide{opacity:0;transform:translateY(-20px);pointer-events:none;}
 #intro-out{display:flex;flex-direction:column;}
@@ -73,10 +50,6 @@ body.cursor-click #cx-ring{width:24px;height:24px;}
 .tl.show{opacity:1;height:auto;}
 .cur{display:inline-block;width:.5em;height:.9em;background:currentColor;vertical-align:text-bottom;margin-left:.08em;animation:cur .7s step-end infinite;}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
-
-/* ═══════════════════════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════════════════════ */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #f0f0f0;transition:padding .4s cubic-bezier(.16,1,.3,1);}
 nav.scrolled{padding:12px 40px;}
 .n-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.4em;color:#0a0a0a;transition:letter-spacing .3s;}
@@ -89,10 +62,6 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .n-signin{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #0a0a0a;padding-bottom:1px;transition:color .2s,border-color .2s;white-space:nowrap;}
 .n-signin:hover{color:#d946ef;border-color:#d946ef;}
 @media(max-width:768px){nav{padding:14px 20px;}.n-r{gap:10px;}.lang-sw li{padding:3px 5px;font-size:10px;}}
-
-/* ═══════════════════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════════════════ */
 #hero-wrap{position:relative;}
 #hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:none;}
 #hero-inner{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;will-change:transform;}
@@ -111,28 +80,19 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .swiss-plus{color:#ef4444;font-size:16px;font-weight:700;margin-right:8px;line-height:1;}
 .hero-hint{position:absolute;top:28px;right:40px;padding-top:64px;z-index:3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;opacity:0;animation:fadeup .6s 1.5s forwards;}
 @keyframes fadeup{to{opacity:1;}}
-
-/* Floating ping on hero */
 .hero-ping{position:absolute;top:50%;left:50%;width:500px;height:500px;border-radius:50%;border:1px solid rgba(217,70,239,.08);transform:translate(-50%,-50%) scale(0);animation:ping 3s 2s cubic-bezier(.16,1,.3,1) infinite;}
 @keyframes ping{0%{transform:translate(-50%,-50%) scale(0);opacity:.6}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
-
+/* NEW: SNOB sub-headline directly under hero word */
+/* (hero-sub removed — "Was ist SNOB?" now lives in #whatssnob, moved directly under hero) */
 @media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(100px,28vw,260px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}.hero-tagline{font-size:10px;}.hero-acro-line{font-size:10px;}#hero{flex-direction:column;align-items:flex-start;justify-content:center;}.hero-acro{position:static;margin-top:32px;}#hero-swiss{position:static;text-align:left;margin-top:20px;font-size:10px;}}
-
-/* ═══════════════════════════════════════════════════════════
-   STATEMENT
-═══════════════════════════════════════════════════════════ */
-#stmt{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;cursor:none;padding:60px 40px;text-align:center;position:relative;overflow:hidden;}
-#stmt-txt{font-family:Impact,'Anton','Bebas Neue',sans-serif;font-size:clamp(40px,9vw,128px);line-height:.88;user-select:none;text-transform:uppercase;}
-#stmt-txt .g{color:#e8e8e8;transition:color .6s cubic-bezier(.16,1,.3,1);}
-#stmt:hover #stmt-txt .g{color:#0a0a0a;}
-#stmt-txt .w{display:inline-block;overflow:hidden;}
-#stmt-txt .w span{display:inline-block;transform:translateY(100%);transition:transform .8s cubic-bezier(.16,1,.3,1);}
-#stmt-txt.vis .w span{transform:none;}
-@media(max-width:768px){#stmt{padding:60px 20px;height:auto;min-height:80svh;}}
-
-/* ═══════════════════════════════════════════════════════════
-   CALL BUTTON (Magnetic)
-═══════════════════════════════════════════════════════════ */
+#cta1{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.cta1-label{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:#999;margin-bottom:20px;}
+.cta1-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,120px);line-height:.88;margin-bottom:52px;}
+.cta1-note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#aaa;margin-top:20px;}
+.cta1-ring{position:absolute;width:600px;height:600px;border:1px solid #f5f5f5;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:orbit 12s linear infinite;}
+.cta1-ring:nth-child(2){width:900px;height:900px;animation-duration:20s;animation-direction:reverse;border-color:#f9f9f9;}
+@keyframes orbit{to{transform:translate(-50%,-50%) rotate(360deg);}}
+@media(max-width:768px){#cta1{padding:64px 20px;}.cta1-ring{display:none;}}
 .call-btn{display:inline-flex;align-items:center;justify-content:center;background:#0a0a0a;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3vw,28px);letter-spacing:.08em;padding:20px 56px;text-decoration:none;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;}
 .call-btn::before{content:'';position:absolute;inset:0;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1);}
 .call-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.06);opacity:0;transition:opacity .2s;}
@@ -140,49 +100,10 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .call-btn:hover::before{transform:scaleX(1);}
 .call-btn:hover::after{opacity:1;}
 .call-btn:hover{box-shadow:0 20px 60px rgba(217,70,239,.3);}
-
-/* CTA 1 */
-#cta1{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
-.cta1-label{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:#999;margin-bottom:20px;}
-.cta1-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,120px);line-height:.88;margin-bottom:52px;}
-.cta1-note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#aaa;margin-top:20px;}
-
-/* Orbiting ring behind CTA */
-.cta1-ring{position:absolute;width:600px;height:600px;border:1px solid #f5f5f5;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:orbit 12s linear infinite;}
-.cta1-ring:nth-child(2){width:900px;height:900px;animation-duration:20s;animation-direction:reverse;border-color:#f9f9f9;}
-@keyframes orbit{to{transform:translate(-50%,-50%) rotate(360deg);}}
-@media(max-width:768px){#cta1{padding:64px 20px;}.cta1-ring{display:none;}}
-
-/* ═══════════════════════════════════════════════════════════
-   WHAT IS SNOB
-═══════════════════════════════════════════════════════════ */
 #whatssnob{border-bottom:1px solid #f0f0f0;padding:96px 40px;}
 .ws-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:12px;}
-.ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:64px;}
-.ws-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;margin-bottom:64px;}
-.ws-block{background:#fff;padding:36px 28px;cursor:none;position:relative;overflow:hidden;transition:background .3s;}
-.ws-block::before{content:'';position:absolute;inset:0;background:#0a0a0a;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
-.ws-block:hover::before{transform:translateY(0);}
-.ws-block-num{font-size:11px;letter-spacing:.2em;color:#aaa;margin-bottom:16px;text-transform:uppercase;position:relative;z-index:1;transition:color .3s;}
-.ws-block:hover .ws-block-num{color:#666;}
-.ws-block-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:10px;position:relative;z-index:1;transition:color .3s;}
-.ws-block:hover .ws-block-title{color:#d946ef;}
-.ws-block-sub{font-size:13px;color:#999;line-height:1.6;position:relative;z-index:1;transition:color .3s;}
-.ws-block:hover .ws-block-sub{color:#888;}
-.ws-block-body{display:none;}
-/* SNOB FLOW */
-#snob-flow{padding:80px 40px 96px;border-bottom:1px solid #f0f0f0;}
-.sf-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:24px;text-align:center;}
-.sf-toggle{display:flex;justify-content:center;gap:8px;margin-bottom:36px;}
-.sf-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
-.sf-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
-.sf-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
-.sf-chip.active:hover{background:#d946ef;border-color:#d946ef;}
-#snob-flow-cvs{display:block;margin:0 auto;width:100%;max-width:840px;touch-action:none;}
-.sf-sub-lbl{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#888;text-align:center;margin-top:16px;min-height:1.2em;}
-@media(max-width:768px){#snob-flow{padding:60px 20px 72px;}}
-
-/* ACRO GRID */
+.ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:20px;}
+.ws-desc{font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-bottom:56px;}
 .ws-acro{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0f0f0;}
 .ws-acro-item{background:#fff;padding:28px 24px;cursor:none;transition:background .3s,transform .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;}
 .ws-acro-item::before{content:'';position:absolute;inset:0;background:#0a0a0a;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
@@ -193,11 +114,16 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .ws-acro-item:hover .ws-acro-word{color:#fff;}
 .ws-acro-desc{font-size:12px;color:#888;line-height:1.6;transition:color .3s;position:relative;z-index:1;}
 .ws-acro-item:hover .ws-acro-desc{color:#888;}
-@media(max-width:768px){#whatssnob{padding:64px 20px;}.ws-blocks{grid-template-columns:1fr;}.ws-acro{grid-template-columns:1fr 1fr;}.ws-block{padding:24px 20px;}}
-
-/* ═══════════════════════════════════════════════════════════
-   CALCULATOR
-═══════════════════════════════════════════════════════════ */
+@media(max-width:768px){#whatssnob{padding:64px 20px;}.ws-acro{grid-template-columns:1fr 1fr;}}
+#snob-flow{padding:80px 40px 96px;border-bottom:1px solid #f0f0f0;}
+.sf-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:24px;text-align:center;}
+.sf-toggle{display:flex;justify-content:center;gap:8px;margin-bottom:36px;}
+.sf-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
+.sf-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
+.sf-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
+.sf-chip.active:hover{background:#d946ef;border-color:#d946ef;}
+#snob-flow-cvs{display:block;margin:0 auto;width:100%;max-width:840px;touch-action:none;}
+@media(max-width:768px){#snob-flow{padding:60px 20px 72px;}}
 #calc{padding:96px 40px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
 @media(max-width:768px){#calc{grid-template-columns:1fr;gap:40px;padding:64px 20px;}}
 .calc-label-txt{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:10px;}
@@ -228,16 +154,12 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .calc-rec b{color:#0a0a0a;font-weight:400;}
 .cta-link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:none;border:none;border-bottom:1px solid #0a0a0a;color:#0a0a0a;padding-bottom:2px;cursor:none;transition:color .2s,border-color .2s;}
 .cta-link:hover{color:#d946ef;border-color:#d946ef;}
-
-/* ═══════════════════════════════════════════════════════════
-   PRICING — 3D TILT
-═══════════════════════════════════════════════════════════ */
 #pricing{border-bottom:1px solid #f0f0f0;}
 .pr-head{padding:64px 40px 36px;border-bottom:1px solid #f0f0f0;}
 .pr-head-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:10px;}
 .pr-head-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;}
-.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);}
-@media(max-width:900px){.pr-grid{grid-template-columns:repeat(2,1fr);}}
+.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+@media(max-width:900px){.pr-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:540px){.pr-grid{grid-template-columns:1fr;}.pr-head{padding:40px 20px 24px;}}
 .pr-col{padding:44px 36px;border-right:1px solid #f0f0f0;display:flex;flex-direction:column;cursor:none;transition:background .3s,box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1);transform-style:preserve-3d;will-change:transform;}
 .pr-col:last-child{border-right:none;}
@@ -257,10 +179,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .pr-col:hover .pr-btn{border-color:#333;color:#666;}
 .pr-col:hover .pr-btn:hover{border-color:#d946ef;color:#d946ef;}
 @media(max-width:640px){.pr-col{border-right:none;border-bottom:1px solid #f0f0f0;padding:28px 20px;}}
-
-/* ═══════════════════════════════════════════════════════════
-   DELICATE AI
-═══════════════════════════════════════════════════════════ */
 #delicate{border-bottom:1px solid #f0f0f0;padding:96px 40px;}
 .da-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#d946ef;margin-bottom:12px;}
 .da-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:24px;}
@@ -273,17 +191,14 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .da-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
 .da-chip.active:hover{background:#d946ef;border-color:#d946ef;}
-/* DA counter display */
-.da-counter-wrap{padding:56px 0 40px;border-top:1px solid #f0f0f0;min-height:220px;display:flex;align-items:center;gap:80px;}
-.da-counter-left{flex:0 0 auto;}
-.da-counter-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,160px);line-height:1;color:#0a0a0a;letter-spacing:-.02em;transition:opacity .3s;}
-.da-counter-unit{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3vw,36px);color:#d946ef;letter-spacing:.04em;margin-top:-8px;}
-.da-counter-right{flex:1;}
-.da-counter-desc{font-size:clamp(15px,2vw,20px);color:#333;line-height:1.6;max-width:480px;opacity:0;transform:translateY(8px);transition:opacity .4s .1s,transform .4s .1s cubic-bezier(.16,1,.3,1);}
-.da-counter-desc.visible{opacity:1;transform:none;}
-.da-counter-sub{font-size:12px;color:#aaa;margin-top:12px;letter-spacing:.06em;opacity:0;transition:opacity .3s .25s;}
-.da-counter-sub.visible{opacity:1;}
-@media(max-width:640px){.da-counter-wrap{flex-direction:column;gap:16px;padding:40px 0 32px;}.da-counter-right{max-width:100%;}}
+/* NEW: use-case list replaces counter */
+.da-usecase-wrap{padding:44px 0 16px;border-top:1px solid #f0f0f0;min-height:140px;}
+.da-usecase-hint{font-size:14px;color:#aaa;letter-spacing:.04em;}
+.da-usecase-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f0f0f0;}
+.da-usecase-list li{background:#fff;padding:20px 22px;font-size:13.5px;color:#333;line-height:1.6;display:flex;gap:12px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
+.da-usecase-list li.visible{opacity:1;transform:none;}
+.da-usecase-list li::before{content:'→';color:#d946ef;flex-shrink:0;}
+@media(max-width:640px){.da-usecase-list{grid-template-columns:1fr;}}
 .da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
 .da-block{background:#fff;padding:36px 28px;cursor:none;transition:background .2s;position:relative;overflow:hidden;}
 .da-block::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
@@ -298,32 +213,21 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-block.open .da-block-body{max-height:200px;opacity:1;}
 .da-block-body-inner{padding-top:16px;font-size:12px;color:#555;line-height:1.8;border-top:1px solid #f0f0f0;margin-top:12px;}
 @media(max-width:640px){.da-blocks{grid-template-columns:1fr;}.da-block{padding:24px 20px;}#delicate{padding:64px 20px;}}
-
-/* ═══════════════════════════════════════════════════════════
-   CTA 2
-═══════════════════════════════════════════════════════════ */
 #cta2{border-bottom:1px solid #f0f0f0;padding:80px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;min-height:40vh;position:relative;overflow:hidden;}
 #cta2::before{content:'SNOB';font-family:'Bebas Neue',sans-serif;font-size:clamp(200px,30vw,400px);color:#f7f7f7;position:absolute;right:-2%;bottom:-10%;line-height:1;pointer-events:none;user-select:none;z-index:0;}
 .cta2-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);line-height:.9;position:relative;z-index:1;}
 .cta2-right{display:flex;flex-direction:column;align-items:flex-end;gap:16px;position:relative;z-index:1;}
 @media(max-width:768px){#cta2{padding:56px 20px;flex-direction:column;align-items:flex-start;min-height:auto;}.cta2-right{align-items:flex-start;}}
-
-/* ═══════════════════════════════════════════════════════════
-   LEGAL HUB v2 — INFORMATION CENTER
-═══════════════════════════════════════════════════════════ */
 #legalhub{border-bottom:1px solid #f0f0f0;padding:80px 40px;}
 .lh-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:10px;}
 .lh-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);line-height:.9;margin-bottom:12px;}
 .lh-sub{font-size:13px;color:#aaa;margin-bottom:36px;letter-spacing:.08em;}
-/* Tabs */
 .lh-tabs{display:flex;gap:8px;margin-bottom:48px;flex-wrap:wrap;}
 .lh-tab{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
 .lh-tab:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .lh-tab.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
-/* Panels */
 .lh-panel{display:none;}
 .lh-panel.active{display:block;}
-/* Trust cards */
 .lh-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
 .lh-trust-card{background:#fff;padding:40px 36px;}
 .lh-trust-icon{font-size:28px;margin-bottom:20px;line-height:1;}
@@ -331,7 +235,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .lh-trust-body{font-size:12px;line-height:1.9;color:#555;}
 .lh-trust-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;}
 .lh-trust-tag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#888;border:1px solid #e8e8e8;padding:3px 9px;}
-/* DPO */
 .lh-dpo-intro{font-size:12px;line-height:2;color:#666;max-width:680px;margin-bottom:40px;border-left:2px solid #0a0a0a;padding-left:20px;}
 .lh-dpo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#f0f0f0;margin-bottom:24px;}
 .lh-dpo-box{background:#fff;padding:36px 32px;}
@@ -343,10 +246,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .lh-dpo-note{font-size:11px;color:#aaa;margin-top:8px;letter-spacing:.04em;}
 .lh-dpo-note a{color:#888;text-decoration:none;}
 .lh-dpo-note a:hover{color:#d946ef;}
-/* Trust icon SVG */
 .lh-trust-icon{width:36px;height:36px;margin-bottom:22px;color:#0a0a0a;flex-shrink:0;}
 .lh-trust-icon svg{display:block;}
-/* Doc accordion */
 .lh-doc-list{border-top:1px solid #f0f0f0;}
 .lh-doc-item{border-bottom:1px solid #f0f0f0;}
 .lh-doc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;cursor:none;transition:color .2s;gap:20px;}
@@ -367,24 +268,16 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .lh-doc-sec ul li::before{content:'—';margin-right:10px;color:#ddd;}
 @media(max-width:900px){.lh-trust-grid{grid-template-columns:1fr;}.lh-dpo-grid{grid-template-columns:1fr;}}
 @media(max-width:540px){#legalhub{padding:56px 20px;}}
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════ */
-.footer-spam{border-top:1px solid #f0f0f0;padding:24px 40px;text-align:center;}
-.footer-spam p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#bbb;}
-@media(max-width:768px){.footer-spam{padding:16px 20px;}}
 footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 .f-logo{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.4em;color:#ccc;}
 .f-links{display:flex;gap:16px;list-style:none;flex-wrap:wrap;}
-.f-links a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#ccc;text-decoration:none;transition:color .2s;}
+.f-links a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#888;text-decoration:none;transition:color .2s;}
 .f-links a:hover{color:#0a0a0a;}
-.f-copy{font-size:11px;color:#ddd;line-height:1.8;text-align:right;}
+.f-copy{font-size:12px;color:#777;line-height:1.9;text-align:right;}
+.f-copy a{color:#555 !important;}
+.f-copy a:hover{color:#0a0a0a !important;}
+.f-founded{color:#999 !important;}
 @media(max-width:640px){footer{flex-direction:column;text-align:center;padding:16px 20px;}.f-links{justify-content:center;}.f-copy{text-align:center;}}
-
-/* ═══════════════════════════════════════════════════════════
-   CHAT WIDGET
-═══════════════════════════════════════════════════════════ */
 .fab{position:fixed;bottom:24px;right:24px;z-index:200;}
 .fab-btn{width:44px;height:44px;background:#0a0a0a;border:none;border-radius:50%;cursor:none;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s,transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;}
 .fab-btn:hover{transform:scale(1.1);box-shadow:0 8px 24px rgba(0,0,0,.2);}
@@ -416,30 +309,17 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 .td{width:4px;height:4px;background:#ccc;border-radius:50%;animation:tb .7s infinite;}
 .td:nth-child(2){animation-delay:.12s}.td:nth-child(3){animation-delay:.24s}
 @keyframes tb{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px);background:#d946ef;}}
-
-/* ═══════════════════════════════════════════════════════════
-   ACRO STYLE override for hero — transition on #acro-s
-═══════════════════════════════════════════════════════════ */
 #acro-s{transition:opacity .3s ease;}
 #acro-s.fade{opacity:0;}
-
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <div id="cx"><div id="cx-dot"></div><div id="cx-ring"></div></div>
-
-<!-- SCROLL PROGRESS -->
 <div id="spb"></div>
-
-<!-- GRAIN OVERLAY -->
 <div id="grain"></div>
-
-<!-- INTRO -->
 <div id="intro"><div id="intro-out"></div></div>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="n-logo">goSNOB.ai</div>
   <div class="n-r">
@@ -476,36 +356,16 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
   <button id="gyro-btn" onclick="activateGyro()" data-i="gyro_btn" style="display:none;position:absolute;bottom:72px;left:50%;transform:translateX(-50%);background:none;border:1px solid rgba(217,70,239,.5);color:#d946ef;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:8px 18px;cursor:pointer;z-index:10;white-space:nowrap;">◉ Motion aktivieren</button>
 </div>
+<!-- "Was ist SNOB?" — full section moved directly under the hero word -->
 </div>
 
-<!-- STATEMENT -->
-<div id="stmt" onclick="this.querySelector('#stmt-txt').classList.toggle('hovered')">
-  <div id="stmt-txt" data-i="stmt">
-    <div class="w"><span class="g">Diskret.</span></div>
-    <div class="w"><span class="g">Schnell.</span></div>
-    <br>
-    <div class="w"><span>Leicht Überqualifiziert.</span></div>
-    <br>
-    <div class="w"><span>SNOB.</span></div>
-  </div>
-</div>
-
-<!-- CTA 1 -->
-<div id="cta1">
-  <div class="cta1-ring"></div>
-  <div class="cta1-ring"></div>
-  <div class="cta1-label" data-r="up" data-i="cta1_lbl">Dein erster SNOB-Anruf</div>
-  <div class="cta1-title" data-r="up" data-delay="2" data-i="cta1_title">Hör es selbst.</div>
-  <a class="call-btn mag" href="tel:+41615391399" data-r="scale" data-delay="3"><span data-i="call_btn">CALL SNOB</span></a>
-  <div class="cta1-note" data-r="up" data-delay="4" data-i="cta1_note">Kostenlos. Kein Pitch. Nur Antworten.</div>
-</div>
-
-<!-- WHAT IS SNOB -->
-<div id="whatssnob">
-  <div class="ws-label" data-r="up">S.N.O.B.</div>
+<!-- WHAT IS SNOB (moved up, right under hero) -->
+<div id="whatssnob" style="padding-top:8px;">
+  <div class="ws-label" data-r="up" data-i="hero_tagline2">AI Voice Agents. Built by experts.</div>
   <div class="ws-title" data-r="up" data-delay="1" data-i="ws_title">Was ist SNOB?</div>
+  <p class="ws-desc" data-r="up" data-delay="2" data-i="ws_desc">SNOB übernimmt Anrufe, Chats und Aufgaben für dein Unternehmen — automatisch, mehrsprachig, rund um die Uhr. Ein KI-Mitarbeiter, der nie schläft.</p>
 
-  <div class="ws-acro" style="margin-bottom:64px;">
+  <div class="ws-acro">
     <div class="ws-acro-item" data-r="up" data-delay="1">
       <div class="ws-acro-letter" id="ws-acro-letter-s">S</div>
       <div class="ws-acro-word" id="ws-acro-s">Sophisticated</div>
@@ -527,24 +387,16 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <div class="ws-acro-desc" data-i="ws_ab">Das KI-Gehirn deines Unternehmens. Lernt. Wächst. Liefert.</div>
     </div>
   </div>
+</div>
 
-  <div class="ws-blocks">
-    <div class="ws-block" data-r="up" data-delay="1">
-      <div class="ws-block-num">01</div>
-      <div class="ws-block-title" data-i="ws_b1t">Sprechen</div>
-      <div class="ws-block-sub" data-i="ws_b1s">Er telefoniert. Für dich. Immer.</div>
-    </div>
-    <div class="ws-block" data-r="up" data-delay="2">
-      <div class="ws-block-num">02</div>
-      <div class="ws-block-title" data-i="ws_b2t">Schreiben</div>
-      <div class="ws-block-sub" data-i="ws_b2s">Er chattet. WhatsApp, Web, überall.</div>
-    </div>
-    <div class="ws-block" data-r="up" data-delay="3">
-      <div class="ws-block-num">03</div>
-      <div class="ws-block-title" data-i="ws_b3t">Handeln</div>
-      <div class="ws-block-sub" data-i="ws_b3s">Er erledigt Tasks. Automatisch.</div>
-    </div>
-  </div>
+<!-- CTA 1 -->
+<div id="cta1">
+  <div class="cta1-ring"></div>
+  <div class="cta1-ring"></div>
+  <div class="cta1-label" data-r="up" data-i="cta1_lbl">Dein erster SNOB-Anruf</div>
+  <div class="cta1-title" data-r="up" data-delay="2" data-i="cta1_title">Hör es selbst.</div>
+  <a class="call-btn mag" href="tel:+41615391399" data-r="scale" data-delay="3"><span data-i="call_btn">CALL SNOB</span></a>
+  <div class="cta1-note" data-r="up" data-delay="4" data-i="cta1_note">Kostenlos. Kein Pitch. Nur Antworten.</div>
 </div>
 
 <!-- SNOB FLOW -->
@@ -555,7 +407,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <button class="sf-chip" data-mode="outbound" onclick="setSFMode('outbound')" data-i="sf_mode_out">Outbound</button>
   </div>
   <canvas id="snob-flow-cvs"></canvas>
-  <div class="sf-sub-lbl" id="sf-sub-lbl" data-i="sf_sub_in">Kundenanfragen · SNOB verarbeitet · Automatische Aktionen</div>
 </div>
 
 <!-- CALC -->
@@ -584,7 +435,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <div class="calc-unit" data-i="calc_unit">Geschätzte<br>Min./Monat</div>
     </div>
     <div class="calc-rec" id="rRec">Empfehlung: <b>GoSTART — 333 CHF / Monat</b></div>
-    <button class="cta-link" data-i="cta_link" onclick="document.getElementById('cta2').scrollIntoView({behavior:'smooth'})">Anfragen →</button>
+    <button class="cta-link" data-i="cta_link" onclick="openCalcMail()">Anfragen →</button>
   </div>
 </div>
 
@@ -596,21 +447,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
   <div class="pr-grid">
     <div class="pr-col tilt" data-r="up" data-delay="1" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
-      <div class="pr-tier" data-i="pr_t0">Free Trial</div>
-      <div class="pr-num" data-count="0">0</div>
-      <div class="pr-chf" data-i="pr_chf0">CHF — kein Abo</div>
-      <ul class="pr-list">
-        <li data-i="p0_01">Inbound Concierge Agent (Template)</li>
-        <li data-i="p0_02">Automatische Telefonnummer</li>
-        <li data-i="p0_03">77 Freiminuten (30–40 Calls)</li>
-        <li data-i="p0_04">1 CHF / Extra-Minute</li>
-        <li data-i="p0_05">DE / EN / FR</li>
-        <li data-i="p0_06">1 Monat oder bis Minuten aufgebraucht</li>
-        <li data-i="p0_07">Kein Setup-Fee</li>
-      </ul>
-      <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn0">Jetzt testen</a>
-    </div>
-    <div class="pr-col tilt" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t1">GoSTART</div>
       <div class="pr-num" data-count="333">333</div>
       <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
@@ -630,7 +466,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       </ul>
       <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn1">Anfragen</a>
     </div>
-    <div class="pr-col tilt" data-r="up" data-delay="3" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
+    <div class="pr-col tilt" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t2">GoFULL</div>
       <div class="pr-num" data-count="777">777</div>
       <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
@@ -649,7 +485,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       </ul>
       <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn2">Gespräch</a>
     </div>
-    <div class="pr-col tilt" data-r="up" data-delay="4" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
+    <div class="pr-col tilt" data-r="up" data-delay="3" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t3">Corporate</div>
       <div class="pr-num" style="font-size:40px;line-height:1.2;" data-i="pr_corp_n">AUF<br>ANFRAGE</div>
       <div class="pr-chf" style="margin-top:8px;" data-i="pr_corp_s">Individuell</div>
@@ -691,15 +527,9 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <button class="da-chip" data-ind="gesund"   onclick="setDAIndustry('gesund')"><span data-i="dac_gesund">Gesundheit</span></button>
       </div>
     </div>
-    <div class="da-counter-wrap" id="da-counter-wrap">
-      <div class="da-counter-left">
-        <div class="da-counter-num" id="da-counter-num">—</div>
-        <div class="da-counter-unit" id="da-counter-unit"></div>
-      </div>
-      <div class="da-counter-right">
-        <div class="da-counter-desc" id="da-counter-desc" data-i="da_pick">← Branche wählen</div>
-        <div class="da-counter-sub" id="da-counter-sub"></div>
-      </div>
+    <div class="da-usecase-wrap" id="da-usecase-wrap">
+      <div class="da-usecase-hint" id="da-usecase-hint" data-i="da_pick">← Branche wählen</div>
+      <ul class="da-usecase-list" id="da-usecase-list"></ul>
     </div>
   </div>
 
@@ -733,7 +563,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </div>
 
-<!-- LEGAL HUB v2 — INFORMATION CENTER -->
+<!-- LEGAL HUB v2 -->
 <div id="legalhub">
   <div class="lh-label" data-r="up" data-i="lh_lbl">Rechtsdokumente</div>
   <div class="lh-title" data-r="up" data-delay="1" data-i="lh_title">Information Center</div>
@@ -744,17 +574,16 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <button class="lh-tab" data-lhtab="docs" onclick="setLHTab('docs')" data-i="lh_tab_docs">Dokumente</button>
   </div>
 
-  <!-- TAB 1: KUNDEN -->
   <div class="lh-panel active" id="lh-panel-kunden">
     <div class="lh-trust-grid">
       <div class="lh-trust-card">
         <div class="lh-trust-icon"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2L3 7v7c0 6 5 10.5 11 12 6-1.5 11-6 11-12V7z"/><line x1="14" y1="9" x2="14" y2="19"/><line x1="9" y1="14" x2="19" y2="14"/></svg></div>
         <div class="lh-trust-head" data-i="lh_k1_h">Deine Daten. Immer in der Schweiz.</div>
-        <div class="lh-trust-body" data-i="lh_k1_b">Alle Daten werden ausschliesslich in der Schweiz gehostet und verarbeitet. Schweizer Exklusiv-Infrastruktur oder On-Premise auf Anfrage.</div>
+        <div class="lh-trust-body" data-i="lh_k1_b">Standardmässig hosten und verarbeiten wir alle Daten ausschliesslich in der Schweiz. Auf Wunsch: dedizierte CH-Exklusiv-Infrastruktur oder vollständiges On-Premise-Hosting beim Kunden — jeweils auf Anfrage, immer innerhalb der Schweiz.</div>
         <div class="lh-trust-tags">
           <span class="lh-trust-tag">Schweiz</span>
-          <span class="lh-trust-tag">CH Exklusiv</span>
-          <span class="lh-trust-tag">On-Prem</span>
+          <span class="lh-trust-tag">CH Exklusiv — auf Anfrage</span>
+          <span class="lh-trust-tag">On-Prem — auf Anfrage, in der Schweiz</span>
         </div>
       </div>
       <div class="lh-trust-card">
@@ -779,7 +608,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     </div>
   </div>
 
-  <!-- TAB 2: DPO -->
   <div class="lh-panel" id="lh-panel-dpo">
     <div class="lh-dpo-intro" data-i="lh_dpo_intro">goSNOB agiert als Data Processor gemäss GDPR Art. 28 und Swiss FDAP. Unsere Kunden sind Data Controllers. Alle Verarbeitungstätigkeiten sind dokumentiert, auditierbar und vertraglich abgesichert.</div>
     <div class="lh-dpo-grid">
@@ -828,11 +656,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <div class="lh-dpo-note" data-i="lh_dpo_note">Für individuelle DPA/AVV-Verträge, TOM-Dokumentation oder Subprocessor-Listen: <a href="mailto:team@gosnob.com">team@gosnob.com</a></div>
   </div>
 
-  <!-- TAB 3: DOKUMENTE -->
   <div class="lh-panel" id="lh-panel-docs">
     <div class="lh-doc-list">
-
-      <!-- 1. Datenschutzerklärung -->
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
         <div class="lh-doc-header">
           <div class="lh-doc-header-l">
@@ -843,14 +668,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         </div>
         <div class="lh-doc-body" data-i="lh_doc1_body">
           <div class="lh-doc-sec"><div class="lh-doc-sec-t">Verantwortliche Stelle</div><p>goSNOB AG, Schweiz<br>Kontakt: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Erhobene Daten</div><ul><li>Kontaktdaten (Name, E-Mail, Telefon)</li><li>Nutzungsdaten (Anrufprotokolle, Chat-Verläufe)</li><li>Technische Daten (IP-Adresse, Geräteinformationen)</li><li>Unternehmensdaten (Firmenname, Branche, Mitarbeiterzahl)</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Zweck &amp; Rechtsgrundlagen</div><ul><li>Erbringung von KI-Dienstleistungen (Art. 6 Abs. 1 lit. b DSGVO)</li><li>Vertragserfüllung und Kundenbetreuung (revDSG)</li><li>Sicherheit und Missbrauchsprävention (Art. 6 Abs. 1 lit. f DSGVO)</li><li>Verbesserung unserer Dienste (berechtigtes Interesse)</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Datenspeicherung &amp; Löschung</div><p>Alle Daten werden ausschliesslich in der Schweiz gespeichert. Daten werden nach Vertragsende oder auf ausdrückliche Anfrage gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Ihre Rechte</div><ul><li>Auskunft über gespeicherte Daten</li><li>Berichtigung unrichtiger Daten</li><li>Löschung (Recht auf Vergessen)</li><li>Einschränkung der Verarbeitung</li><li>Datenübertragbarkeit</li><li>Widerspruch gegen Verarbeitung</li></ul><p style="margin-top:12px">Anfragen an: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>
         </div>
       </div>
-
-      <!-- 2. AGB -->
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
         <div class="lh-doc-header">
           <div class="lh-doc-header-l">
@@ -859,16 +678,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
           </div>
           <span class="lh-doc-toggle">+</span>
         </div>
-        <div class="lh-doc-body" data-i="lh_doc2_body">
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Leistungsbeschreibung</div><p>goSNOB stellt KI-gestützte Kommunikations- und Automatisierungsdienste bereit, inkl. Voice Agents, Chat-Systeme und Workflow-Automatisierung. Leistungsumfang gemäss gewähltem Tarif (Free Trial, GoSTART, GoFULL, Corporate).</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Vertragsschluss &amp; Laufzeit</div><ul><li>Free Trial: Kostenfrei, 77 Minuten, kein automatischer Übergang</li><li>GoSTART / GoFULL: Monatliche Laufzeit, 30 Tage Kündigungsfrist</li><li>Corporate: Individuelle Vertragslaufzeit gemäss Vereinbarung</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Preise &amp; Zahlung</div><ul><li>Preise in CHF, exkl. MWST sofern anwendbar</li><li>Zahlung im Voraus, monatlich</li><li>Überschreitungsminuten werden gemäss Tarif verrechnet</li><li>Preisänderungen mit 30 Tagen Vorankündigung</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Haftung &amp; Gewährleistung</div><p>goSNOB haftet nicht für indirekte Schäden, Datenverluste oder entgangenen Gewinn. Die Haftung ist auf den bezahlten Monatsbetrag begrenzt. Verfügbarkeit: 99.5% SLA für GoFULL und Corporate.</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Anwendbares Recht &amp; Gerichtsstand</div><p>Schweizer Recht. Gerichtsstand: Zürich, Schweiz.</p></div>
-        </div>
+        <div class="lh-doc-body" data-i="lh_doc2_body"></div>
       </div>
-
-      <!-- 3. AVV -->
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
         <div class="lh-doc-header">
           <div class="lh-doc-header-l">
@@ -877,16 +688,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
           </div>
           <span class="lh-doc-toggle">+</span>
         </div>
-        <div class="lh-doc-body" data-i="lh_doc3_body">
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Rollen</div><ul><li><strong>Auftragsverarbeiter:</strong> goSNOB AG (verarbeitet Daten im Auftrag)</li><li><strong>Auftraggeber / Verantwortlicher:</strong> Kunde (bestimmt Zweck und Mittel)</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Gegenstand der Verarbeitung</div><p>Verarbeitung personenbezogener Daten im Rahmen der KI-Dienstleistungen (Anrufe, Chats, Workflows) gemäss Weisung des Auftraggebers.</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Pflichten von goSNOB</div><ul><li>Verarbeitung nur nach dokumentierter Weisung des Auftraggebers</li><li>Vertraulichkeit aller beteiligten Personen sicherstellen</li><li>Technische und organisatorische Massnahmen (TOMs) einhalten</li><li>Unverzügliche Meldung bei Datenschutzvorfällen (max. 72h)</li><li>Unterstützung bei Betroffenenanfragen und Datenschutz-Folgeabschätzungen</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Unterauftragsverarbeiter</div><p>goSNOB kann geprüfte Unterauftragsverarbeiter einsetzen. Liste auf Anfrage. Alle unterliegen denselben Datenschutzstandards. Der Auftraggeber wird über Änderungen informiert.</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Individuelle AVV</div><p>Für einen individuell unterzeichneten AVV: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>
-        </div>
+        <div class="lh-doc-body" data-i="lh_doc3_body"></div>
       </div>
-
-      <!-- 4. TOMs -->
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
         <div class="lh-doc-header">
           <div class="lh-doc-header-l">
@@ -895,16 +698,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
           </div>
           <span class="lh-doc-toggle">+</span>
         </div>
-        <div class="lh-doc-body" data-i="lh_doc4_body">
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Zugangskontrolle</div><ul><li>Multi-Faktor-Authentifizierung für alle Systeme</li><li>Rollenbasierte Zugriffssteuerung (RBAC)</li><li>Automatische Sitzungsabmeldung nach Inaktivität</li><li>Protokollierung aller Zugriffsversuche</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Verschlüsselung</div><ul><li>TLS 1.3 für alle Datenübertragungen (in transit)</li><li>AES-256 Verschlüsselung für alle gespeicherten Daten (at rest)</li><li>Ende-zu-Ende-Verschlüsselung für Sprachdaten</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Verfügbarkeit &amp; Integrität</div><ul><li>Tägliche verschlüsselte Backups, georedundant in der Schweiz</li><li>99.5% SLA (GoFULL / Corporate)</li><li>Automatische Failover-Systeme</li><li>Regelmässige Disaster-Recovery-Tests</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring &amp; Incident Response</div><ul><li>24/7 Sicherheitsmonitoring</li><li>Automatische Anomalieerkennung</li><li>Incident Response Plan dokumentiert</li><li>Meldepflicht bei Datenpannen innerhalb 72 Stunden</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Organisatorische Massnahmen</div><ul><li>ISO 27001 Zertifizierung (Partnersystem)</li><li>Regelmässige Sicherheitsschulungen für alle Mitarbeitenden</li><li>Jährliche externe Sicherheitsaudits</li><li>Dokumentiertes Informationssicherheits-Managementsystem (ISMS)</li></ul></div>
-        </div>
+        <div class="lh-doc-body" data-i="lh_doc4_body"></div>
       </div>
-
-      <!-- 5. Subprocessor-Liste -->
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
         <div class="lh-doc-header">
           <div class="lh-doc-header-l">
@@ -913,15 +708,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
           </div>
           <span class="lh-doc-toggle">+</span>
         </div>
-        <div class="lh-doc-body" data-i="lh_doc5_body">
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastruktur</div><ul><li><strong>Hetzner Online GmbH</strong> — Server-Hosting, Schweiz / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS-Schutz, EU-Datenverarbeitung, EU SCC</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">KI &amp; Sprachverarbeitung</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-Text, EU-Region, EU SCC, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-Speech, EU-Region, EU SCC</li><li><strong>Anthropic PBC</strong> — LLM-Verarbeitung, EU SCC, SOC 2 Type II</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Kommunikation &amp; Telefonie</div><ul><li><strong>Twilio Inc.</strong> — Telefonie-Infrastruktur, EU SCC, ISO 27001</li></ul></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Hinweis</div><p>Alle Unterauftragsverarbeiter wurden einer Vendor Qualification unterzogen, haben DPAs und TOMs implementiert. Liste wird bei Änderungen aktualisiert. Stand: Mai 2026.</p></div>
-        </div>
+        <div class="lh-doc-body" data-i="lh_doc5_body"></div>
       </div>
-
-      <!-- 6. Impressum -->
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
         <div class="lh-doc-header">
           <div class="lh-doc-header-l">
@@ -930,21 +718,10 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
           </div>
           <span class="lh-doc-toggle">+</span>
         </div>
-        <div class="lh-doc-body" data-i="lh_doc6_body">
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Angaben gemäss OR Art. 944</div><p><strong>goSNOB AG</strong><br>Schweiz<br>E-Mail: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web: gosnob.ai</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Gründer</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Haftungsausschluss</div><p>Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. goSNOB AG übernimmt keine Gewähr für Richtigkeit, Vollständigkeit und Aktualität.</p></div>
-          <div class="lh-doc-sec"><div class="lh-doc-sec-t">Urheberrecht</div><p>Alle Inhalte dieser Website sind urheberrechtlich geschützt. Vervielfältigung oder Verwendung ohne ausdrückliche Genehmigung untersagt.</p></div>
-        </div>
+        <div class="lh-doc-body" data-i="lh_doc6_body"></div>
       </div>
-
     </div>
   </div>
-</div>
-
-<!-- FOOTER SPAM -->
-<div class="footer-spam" data-r="up">
-  <p data-i="footer_spam">Wir glauben nicht an E-Mail-Spam. Melde dich — wir wissen wer du bist.</p>
 </div>
 
 <!-- FOOTER -->
@@ -956,12 +733,11 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <li><a href="https://redhippogit.github.io/Leagal/" target="_blank" data-i="f_imp">Impressum</a></li>
   </ul>
   <div class="f-copy">
-    © 2026 goSNOB.ai · Basel · <a href="mailto:team@gosnob.com" style="color:#bbb;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0a0a0a'" onmouseout="this.style.color='#bbb'">team@gosnob.com</a><br>
-    <span style="color:#ddd;" data-i="f_founded">Founded by Timothy Jordi &amp; Jan Mironiuk · Swiss Made</span>
+    © 2026 goSNOB.ai · Basel · <a href="mailto:team@gosnob.com" style="color:#555;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0a0a0a'" onmouseout="this.style.color='#555'">team@gosnob.com</a><br>
+    <span class="f-founded" data-i="f_founded">Founded by Timothy Jordi &amp; Jan Mironiuk · Swiss Made</span>
   </div>
 </footer>
 
-<!-- CHAT -->
 <div class="fab">
   <div class="chat-w" id="chatW">
     <div class="cw-h">
@@ -986,67 +762,32 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </button>
 </div>
 
-<!-- VOICE WIDGET -->
 <script src="https://app.gosnob.ai/embed.js" data-assistant-id="f6d4221d-fada-4e4c-a384-0714b4f574c6"></script>
 
 <script>
-// ════════════════════════════════════════════════════════════
-// CUSTOM CURSOR
-// ════════════════════════════════════════════════════════════
 (function(){
   var cx = document.getElementById('cx');
   var dot = document.getElementById('cx-dot');
   var ring = document.getElementById('cx-ring');
   var mx = 0, my = 0, rx = 0, ry = 0;
-
   document.addEventListener('mousemove', function(e){
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
+    dot.style.left = mx + 'px'; dot.style.top  = my + 'px';
   });
-
   document.addEventListener('mousedown', function(){ document.body.classList.add('cursor-click'); });
   document.addEventListener('mouseup',   function(){ document.body.classList.remove('cursor-click'); });
-
   document.querySelectorAll('a,button,[onclick]').forEach(function(el){
     el.addEventListener('mouseenter', function(){ document.body.classList.add('cursor-hover'); });
     el.addEventListener('mouseleave', function(){ document.body.classList.remove('cursor-hover'); });
   });
-
-  // Touch cursor — finger follows dot + ring
-  function moveCursorTo(x, y){
-    mx = x; my = y;
-    dot.style.left = x + 'px';
-    dot.style.top  = y + 'px';
-  }
-  document.addEventListener('touchstart', function(e){
-    var t = e.touches[0];
-    moveCursorTo(t.clientX, t.clientY);
-    document.body.classList.add('cursor-click');
-  }, {passive:true});
-  document.addEventListener('touchmove', function(e){
-    var t = e.touches[0];
-    moveCursorTo(t.clientX, t.clientY);
-    document.body.classList.remove('cursor-click');
-  }, {passive:true});
-  document.addEventListener('touchend', function(){
-    document.body.classList.remove('cursor-click');
-    document.body.classList.remove('cursor-hover');
-  }, {passive:true});
-
-  function loop(){
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(loop);
-  }
+  function moveCursorTo(x, y){ mx = x; my = y; dot.style.left = x + 'px'; dot.style.top  = y + 'px'; }
+  document.addEventListener('touchstart', function(e){ var t = e.touches[0]; moveCursorTo(t.clientX, t.clientY); document.body.classList.add('cursor-click'); }, {passive:true});
+  document.addEventListener('touchmove', function(e){ var t = e.touches[0]; moveCursorTo(t.clientX, t.clientY); document.body.classList.remove('cursor-click'); }, {passive:true});
+  document.addEventListener('touchend', function(){ document.body.classList.remove('cursor-click'); document.body.classList.remove('cursor-hover'); }, {passive:true});
+  function loop(){ rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top  = ry + 'px'; requestAnimationFrame(loop); }
   loop();
 })();
 
-// ════════════════════════════════════════════════════════════
-// SCROLL PROGRESS BAR
-// ════════════════════════════════════════════════════════════
 (function(){
   var bar = document.getElementById('spb');
   window.addEventListener('scroll', function(){
@@ -1056,49 +797,18 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   }, {passive:true});
 })();
 
-// ════════════════════════════════════════════════════════════
-// NAV SCROLL
-// ════════════════════════════════════════════════════════════
 (function(){
   var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function(){
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, {passive:true});
+  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
 })();
 
-// ════════════════════════════════════════════════════════════
-// SCROLL REVEAL (IntersectionObserver)
-// ════════════════════════════════════════════════════════════
 (function(){
   var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('vis');
-        io.unobserve(e.target);
-      }
-    });
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
   }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
-
   document.querySelectorAll('[data-r]').forEach(function(el){ io.observe(el); });
-
-  // Statement text reveal
-  var stmtIo = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('vis');
-        stmtIo.unobserve(e.target);
-      }
-    });
-  }, {threshold: 0.3});
-  var stmtTxt = document.getElementById('stmt-txt');
-  if(stmtTxt) stmtIo.observe(stmtTxt);
 })();
 
-// HERO PARALLAX — handled by scroll-driven canvas below
-
-// ════════════════════════════════════════════════════════════
-// HERO MOUSE PARALLAX
-// ════════════════════════════════════════════════════════════
 (function(){
   var hero = document.getElementById('hero');
   var hw   = document.getElementById('hero-word');
@@ -1109,15 +819,9 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     hw.style.transform   = 'translate(' + rx + 'px,' + ry + 'px)';
     if(acro) acro.style.transform = 'translate(' + (-rx*.4) + 'px,' + (-ry*.4) + 'px)';
   });
-  hero.addEventListener('mouseleave', function(){
-    hw.style.transform   = '';
-    if(acro) acro.style.transform = '';
-  });
+  hero.addEventListener('mouseleave', function(){ hw.style.transform = ''; if(acro) acro.style.transform = ''; });
 })();
 
-// ════════════════════════════════════════════════════════════
-// MAGNETIC BUTTONS
-// ════════════════════════════════════════════════════════════
 (function(){
   document.querySelectorAll('.mag').forEach(function(btn){
     btn.addEventListener('mousemove', function(e){
@@ -1126,18 +830,11 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       var y = e.clientY - r.top  - r.height / 2;
       btn.style.transform = 'translate(' + x*.25 + 'px,' + y*.25 + 'px)';
     });
-    btn.addEventListener('mouseleave', function(){
-      btn.style.transform = '';
-    });
+    btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
   });
 })();
 
-
-// ════════════════════════════════════════════════════════════
-// NUMBER SCRAMBLE on PRICING
-// ════════════════════════════════════════════════════════════
 (function(){
-  var chars = '0123456789';
   function scramble(el, target, dur){
     var start = null;
     var targetNum = parseInt(target);
@@ -1157,7 +854,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     }
     requestAnimationFrame(step);
   }
-
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
@@ -1168,38 +864,26 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       }
     });
   }, {threshold: 0.5});
-
   document.querySelectorAll('[data-count]').forEach(function(el){ io.observe(el); });
 })();
 
-// ════════════════════════════════════════════════════════════
-// TRANSLATIONS
-// ════════════════════════════════════════════════════════════
 var T = {
   nav_signin:  {de:'Anmelden',en:'Sign In',fr:'Connexion'},
   swiss_l1:    {de:'Swiss Hosted. Swiss Secure. Swiss Made.',en:'Swiss Hosted. Swiss Secure. Swiss Made.',fr:'Hébergé en Suisse. Sécurisé. Swiss Made.'},
   swiss_l2:    {de:'GDPR · revDSG konform · Maximale Sicherheit',en:'GDPR · revDSG compliant · Maximum Security',fr:'Conforme GDPR · revDSG · Sécurité maximale'},
   swiss_l3:    {de:'Auf Wunsch direkt beim Auftraggeber gehostet.',en:'Hosted on-premise on request.',fr:'Hébergement chez le mandataire sur demande.'},
   hero_hint:   {de:'— Tippen —',en:'— Tap —',fr:'— Appuyer —'},
+  hero_tagline2: {de:'AI Voice Agents. Built by experts.',en:'AI voice agents. Built by experts.',fr:'Agents vocaux IA. Conçus par des experts.'},
   acro_s:      {de:'Sophisticated',en:'Sophisticated',fr:'Sophisticated'},
   acro_n:      {de:'Network',en:'Network',fr:'Network'},
   acro_o:      {de:'Operated',en:'Operated',fr:'Operated'},
   acro_b:      {de:'Brain',en:'Brain',fr:'Brain'},
-  stmt:        {de:'<div class="w"><span class="g">Diskret.</span></div> <div class="w"><span class="g">Schnell.</span></div><br><div class="w"><span>Leicht Überqualifiziert.</span></div><br><div class="w"><span>SNOB.</span></div>',en:'<div class="w"><span class="g">Discreet.</span></div> <div class="w"><span class="g">Fast.</span></div><br><div class="w"><span>Slightly overqualified.</span></div><br><div class="w"><span>SNOB.</span></div>',fr:'<div class="w"><span class="g">Discret.</span></div> <div class="w"><span class="g">Rapide.</span></div><br><div class="w"><span>Légèrement surqualifié.</span></div><br><div class="w"><span>SNOB.</span></div>'},
   cta1_lbl:    {de:'Dein erster SNOB-Anruf',en:'Your first SNOB call',fr:'Votre premier appel SNOB'},
   cta1_title:  {de:'Hör es selbst.',en:'Hear it yourself.',fr:'Écoutez par vous-même.'},
   call_btn:    {de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
   cta1_note:   {de:'Kostenlos. Kein Pitch. Nur Antworten.',en:'Free. No pitch. Just answers.',fr:'Gratuit. Sans pitch. Juste des réponses.'},
   ws_title:    {de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
-  ws_b1t:      {de:'Sprechen',en:'Speak',fr:'Parler'},
-  ws_b1s:      {de:'Er telefoniert. Für dich. Immer.',en:'It calls. For you. Always.',fr:'Il téléphone. Pour vous. Toujours.'},
-  ws_b1b:      {de:'Inbound & Outbound Calls, 24/7, in 100+ Sprachen. SNOB nimmt an, qualifiziert, leitet weiter — ohne dass du etwas tun musst.',en:'Inbound & outbound calls, 24/7, in 100+ languages. SNOB answers, qualifies, transfers — no effort required.',fr:'Appels entrants & sortants, 24/7, en 100+ langues. SNOB répond, qualifie, transfère — sans effort de votre part.'},
-  ws_b2t:      {de:'Schreiben',en:'Write',fr:'Écrire'},
-  ws_b2s:      {de:'Er chattet. WhatsApp, Web, überall.',en:'It chats. WhatsApp, Web, everywhere.',fr:'Il chatte. WhatsApp, Web, partout.'},
-  ws_b2b:      {de:'WhatsApp Business, Web-Widget, Live-Chat — SNOB kommuniziert in Echtzeit auf jedem Kanal, in jeder Sprache.',en:'WhatsApp Business, web widget, live chat — SNOB communicates in real time on every channel, in any language.',fr:'WhatsApp Business, widget web, chat en direct — SNOB communique en temps réel sur chaque canal, dans toutes les langues.'},
-  ws_b3t:      {de:'Handeln',en:'Act',fr:'Agir'},
-  ws_b3s:      {de:'Er erledigt Tasks. Automatisch.',en:'It handles tasks. Automatically.',fr:'Il gère les tâches. Automatiquement.'},
-  ws_b3b:      {de:'Termine buchen, CRM updaten, Erinnerungen senden — SNOB ist mit 300+ Tools verbunden und handelt eigenständig.',en:'Book appointments, update CRM, send reminders — SNOB connects to 300+ tools and acts independently.',fr:'Réserver des rendez-vous, mettre à jour le CRM, envoyer des rappels — SNOB est connecté à 300+ outils et agit de façon autonome.'},
+  ws_desc:     {de:'SNOB übernimmt Anrufe, Chats und Aufgaben für dein Unternehmen — automatisch, mehrsprachig, rund um die Uhr. Ein KI-Mitarbeiter, der nie schläft.',en:'SNOB handles calls, chats and tasks for your business — automatically, multilingual, around the clock. An AI employee that never sleeps.',fr:'SNOB gère les appels, chats et tâches pour votre entreprise — automatiquement, en plusieurs langues, 24/7. Un collaborateur IA qui ne dort jamais.'},
   ws_as:       {de:'Er denkt mit. Versteht Kontext. Reagiert intelligent.',en:'Thinks ahead. Understands context. Responds intelligently.',fr:'Anticipe. Comprend le contexte. Répond intelligemment.'},
   ws_an:       {de:'Vernetzt mit Kalender, CRM, WhatsApp, 300+ Systemen.',en:'Connected to calendar, CRM, WhatsApp, 300+ systems.',fr:'Connecté au calendrier, CRM, WhatsApp, 300+ systèmes.'},
   ws_ao:       {de:'Läuft automatisch. 24/7. Kein Eingriff nötig.',en:'Runs automatically. 24/7. No intervention needed.',fr:'Fonctionne automatiquement. 24/7. Aucune intervention nécessaire.'},
@@ -1216,8 +900,6 @@ var T = {
   appt_hectic: {de:'Viele Terminarten, hohes Volumen.',en:'Many appointment types, high volume.',fr:'Nombreux types, volume maximal.'},
   pr_lbl:      {de:'Pricing',en:'Pricing',fr:'Tarifs'},
   pr_title:    {de:'Klar.<br>Direkt.',en:'Clear.<br>Direct.',fr:'Clair.<br>Direct.'},
-  pr_t0:       {de:'Free Trial',en:'Free Trial',fr:'Essai gratuit'},
-  pr_btn0:     {de:'Jetzt testen',en:'Try now',fr:'Essayer'},
   pr_t1:       {de:'GoSTART',en:'GoSTART',fr:'GoSTART'},
   pr_t2:       {de:'GoFULL',en:'GoFULL',fr:'GoFULL'},
   pr_t3:       {de:'Corporate',en:'Corporate',fr:'Corporate'},
@@ -1227,15 +909,6 @@ var T = {
   pr_btn1:     {de:'Anfragen',en:'Get started',fr:'Démarrer'},
   pr_btn2:     {de:'Gespräch',en:'Talk',fr:'Parler'},
   pr_btn3:     {de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
-  pr_chf0:    {de:'CHF — kein Abo',en:'CHF — no subscription',fr:'CHF — sans abonnement'},
-  da_pick:    {de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'},
-  p0_01:{de:'Inbound Concierge Agent (Template)',en:'Inbound concierge agent (template)',fr:'Agent concierge entrant (modèle)'},
-  p0_02:{de:'Automatische Telefonnummer',en:'Auto-assigned phone number',fr:'Numéro de téléphone automatique'},
-  p0_03:{de:'77 Freiminuten (30–40 Calls)',en:'77 free minutes (30–40 calls)',fr:'77 minutes offertes (30–40 appels)'},
-  p0_04:{de:'1 CHF / Extra-Minute',en:'1 CHF / extra minute',fr:'1 CHF / minute supplémentaire'},
-  p0_05:{de:'DE / EN / FR',en:'DE / EN / FR',fr:'DE / EN / FR'},
-  p0_06:{de:'1 Monat oder bis Minuten aufgebraucht',en:'1 month or until minutes used',fr:"1 mois ou jusqu'aux minutes épuisées"},
-  p0_07:{de:'Kein Setup-Fee',en:'No setup fee',fr:'Sans frais de configuration'},
   p1_01:{de:'AI Concierge Voice Agent',en:'AI Concierge Voice Agent',fr:'Agent vocal IA concierge'},
   p1_02:{de:'Dedizierte Telefonnummer',en:'Dedicated phone line',fr:'Ligne téléphonique dédiée'},
   p1_03:{de:'Editierbare Wissensbibliothek',en:'Editable knowledge library',fr:'Bibliothèque de connaissances éditable'},
@@ -1290,7 +963,42 @@ var T = {
   dac_it:        {de:'IT & Komm.',en:'IT & Comm.',fr:'IT & Comm.'},
   dac_finanzen:  {de:'Finanzen',en:'Finance',fr:'Finance'},
   dac_gesund:    {de:'Gesundheit',en:'Healthcare',fr:'Santé'},
-  da_ctx_def:    {de:'Integrationen & Kanäle',en:'Integrations & Channels',fr:'Intégrations & Canaux'},
+  da_pick:    {de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'},
+  da_uc_pharma:{
+    de:['Compliance-Anfragen automatisch beantworten','Arztgespräche terminieren','Pharmacovigilanz-Meldungen erfassen','Aussendienst-Support entlasten'],
+    en:['Automatically answer compliance inquiries','Schedule physician meetings','Capture pharmacovigilance reports','Relieve field-force support'],
+    fr:['Répondre automatiquement aux demandes de conformité','Planifier les rendez-vous médicaux','Enregistrer les signalements de pharmacovigilance','Soulager le support terrain']
+  },
+  da_uc_industrie:{
+    de:['Serviceanfragen entgegennehmen','Techniker-Einsätze koordinieren','Störungen automatisch melden','Ersatzteil-Bestellungen aufnehmen'],
+    en:['Take in service requests','Coordinate technician deployments','Automatically report incidents','Capture spare-part orders'],
+    fr:['Recevoir les demandes de service','Coordonner les interventions techniciens','Signaler automatiquement les incidents','Enregistrer les commandes de pièces']
+  },
+  da_uc_handel:{
+    de:['Produktfragen beantworten','Bestellstatus mitteilen','Reklamationen aufnehmen','Lagerbestände abfragen'],
+    en:['Answer product questions','Share order status','Log complaints','Check stock levels'],
+    fr:['Répondre aux questions produits','Communiquer le statut de commande','Enregistrer les réclamations','Consulter les stocks']
+  },
+  da_uc_gastro:{
+    de:['Reservationen entgegennehmen','Stammgäste beim Namen begrüssen','Tischplanung optimieren','Allergene-Fragen beantworten'],
+    en:['Take reservations','Greet regulars by name','Optimize table planning','Answer allergen questions'],
+    fr:['Prendre les réservations','Accueillir les habitués par leur nom','Optimiser la gestion des tables','Répondre aux questions allergènes']
+  },
+  da_uc_it:{
+    de:['First-Level-Support übernehmen','Tickets qualifizieren & routen','Komplexe Fälle weiterleiten','Onboarding-Fragen beantworten'],
+    en:['Handle first-level support','Qualify & route tickets','Escalate complex cases','Answer onboarding questions'],
+    fr:['Assurer le support niveau 1','Qualifier et acheminer les tickets','Escalader les cas complexes','Répondre aux questions onboarding']
+  },
+  da_uc_finanzen:{
+    de:['Kontoanfragen beantworten','Beratungstermine buchen','Leads qualifizieren','FINMA-konform dokumentieren'],
+    en:['Answer account inquiries','Book advisory appointments','Qualify leads','Document FINMA-compliant'],
+    fr:['Répondre aux demandes de compte','Réserver des rendez-vous conseil','Qualifier les leads','Documenter conformément FINMA']
+  },
+  da_uc_gesund:{
+    de:['Termine buchen & verschieben','Patientenfragen beantworten','Praxis-Team entlasten','Nachsorge-Erinnerungen versenden'],
+    en:['Book & reschedule appointments','Answer patient questions','Relieve the practice team','Send follow-up reminders'],
+    fr:['Réserver et reporter des rendez-vous','Répondre aux questions patients',"Soulager l'équipe du cabinet",'Envoyer des rappels de suivi']
+  },
   cta2_title:  {de:'Fragen?<br>Ruf SNOB an.',en:'Questions?<br>Call SNOB.',fr:'Des questions?<br>Appelez SNOB.'},
   lh_lbl:      {de:'Rechtsdokumente',en:'Legal Documents',fr:'Documents Légaux'},
   lh_title:    {de:'Information Center',en:'Information Center',fr:"Centre d'Information"},
@@ -1299,7 +1007,7 @@ var T = {
   lh_tab_dpo:  {de:'Unternehmen & DPO',en:'Business & DPO',fr:'Entreprise & DPO'},
   lh_tab_docs: {de:'Dokumente',en:'Documents',fr:'Documents'},
   lh_k1_h:    {de:'Deine Daten. Immer in der Schweiz.',en:'Your data. Always in Switzerland.',fr:'Vos données. Toujours en Suisse.'},
-  lh_k1_b:    {de:'Alle Daten werden ausschliesslich in der Schweiz gehostet und verarbeitet. Schweizer Exklusiv-Infrastruktur oder On-Premise auf Anfrage.',en:'All data is hosted and processed exclusively in Switzerland. Swiss exclusive infrastructure or on-premise on request.',fr:'Toutes les données sont hébergées et traitées exclusivement en Suisse. Infrastructure suisse exclusive ou on-premise sur demande.'},
+  lh_k1_b:    {de:'Standardmässig hosten und verarbeiten wir alle Daten ausschliesslich in der Schweiz. Auf Wunsch: dedizierte CH-Exklusiv-Infrastruktur oder vollständiges On-Premise-Hosting beim Kunden — jeweils auf Anfrage, immer innerhalb der Schweiz.',en:"By default, we host and process all data exclusively in Switzerland. On request: dedicated CH-exclusive infrastructure or full on-premise hosting at the client's site — always on request, always within Switzerland.",fr:'Par défaut, nous hébergeons et traitons toutes les données exclusivement en Suisse. Sur demande: infrastructure suisse exclusive dédiée ou hébergement on-premise complet chez le client — toujours sur demande, toujours en Suisse.'},
   lh_k2_h:    {de:'Du besitzt deine Daten',en:'You own your data',fr:'Vous possédez vos données'},
   lh_k2_b:    {de:'goSNOB verarbeitet Daten nur in deinem Auftrag. Du bleibst jederzeit Data Controller. Kein Verkauf, keine Weitergabe.',en:'goSNOB processes data only on your behalf. You remain Data Controller at all times. No selling, no sharing.',fr:"goSNOB ne traite les données qu'en votre nom. Vous restez Data Controller. Aucune vente, aucun partage."},
   lh_k2_tag:  {de:'Kein Weiterverkauf',en:'No resale',fr:'Sans revente'},
@@ -1344,37 +1052,6 @@ var T = {
   lh_dname5:  {de:'Subprocessor-Liste',en:'Subprocessor List',fr:'Liste des sous-traitants'},
   lh_dtag6:   {de:'Legal · Impressum',en:'Legal · Imprint',fr:'Légal · Mentions légales'},
   lh_dname6:  {de:'Impressum',en:'Legal Notice',fr:'Mentions légales'},
-  lh_doc1_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Verantwortliche Stelle</div><p>goSNOB AG, Schweiz<br>Kontakt: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Erhobene Daten</div><ul><li>Kontaktdaten (Name, E-Mail, Telefon)</li><li>Nutzungsdaten (Anrufprotokolle, Chat-Verläufe)</li><li>Technische Daten (IP-Adresse, Geräteinformationen)</li><li>Unternehmensdaten (Firmenname, Branche, Mitarbeiterzahl)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Zweck &amp; Rechtsgrundlagen</div><ul><li>Erbringung von KI-Dienstleistungen (Art. 6 Abs. 1 lit. b DSGVO)</li><li>Vertragserfüllung und Kundenbetreuung (revDSG)</li><li>Sicherheit und Missbrauchsprävention (Art. 6 Abs. 1 lit. f DSGVO)</li><li>Verbesserung unserer Dienste (berechtigtes Interesse)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Datenspeicherung &amp; Löschung</div><p>Alle Daten werden ausschliesslich in der Schweiz gespeichert. Daten werden nach Vertragsende oder auf ausdrückliche Anfrage gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Ihre Rechte</div><ul><li>Auskunft über gespeicherte Daten</li><li>Berichtigung unrichtiger Daten</li><li>Löschung (Recht auf Vergessen)</li><li>Einschränkung der Verarbeitung</li><li>Datenübertragbarkeit</li><li>Widerspruch gegen Verarbeitung</li></ul><p style="margin-top:12px">Anfragen an: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Responsible Party</div><p>goSNOB AG, Switzerland<br>Contact: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Data Collected</div><ul><li>Contact data (name, email, phone)</li><li>Usage data (call logs, chat histories)</li><li>Technical data (IP address, device information)</li><li>Business data (company name, industry, headcount)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Purpose &amp; Legal Basis</div><ul><li>Provision of AI services (Art. 6(1)(b) GDPR)</li><li>Contract fulfilment and customer support (Swiss FDAP)</li><li>Security and fraud prevention (Art. 6(1)(f) GDPR)</li><li>Service improvement (legitimate interest)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Data Retention &amp; Deletion</div><p>All data stored exclusively in Switzerland. Deleted after contract end or on request, unless statutory retention obligations apply.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Your Rights</div><ul><li>Access to stored data</li><li>Correction of inaccurate data</li><li>Erasure (right to be forgotten)</li><li>Restriction of processing</li><li>Data portability</li><li>Objection to processing</li></ul><p style="margin-top:12px">Requests: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Responsable du traitement</div><p>goSNOB AG, Suisse<br>Contact : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Donn&#233;es collect&#233;es</div><ul><li>Donn&#233;es de contact (nom, e-mail, t&#233;l&#233;phone)</li><li>Donn&#233;es d&#39;utilisation (journaux d&#39;appels, historiques de chat)</li><li>Donn&#233;es techniques (adresse IP, informations sur l&#39;appareil)</li><li>Donn&#233;es d&#39;entreprise (nom, secteur, effectif)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Finalit&#233;s &amp; bases l&#233;gales</div><ul><li>Fourniture de services IA (Art. 6(1)(b) RGPD)</li><li>Ex&#233;cution du contrat et assistance client (LPD suisse)</li><li>S&#233;curit&#233; et pr&#233;vention des fraudes (Art. 6(1)(f) RGPD)</li><li>Am&#233;lioration des services (int&#233;r&#234;t l&#233;gitime)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Conservation &amp; suppression</div><p>Toutes les donn&#233;es sont h&#233;berg&#233;es exclusivement en Suisse. Supprim&#233;es &#224; la fin du contrat ou sur demande, sauf obligations l&#233;gales.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Vos droits</div><ul><li>Acc&#232;s aux donn&#233;es enregistr&#233;es</li><li>Rectification des donn&#233;es inexactes</li><li>Effacement (droit &#224; l&#39;oubli)</li><li>Limitation du traitement</li><li>Portabilit&#233; des donn&#233;es</li><li>Opposition au traitement</li></ul><p style="margin-top:12px">Demandes : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
-  },
-  lh_doc2_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">&#220;bersicht</div><p>Diese AGB regeln die Nutzung der KI-Voice-Agent-Dienste von goSNOB.ai und bilden einen rechtsverbindlichen Vertrag zwischen dem Nutzer und goSNOB. Massgebendes Recht: Schweiz. Version: Mai 2026.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements &amp; Preise</div><ul><li><strong>GoSTART:</strong> 333 CHF/Monat · 300 Minuten inkl. · &#220;berschuss: 0.25 CHF/Min.</li><li><strong>GoFULL:</strong> 777 CHF/Monat · 2.000 Minuten inkl. · &#220;berschuss: 0.15 CHF/Min.</li><li><strong>Corporate:</strong> Individuell auf Anfrage</li></ul><p style="margin-top:8px;font-size:12px;color:#aaa;">Zahlung via Stripe · monatlich im Voraus · keine R&#252;ckerstattung · Preisanpassung mit 30 Tagen Vorankündigung.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Wesentliche Punkte</div><ul><li>K&#252;ndigungsfrist: 30 Tage vor Verl&#228;ngerungsdatum</li><li>Datenschutz: Nutzer bleibt Data Controller · goSNOB ist Data Processor</li><li>Haftungsbegrenzung: max. 12 Monatsgeb&#252;hren</li><li>Gerichtsstand: Basel-Stadt, Schweiz</li><li>Aufzeichnungen: 90 Tage Standard-Aufbewahrung</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Vollst&#228;ndiges Dokument</div><p style="margin-bottom:12px;">Das vollst&#228;ndige Dokument mit allen 16 Abschnitten:</p><a href="gtc.html" target="_blank" style="display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid #0a0a0a;color:#0a0a0a;padding:10px 20px;text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background=\'#0a0a0a\';this.style.color=\'#fff\'" onmouseout="this.style.background=\'transparent\';this.style.color=\'#0a0a0a\'">AGB / Terms &amp; Conditions &#8599;</a></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Overview</div><p>These Terms govern your use of goSNOB.ai AI voice agent services and constitute a legally binding contract. Governing law: Switzerland. Version: May 2026.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subscription Plans</div><ul><li><strong>GoSTART:</strong> 333 CHF/month · 300 minutes incl. · Overage: 0.25 CHF/min.</li><li><strong>GoFULL:</strong> 777 CHF/month · 2,000 minutes incl. · Overage: 0.15 CHF/min.</li><li><strong>Corporate:</strong> Custom pricing on request</li></ul><p style="margin-top:8px;font-size:12px;color:#aaa;">Payment via Stripe · monthly in advance · no refunds · price changes with 30 days notice.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Key Points</div><ul><li>Cancellation: 30 days before renewal date</li><li>Data: You remain Data Controller · goSNOB is Data Processor</li><li>Liability cap: max. 12 months fees paid</li><li>Jurisdiction: Basel-Stadt, Switzerland</li><li>Recordings: 90-day default retention</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Full Document</div><p style="margin-bottom:12px;">Complete document with all 16 sections:</p><a href="gtc.html" target="_blank" style="display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid #0a0a0a;color:#0a0a0a;padding:10px 20px;text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background=\'#0a0a0a\';this.style.color=\'#fff\'" onmouseout="this.style.background=\'transparent\';this.style.color=\'#0a0a0a\'">Terms &amp; Conditions &#8599;</a></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Aper&#231;u</div><p>Ces CGV r&#233;gissent l&#39;utilisation des services d&#39;agents vocaux IA de goSNOB.ai. Droit applicable&#160;: Suisse. Version&#160;: mai 2026.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements</div><ul><li><strong>GoSTART&#160;:</strong> 333 CHF/mois · 300 min. incl. · D&#233;passement&#160;: 0.25 CHF/min.</li><li><strong>GoFULL&#160;:</strong> 777 CHF/mois · 2&#160;000 min. incl. · D&#233;passement&#160;: 0.15 CHF/min.</li><li><strong>Corporate&#160;:</strong> Tarif individuel sur demande</li></ul><p style="margin-top:8px;font-size:12px;color:#aaa;">Paiement via Stripe · mensuel d&#39;avance · sans remboursement · modifications tarifaires avec 30 jours de pr&#233;avis.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Points cl&#233;s</div><ul><li>R&#233;siliation&#160;: 30 jours avant la date de renouvellement</li><li>Donn&#233;es&#160;: vous restez Responsable du traitement · goSNOB est Sous-traitant</li><li>Responsabilit&#233;&#160;: limit&#233;e &#224; 12 mois de frais pay&#233;s</li><li>Juridiction&#160;: Bale-Ville, Suisse</li><li>Enregistrements&#160;: conservation standard 90 jours</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Document complet</div><p style="margin-bottom:12px;">Document complet avec les 16 sections&#160;:</p><a href="gtc.html" target="_blank" style="display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid #0a0a0a;color:#0a0a0a;padding:10px 20px;text-decoration:none;transition:background .2s,color .2s;" onmouseover="this.style.background=\'#0a0a0a\';this.style.color=\'#fff\'" onmouseout="this.style.background=\'transparent\';this.style.color=\'#0a0a0a\'">Conditions G&#233;n&#233;rales &#8599;</a></div>'
-  },
-  lh_doc3_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Rollen</div><ul><li><strong>Auftragsverarbeiter:</strong> goSNOB AG (verarbeitet Daten im Auftrag)</li><li><strong>Auftraggeber / Verantwortlicher:</strong> Kunde (bestimmt Zweck und Mittel)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Gegenstand der Verarbeitung</div><p>Verarbeitung personenbezogener Daten im Rahmen der KI-Dienstleistungen (Anrufe, Chats, Workflows) gemäss Weisung des Auftraggebers.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Pflichten von goSNOB</div><ul><li>Verarbeitung nur nach dokumentierter Weisung des Auftraggebers</li><li>Vertraulichkeit aller beteiligten Personen sicherstellen</li><li>TOMs einhalten</li><li>Unverzügliche Meldung bei Datenschutzvorfällen (max. 72h)</li><li>Unterstützung bei Betroffenenanfragen und Datenschutz-Folgeabschätzungen</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Unterauftragsverarbeiter</div><p>goSNOB kann geprüfte Unterauftragsverarbeiter einsetzen. Liste auf Anfrage. Alle unterliegen denselben Standards. Auftraggeber wird über Änderungen informiert.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individuelle AVV</div><p>Für einen individuell unterzeichneten AVV: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Roles</div><ul><li><strong>Data Processor:</strong> goSNOB AG (processes data on behalf of client)</li><li><strong>Data Controller:</strong> Customer (determines purpose and means)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subject of Processing</div><p>Processing of personal data within AI services (calls, chats, workflows) per customer instructions.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">goSNOB Obligations</div><ul><li>Processing only per documented customer instructions</li><li>Ensure confidentiality of all involved persons</li><li>Implement technical and organisational measures (TOMs)</li><li>Immediate breach notification (max. 72h)</li><li>Support with data subject requests and DPIAs</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Sub-processors</div><p>goSNOB may engage vetted sub-processors. List available on request. All bound by same standards. Customer notified of changes.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individual DPA</div><p>For a custom signed DPA: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">R&#244;les</div><ul><li><strong>Sous-traitant :</strong> goSNOB AG (traite les donn&#233;es pour le compte du client)</li><li><strong>Responsable du traitement :</strong> Client (d&#233;termine les finalit&#233;s et moyens)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Objet du traitement</div><p>Traitement de donn&#233;es personnelles dans le cadre des services IA (appels, chats, workflows) conform&#233;ment aux instructions du client.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Obligations de goSNOB</div><ul><li>Traitement uniquement sur instruction document&#233;e</li><li>Confidentialit&#233; de toutes les personnes impliqu&#233;es</li><li>Mise en &#339;uvre des mesures TOMs</li><li>Notification imm&#233;diate en cas de violation (max. 72h)</li><li>Soutien aux demandes des personnes concern&#233;es</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Sous-traitants</div><p>goSNOB peut faire appel &#224; des sous-traitants v&#233;rifi&#233;s. Liste sur demande. Tous soumis aux m&#234;mes standards. Client inform&#233; des modifications.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">DPA individuel</div><p>Pour un DPA sign&#233; individuellement : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
-  },
-  lh_doc4_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Zugangskontrolle</div><ul><li>Multi-Faktor-Authentifizierung für alle Systeme</li><li>Rollenbasierte Zugriffssteuerung (RBAC)</li><li>Automatische Sitzungsabmeldung nach Inaktivität</li><li>Protokollierung aller Zugriffsversuche</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Verschlüsselung</div><ul><li>TLS 1.3 für alle Datenübertragungen (in transit)</li><li>AES-256 für alle gespeicherten Daten (at rest)</li><li>Ende-zu-Ende-Verschlüsselung für Sprachdaten</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Verfügbarkeit &amp; Integrität</div><ul><li>Tägliche verschlüsselte Backups, georedundant in der Schweiz</li><li>99.5% SLA (GoFULL / Corporate)</li><li>Automatische Failover-Systeme</li><li>Regelmässige Disaster-Recovery-Tests</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring &amp; Incident Response</div><ul><li>24/7 Sicherheitsmonitoring</li><li>Automatische Anomalieerkennung</li><li>Incident Response Plan dokumentiert</li><li>Meldepflicht bei Datenpannen innerhalb 72 Stunden</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Organisatorische Massnahmen</div><ul><li>ISO 27001 Zertifizierung (Partnersystem)</li><li>Regelmässige Sicherheitsschulungen für alle Mitarbeitenden</li><li>Jährliche externe Sicherheitsaudits</li><li>Dokumentiertes ISMS</li></ul></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Access Control</div><ul><li>Multi-factor authentication for all systems</li><li>Role-based access control (RBAC)</li><li>Automatic session timeout after inactivity</li><li>Logging of all access attempts</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Encryption</div><ul><li>TLS 1.3 for all data transfers (in transit)</li><li>AES-256 for all stored data (at rest)</li><li>End-to-end encryption for voice data</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Availability &amp; Integrity</div><ul><li>Daily encrypted backups, geo-redundant in Switzerland</li><li>99.5% SLA (GoFULL / Corporate)</li><li>Automatic failover systems</li><li>Regular disaster recovery tests</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring &amp; Incident Response</div><ul><li>24/7 security monitoring</li><li>Automatic anomaly detection</li><li>Documented incident response plan</li><li>Breach notification within 72 hours</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Organisational Measures</div><ul><li>ISO 27001 certification (partner systems)</li><li>Regular security training for all staff</li><li>Annual external security audits</li><li>Documented ISMS</li></ul></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Contr&#244;le d&#39;acc&#232;s</div><ul><li>Authentification multi-facteurs pour tous les syst&#232;mes</li><li>Contr&#244;le d&#39;acc&#232;s bas&#233; sur les r&#244;les (RBAC)</li><li>D&#233;connexion automatique apr&#232;s inactivit&#233;</li><li>Journalisation de toutes les tentatives d&#39;acc&#232;s</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Chiffrement</div><ul><li>TLS 1.3 pour toutes les transmissions (en transit)</li><li>AES-256 pour toutes les donn&#233;es stock&#233;es (au repos)</li><li>Chiffrement de bout en bout pour les donn&#233;es vocales</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Disponibilit&#233; &amp; int&#233;grit&#233;</div><ul><li>Sauvegardes quotidiennes chiffr&#233;es, g&#233;o-redondantes en Suisse</li><li>SLA 99.5% (GoFULL / Corporate)</li><li>Syst&#232;mes de basculement automatique</li><li>Tests de reprise apr&#232;s sinistre r&#233;guliers</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Surveillance &amp; incidents</div><ul><li>Surveillance s&#233;curit&#233; 24/7</li><li>D&#233;tection automatique des anomalies</li><li>Plan de r&#233;ponse aux incidents document&#233;</li><li>Notification de violation dans les 72 heures</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Mesures organisationnelles</div><ul><li>Certification ISO 27001 (syst&#232;mes partenaires)</li><li>Formations s&#233;curit&#233; r&#233;guli&#232;res pour tout le personnel</li><li>Audits externes annuels</li><li>SMSI document&#233;</li></ul></div>'
-  },
-  lh_doc5_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastruktur</div><ul><li><strong>Hetzner Online GmbH</strong> — Server-Hosting, Schweiz / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS-Schutz, EU-Datenverarbeitung, EU SCC</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">KI &amp; Sprachverarbeitung</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-Text, EU-Region, EU SCC, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-Speech, EU-Region, EU SCC</li><li><strong>Anthropic PBC</strong> — LLM-Verarbeitung, EU SCC, SOC 2 Type II</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Kommunikation &amp; Telefonie</div><ul><li><strong>Twilio Inc.</strong> — Telefonie-Infrastruktur, EU SCC, ISO 27001</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Hinweis</div><p>Alle Unterauftragsverarbeiter wurden einer Vendor Qualification unterzogen, haben DPAs und TOMs implementiert. Stand: Mai 2026.</p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastructure</div><ul><li><strong>Hetzner Online GmbH</strong> — Server hosting, Switzerland / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS protection, EU data processing, EU SCC</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">AI &amp; Speech Processing</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-text, EU region, EU SCC, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-speech, EU region, EU SCC</li><li><strong>Anthropic PBC</strong> — LLM processing, EU SCC, SOC 2 Type II</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Communication &amp; Telephony</div><ul><li><strong>Twilio Inc.</strong> — Telephony infrastructure, EU SCC, ISO 27001</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Note</div><p>All sub-processors have undergone vendor qualification and implemented DPAs and TOMs. As of: May 2026.</p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; infrastructure</div><ul><li><strong>Hetzner Online GmbH</strong> — H&#233;bergement serveurs, Suisse / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, protection DDoS, traitement UE, EU SCC</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">IA &amp; traitement vocal</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-text, r&#233;gion UE, EU SCC, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-speech, r&#233;gion UE, EU SCC</li><li><strong>Anthropic PBC</strong> — Traitement LLM, EU SCC, SOC 2 Type II</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Communication &amp; t&#233;l&#233;phonie</div><ul><li><strong>Twilio Inc.</strong> — Infrastructure t&#233;l&#233;phonie, EU SCC, ISO 27001</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Remarque</div><p>Tous les sous-traitants ont fait l&#39;objet d&#39;une qualification fournisseur et ont mis en place des DPAs et TOMs. &#192; partir de : mai 2026.</p></div>'
-  },
-  lh_doc6_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Angaben gemäss OR Art. 944</div><p><strong>goSNOB AG</strong><br>Schweiz<br>E-Mail: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web: gosnob.ai</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Gründer</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Haftungsausschluss</div><p>Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. goSNOB AG übernimmt keine Gewähr für Richtigkeit, Vollständigkeit und Aktualität.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Urheberrecht</div><p>Alle Inhalte dieser Website sind urheberrechtlich geschützt. Vervielfältigung oder Verwendung ohne ausdrückliche Genehmigung untersagt.</p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Company Information</div><p><strong>goSNOB AG</strong><br>Switzerland<br>Email: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web: gosnob.ai</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Founders</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Disclaimer</div><p>The contents of this website have been prepared with the utmost care. goSNOB AG accepts no liability for the accuracy, completeness or currency of the content.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Copyright</div><p>All content on this website is protected by copyright. Reproduction or use without explicit permission is prohibited.</p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Informations l&#233;gales</div><p><strong>goSNOB AG</strong><br>Suisse<br>E-mail : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web : gosnob.ai</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Fondateurs</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Avertissement</div><p>Les contenus de ce site ont &#233;t&#233; pr&#233;par&#233;s avec le plus grand soin. goSNOB AG d&#233;cline toute responsabilit&#233; quant &#224; l&#39;exactitude, l&#39;exhaustivit&#233; ou l&#39;actualit&#233; des informations.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Droits d&#39;auteur</div><p>Tout le contenu de ce site est prot&#233;g&#233; par le droit d&#39;auteur. Toute reproduction ou utilisation sans autorisation expresse est interdite.</p></div>'
-  },
-  footer_spam: {de:'Wir glauben nicht an E-Mail-Spam. Melde dich — wir wissen wer du bist.',en:"We don't believe in email spam. Reach out — we know who you are.",fr:'Nous ne croyons pas au spam. Contactez-nous — nous savons qui vous êtes.'},
   f_priv:      {de:'Datenschutz',en:'Privacy',fr:'Confidentialité'},
   f_agb:       {de:'AGB',en:'T&C',fr:'CGV'},
   f_imp:       {de:'Impressum',en:'Imprint',fr:'Mentions légales'},
@@ -1388,8 +1065,6 @@ var T = {
   sf_lbl:      {de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'},
   sf_mode_in:  {de:'Inbound',en:'Inbound',fr:'Entrant'},
   sf_mode_out: {de:'Outbound',en:'Outbound',fr:'Sortant'},
-  sf_sub_in:   {de:'Kundenanfragen · SNOB verarbeitet · Automatische Aktionen',en:'Customer inquiries · SNOB processes · Automated actions',fr:'Demandes clients · SNOB traite · Actions automatisées'},
-  sf_sub_out:  {de:'Leads & Kampagnen · SNOB sendet · Messbare Ergebnisse',en:'Leads & campaigns · SNOB sends · Measurable results',fr:'Leads & campagnes · SNOB envoie · Résultats mesurables'},
   gyro_btn:    {de:'◉ Motion aktivieren',en:'◉ Activate Motion',fr:'◉ Activer le mouvement'}
 };
 
@@ -1414,31 +1089,20 @@ var CHAT_R = {
 var currentLang = 'de';
 var currentAppt = 'null';
 
-// ════════════════════════════════════════════════════════════
-// SET LANG
-// ════════════════════════════════════════════════════════════
 function setLang(lang){
   currentLang = lang;
-  document.querySelectorAll('.lang-sw li').forEach(function(li){
-    li.classList.toggle('active', li.textContent === lang.toUpperCase());
-  });
+  document.querySelectorAll('.lang-sw li').forEach(function(li){ li.classList.toggle('active', li.textContent === lang.toUpperCase()); });
   document.querySelectorAll('[data-i]').forEach(function(el){
     var key = el.getAttribute('data-i');
     if(!T[key]||!T[key][lang]) return;
     if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){ el.placeholder=T[key][lang]; }
     else { el.innerHTML=T[key][lang]; }
   });
-  document.querySelectorAll('[data-i-ph]').forEach(function(el){
-    var key=el.getAttribute('data-i-ph');
-    if(T[key]&&T[key][lang]) el.placeholder=T[key][lang];
-  });
   var acroMap={s:'acro_s',n:'acro_n',o:'acro_o',b:'acro_b'};
   Object.keys(acroMap).forEach(function(k){
     var e1=document.getElementById('acro-'+k);
-    var e2=document.getElementById('ws-acro-'+k);
     var v=T[acroMap[k]][lang];
     if(e1) e1.textContent=v;
-    if(e2) e2.textContent=v;
   });
   var sl1=document.getElementById('t-swiss-l1');
   var sl2=document.getElementById('t-swiss-l2');
@@ -1450,13 +1114,9 @@ function setLang(lang){
   var lc=document.getElementById('lbl_calls');
   if(lc) lc.innerHTML=SL_CALLS[lang]+' <span class="sl-val" id="vC">'+cV+'</span>';
   doCalc();
-  if(window._updateDACtx) window._updateDACtx(lang);
-  if(window._updateSFLbl) window._updateSFLbl(lang);
+  if(window._updateDAUseCases) window._updateDAUseCases(lang);
 }
 
-// ════════════════════════════════════════════════════════════
-// BLOCKS
-// ════════════════════════════════════════════════════════════
 function setLHTab(tab){
   document.querySelectorAll('.lh-tab').forEach(function(b){b.classList.toggle('active',b.dataset.lhtab===tab);});
   document.querySelectorAll('.lh-panel').forEach(function(p){p.classList.remove('active');});
@@ -1468,25 +1128,15 @@ function toggleLHDoc(el){
   document.querySelectorAll('.lh-doc-item').forEach(function(d){d.classList.remove('open');});
   if(!isOpen) el.classList.add('open');
 }
-function toggleWsBlock(el){
-  var isOpen=el.classList.contains('open');
-  document.querySelectorAll('.ws-block').forEach(function(b){b.classList.remove('open');});
-  if(!isOpen) el.classList.add('open');
-}
 function toggleDaBlock(el){
   var isOpen=el.classList.contains('open');
   document.querySelectorAll('.da-block').forEach(function(b){b.classList.remove('open');});
   if(!isOpen) el.classList.add('open');
 }
 
-// ════════════════════════════════════════════════════════════
-// CALC
-// ════════════════════════════════════════════════════════════
 function selectAppt(val){
   currentAppt=val;
-  ['null','chill','buzz','hectic'].forEach(function(v){
-    document.getElementById('ao_'+v).classList.toggle('active',v===val);
-  });
+  ['null','chill','buzz','hectic'].forEach(function(v){ document.getElementById('ao_'+v).classList.toggle('active',v===val); });
   doCalc();
 }
 function doCalc(){
@@ -1494,7 +1144,7 @@ function doCalc(){
   var mins=Math.round(calls*3*4.33);
   document.getElementById('vC').textContent=calls;
   var n=document.getElementById('rN');
-  n.textContent=mins.toLocaleString(typeof currentLang!=='undefined'&&currentLang==='en'?'en-US':typeof currentLang!=='undefined'&&currentLang==='fr'?'fr-CH':'de-CH');
+  n.textContent=mins.toLocaleString(currentLang==='en'?'en-US':currentLang==='fr'?'fr-CH':'de-CH');
   n.style.transform='scale(1.06)';
   setTimeout(function(){n.style.transform='';},120);
   var pct=(calls-10)/290*100;
@@ -1507,9 +1157,14 @@ function doCalc(){
 }
 doCalc();
 
-// ════════════════════════════════════════════════════════════
-// CHAT
-// ════════════════════════════════════════════════════════════
+function openCalcMail(){
+  var calls=document.getElementById('sC').value;
+  var mins=document.getElementById('rN').textContent;
+  var subj=encodeURIComponent('Anfrage goSNOB');
+  var body=encodeURIComponent('Hallo goSNOB-Team,\n\nich interessiere mich für euren Service. Geschätzte Calls/Woche: '+calls+', geschätzte Minuten/Monat: '+mins+'.\n\nBitte meldet euch bei mir.\n');
+  window.location.href='mailto:team@gosnob.com?subject='+subj+'&body='+body;
+}
+
 var chatOpen=false;
 function getChatReply(t){
   var l=t.toLowerCase();
@@ -1558,31 +1213,22 @@ function toggleChat(){
   }
 }
 
-// ════════════════════════════════════════════════════════════
-// S ROTATE: Sophisticated → Sarcastic → Superior
-// ════════════════════════════════════════════════════════════
 (function(){
   var sVals={de:['Sophisticated','Sarcastic','Superior'],en:['Sophisticated','Sarcastic','Superior'],fr:['Sophisticated','Sarcastique','Supérieur']};
   var idx=0;
   function rotateS(){
     var heroS=document.getElementById('acro-s');
-    var wsS=document.getElementById('ws-acro-s');
     var vals=sVals[currentLang]||sVals.de;
     if(heroS) heroS.classList.add('fade');
-    if(wsS) wsS.style.opacity='0';
     setTimeout(function(){
       idx=(idx+1)%3;
       var next=vals[idx];
       if(heroS){heroS.textContent=next;heroS.classList.remove('fade');}
-      if(wsS){wsS.textContent=next;wsS.style.transition='opacity .3s';wsS.style.opacity='1';}
     },320);
   }
   setInterval(rotateS,2800);
 })();
 
-// ════════════════════════════════════════════════════════════
-// INTRO
-// ════════════════════════════════════════════════════════════
 (function(){
   document.body.style.overflow='hidden';
   var LINES=[
@@ -1593,7 +1239,6 @@ function toggleChat(){
   ];
   var container=document.getElementById('intro-out');
   var delay=200;
-
   function typeOut(el,text,speed,done){
     el.classList.add('show');el.textContent='';
     var cur=document.createElement('span');cur.className='cur';el.appendChild(cur);
@@ -1614,7 +1259,6 @@ function toggleChat(){
       },speed);
     },120);
   }
-
   LINES.forEach(function(line,idx){
     var el=document.createElement('div');
     el.className='tl '+line.cls;
@@ -1645,7 +1289,6 @@ function toggleChat(){
       });
     },d);
   });
-
   function flash(el,cur){
     cur.remove();
     var f=0;
@@ -1659,19 +1302,16 @@ function toggleChat(){
           var intro=document.getElementById('intro');
           intro.classList.add('hide');
           document.body.style.overflow='';
-          // Reveal hero letters
           setTimeout(function(){
             document.querySelectorAll('#hero-word .hl').forEach(function(l,i){
               setTimeout(function(){l.classList.add('in');},i*80);
             });
           },100);
-          // Reveal hero acro lines
           setTimeout(function(){
             document.querySelectorAll('.hero-acro-line').forEach(function(l,i){
               setTimeout(function(){l.classList.add('in');},i*100);
             });
           },400);
-          // Reveal hero tagline
           setTimeout(function(){
             var ht=document.getElementById('hero-swiss');
             if(ht) ht.classList.add('in');
@@ -1683,337 +1323,70 @@ function toggleChat(){
   }
 })();
 
-// ════════════════════════════════════════════════════════════
-// HERO CANVAS — brain · 97% behind text · 3% above text
-// ════════════════════════════════════════════════════════════
+/* HERO brain canvas (simplified, kept for visual continuity) */
 (function(){
   var hero = document.getElementById('hero');
-
-  // Back canvas — z-index:0, behind all text
   var canvas = document.createElement('canvas');
-  canvas.id = 'hero-canvas';
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
   hero.insertBefore(canvas, hero.firstChild);
   var ctx = canvas.getContext('2d');
-
-  // Front canvas — z-index:4, above text (z-index:3), max 3% of dots
-  var canvasF = document.createElement('canvas');
-  canvasF.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;';
-  hero.appendChild(canvasF);
-  var ctxF = canvasF.getContext('2d');
-  var W, H, particles = [], edges = [], pulses = [], startTime = null, raf = null, lastPulseTs = 0;
-
-  // ── Shared input object (read by tilt + letter-depth blocks too) ──
+  var W, H, particles = [], raf = null, startTime = null;
   window._heroInput = window._heroInput || {mx:0, my:0, sx:0, sy:0, active:false};
   var HI = window._heroInput;
-
-  // Mouse
   hero.addEventListener('mousemove', function(e) {
     HI.mx = e.clientX/window.innerWidth  - 0.5;
     HI.my = e.clientY/window.innerHeight - 0.5;
-    HI.sx = e.clientX - hero.getBoundingClientRect().left;
-    HI.sy = e.clientY - hero.getBoundingClientRect().top;
     HI.active = true;
   }, {passive:true});
   hero.addEventListener('mouseleave', function(){ HI.active = false; });
-
-  // Gyro — writes same _heroInput so ALL blocks react
-  function startGyro() {
-    window.addEventListener('deviceorientation', function(e) {
-      if (e.gamma == null && e.beta == null) return;
-      var gx = Math.max(-50, Math.min(50, e.gamma || 0));
-      var gy = Math.max(-50, Math.min(50, (e.beta  || 55) - 55));
-      HI.mx = gx / 50 * 0.5;
-      HI.my = gy / 50 * 0.5;
-      HI.sx = W/2 + HI.mx * 2 * W * 0.46;
-      HI.sy = H/2 + HI.my * 2 * H * 0.46;
-      HI.active = true;
-    }, {passive:true});
-  }
-
-  window.activateGyro = function() {
-    var btn = document.getElementById('gyro-btn');
-    if (typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission === 'function') {
-      DeviceOrientationEvent.requestPermission()
-        .then(function(s) {
-          if (s === 'granted') { startGyro(); if (btn) btn.style.display = 'none'; }
-          else { if (btn) btn.style.display = 'none'; }
-        })
-        .catch(function(){ if (btn) btn.style.display = 'none'; });
-    } else {
-      startGyro();
-      if (btn) btn.style.display = 'none';
-    }
-  };
-
-  if (('ontouchstart' in window) || navigator.maxTouchPoints > 0) {
-    // Touchmove drives hero particles — no permission needed on iOS or Android
-    hero.addEventListener('touchmove', function(e) {
-      var t = e.touches[0];
-      var r = hero.getBoundingClientRect();
-      HI.mx = (t.clientX - r.left) / r.width - 0.5;
-      HI.my = (t.clientY - r.top)  / r.height - 0.5;
-      HI.sx = t.clientX - r.left;
-      HI.sy = t.clientY - r.top;
-      HI.active = true;
-    }, {passive:true});
-    hero.addEventListener('touchend',   function(){ HI.active = false; }, {passive:true});
-    hero.addEventListener('touchcancel',function(){ HI.active = false; }, {passive:true});
-    // Hide gyro button — not needed
-    var gyroBtn = document.getElementById('gyro-btn');
-    if (gyroBtn) gyroBtn.style.display = 'none';
-  }
-
-  // ── Brain shape sampler ───────────────────────────────────
   function sampleBrain(N, bw, bh) {
-    var oc = document.createElement('canvas');
-    oc.width = bw; oc.height = bh;
+    var oc = document.createElement('canvas'); oc.width = bw; oc.height = bh;
     var ox = oc.getContext('2d');
     var cx = bw/2, cy = bh/2;
     ox.beginPath();
-    ox.moveTo(cx, cy + bh*0.38);
-    ox.bezierCurveTo(cx+bw*0.12, cy+bh*0.42, cx+bw*0.52, cy+bh*0.38, cx+bw*0.50, cy+bh*0.04);
-    ox.bezierCurveTo(cx+bw*0.50, cy-bh*0.30, cx+bw*0.38, cy-bh*0.44, cx+bw*0.10, cy-bh*0.42);
-    ox.bezierCurveTo(cx+bw*0.04, cy-bh*0.44, cx+bw*0.01, cy-bh*0.36, cx,          cy-bh*0.30);
-    ox.bezierCurveTo(cx-bw*0.01, cy-bh*0.36, cx-bw*0.04, cy-bh*0.44, cx-bw*0.10, cy-bh*0.42);
-    ox.bezierCurveTo(cx-bw*0.38, cy-bh*0.44, cx-bw*0.50, cy-bh*0.30, cx-bw*0.50, cy+bh*0.04);
-    ox.bezierCurveTo(cx-bw*0.52, cy+bh*0.38, cx-bw*0.12, cy+bh*0.42, cx,          cy+bh*0.38);
-    ox.closePath();
+    ox.arc(cx, cy, Math.min(bw,bh)*0.42, 0, Math.PI*2);
     ox.fillStyle = '#fff'; ox.fill();
     var pts = [], tries = 0, id = ox.getImageData(0,0,bw,bh);
     while (pts.length < N && tries < N*80) {
       tries++;
       var rx = Math.random()*bw, ry = Math.random()*bh;
-      if (id.data[(Math.floor(ry)*bw+Math.floor(rx))*4+3] > 128)
-        pts.push({x: rx-cx, y: ry-cy});
+      if (id.data[(Math.floor(ry)*bw+Math.floor(rx))*4+3] > 128) pts.push({x: rx-cx, y: ry-cy});
     }
     return pts;
   }
-
-  function easeOutQuart(t){ return 1-Math.pow(1-t,4); }
-
-  function buildEdges() {
-    edges = [];
-    var THRESH = 56;
-    for (var i = 0; i < particles.length; i++)
-      for (var j = i+1; j < particles.length; j++) {
-        var dx = particles[i].tx-particles[j].tx, dy = particles[i].ty-particles[j].ty;
-        var d = Math.sqrt(dx*dx+dy*dy);
-        if (d < THRESH) edges.push({a:i, b:j, d:d, inv:1-d/THRESH});
-      }
-  }
-
   function initParticles() {
-    var scale = Math.min(W,H)*0.72;
-    var bw = Math.round(scale*1.05), bh = Math.round(scale*0.88);
-    var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-    var N = isTouch ? 150 : 260;
-    var rMult = isTouch ? 0.65 : 1.0;
-    var pts = sampleBrain(N, bw, bh);
-    particles = pts.map(function(b, i) {
-      var ang = Math.random()*Math.PI*2, burst = 20+Math.random()*30;
-      return {
-        tx: W/2+b.x, ty: H/2+b.y,
-        sx: W/2+Math.cos(ang)*burst, sy: H/2+Math.sin(ang)*burst,
-        delay: Math.random()*1.5, dur: 1.3+Math.random()*0.9,
-        maxR: (1.4+Math.random()*2.0)*rMult, al: 0.55+Math.random()*0.4,
-        driftX: (Math.random()-.5)*0.22, driftY: (Math.random()-.5)*0.22,
-        prog: 0, cx: 0, cy: 0,
-        vx: 0, vy: 0,
-        front: Math.random() < 0.03   // ~3% float above the text
-      };
+    var scale = Math.min(W,H)*0.6;
+    var pts = sampleBrain(140, Math.round(scale), Math.round(scale));
+    particles = pts.map(function(b) {
+      return { tx: W/2+b.x, ty: H/2+b.y, cx: W/2, cy: H/2, al: 0.4+Math.random()*0.4, r: 1+Math.random()*1.6 };
     });
-    buildEdges();
-    pulses = [];
   }
-
-  function resize() {
-    W = canvas.offsetWidth; H = canvas.offsetHeight;
-    canvas.width = W; canvas.height = H;
-    canvasF.width = W; canvasF.height = H;
-    initParticles();
-  }
+  function resize(){ W = canvas.offsetWidth; H = canvas.offsetHeight; canvas.width = W; canvas.height = H; initParticles(); }
   resize();
-  window.addEventListener('resize', function(){ resize(); startTime=null; }, {passive:true});
-
-  function spawnPulses() {
-    var count = 2+Math.floor(Math.random()*3);
-    for (var s = 0; s < count; s++) {
-      if (!edges.length) return;
-      var e = edges[Math.floor(Math.random()*edges.length)];
-      if (particles[e.a].prog < 0.85 || particles[e.b].prog < 0.85) continue;
-      pulses.push({e:e, fwd:Math.random()>0.5, t:0, spd:0.5+Math.random()*0.8});
-    }
-  }
-
-  // Physics constants
-  var SPRING = 0.034, DAMP = 0.76;
-  var PULL_STR = 0.072;
-
-  function draw(ts) {
+  window.addEventListener('resize', resize, {passive:true});
+  function draw(ts){
     raf = requestAnimationFrame(draw);
-    if (!startTime) startTime = ts;
-    var el = (ts-startTime)/1000, dt = 0.016;
-    ctxF.clearRect(0,0,W,H);
-
     ctx.clearRect(0,0,W,H);
-
-    var breath  = 1+Math.sin(el*0.85)*0.028;
-    var gPulse  = 0.5+0.5*Math.sin(el*1.4);
-    var pullRad = Math.min(W,H)*0.30;
-
-    // ── Update positions ──
-    particles.forEach(function(p) {
-      var t = Math.max(0,Math.min(1,(el-p.delay)/p.dur));
-      var e2 = easeOutQuart(t);
-      p.prog = t;
-
-      var bx = p.tx + p.driftX*Math.sin(el*0.7+p.delay);
-      var by = p.ty + p.driftY*Math.cos(el*0.5+p.delay*1.3);
-      var rx = W/2+(bx-W/2)*breath, ry = H/2+(by-H/2)*breath;
-
-      if (t < 1) {
-        p.cx = p.sx+(rx-p.sx)*e2;
-        p.cy = p.sy+(ry-p.sy)*e2;
-        p.vx = 0; p.vy = 0;
-      } else {
-        p.vx += (rx-p.cx)*SPRING;
-        p.vy += (ry-p.cy)*SPRING;
-
-        // Attraction toward shared input (mouse or gyro)
-        if (HI.active) {
-          var dx = HI.sx-p.cx, dy = HI.sy-p.cy;
-          var dist = Math.sqrt(dx*dx+dy*dy);
-          if (dist < pullRad && dist > 1) {
-            var falloff = 1-dist/pullRad;
-            var force   = PULL_STR*falloff*falloff;
-            p.vx += (dx/dist)*force*13;
-            p.vy += (dy/dist)*force*13;
-          }
-        }
-
-        p.vx *= DAMP; p.vy *= DAMP;
-        p.cx += p.vx; p.cy += p.vy;
-      }
-    });
-
-    // ── Synapse lines ──
-    var connFade = Math.max(0,Math.min(1,(el-0.8)/1.2));
-    if (connFade > 0) {
-      edges.forEach(function(e2) {
-        var pa = particles[e2.a], pb = particles[e2.b];
-        var minP = Math.min(pa.prog, pb.prog);
-        if (minP < 0.55) return;
-        var pf = Math.max(0,(minP-0.55)/0.45);
-        var al = connFade*pf*e2.inv*(0.25+gPulse*0.12);
-        if (al < 0.008) return;
-        ctx.beginPath(); ctx.moveTo(pa.cx,pa.cy); ctx.lineTo(pb.cx,pb.cy);
-        ctx.strokeStyle = 'rgba(217,70,239,'+al+')';
-        ctx.lineWidth = 0.5+e2.inv*1.1; ctx.stroke();
-      });
-    }
-
-    // ── Traveling synaptic pulses ──
-    if (el > 2.8 && ts-lastPulseTs > 90) { spawnPulses(); lastPulseTs = ts; }
-    pulses = pulses.filter(function(pu) {
-      pu.t += pu.spd*dt;
-      if (pu.t > 1.15) return false;
-      var pa = particles[pu.e.a], pb = particles[pu.e.b];
-      var t2 = Math.min(1,pu.t);
-      var px = pu.fwd ? pa.cx+(pb.cx-pa.cx)*t2 : pb.cx+(pa.cx-pb.cx)*t2;
-      var py = pu.fwd ? pa.cy+(pb.cy-pa.cy)*t2 : pb.cy+(pa.cy-pb.cy)*t2;
-      var pal = Math.max(0,1-Math.abs(pu.t-0.5)*2.2);
-      if (pal > 0.01) {
-        var grd = ctx.createRadialGradient(px,py,0,px,py,7);
-        grd.addColorStop(0,  'rgba(255,210,255,'+pal*0.95+')');
-        grd.addColorStop(0.3,'rgba(217,70,239,'+pal*0.7+')');
-        grd.addColorStop(1,  'rgba(217,70,239,0)');
-        ctx.beginPath(); ctx.arc(px,py,7,0,Math.PI*2);
-        ctx.fillStyle = grd; ctx.fill();
-      }
-      return true;
-    });
-
-    // ── Neuron dots — 97% on back canvas, ~3% on front canvas (above text) ──
-    particles.forEach(function(p) {
-      var e2 = easeOutQuart(p.prog);
-      var r  = p.maxR*e2*(0.96+(breath-1)*10);
-      var al = p.al*Math.min(1,e2*2.2);
-      if (r < 0.3 || al < 0.02) return;
-      var c = p.front ? ctxF : ctx;
-      var grd = c.createRadialGradient(p.cx,p.cy,0,p.cx,p.cy,r*2.6);
-      grd.addColorStop(0,  'rgba(255,210,255,'+al*0.9+')');
-      grd.addColorStop(0.4,'rgba(217,70,239,'+al*0.75+')');
-      grd.addColorStop(1,  'rgba(217,70,239,0)');
-      c.beginPath(); c.arc(p.cx,p.cy,r*2.6,0,Math.PI*2);
-      c.fillStyle = grd; c.fill();
-      c.beginPath(); c.arc(p.cx,p.cy,r*0.5,0,Math.PI*2);
-      c.fillStyle = 'rgba(255,230,255,'+Math.min(1,al*1.4)+')';
-      c.fill();
+    particles.forEach(function(p){
+      p.cx += (p.tx - p.cx)*0.06; p.cy += (p.ty - p.cy)*0.06;
+      var g = ctx.createRadialGradient(p.cx,p.cy,0,p.cx,p.cy,p.r*3);
+      g.addColorStop(0,'rgba(217,70,239,'+p.al+')'); g.addColorStop(1,'rgba(217,70,239,0)');
+      ctx.beginPath(); ctx.arc(p.cx,p.cy,p.r*3,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
     });
   }
-
-  var heroIO = new IntersectionObserver(function(entries) {
-    entries.forEach(function(en) {
-      if (en.isIntersecting) { if (!raf){ startTime=null; raf=requestAnimationFrame(draw); } }
+  var heroIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { if (!raf) raf=requestAnimationFrame(draw); }
       else { if (raf){ cancelAnimationFrame(raf); raf=null; } }
     });
   });
   heroIO.observe(hero);
 })();
 
-// ════════════════════════════════════════════════════════════
-// HERO WORD: 3D tilt — mouse + gyro via shared _heroInput
-// ════════════════════════════════════════════════════════════
-(function(){
-  var hero=document.getElementById('hero'), inner=document.getElementById('hero-inner');
-  var acro=document.getElementById('heroAcro'), swiss=document.getElementById('hero-swiss');
-  var curRX=0, curRY=0, tgtRX=0, tgtRY=0;
-
-  hero.style.perspective='700px'; hero.style.perspectiveOrigin='50% 50%';
-  if(inner){ inner.style.transformStyle='preserve-3d'; inner.style.willChange='transform'; }
-
-  (function loop(){
-    requestAnimationFrame(loop);
-    var HI = window._heroInput || {mx:0, my:0, active:false};
-    tgtRX = HI.active ? -HI.my * 35 : 0;
-    tgtRY = HI.active ?  HI.mx * 45 : 0;
-    curRX+=(tgtRX-curRX)*.07; curRY+=(tgtRY-curRY)*.07;
-    if(inner) inner.style.transform='rotateX('+curRX+'deg) rotateY('+curRY+'deg)';
-    if(acro)  acro.style.transform='rotateX('+(-curRX*.5)+'deg) rotateY('+(-curRY*.5)+'deg)';
-    if(swiss) swiss.style.transform='rotateX('+(-curRX*.3)+'deg) rotateY('+(-curRY*.3)+'deg)';
-  })();
-})();
-
-// ════════════════════════════════════════════════════════════
-// HERO LETTERS: Deep individual Z-depths — mouse + gyro
-// ════════════════════════════════════════════════════════════
-(function(){
-  var letters=document.querySelectorAll('#hero-word .hl');
-  var depths=[55,-32,48,-55], curZ=[0,0,0,0];
-
-  (function loop(){
-    requestAnimationFrame(loop);
-    var HI = window._heroInput || {mx:0, my:0};
-    var mx = HI.mx, my = HI.my;
-    letters.forEach(function(l,i){
-      var tz=depths[i]*Math.abs(mx)*1.1, tx=depths[i]*mx*.45, ty=depths[i]*my*.28;
-      curZ[i]+=(tz-curZ[i])*.08;
-      l.style.transform='translateZ('+curZ[i]+'px) translateX('+tx+'px) translateY('+ty+'px)';
-    });
-  })();
-})();
-
-// Reset any leftover transforms on non-hero elements
-['#stmt-txt','.ws-title','.ws-acro-item','.ws-block','.cta1-title',
- '.cta2-text','.da-title','.pr-head-title','.calc-title'].forEach(function(sel){
+['#ws-title','.cta1-title','.cta2-text','.pr-head-title','.calc-title'].forEach(function(sel){
   document.querySelectorAll(sel).forEach(function(el){ el.style.transform=''; el.style.willChange=''; });
 });
 
-// ════════════════════════════════════════════════════════════
-// CURSOR TRAIL — 14 dots, cascading lag
-// ════════════════════════════════════════════════════════════
 (function(){
   var N=14, trail=[];
   for(var i=0;i<N;i++){
@@ -2037,97 +1410,16 @@ function toggleChat(){
   })();
 })();
 
-
-
-
-// ════════════════════════════════════════════════════════════
-// SCROLL 3D: Bigger rotateX fly-in angles
-// ════════════════════════════════════════════════════════════
 (function(){
   var style=document.createElement('style');
   style.textContent='[data-r]{transform-origin:center bottom;}[data-r="up"]{transform:translateY(80px) rotateX(-28deg);opacity:0;}[data-r="left"]{transform:translateX(-80px) rotateY(22deg);opacity:0;}[data-r="right"]{transform:translateX(80px) rotateY(-22deg);opacity:0;}[data-r="scale"]{transform:scale(.84) rotateX(-18deg);opacity:0;}[data-r].vis{opacity:1;transform:none;}';
   document.head.appendChild(style);
-  ['#whatssnob','#calc','#pricing','#delicate','#cta1','#legalhub','#stmt'].forEach(function(sel){
+  ['#whatssnob','#calc','#pricing','#delicate','#cta1','#legalhub'].forEach(function(sel){
     var el=document.querySelector(sel);
     if(el){ el.style.perspective='1400px'; el.style.perspectiveOrigin='50% 0%'; }
   });
 })();
 
-
-// ════════════════════════════════════════════════════════════
-// STATEMENT SECTION: Words at different Z depths
-// ════════════════════════════════════════════════════════════
-(function(){
-  var stmt=document.getElementById('stmt');
-  if(!stmt) return;
-  stmt.style.perspective='700px';
-  var words=stmt.querySelectorAll('.w');
-  var zO=[-50,50,-35,70];
-  stmt.addEventListener('mousemove', function(e){
-    var r=stmt.getBoundingClientRect();
-    var cx=(e.clientX-r.left-r.width*.5)/r.width, cy=(e.clientY-r.top-r.height*.5)/r.height;
-    words.forEach(function(w,i){
-      var z=zO[i]||0;
-      w.style.transition='transform .04s linear';
-      w.style.transform='translateZ('+z+'px) translate('+(cx*z*.4)+'px,'+(cy*z*.3)+'px)';
-    });
-  });
-  stmt.addEventListener('mouseleave', function(){
-    words.forEach(function(w){ w.style.transition='transform .6s cubic-bezier(.16,1,.3,1)'; w.style.transform=''; });
-  });
-})();
-
-// ════════════════════════════════════════════════════════════
-// STATEMENT: SNOB letters scatter in from particles on reveal
-// ════════════════════════════════════════════════════════════
-(function(){
-  var stmtTxt=document.getElementById('stmt-txt');
-  if(!stmtTxt) return;
-  // Find the last .w span — the "SNOB." word
-  var wDivs=stmtTxt.querySelectorAll('.w');
-  var snobDiv=wDivs[wDivs.length-1];
-  if(!snobDiv) return;
-  var snobSpan=snobDiv.querySelector('span');
-  if(!snobSpan) return;
-
-  // Split into individual letter spans
-  var text=snobSpan.textContent;
-  snobSpan.innerHTML=text.split('').map(function(c){
-    return '<span style="display:inline-block;will-change:transform,opacity;">'+c+'</span>';
-  }).join('');
-  var ltrs=snobSpan.querySelectorAll('span');
-
-  // Give each letter a random starting offset (hidden until IO fires)
-  ltrs.forEach(function(l){
-    var rx=(Math.random()-.5)*320, ry=(Math.random()-.5)*220, rs=(Math.random()*.6);
-    l.style.transform='translate('+rx+'px,'+ry+'px) scale('+rs+')';
-    l.style.opacity='0';
-    l.style.transition='none';
-  });
-
-  var fired=false;
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting && !fired){
-        fired=true;
-        ltrs.forEach(function(l,i){
-          setTimeout(function(){
-            l.style.transition='transform .75s cubic-bezier(.16,1,.3,1), opacity .5s ease';
-            l.style.transform='none';
-            l.style.opacity='1';
-          },i*90);
-        });
-        io.disconnect();
-      }
-    });
-  },{threshold:0.5});
-  io.observe(snobDiv);
-})();
-
-
-// ════════════════════════════════════════════════════════════
-// CLICK SHOCKWAVE — 3D ripple on every click
-// ════════════════════════════════════════════════════════════
 (function(){
   var style=document.createElement('style');
   style.textContent='.shock{position:fixed;pointer-events:none;border-radius:50%;border:2px solid rgba(217,70,239,.7);transform:translate(-50%,-50%) scale(0);animation:shockwave .75s cubic-bezier(.16,1,.3,1) forwards;z-index:99998;}@keyframes shockwave{to{transform:translate(-50%,-50%) scale(10);opacity:0;border-width:0;}}';
@@ -2141,9 +1433,6 @@ function toggleChat(){
   });
 })();
 
-// ════════════════════════════════════════════════════════════
-// FONT FALLBACK
-// ════════════════════════════════════════════════════════════
 (function(){
   var l=document.createElement('link');
   l.rel='stylesheet';
@@ -2156,9 +1445,7 @@ function toggleChat(){
   document.head.appendChild(l);
 })();
 
-// ════════════════════════════════════════════════════════════
-// SNOB FLOW v3 — INBOUND / OUTBOUND + icons + readable text
-// ════════════════════════════════════════════════════════════
+/* ====== SIMPLIFIED SNOB FLOW ====== */
 (function(){
   var cvs = document.getElementById('snob-flow-cvs');
   if(!cvs) return;
@@ -2172,48 +1459,22 @@ function toggleChat(){
   var lastPulse = 0;
 
   function gl(o){ var l = typeof currentLang !== 'undefined' ? currentLang : 'de'; return o[l] || o.de; }
-  function glArr(o){ var l = typeof currentLang !== 'undefined' ? currentLang : 'de'; return o[l] || o.de; }
 
   var LBL = {
-    phone:    {de:'Anruf',           en:'Phone Call',      fr:'Appel tél.'},
-    voice:    {de:'Web Voice',       en:'Web Voice',       fr:'Voix Web'},
-    chat:     {de:'Web Chat',        en:'Web Chat',        fr:'Chat Web'},
-    whats:    {de:'WhatsApp',        en:'WhatsApp',        fr:'WhatsApp'},
-    langs:    {de:'100+ Sprachen',   en:'100+ Languages',  fr:'100+ Langues'},
-    sheets:   {de:'Google Sheets',   en:'Google Sheets',   fr:'Google Sheets'},
-    crm:      {de:'CRM',             en:'CRM',             fr:'CRM'},
-    platform: {de:'goSNOB Platform', en:'goSNOB Platform', fr:'goSNOB Platform'},
-    campaign: {de:'Campaign\nMgr',   en:'Campaign\nMgr',   fr:'Campagnes'},
-    analytics:{de:'Analytics',       en:'Analytics',       fr:'Analytique'},
-    an_sub:   {de:'Fakten · Verhalten · Zufriedenheit', en:'Facts · Behavior · Satisfaction', fr:'Faits · Comportement · Satisfaction'},
-    storage:  {de:'Datenspeicher',   en:'Data Storage',    fr:'Stockage'},
-    st_sub:   {de:'CRM · Email · Webhooks', en:'CRM · Email · Webhooks', fr:'CRM · Email · Webhooks'},
-    appts:    {de:'Termine',         en:'Appointments',    fr:'Rendez-vous'},
-    ap_sub:   {de:'Buchen · Stornieren · Verschieben', en:'Book · Cancel · Reschedule', fr:'Réserver · Annuler · Reporter'},
-    sources:  {de:'300+\nDatenquellen', en:'300+\nData Sources', fr:'300+\nSources'},
-    knowledge:{de:'Knowledge\nLibrary', en:'Knowledge\nLibrary', fr:'Base de\nConnaissance'},
-    gdpr:     {de:'GDPR · Swiss · Sicher', en:'GDPR · Swiss · Secure', fr:'RGPD · Suisse · Sécurisé'},
-    src_list: {
-      de:['Task Mgmt','Kalender','Bestellungen','Tabellen','APIs & Webhooks','Kundendaten','Produktkatalog','Social Media'],
-      en:['Task Mgmt','Calendar','Orders','Spreadsheets','APIs & Webhooks','Customer Data','Product Catalog','Social Media'],
-      fr:['Gestion tâches','Calendrier','Commandes','Tableurs','APIs & Webhooks','Données clients','Catalogue','Réseaux sociaux']
-    },
-    kn_list: {
-      de:['PDF','DOCX','TXT','Web'],
-      en:['PDF','DOCX','TXT','Web'],
-      fr:['PDF','DOCX','TXT','Web']
-    },
-    mode_lbl: {
-      inbound:  {de:'INBOUND', en:'INBOUND', fr:'ENTRANT'},
-      outbound: {de:'OUTBOUND',en:'OUTBOUND',fr:'SORTANT'}
-    }
+    phone:{de:'Anruf',en:'Phone',fr:'Appel'},
+    web:{de:'Web',en:'Web',fr:'Web'},
+    campaign:{de:'Kampagnen',en:'Campaigns',fr:'Campagnes'},
+    analytics:{de:'Analytics',en:'Analytics',fr:'Analytique'},
+    storage:{de:'Datenspeicher',en:'Data Storage',fr:'Stockage'},
+    appts:{de:'Termine',en:'Appointments',fr:'Rendez-vous'},
+    mode_lbl:{inbound:{de:'INBOUND',en:'INBOUND',fr:'ENTRANT'},outbound:{de:'OUTBOUND',en:'OUTBOUND',fr:'SORTANT'}}
   };
 
   function resize(){
     var sec = document.getElementById('snob-flow');
     var pw = sec ? sec.getBoundingClientRect().width : 600;
-    W = Math.max(280, Math.min(pw - (isTouch ? 40 : 80), 840));
-    H = isTouch ? Math.min(Math.round(window.innerHeight * 0.68), 520) : 540;
+    W = Math.max(280, Math.min(pw - (isTouch ? 40 : 80), 720));
+    H = isTouch ? 320 : 360;
     cvs.width  = Math.round(W * DPR);
     cvs.height = Math.round(H * DPR);
     cvs.style.width  = W + 'px';
@@ -2222,829 +1483,88 @@ function toggleChat(){
   }
 
   function lo(){
-    var snobR = isTouch ? 30 : 38;
-    var nodeR = isTouch ? 14 : 18;
-    var clR   = isTouch ? 19 : 24;
-    var snobX = W * 0.5,  snobY = H * 0.33;
-    var clY   = snobY + snobR + (isTouch ? 90 : 108);
-    var srcX  = W * 0.34, knX = W * 0.66;
-    var lx    = isTouch ? W * 0.11 : W * 0.08;
-    var rx    = isTouch ? W * 0.89 : W * 0.92;
-    var inputs, campNode = null;
-    if(sfMode === 'inbound'){
-      var dy = isTouch ? 58 : 72;
-      inputs = [
-        {x:lx, y:snobY - dy*1.5, lbl:LBL.phone,    icn:'phone'},
-        {x:lx, y:snobY - dy*0.5, lbl:LBL.voice,    icn:'mic'},
-        {x:lx, y:snobY + dy*0.5, lbl:LBL.chat,     icn:'chat'},
-        {x:lx, y:snobY + dy*1.5, lbl:LBL.whats,    icn:'whatsapp'}
-      ];
-    } else {
-      var dy2 = isTouch ? 55 : 68;
-      inputs = [
-        {x:lx, y:snobY - dy2,   lbl:LBL.sheets,   icn:'grid'},
-        {x:lx, y:snobY,          lbl:LBL.crm,      icn:'person'},
-        {x:lx, y:snobY + dy2,   lbl:LBL.platform,  icn:'hexagon'}
-      ];
-      campNode = {x: W * 0.27, y: snobY, r: isTouch ? 18 : 22, icn:'megaphone'};
-    }
-    var ody = isTouch ? 64 : 80;
+    var snobR = isTouch ? 32 : 40;
+    var nodeR = isTouch ? 15 : 19;
+    var snobX = W * 0.5, snobY = H * 0.5;
+    var lx = W * 0.14, rx = W * 0.86;
+    var inputs = sfMode === 'inbound'
+      ? [{x:lx,y:H*0.28,lbl:LBL.phone},{x:lx,y:H*0.72,lbl:LBL.web}]
+      : [{x:lx,y:H*0.5,lbl:LBL.campaign}];
     var outputs = [
-      {x:rx, y:snobY - ody, lbl:LBL.analytics, sub:LBL.an_sub, pink:true,  icn:'bars'},
-      {x:rx, y:snobY,        lbl:LBL.storage,   sub:LBL.st_sub, pink:false, icn:'db'},
-      {x:rx, y:snobY + ody,  lbl:LBL.appts,     sub:LBL.ap_sub, pink:false, icn:'calendar'}
+      {x:rx,y:H*0.22,lbl:LBL.analytics,pink:true},
+      {x:rx,y:H*0.5, lbl:LBL.storage},
+      {x:rx,y:H*0.78,lbl:LBL.appts}
     ];
-    return {snobX:snobX, snobY:snobY, snobR:snobR, nodeR:nodeR, clR:clR,
-            clY:clY, srcX:srcX, knX:knX, inputs:inputs, campNode:campNode, outputs:outputs};
+    return {snobX:snobX,snobY:snobY,snobR:snobR,nodeR:nodeR,inputs:inputs,outputs:outputs};
   }
 
-  function circ(x, y, r, fill, strok, sw){
-    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
-    if(fill){  ctx.fillStyle = fill; ctx.fill(); }
-    if(strok){ ctx.strokeStyle = strok; ctx.lineWidth = sw||1; ctx.stroke(); }
+  function circ(x,y,r,fill,strok,sw){
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+    if(fill){ctx.fillStyle=fill;ctx.fill();}
+    if(strok){ctx.strokeStyle=strok;ctx.lineWidth=sw||1;ctx.stroke();}
   }
-
-  function drawTxt(x, y, text, size, color, align){
-    ctx.textAlign = align || 'center';
-    ctx.fillStyle = color || '#888';
-    ctx.font = '400 ' + size + 'px "DM Mono",monospace';
-    var lines = String(text).split('\n');
-    var lh = size * 1.35;
-    var oy = -(lines.length - 1) * lh * 0.5;
-    lines.forEach(function(line, i){ ctx.fillText(line, x, y + oy + i * lh + size * 0.35); });
+  function drawTxt(x,y,text,size,color){
+    ctx.textAlign='center';ctx.fillStyle=color||'#888';ctx.font='400 '+size+'px "DM Mono",monospace';
+    ctx.fillText(text,x,y);
   }
-
-  // ── Lineart icons ──
-  function icn(type, x, y, r, col) {
-    var s = r * 0.46;
-    ctx.strokeStyle = col; ctx.fillStyle = col;
-    ctx.lineWidth = isTouch ? 0.8 : 1;
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.save(); ctx.translate(x, y);
-    if(type === 'phone') {
-      ctx.beginPath();
-      ctx.moveTo(-s*.55, s*.45);
-      ctx.bezierCurveTo(-s*.55, 0, 0, -s*.55, s*.55, -s*.55);
-      ctx.stroke();
-      ctx.beginPath(); ctx.arc(-s*.5, s*.4, s*.18, 0, Math.PI*2); ctx.fill();
-      ctx.beginPath(); ctx.arc(s*.5, -s*.5, s*.18, 0, Math.PI*2); ctx.fill();
-    } else if(type === 'mic') {
-      ctx.beginPath();
-      ctx.arc(0, -s*.2, s*.28, Math.PI, 0);
-      ctx.rect(-s*.28, -s*.2, s*.56, s*.5);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(-s*.42, s*.1);
-      ctx.quadraticCurveTo(-s*.42, s*.55, 0, s*.55);
-      ctx.quadraticCurveTo(s*.42, s*.55, s*.42, s*.1);
-      ctx.moveTo(0, s*.55); ctx.lineTo(0, s*.75);
-      ctx.moveTo(-s*.28, s*.75); ctx.lineTo(s*.28, s*.75);
-      ctx.stroke();
-    } else if(type === 'chat') {
-      ctx.beginPath();
-      ctx.moveTo(-s*.5, s*.25);
-      ctx.lineTo(-s*.5, -s*.5);
-      ctx.quadraticCurveTo(-s*.5, -s*.65, -s*.3, -s*.65);
-      ctx.lineTo(s*.3, -s*.65);
-      ctx.quadraticCurveTo(s*.5, -s*.65, s*.5, -s*.5);
-      ctx.lineTo(s*.5, s*.15);
-      ctx.quadraticCurveTo(s*.5, s*.35, s*.3, s*.35);
-      ctx.lineTo(-s*.05, s*.35);
-      ctx.lineTo(-s*.3, s*.65);
-      ctx.lineTo(-s*.3, s*.35);
-      ctx.lineTo(-s*.5, s*.35);
-      ctx.quadraticCurveTo(-s*.5, s*.35, -s*.5, s*.25);
-      ctx.stroke();
-    } else if(type === 'whatsapp') {
-      ctx.beginPath(); ctx.arc(0, 0, s*.58, 0, Math.PI*2); ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(-s*.2, s*.32);
-      ctx.bezierCurveTo(-s*.22, 0, s*.12, -s*.28, s*.28, -s*.2);
-      ctx.stroke();
-    } else if(type === 'grid') {
-      ctx.beginPath();
-      ctx.rect(-s*.5, -s*.5, s, s);
-      ctx.moveTo(0, -s*.5); ctx.lineTo(0, s*.5);
-      ctx.moveTo(-s*.5, 0); ctx.lineTo(s*.5, 0);
-      ctx.stroke();
-    } else if(type === 'person') {
-      ctx.beginPath(); ctx.arc(0, -s*.3, s*.27, 0, Math.PI*2); ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(-s*.5, s*.65);
-      ctx.quadraticCurveTo(-s*.5, s*.08, 0, s*.08);
-      ctx.quadraticCurveTo(s*.5, s*.08, s*.5, s*.65);
-      ctx.stroke();
-    } else if(type === 'hexagon') {
-      ctx.beginPath();
-      for(var i=0;i<6;i++){
-        var a=i/6*Math.PI*2-Math.PI/6;
-        i?ctx.lineTo(Math.cos(a)*s*.6,Math.sin(a)*s*.6):ctx.moveTo(Math.cos(a)*s*.6,Math.sin(a)*s*.6);
-      }
-      ctx.closePath(); ctx.stroke();
-    } else if(type === 'megaphone') {
-      ctx.beginPath();
-      ctx.moveTo(-s*.5,-s*.22); ctx.lineTo(-s*.5,s*.22);
-      ctx.lineTo(s*.5,s*.58); ctx.lineTo(s*.5,-s*.58); ctx.closePath(); ctx.stroke();
-      ctx.beginPath(); ctx.rect(-s*.78,-s*.24,s*.3,s*.48); ctx.stroke();
-    } else if(type === 'bars') {
-      ctx.beginPath();
-      ctx.rect(-s*.5, s*.08, s*.28, s*.48);
-      ctx.rect(-s*.12, -s*.18, s*.28, s*.74);
-      ctx.rect(s*.25, -s*.52, s*.28, s*1.08);
-      ctx.fill();
-      ctx.beginPath(); ctx.moveTo(-s*.54,s*.6); ctx.lineTo(s*.58,s*.6); ctx.stroke();
-    } else if(type === 'db') {
-      for(var j=0;j<3;j++){
-        ctx.beginPath();
-        ctx.ellipse(0, -s*.38+j*s*.4, s*.48, s*.16, 0, 0, Math.PI*2);
-        ctx.stroke();
-      }
-      ctx.beginPath();
-      ctx.moveTo(-s*.48,-s*.38); ctx.lineTo(-s*.48,s*.22);
-      ctx.moveTo(s*.48,-s*.38); ctx.lineTo(s*.48,s*.22);
-      ctx.stroke();
-    } else if(type === 'calendar') {
-      ctx.beginPath();
-      ctx.rect(-s*.5,-s*.3,s,s*.85);
-      ctx.moveTo(-s*.5,s*.05); ctx.lineTo(s*.5,s*.05);
-      ctx.moveTo(-s*.2,-s*.5); ctx.lineTo(-s*.2,-s*.15);
-      ctx.moveTo(s*.2,-s*.5); ctx.lineTo(s*.2,-s*.15);
-      ctx.stroke();
-    } else if(type === 'book') {
-      ctx.beginPath();
-      ctx.rect(-s*.5,-s*.55,s,s*1.1);
-      ctx.moveTo(0,-s*.55); ctx.lineTo(0,s*.55);
-      ctx.moveTo(-s*.38,-s*.2); ctx.lineTo(-s*.08,-s*.2);
-      ctx.moveTo(-s*.38,s*.1); ctx.lineTo(-s*.08,s*.1);
-      ctx.stroke();
-    } else if(type === 'network') {
-      ctx.beginPath();
-      ctx.arc(0,-s*.42,s*.17,0,Math.PI*2);
-      ctx.arc(-s*.38,s*.25,s*.17,0,Math.PI*2);
-      ctx.arc(s*.38,s*.25,s*.17,0,Math.PI*2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(0,-s*.25); ctx.lineTo(-s*.28,s*.12);
-      ctx.moveTo(0,-s*.25); ctx.lineTo(s*.28,s*.12);
-      ctx.moveTo(-s*.22,s*.25); ctx.lineTo(s*.22,s*.25);
-      ctx.stroke();
-    }
-    ctx.restore();
+  function ln(x1,y1,x2,y2,col,w){
+    ctx.strokeStyle=col||'rgba(0,0,0,0.06)';ctx.lineWidth=w||1;
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
   }
-
-  function pDot(x, y, al){
-    if(al < 0.01) return;
-    var g = ctx.createRadialGradient(x, y, 0, x, y, 9);
-    g.addColorStop(0,    'rgba(255,215,255,' + al + ')');
-    g.addColorStop(0.35, 'rgba(217,70,239,'  + (al * 0.9) + ')');
-    g.addColorStop(1,    'rgba(217,70,239,0)');
-    ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
-    ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(217,70,239,' + al + ')'; ctx.fill();
-  }
-
-  function ln(x1, y1, x2, y2, col, w){
-    ctx.strokeStyle = col || 'rgba(0,0,0,0.05)';
-    ctx.lineWidth = w || 1;
-    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-  }
-
-  function nodeGlow(x, y, r, intensity){
-    var g = ctx.createRadialGradient(x, y, r * 0.4, x, y, r + 28);
-    g.addColorStop(0, 'rgba(217,70,239,' + intensity * 0.22 + ')');
-    g.addColorStop(1, 'rgba(217,70,239,0)');
-    ctx.beginPath(); ctx.arc(x, y, r + 28, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
-  }
-
-  function spawnPulse(layout){
-    var r = Math.random();
-    if(r < 0.40){
-      // input → SNOB (or campaign → SNOB for outbound)
-      if(layout.campNode){
-        pulses.push({x1:layout.campNode.x + layout.campNode.r, y1:layout.campNode.y,
-                     x2:layout.snobX - layout.snobR, y2:layout.snobY, t:0, s:0.0065});
-      } else {
-        var inp = layout.inputs[Math.floor(Math.random() * layout.inputs.length)];
-        pulses.push({x1:inp.x + layout.nodeR, y1:inp.y,
-                     x2:layout.snobX - layout.snobR, y2:layout.snobY, t:0, s:0.007 + Math.random()*0.003});
-      }
-    } else if(r < 0.78){
-      // SNOB → output
-      var out = layout.outputs[Math.floor(Math.random() * layout.outputs.length)];
-      pulses.push({x1:layout.snobX + layout.snobR, y1:layout.snobY,
-                   x2:out.x - layout.nodeR, y2:out.y, t:0, s:0.007 + Math.random()*0.003});
-    } else {
-      // data cluster → SNOB
-      var clX = Math.random() > 0.5 ? layout.srcX : layout.knX;
-      pulses.push({x1:clX, y1:layout.clY - layout.clR,
-                   x2:layout.snobX, y2:layout.snobY + layout.snobR, t:0, s:0.005 + Math.random()*0.003});
-    }
-  }
-
-  function draw(now){
-    raf = requestAnimationFrame(draw);
-    ctx.clearRect(0, 0, W, H);
-    var layout = lo();
-    if(now - lastPulse > 450){ spawnPulse(layout); lastPulse = now; }
-
-    var lc = 'rgba(0,0,0,0.05)';
-    var dc = 'rgba(217,70,239,0.08)';
-
-    // — Lines: inputs → SNOB (or campaign) —
-    if(layout.campNode){
-      layout.inputs.forEach(function(n){
-        ln(n.x + layout.nodeR, n.y, layout.campNode.x - layout.campNode.r, layout.campNode.y, lc);
-      });
-      ln(layout.campNode.x + layout.campNode.r, layout.campNode.y,
-         layout.snobX - layout.snobR, layout.snobY, lc);
-    } else {
-      layout.inputs.forEach(function(n){
-        ln(n.x + layout.nodeR, n.y, layout.snobX - layout.snobR, layout.snobY, lc);
-      });
-    }
-    // — Lines: SNOB → outputs —
-    layout.outputs.forEach(function(o){
-      ln(layout.snobX + layout.snobR, layout.snobY, o.x - layout.nodeR, o.y, lc);
-    });
-    // — Lines: data clusters → SNOB (dashed-style thin pink) —
-    ln(layout.srcX, layout.clY - layout.clR, layout.snobX, layout.snobY + layout.snobR, dc, 0.8);
-    ln(layout.knX,  layout.clY - layout.clR, layout.snobX, layout.snobY + layout.snobR, dc, 0.8);
-
-    // — Pulses —
-    pulses = pulses.filter(function(p){ return p.t < 1; });
-    pulses.forEach(function(p){
-      p.t += p.s;
-      pDot(p.x1 + (p.x2 - p.x1) * p.t, p.y1 + (p.y2 - p.y1) * p.t, Math.sin(p.t * Math.PI));
-    });
-
-    // — Data clusters —
-    var t = now * 0.001;
-    var clLblSz = isTouch ? 8 : 9;
-    nodeGlow(layout.srcX, layout.clY, layout.clR, 0.55 + 0.3 * Math.sin(t * 1.7));
-    circ(layout.srcX, layout.clY, layout.clR, '#fff', 'rgba(217,70,239,0.22)', 1);
-    icn('network', layout.srcX, layout.clY, layout.clR, '#d946ef');
-    drawTxt(layout.srcX, layout.clY + layout.clR + 13, gl(LBL.sources), clLblSz, '#d946ef');
-
-    nodeGlow(layout.knX, layout.clY, layout.clR, 0.35 + 0.28 * Math.sin(t * 1.9 + 1));
-    circ(layout.knX, layout.clY, layout.clR, '#fff', 'rgba(217,70,239,0.15)', 1);
-    icn('book', layout.knX, layout.clY, layout.clR, 'rgba(185,65,205,0.7)');
-    drawTxt(layout.knX, layout.clY + layout.clR + 13, gl(LBL.knowledge), clLblSz, 'rgba(175,65,200,0.8)');
-
-    // Cluster sub-items — stacked below each cluster node (clean, no overlap)
-    var lang2 = typeof currentLang !== 'undefined' ? currentLang : 'de';
-    var srcList = LBL.src_list[lang2] || LBL.src_list.de;
-    var knList  = LBL.kn_list[lang2]  || LBL.kn_list.de;
-    var subSz = isTouch ? 7 : 8;
-    var subCol = 'rgba(185,110,205,0.55)';
-    ctx.font = '400 ' + subSz + 'px "DM Mono",monospace';
-    ctx.textAlign = 'center';
-    ctx.fillStyle = subCol;
-    var clLblBottom = layout.clY + layout.clR + 13 + clLblSz * 1.6;
-    srcList.slice(0, isTouch ? 3 : 5).forEach(function(s, i){
-      ctx.fillText(s, layout.srcX, clLblBottom + i * (subSz * 1.5));
-    });
-    knList.forEach(function(s, i){
-      ctx.fillText(s, layout.knX, clLblBottom + i * (subSz * 1.5));
-    });
-
-    // — Input nodes —
-    var nodeLblSz = isTouch ? 8.5 : 10;
-    layout.inputs.forEach(function(n){
-      circ(n.x, n.y, layout.nodeR, '#fff', 'rgba(0,0,0,0.10)', 0.8);
-      icn(n.icn, n.x, n.y, layout.nodeR, '#999');
-      drawTxt(n.x, n.y + layout.nodeR + 13, gl(n.lbl), nodeLblSz, '#666');
-    });
-
-    // — Campaign node (outbound) —
-    if(layout.campNode){
-      circ(layout.campNode.x, layout.campNode.y, layout.campNode.r, '#fff', 'rgba(0,0,0,0.12)', 1);
-      icn(layout.campNode.icn, layout.campNode.x, layout.campNode.y, layout.campNode.r, '#555');
-      drawTxt(layout.campNode.x, layout.campNode.y + layout.campNode.r + 13, gl(LBL.campaign), nodeLblSz, '#555');
-    }
-
-    // — Output nodes —
-    layout.outputs.forEach(function(o){
-      circ(o.x, o.y, layout.nodeR, '#fff',
-           o.pink ? 'rgba(217,70,239,0.3)' : 'rgba(0,0,0,0.10)',
-           o.pink ? 1.2 : 0.8);
-      icn(o.icn, o.x, o.y, layout.nodeR, o.pink ? 'rgba(217,70,239,0.75)' : '#999');
-      drawTxt(o.x, o.y + layout.nodeR + 13, gl(o.lbl), nodeLblSz, o.pink ? '#d946ef' : '#666');
-      if(!isTouch && W > 680){
-        ctx.textAlign = 'left';
-        ctx.fillStyle = 'rgba(150,150,150,0.65)';
-        ctx.font = '400 8px "DM Mono",monospace';
-        var subParts = gl(o.sub).split(' · ');
-        subParts.forEach(function(part, si){
-          ctx.fillText(part, o.x + layout.nodeR + 8, o.y - 4 + si * 11);
-        });
-      }
-    });
-
-    // — SNOB center node —
-    var pulseAl = 0.05 + 0.04 * Math.sin(now * 0.002);
-    var gg = ctx.createRadialGradient(layout.snobX, layout.snobY, layout.snobR,
-                                       layout.snobX, layout.snobY, layout.snobR + 30);
-    gg.addColorStop(0, 'rgba(217,70,239,' + pulseAl + ')');
-    gg.addColorStop(1, 'rgba(217,70,239,0)');
-    ctx.beginPath(); ctx.arc(layout.snobX, layout.snobY, layout.snobR + 30, 0, Math.PI*2);
-    ctx.fillStyle = gg; ctx.fill();
-    circ(layout.snobX, layout.snobY, layout.snobR, '#0a0a0a');
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#fff';
-    ctx.font = '400 ' + (isTouch ? 15 : 17) + 'px "Bebas Neue",sans-serif';
-    ctx.fillText('SNOB', layout.snobX, layout.snobY - 3);
-    ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.font = '400 ' + (isTouch ? 7 : 8) + 'px "DM Mono",monospace';
-    ctx.fillText(gl(LBL.mode_lbl[sfMode]), layout.snobX, layout.snobY + 12);
-
-    // GDPR note
-    ctx.textAlign = 'center';
-    ctx.fillStyle = 'rgba(180,180,180,0.4)';
-    ctx.font = '400 ' + (isTouch ? 6.5 : 7.5) + 'px "DM Mono",monospace';
-    ctx.fillText(gl(LBL.gdpr), layout.snobX, layout.snobY + layout.snobR + 16);
-
-    // "100+ Langs" badge (inbound only)
-    if(sfMode === 'inbound'){
-      var topInput = layout.inputs[0];
-      var bx = topInput.x, by = topInput.y - layout.nodeR - 16;
-      var bw = isTouch ? 68 : 82, bh = 14;
-      ctx.fillStyle = 'rgba(217,70,239,0.07)';
-      ctx.strokeStyle = 'rgba(217,70,239,0.22)';
-      ctx.lineWidth = 0.7;
-      ctx.beginPath(); ctx.rect(bx - bw*0.5, by - bh*0.5, bw, bh);
-      ctx.fill(); ctx.stroke();
-      ctx.textAlign = 'center';
-      ctx.fillStyle = 'rgba(217,70,239,0.65)';
-      ctx.font = '400 ' + (isTouch ? 6.5 : 7.5) + 'px "DM Mono",monospace';
-      ctx.fillText(gl(LBL.langs), bx, by + 2.5);
-    }
-  }
-
-  // — Global mode switcher —
-  window.setSFMode = function(newMode){
-    if(sfMode === newMode) return;
-    sfMode = newMode;
-    pulses = [];
-    document.querySelectorAll('.sf-chip').forEach(function(c){
-      c.classList.toggle('active', c.getAttribute('data-mode') === newMode);
-    });
-    var subEl = document.getElementById('sf-sub-lbl');
-    if(subEl){
-      var key = newMode === 'inbound' ? 'sf_sub_in' : 'sf_sub_out';
-      subEl.setAttribute('data-i', key);
-      var lang = typeof currentLang !== 'undefined' ? currentLang : 'de';
-      if(window.T && window.T[key]) subEl.textContent = window.T[key][lang] || window.T[key].de;
-    }
-  };
-
-  window._updateSFLbl = function(lang){
-    var subEl = document.getElementById('sf-sub-lbl');
-    if(!subEl) return;
-    var key = subEl.getAttribute('data-i') || 'sf_sub_in';
-    if(window.T && window.T[key]) subEl.textContent = window.T[key][lang] || window.T[key].de;
-  };
-
-  resize();
-  window.addEventListener('resize', function(){ resize(); }, {passive:true});
-
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      visible = e.isIntersecting;
-      if(visible && !raf){ raf = requestAnimationFrame(draw); }
-      else if(!visible && raf){ cancelAnimationFrame(raf); raf = null; }
-    });
-  });
-  io.observe(cvs);
-})();
-
-// DA COUNTER
-(function(){
-  var DA_DATA={
-    pharma:{num:1240,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB beantwortet Compliance-Anfragen, terminiert Arztgespräche und entlastet deinen Innendienst rund um die Uhr.',en:'SNOB handles compliance inquiries, schedules physician meetings and relieves your back office around the clock.',fr:'SNOB gère les demandes de conformité, planifie les réunions médicales et soulage votre back-office.'},sub:{de:'Compliance · Terminierung · Innendienst',en:'Compliance · Scheduling · Back office',fr:'Conformité · Planification · Back-office'}},
-    industrie:{num:890,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB nimmt Serviceanfragen entgegen, koordiniert Techniker-Einsätze und meldet Störungen — ohne dass dein Team eingreift.',en:'SNOB handles service requests, coordinates technician deployments and reports incidents — without your team intervening.',fr:'SNOB gère les demandes de service, coordonne les techniciens et signale les incidents automatiquement.'},sub:{de:'Servicedesk · Einsatzplanung · Störungsmanagement',en:'Service desk · Dispatch · Incident management',fr:'Service desk · Planification · Gestion incidents'}},
-    handel:{num:2100,unit:{de:'Anfragen/Monat',en:'inquiries/mo',fr:'demandes/mois'},desc:{de:'SNOB bearbeitet Produktfragen, Bestellstatus und Reklamationen automatisch — 24/7, auf Deutsch, Französisch und Englisch.',en:'SNOB handles product questions, order status and complaints automatically — 24/7, in German, French and English.',fr:'SNOB traite les questions produits, le suivi de commandes et les réclamations — 24/7, en 3 langues.'},sub:{de:'Produktberatung · Bestellstatus · Reklamationen',en:'Product advice · Order status · Complaints',fr:'Conseil produit · Statut commande · Réclamations'}},
-    gastro:{num:847,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB nimmt Reservationen entgegen, beantwortet Stammgäste beim Namen und hält deinen Kalender frei — während du kochst.',en:'SNOB takes reservations, greets regulars by name and keeps your calendar clear — while you cook.',fr:'SNOB prend les réservations, accueille les habitués par leur nom et gère votre agenda — pendant que vous cuisinez.'},sub:{de:'Reservationen · Stammgäste · Tischplanung',en:'Reservations · Regulars · Table management',fr:'Réservations · Habitués · Gestion des tables'}},
-    it:{num:3400,unit:{de:'Tickets/Jahr',en:'tickets/year',fr:'tickets/an'},desc:{de:'SNOB beantwortet First-Level-Support-Anfragen, qualifiziert Tickets und leitet komplexe Fälle direkt an dein Team weiter.',en:'SNOB handles first-level support, qualifies tickets and routes complex cases directly to your team.',fr:'SNOB gère le support premier niveau, qualifie les tickets et achemine les cas complexes vers votre équipe.'},sub:{de:'First-Level-Support · Ticket-Routing · Onboarding',en:'First-level support · Ticket routing · Onboarding',fr:'Support N1 · Routage tickets · Onboarding'}},
-    finanzen:{num:560,unit:{de:'Std/Jahr',en:'hrs/year',fr:'h/an'},desc:{de:'SNOB beantwortet Kontoanfragen, bucht Beratungstermine und qualifiziert Leads — FINMA-konform und mehrsprachig.',en:'SNOB handles account inquiries, books advisory appointments and qualifies leads — FINMA-compliant and multilingual.',fr:'SNOB répond aux demandes de compte, prend les rendez-vous et qualifie les leads — conforme FINMA.'},sub:{de:'Kontoauskunft · Beratungstermine · Lead-Qualifizierung',en:'Account info · Advisory booking · Lead qualification',fr:'Info compte · Prise de RDV · Qualification leads'}},
-    gesund:{num:1650,unit:{de:'Anrufe/Jahr',en:'calls/year',fr:'appels/an'},desc:{de:'SNOB übernimmt Terminbuchungen, beantwortet Patientenfragen und entlastet deine Praxis — damit du dich auf die Patienten konzentrieren kannst.',en:'SNOB handles appointment bookings, answers patient questions and relieves your practice — so you can focus on patients.',fr:'SNOB gère les prises de RDV, répond aux questions patients et soulage votre cabinet médical.'},sub:{de:'Terminbuchung · Patientenanfragen · Praxisentlastung',en:'Appointment booking · Patient inquiries · Practice relief',fr:'Prise de RDV · Questions patients · Décharge cabinet'}}
-  };
-  var animFrame=null;
-  function countUp(target,el,duration){
-    if(animFrame) cancelAnimationFrame(animFrame);
-    var start=null,from=0;
-    var sep=target>=1000?' ':'';
-    function step(ts){
-      if(!start)start=ts;
-      var p=Math.min((ts-start)/duration,1);
-      var ease=1-Math.pow(1-p,3);
-      var val=Math.round(from+(target-from)*ease);
-      el.textContent=val>=1000?(Math.floor(val/100)/10).toFixed(0).replace('.','')+sep+(val%1000<100?'0':''): val;
-      var loc=typeof currentLang!=='undefined'&&currentLang==='en'?'en-US':typeof currentLang!=='undefined'&&currentLang==='fr'?'fr-CH':'de-CH';
-      if(target>=1000) el.textContent=Math.round(from+(target-from)*ease).toLocaleString(loc);
-      else el.textContent=Math.round(from+(target-from)*ease);
-      if(p<1) animFrame=requestAnimationFrame(step);
-      else el.textContent=target.toLocaleString(loc);
-    }
-    animFrame=requestAnimationFrame(step);
-  }
-  function setIndustry(key){
-    var d=DA_DATA[key];
-    if(!d)return;
-    var lang=typeof currentLang!=='undefined'?currentLang:'de';
-    var numEl=document.getElementById('da-counter-num');
-    var unitEl=document.getElementById('da-counter-unit');
-    var descEl=document.getElementById('da-counter-desc');
-    var subEl=document.getElementById('da-counter-sub');
-    if(!numEl)return;
-    descEl.classList.remove('visible');
-    subEl.classList.remove('visible');
-    numEl.style.opacity='.3';
-    setTimeout(function(){
-      numEl.style.opacity='1';
-      unitEl.textContent=d.unit[lang]||d.unit.de;
-      descEl.textContent=d.desc[lang]||d.desc.de;
-      subEl.textContent=d.sub[lang]||d.sub.de;
-      countUp(d.num,numEl,900);
-      setTimeout(function(){descEl.classList.add('visible');subEl.classList.add('visible');},100);
-    },120);
-  }
-  window.setDAIndustry=function(key){
-    document.querySelectorAll('.da-chip').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ind')===key);});
-    setIndustry(key);
-  };
-  window._updateDACtx=function(lang){
-    var activeChip=document.querySelector('.da-chip.active');
-    if(activeChip) setIndustry(activeChip.getAttribute('data-ind'));
-    var pick=document.getElementById('da-counter-desc');
-    if(pick&&!document.querySelector('.da-chip.active')){
-      var T2={de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'};
-      pick.textContent=T2[lang]||T2.de;
-    }
-  };
-  // init pick hint
-  var pickEl=document.getElementById('da-counter-desc');
-  if(pickEl){pickEl.style.opacity='1';pickEl.style.transform='none';}
-})();
-
-// DA FORCE GRAPH (removed — replaced by counter)
-(function(){
-  var cvs=document.getElementById('da-force-cvs');
-  if(!cvs)return;
-  var ctx=cvs.getContext('2d');
-  var DPR=window.devicePixelRatio||1;
-  var W,H,cx,cy;
-  var raf=null,visible=false;
-  var isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
-
-  var DEFAULT=[
-    {id:'ch1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-    {id:'ch2',lbl:{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'},type:'channel'},
-    {id:'ch3',lbl:{de:'Chat',en:'Chat',fr:'Chat'},type:'channel'},
-    {id:'ch4',lbl:{de:'SMS',en:'SMS',fr:'SMS'},type:'channel'},
-    {id:'ch5',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
-    {id:'ch6',lbl:{de:'Web',en:'Web',fr:'Web'},type:'channel'},
-    {id:'in1',lbl:{de:'Kalender',en:'Calendar',fr:'Calendrier'},type:'integration'},
-    {id:'in2',lbl:{de:'CRM',en:'CRM',fr:'CRM'},type:'integration'},
-    {id:'in3',lbl:{de:'HubSpot',en:'HubSpot',fr:'HubSpot'},type:'integration'},
-    {id:'in4',lbl:{de:'Salesforce',en:'Salesforce',fr:'Salesforce'},type:'integration'},
-    {id:'in5',lbl:{de:'Slack',en:'Slack',fr:'Slack'},type:'integration'},
-    {id:'in6',lbl:{de:'Zapier',en:'Zapier',fr:'Zapier'},type:'integration'},
-  ];
-
-  var IDATA={
-    pharma:[
-      {id:'u1',lbl:{de:'Regulatory AI',en:'Regulatory AI',fr:'Conformité IA'},type:'usecase'},
-      {id:'u2',lbl:{de:'Drug Discovery',en:'Drug Discovery',fr:'R&D IA'},type:'usecase'},
-      {id:'u3',lbl:{de:'Klinische Trials',en:'Clinical Trials',fr:'Essais cliniques'},type:'usecase'},
-      {id:'u4',lbl:{de:'Sales Force AI',en:'Sales Force AI',fr:'Force vente IA'},type:'usecase'},
-      {id:'u5',lbl:{de:'Patient Outreach',en:'Patient Outreach',fr:'Suivi patients'},type:'usecase'},
-      {id:'u6',lbl:{de:'Market Access',en:'Market Access',fr:'Accès marché'},type:'usecase'},
-      {id:'u7',lbl:{de:'Pharmacovigilanz',en:'Pharmacovigilance',fr:'Pharmacovigilance'},type:'usecase'},
-      {id:'c1',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
-      {id:'c2',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'i1',lbl:{de:'CRM',en:'CRM',fr:'CRM'},type:'integration'},
-      {id:'i2',lbl:{de:'ERP',en:'ERP',fr:'ERP'},type:'integration'},
-    ],
-    industrie:[
-      {id:'u1',lbl:{de:'Predictive Maint.',en:'Predictive Maint.',fr:'Maintenance IA'},type:'usecase'},
-      {id:'u2',lbl:{de:'Qualitätskontrolle',en:'Quality Control',fr:'Contrôle qualité'},type:'usecase'},
-      {id:'u3',lbl:{de:'Supply Chain AI',en:'Supply Chain AI',fr:'Chaîne log. IA'},type:'usecase'},
-      {id:'u4',lbl:{de:'Produktionsplan.',en:'Production Plan.',fr:'Planif. prod.'},type:'usecase'},
-      {id:'u5',lbl:{de:'IoT Analytics',en:'IoT Analytics',fr:'IoT Analytics'},type:'usecase'},
-      {id:'u6',lbl:{de:'Arbeitssicherheit',en:'Worker Safety',fr:'Sécurité travail'},type:'usecase'},
-      {id:'u7',lbl:{de:'Energieoptimierung',en:'Energy Optim.',fr:'Optim. énergie'},type:'usecase'},
-      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'c2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
-      {id:'i1',lbl:{de:'ERP',en:'ERP',fr:'ERP'},type:'integration'},
-      {id:'i2',lbl:{de:'SCADA',en:'SCADA',fr:'SCADA'},type:'integration'},
-    ],
-    handel:[
-      {id:'u1',lbl:{de:'Inventar AI',en:'Inventory AI',fr:'Inventaire IA'},type:'usecase'},
-      {id:'u2',lbl:{de:'Preis-Dynamik',en:'Dynamic Pricing',fr:'Prix dynamiques'},type:'usecase'},
-      {id:'u3',lbl:{de:'Kundenservice AI',en:'Customer Service',fr:'Service client'},type:'usecase'},
-      {id:'u4',lbl:{de:'Loyalty AI',en:'Loyalty AI',fr:'Fidélité IA'},type:'usecase'},
-      {id:'u5',lbl:{de:'Visual Merch.',en:'Visual Merch.',fr:'Merch. visuel'},type:'usecase'},
-      {id:'u6',lbl:{de:'Demand Forecast',en:'Demand Forecast',fr:'Prévision demande'},type:'usecase'},
-      {id:'u7',lbl:{de:'Retouren AI',en:'Returns AI',fr:'Retours IA'},type:'usecase'},
-      {id:'c1',lbl:{de:'Chat',en:'Chat',fr:'Chat'},type:'channel'},
-      {id:'c2',lbl:{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'},type:'channel'},
-      {id:'i1',lbl:{de:'POS',en:'POS',fr:'Caisse'},type:'integration'},
-      {id:'i2',lbl:{de:'E-Commerce',en:'E-Commerce',fr:'E-Commerce'},type:'integration'},
-    ],
-    gastro:[
-      {id:'u1',lbl:{de:'Reservierung',en:'Reservation',fr:'Réservation'},type:'usecase'},
-      {id:'u2',lbl:{de:'Bestellannahme',en:'Orders AI',fr:'Commandes IA'},type:'usecase'},
-      {id:'u3',lbl:{de:'Menü-Optimizer',en:'Menu Optimizer',fr:'Optimis. menu'},type:'usecase'},
-      {id:'u4',lbl:{de:'Reviews AI',en:'Reviews AI',fr:'Avis IA'},type:'usecase'},
-      {id:'u5',lbl:{de:'Personalplanung',en:'Staff Planning',fr:'Planification'},type:'usecase'},
-      {id:'u6',lbl:{de:'Lieferung AI',en:'Delivery AI',fr:'Livraison IA'},type:'usecase'},
-      {id:'u7',lbl:{de:'Allergene Bot',en:'Allergen Bot',fr:'Allergènes'},type:'usecase'},
-      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'c2',lbl:{de:'WhatsApp',en:'WhatsApp',fr:'WhatsApp'},type:'channel'},
-      {id:'i1',lbl:{de:'POS-System',en:'POS System',fr:'Caisse'},type:'integration'},
-      {id:'i2',lbl:{de:'Delivery',en:'Delivery',fr:'Livraison'},type:'integration'},
-    ],
-    it:[
-      {id:'u1',lbl:{de:'IT-Helpdesk AI',en:'IT Helpdesk AI',fr:'Helpdesk IA'},type:'usecase'},
-      {id:'u2',lbl:{de:'Network Monitor',en:'Network Monitor',fr:'Réseau IA'},type:'usecase'},
-      {id:'u3',lbl:{de:'Security AI',en:'Security AI',fr:'Sécurité IA'},type:'usecase'},
-      {id:'u4',lbl:{de:'Code Review AI',en:'Code Review AI',fr:'Revue code IA'},type:'usecase'},
-      {id:'u5',lbl:{de:'DevOps AI',en:'DevOps AI',fr:'DevOps IA'},type:'usecase'},
-      {id:'u6',lbl:{de:'Support 24/7',en:'Support 24/7',fr:'Support 24/7'},type:'usecase'},
-      {id:'u7',lbl:{de:'SLA Management',en:'SLA Management',fr:'Gestion SLA'},type:'usecase'},
-      {id:'c1',lbl:{de:'Chat',en:'Chat',fr:'Chat'},type:'channel'},
-      {id:'c2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
-      {id:'i1',lbl:{de:'Ticketing',en:'Ticketing',fr:'Ticketing'},type:'integration'},
-      {id:'i2',lbl:{de:'Slack',en:'Slack',fr:'Slack'},type:'integration'},
-    ],
-    finanzen:[
-      {id:'u1',lbl:{de:'Risikoanalyse',en:'Risk Analysis',fr:'Analyse risque'},type:'usecase'},
-      {id:'u2',lbl:{de:'Fraud Detection',en:'Fraud Detection',fr:'Détection fraude'},type:'usecase'},
-      {id:'u3',lbl:{de:'Portfolio AI',en:'Portfolio AI',fr:'Portefeuille IA'},type:'usecase'},
-      {id:'u4',lbl:{de:'Compliance AI',en:'Compliance AI',fr:'Conformité IA'},type:'usecase'},
-      {id:'u5',lbl:{de:'Kundenberatung',en:'Client Advisory',fr:'Conseil client'},type:'usecase'},
-      {id:'u6',lbl:{de:'Marktanalyse',en:'Market Intel.',fr:'Intel. marché'},type:'usecase'},
-      {id:'u7',lbl:{de:'Reporting AI',en:'Reporting AI',fr:'Reporting IA'},type:'usecase'},
-      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'c2',lbl:{de:'E-Mail',en:'E-Mail',fr:'E-Mail'},type:'channel'},
-      {id:'i1',lbl:{de:'CRM',en:'CRM',fr:'CRM'},type:'integration'},
-      {id:'i2',lbl:{de:'Core Banking',en:'Core Banking',fr:'Core Banking'},type:'integration'},
-    ],
-    gesund:[
-      {id:'u1',lbl:{de:'Terminbuchung',en:'Appointment AI',fr:'Rendez-vous IA'},type:'usecase'},
-      {id:'u2',lbl:{de:'Patienten-Triage',en:'Patient Triage',fr:'Triage patient'},type:'usecase'},
-      {id:'u3',lbl:{de:'EHR Integration',en:'EHR Integration',fr:'DME Intégration'},type:'usecase'},
-      {id:'u4',lbl:{de:'Medikamente AI',en:'Medication AI',fr:'Médicaments IA'},type:'usecase'},
-      {id:'u5',lbl:{de:'Abrechnung AI',en:'Billing AI',fr:'Facturation IA'},type:'usecase'},
-      {id:'u6',lbl:{de:'Remote Monitoring',en:'Remote Monitoring',fr:'Télésurveillance'},type:'usecase'},
-      {id:'u7',lbl:{de:'Nachsorge AI',en:'Follow-up AI',fr:'Suivi IA'},type:'usecase'},
-      {id:'c1',lbl:{de:'Anruf',en:'Call',fr:'Appel'},type:'channel'},
-      {id:'c2',lbl:{de:'SMS',en:'SMS',fr:'SMS'},type:'channel'},
-      {id:'i1',lbl:{de:'EMR/KIS',en:'EMR/HIS',fr:'DME/SIH'},type:'integration'},
-      {id:'i2',lbl:{de:'DSGVO',en:'GDPR',fr:'RGPD'},type:'integration'},
-    ],
-  };
-
-  var CTX_LABELS={
-    'null':     {de:'Integrationen & Kanäle',en:'Integrations & Channels',fr:'Intégrations & Canaux'},
-    pharma:     {de:'AI in der Pharmaindustrie',en:'AI in Pharma',fr:'IA dans la pharma'},
-    industrie:  {de:'AI in der Industrie',en:'AI in Manufacturing',fr:'IA dans l\'industrie'},
-    handel:     {de:'AI im Handel & Retail',en:'AI in Retail',fr:'IA dans le commerce'},
-    gastro:     {de:'AI in der Gastronomie',en:'AI in Hospitality',fr:'IA dans la restauration'},
-    it:         {de:'AI in IT & Kommunikation',en:'AI in IT & Communication',fr:'IA en IT & Communication'},
-    finanzen:   {de:'AI in Finanzen & Banking',en:'AI in Finance & Banking',fr:'IA en Finance & Banque'},
-    gesund:     {de:'AI im Gesundheitswesen',en:'AI in Healthcare',fr:'IA dans la santé'},
-  };
-
-  window._daCtxLabels=CTX_LABELS;
-  window._daIndustry=null;
-
-  window._updateDACtx=function(lang){
-    var el=document.getElementById('da-ctx-lbl');
-    if(!el)return;
-    var key=window._daIndustry||'null';
-    var map=CTX_LABELS[key]||CTX_LABELS['null'];
-    el.textContent=map[lang]||map.de;
-  };
-
-  var nodes=[];
-  var currentIndustry=null;
-  var transitioning=false;
-  var pulses=[];
-
-  function gl(o){var l=typeof currentLang!=='undefined'?currentLang:'de';return o[l]||o.de;}
-
-  function nodeRadius(type){
-    if(type==='core') return isTouch?24:28;
-    if(type==='usecase') return isTouch?16:20;
-    return isTouch?14:18;
-  }
-  function nodeStroke(type){
-    if(type==='usecase') return 'rgba(217,70,239,0.45)';
-    return 'rgba(0,0,0,0.10)';
-  }
-
-  function resize(){
-    var par=cvs.parentElement;
-    W=par.getBoundingClientRect().width||600;
-    H=isTouch?Math.min(Math.round(window.innerHeight*0.52),380):360;
-    cx=W/2; cy=H/2;
-    cvs.width=Math.round(W*DPR);
-    cvs.height=Math.round(H*DPR);
-    cvs.style.width=W+'px';
-    cvs.style.height=H+'px';
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-
-  function makeNode(data,idx,total){
-    var angle=(idx/total)*Math.PI*2-Math.PI/2;
-    var dist=35+Math.random()*25;
-    return{
-      id:data.id, lbl:data.lbl, type:data.type,
-      x:cx+Math.cos(angle)*dist, y:cy+Math.sin(angle)*dist,
-      vx:Math.cos(angle)*(3+Math.random()*2),
-      vy:Math.sin(angle)*(3+Math.random()*2),
-      r:nodeRadius(data.type),
-      alpha:0, bornAt:performance.now(),
-      dying:false, dieAt:0, fixed:false,
-    };
-  }
-
-  function spawnNodes(dataList){
-    dataList.forEach(function(d,i){ nodes.push(makeNode(d,i,dataList.length)); });
-  }
-
-  function initDefault(){
-    nodes=[{
-      id:'snob',lbl:{de:'SNOB',en:'SNOB',fr:'SNOB'},type:'core',
-      x:cx,y:cy,vx:0,vy:0,r:nodeRadius('core'),
-      alpha:1,bornAt:0,dying:false,dieAt:0,fixed:true,
-    }];
-    spawnNodes(DEFAULT);
-  }
-
-  var REPEL=2400, DAMP=0.87, CENTER_K=0.005, SPRING_K=0.028;
-
-  function tick(now){
-    var springLen=Math.min(W,H)*0.29;
-    nodes.forEach(function(n,ni){
-      if(n.fixed) return;
-      if(!n.dying && n.bornAt) n.alpha=Math.min(1,(now-n.bornAt)/450);
-      if(n.dying) n.alpha=Math.max(0,1-(now-n.dieAt)/420);
-      var fx=0,fy=0;
-      var dx=cx-n.x, dy=cy-n.y;
-      var d=Math.sqrt(dx*dx+dy*dy)||1;
-      var stretch=d-springLen;
-      fx+=(dx/d)*stretch*SPRING_K;
-      fy+=(dy/d)*stretch*SPRING_K;
-      fx+=(cx-n.x)*CENTER_K;
-      fy+=(cy-n.y)*CENTER_K;
-      for(var j=0;j<nodes.length;j++){
-        if(j===ni)continue;
-        var m=nodes[j];
-        var ddx=n.x-m.x, ddy=n.y-m.y;
-        var dd=Math.sqrt(ddx*ddx+ddy*ddy)||1;
-        if(dd<220){ var f=REPEL/(dd*dd); fx+=(ddx/dd)*f; fy+=(ddy/dd)*f; }
-        var minD=n.r+m.r+8;
-        if(dd<minD){ var c=(minD-dd)/2; n.x+=(ddx/dd)*c; n.y+=(ddy/dd)*c; }
-      }
-      n.vx=(n.vx+fx)*DAMP;
-      n.vy=(n.vy+fy)*DAMP;
-      if(!n.dying){ n.x+=n.vx; n.y+=n.vy; }
-      var mg=n.r+4;
-      if(!n.dying){
-        if(n.x<mg){n.x=mg;n.vx=Math.abs(n.vx)*0.4;}
-        if(n.x>W-mg){n.x=W-mg;n.vx=-Math.abs(n.vx)*0.4;}
-        if(n.y<mg){n.y=mg;n.vy=Math.abs(n.vy)*0.4;}
-        if(n.y>H-mg){n.y=H-mg;n.vy=-Math.abs(n.vy)*0.4;}
-      }
-    });
-    nodes=nodes.filter(function(n){ return !(n.dying&&(now-n.dieAt)>500); });
-  }
-
-  function spawnPulse(){
-    var others=nodes.filter(function(n){return n.id!=='snob'&&!n.dying&&n.alpha>0.5;});
-    if(!others.length)return;
-    var n=others[Math.floor(Math.random()*others.length)];
-    var s=nodes.find(function(x){return x.id==='snob';});
-    if(!s)return;
-    pulses.push({n:n,snob:s,toCenter:Math.random()>0.5,t:0,speed:0.006+Math.random()*0.004});
-  }
-
-  setInterval(function(){if(visible&&nodes.length>1)spawnPulse();},420);
-
-  function drawDot(x,y,al){
+  function pDot(x,y,al){
     if(al<0.01)return;
-    var g=ctx.createRadialGradient(x,y,0,x,y,8);
-    g.addColorStop(0,'rgba(255,210,255,'+al+')');
+    var g=ctx.createRadialGradient(x,y,0,x,y,9);
+    g.addColorStop(0,'rgba(255,215,255,'+al+')');
     g.addColorStop(0.35,'rgba(217,70,239,'+(al*0.9)+')');
     g.addColorStop(1,'rgba(217,70,239,0)');
-    ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
-    ctx.beginPath();ctx.arc(x,y,2.2,0,Math.PI*2);
-    ctx.fillStyle='rgba(217,70,239,'+al+')';ctx.fill();
+    ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
   }
-
+  function spawnPulse(layout){
+    if(Math.random()<0.5){
+      var inp=layout.inputs[Math.floor(Math.random()*layout.inputs.length)];
+      pulses.push({x1:inp.x+layout.nodeR,y1:inp.y,x2:layout.snobX-layout.snobR,y2:layout.snobY,t:0,s:0.008});
+    } else {
+      var out=layout.outputs[Math.floor(Math.random()*layout.outputs.length)];
+      pulses.push({x1:layout.snobX+layout.snobR,y1:layout.snobY,x2:out.x-layout.nodeR,y2:out.y,t:0,s:0.008});
+    }
+  }
   function draw(now){
     raf=requestAnimationFrame(draw);
     ctx.clearRect(0,0,W,H);
-    tick(now);
-    var snob=nodes.find(function(n){return n.id==='snob';});
-    if(!snob)return;
-    nodes.forEach(function(n){
-      if(n.id==='snob'||n.alpha<0.01)return;
-      ctx.strokeStyle='rgba(0,0,0,'+(0.055*n.alpha)+')';
-      ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(snob.x,snob.y);ctx.lineTo(n.x,n.y);ctx.stroke();
-    });
+    var layout=lo();
+    if(now-lastPulse>500){spawnPulse(layout);lastPulse=now;}
+    layout.inputs.forEach(function(n){ ln(n.x+layout.nodeR,n.y,layout.snobX-layout.snobR,layout.snobY); });
+    layout.outputs.forEach(function(o){ ln(layout.snobX+layout.snobR,layout.snobY,o.x-layout.nodeR,o.y); });
     pulses=pulses.filter(function(p){return p.t<1;});
-    pulses.forEach(function(p){
-      p.t+=p.speed;
-      var sx,sy,ex,ey;
-      if(p.toCenter){sx=p.n.x;sy=p.n.y;ex=snob.x;ey=snob.y;}
-      else{sx=snob.x;sy=snob.y;ex=p.n.x;ey=p.n.y;}
-      var px=sx+(ex-sx)*p.t, py=sy+(ey-sy)*p.t;
-      drawDot(px,py,Math.sin(p.t*Math.PI)*(p.n.alpha||1));
+    pulses.forEach(function(p){ p.t+=p.s; pDot(p.x1+(p.x2-p.x1)*p.t,p.y1+(p.y2-p.y1)*p.t,Math.sin(p.t*Math.PI)); });
+    var nodeLblSz=isTouch?9:10.5;
+    layout.inputs.forEach(function(n){
+      circ(n.x,n.y,layout.nodeR,'#fff','rgba(0,0,0,0.10)',0.8);
+      drawTxt(n.x,n.y+layout.nodeR+15,gl(n.lbl),nodeLblSz,'#666');
     });
-    nodes.forEach(function(n){
-      if(n.id==='snob'||n.alpha<0.01)return;
-      var r=n.r;
-      ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);
-      ctx.fillStyle=n.type==='usecase'?'rgba(217,70,239,0.07)':'#fff';
-      ctx.globalAlpha=n.alpha;ctx.fill();
-      ctx.strokeStyle=nodeStroke(n.type);
-      ctx.lineWidth=n.type==='usecase'?1:0.8;
-      ctx.stroke();ctx.globalAlpha=1;
-      ctx.textAlign='center';
-      ctx.fillStyle=n.type==='usecase'?'rgba(217,70,239,'+n.alpha+')':'rgba(110,110,110,'+n.alpha+')';
-      ctx.font='400 '+(isTouch?'9':'10.5')+'px "DM Mono",monospace';
-      ctx.fillText(gl(n.lbl),n.x,n.y+r+13);
+    layout.outputs.forEach(function(o){
+      circ(o.x,o.y,layout.nodeR,'#fff',o.pink?'rgba(217,70,239,0.3)':'rgba(0,0,0,0.10)',o.pink?1.2:0.8);
+      drawTxt(o.x,o.y+layout.nodeR+15,gl(o.lbl),nodeLblSz,o.pink?'#d946ef':'#666');
     });
-    var pulse=0.06+0.035*Math.sin(now*0.0022);
-    var gg=ctx.createRadialGradient(snob.x,snob.y,snob.r,snob.x,snob.y,snob.r+24);
-    gg.addColorStop(0,'rgba(217,70,239,'+pulse+')');
-    gg.addColorStop(1,'rgba(217,70,239,0)');
-    ctx.beginPath();ctx.arc(snob.x,snob.y,snob.r+24,0,Math.PI*2);ctx.fillStyle=gg;ctx.fill();
-    ctx.beginPath();ctx.arc(snob.x,snob.y,snob.r,0,Math.PI*2);ctx.fillStyle='#0a0a0a';ctx.fill();
+    var pulseAl=0.05+0.04*Math.sin(now*0.002);
+    var gg=ctx.createRadialGradient(layout.snobX,layout.snobY,layout.snobR,layout.snobX,layout.snobY,layout.snobR+30);
+    gg.addColorStop(0,'rgba(217,70,239,'+pulseAl+')');gg.addColorStop(1,'rgba(217,70,239,0)');
+    ctx.beginPath();ctx.arc(layout.snobX,layout.snobY,layout.snobR+30,0,Math.PI*2);ctx.fillStyle=gg;ctx.fill();
+    circ(layout.snobX,layout.snobY,layout.snobR,'#0a0a0a');
     ctx.textAlign='center';ctx.fillStyle='#fff';
-    ctx.font='400 '+(isTouch?'11':'13')+'px "Bebas Neue",sans-serif';
-    ctx.fillText('SNOB',snob.x,snob.y+4.5);
+    ctx.font='400 '+(isTouch?16:18)+'px "Bebas Neue",sans-serif';
+    ctx.fillText('SNOB',layout.snobX,layout.snobY-3);
+    ctx.fillStyle='rgba(255,255,255,0.35)';
+    ctx.font='400 '+(isTouch?7:8)+'px "DM Mono",monospace';
+    ctx.fillText(gl(LBL.mode_lbl[sfMode]),layout.snobX,layout.snobY+12);
   }
-
-  var dragging=null;
-  var HIT_EXTRA=isTouch?13:5;
-
-  function getNodeAt(x,y){
-    for(var i=nodes.length-1;i>=0;i--){
-      var n=nodes[i];
-      if(n.dying||n.id==='snob')continue;
-      var dx=x-n.x,dy=y-n.y;
-      if(Math.sqrt(dx*dx+dy*dy)<n.r+HIT_EXTRA)return n;
-    }
-    return null;
-  }
-  function canvasPos(e){var r=cvs.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
-  function touchPos(t){var r=cvs.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top};}
-
-  cvs.addEventListener('mousedown',function(e){var p=canvasPos(e);dragging=getNodeAt(p.x,p.y);if(dragging)dragging.fixed=true;});
-  window.addEventListener('mousemove',function(e){if(!dragging)return;var p=canvasPos(e);dragging.x=p.x;dragging.y=p.y;dragging.vx=0;dragging.vy=0;});
-  window.addEventListener('mouseup',function(){if(dragging){dragging.fixed=false;}dragging=null;});
-  cvs.addEventListener('touchstart',function(e){var p=touchPos(e.touches[0]);var n=getNodeAt(p.x,p.y);if(n){dragging=n;dragging.fixed=true;e.preventDefault();}},{passive:false});
-  cvs.addEventListener('touchmove',function(e){if(!dragging)return;e.preventDefault();var p=touchPos(e.touches[0]);dragging.x=p.x;dragging.y=p.y;dragging.vx=0;dragging.vy=0;},{passive:false});
-  cvs.addEventListener('touchend',function(){if(dragging){dragging.fixed=false;}dragging=null;});
-
-  window.setDAIndustry=function(key){
-    if(transitioning)return;
-    transitioning=true;
-    document.querySelectorAll('.da-chip').forEach(function(c){c.classList.toggle('active',c.dataset.ind===key);});
-    if(currentIndustry===key){
-      key=null;
-      window._daIndustry=null;
-      document.querySelectorAll('.da-chip').forEach(function(c){c.classList.remove('active');});
-    } else {
-      window._daIndustry=key;
-    }
-    currentIndustry=key;
-    var lbl=document.getElementById('da-ctx-lbl');
-    if(lbl){var l=typeof currentLang!=='undefined'?currentLang:'de';var map=CTX_LABELS[key||'null'];lbl.textContent=map?map[l]||map.de:CTX_LABELS['null'][l];}
-    var now=performance.now();
-    nodes.forEach(function(n){
-      if(n.id==='snob')return;
-      n.dying=true;n.dieAt=now;
-      var dx=n.x-cx,dy=n.y-cy,d=Math.sqrt(dx*dx+dy*dy)||1;
-      n.vx=(dx/d)*(6+Math.random()*4);n.vy=(dy/d)*(6+Math.random()*4);
-    });
-    setTimeout(function(){
-      nodes=nodes.filter(function(n){return n.id==='snob';});
-      pulses=[];
-      spawnNodes(key?IDATA[key]:DEFAULT);
-      transitioning=false;
-    },490);
+  window.setSFMode=function(newMode){
+    if(sfMode===newMode)return;
+    sfMode=newMode; pulses=[];
+    document.querySelectorAll('.sf-chip').forEach(function(c){ c.classList.toggle('active',c.getAttribute('data-mode')===newMode); });
   };
-
   resize();
-  window.addEventListener('resize',function(){resize();},{passive:true});
-  initDefault();
-
+  window.addEventListener('resize',resize,{passive:true});
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       visible=e.isIntersecting;
@@ -3053,6 +1573,41 @@ function toggleChat(){
     });
   });
   io.observe(cvs);
+})();
+
+/* ====== DELICATE AI — use-case list (replaces number counter) ====== */
+(function(){
+  var IND_KEY_MAP={pharma:'da_uc_pharma',industrie:'da_uc_industrie',handel:'da_uc_handel',gastro:'da_uc_gastro',it:'da_uc_it',finanzen:'da_uc_finanzen',gesund:'da_uc_gesund'};
+  var currentInd=null;
+  function renderList(key){
+    var lang=typeof currentLang!=='undefined'?currentLang:'de';
+    var listEl=document.getElementById('da-usecase-list');
+    var hintEl=document.getElementById('da-usecase-hint');
+    if(!listEl)return;
+    if(!key){
+      listEl.innerHTML='';
+      if(hintEl){hintEl.style.display='block';}
+      return;
+    }
+    var tKey=IND_KEY_MAP[key];
+    var items=(T[tKey]&&T[tKey][lang])?T[tKey][lang]:(T[tKey]?T[tKey].de:[]);
+    if(hintEl) hintEl.style.display='none';
+    listEl.innerHTML='';
+    items.forEach(function(txt,i){
+      var li=document.createElement('li');
+      li.textContent=txt;
+      listEl.appendChild(li);
+      setTimeout(function(){li.classList.add('visible');},i*90);
+    });
+  }
+  window.setDAIndustry=function(key){
+    document.querySelectorAll('.da-chip').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ind')===key);});
+    currentInd=key;
+    renderList(key);
+  };
+  window._updateDAUseCases=function(lang){
+    if(currentInd) renderList(currentInd);
+  };
 })();
 </script>
 </body>
