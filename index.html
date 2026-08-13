@@ -201,6 +201,14 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-usecase-list li{background:#fff;padding:20px 22px;font-size:13.5px;color:#333;line-height:1.6;display:flex;gap:12px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
 .da-usecase-list li.visible{opacity:1;transform:none;}
 .da-usecase-list li::before{content:'→';color:#d946ef;flex-shrink:0;}
+.da-example-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.5vw,34px);letter-spacing:.02em;color:#0a0a0a;margin-bottom:6px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
+.da-example-title.visible{opacity:1;transform:none;}
+.da-example-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f0f0f0;}
+.da-example-list li{background:#fff;padding:20px 22px;font-size:13px;color:#555;line-height:1.6;display:flex;gap:12px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
+.da-example-list li.visible{opacity:1;transform:none;}
+.da-example-list li::before{content:'→';color:#d946ef;flex-shrink:0;}
+.da-example-list li b{color:#0a0a0a;font-weight:500;}
+@media(max-width:640px){.da-example-list{grid-template-columns:1fr;}}
 @media(max-width:640px){.da-usecase-list{grid-template-columns:1fr;}}
 .da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
 .da-block{background:#fff;padding:36px 28px;cursor:none;transition:background .2s;position:relative;overflow:hidden;}
@@ -512,13 +520,31 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 
 <!-- DELICATE AI -->
 <div id="delicate">
-  <div class="da-label" data-r="up">Delicate AI</div>
-  <div class="da-title" data-r="up" data-delay="1" data-i="da_title">Massgeschneidert.</div>
-  <p class="da-sub" data-r="up" data-delay="2" data-i="da_sub">Nicht einfach Tech injizieren und vergessen. Zuerst verstehen wir dein Business — dann bauen wir SNOB exakt darauf.</p>
+  <div class="da-label" data-r="up" data-i="da_label">SNOB Deployment</div>
+  <div class="da-title" data-r="up" data-delay="1" data-i="da_title">Sanft. Chirurgisch.</div>
+  <p class="da-sub" data-r="up" data-delay="2" data-i="da_sub">Wir verstehen beides — Tech und Business. Und wir wissen: die gehören zusammen. Wir spritzen dir nicht die Technologie und verschwinden, bevor's wehtut. Wir begleiten dich Schritt für Schritt:</p>
 
   <div class="da-int-wrap" data-r="up" data-delay="3">
     <div class="da-industry">
-      <div class="da-ind-q" data-i="da_ind_q">Welche Branche?</div>
+      <div class="da-ind-q" data-i="da_ex_q">Beispiele aus der Praxis</div>
+      <div class="da-ind-chips">
+        <button class="da-chip" data-ex="frontdesk"     onclick="setDAExample('frontdesk')"><span data-i="dax_frontdesk">Front Desk</span></button>
+        <button class="da-chip" data-ex="websiteguide"  onclick="setDAExample('websiteguide')"><span data-i="dax_websiteguide">Website Guide</span></button>
+        <button class="da-chip" data-ex="hotelconcierge" onclick="setDAExample('hotelconcierge')"><span data-i="dax_hotelconcierge">Hotel Concierge</span></button>
+        <button class="da-chip" data-ex="surveys"        onclick="setDAExample('surveys')"><span data-i="dax_surveys">Business Surveys</span></button>
+      </div>
+    </div>
+    <div class="da-usecase-wrap" id="da-example-wrap">
+      <div class="da-usecase-hint" id="da-example-hint" data-i="da_ex_pick">← Beispiel wählen</div>
+      <div class="da-example-title" id="da-example-title"></div>
+      <p class="da-usecase-intro" id="da-example-tagline"></p>
+      <ul class="da-example-list" id="da-example-list"></ul>
+    </div>
+  </div>
+
+  <div class="da-int-wrap" data-r="up" data-delay="3" style="margin-top:8px;">
+    <div class="da-industry">
+      <div class="da-ind-q" data-i="da_ind_q">Oder nach Branche</div>
       <div class="da-ind-chips">
         <button class="da-chip" data-ind="pharma"   onclick="setDAIndustry('pharma')"><span data-i="dac_pharma">Pharma</span></button>
         <button class="da-chip" data-ind="industrie" onclick="setDAIndustry('industrie')"><span data-i="dac_industrie">Industrie</span></button>
@@ -540,20 +566,20 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <div class="da-block" data-r="up" data-delay="1" onclick="toggleDaBlock(this)">
       <div class="da-block-num">01</div>
       <div class="da-block-title" data-i="da_b1t">Mappen</div>
-      <div class="da-block-sub" data-i="da_b1s">Dein Business. Deine Prozesse. Deine Engpässe.</div>
-      <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b1b">Wir verstehen dein Business zuerst. Prozesse, Engpässe, echte Hebel — bevor eine einzige Zeile Code geschrieben wird.</div></div>
+      <div class="da-block-sub" data-i="da_b1s">Dein Business verstehen. Prozesse. Job-to-be-done. Auf Top-Consulting-Niveau.</div>
+      <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b1b">Wir verstehen dein Geschäft zuerst — Prozesse, Job-to-be-done, echte Hebel. Beratungsniveau, nicht Bauchgefühl. Bevor auch nur eine Zeile Code entsteht.</div></div>
     </div>
     <div class="da-block" data-r="up" data-delay="2" onclick="toggleDaBlock(this)">
       <div class="da-block-num">02</div>
       <div class="da-block-title" data-i="da_b2t">Empfehlen</div>
-      <div class="da-block-sub" data-i="da_b2s">Wo wirkt AI wirklich? Wir zeigen es dir.</div>
-      <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b2b">Wo wirkt AI wirklich? Wir zeigen dir genau, was sich lohnt — und was nicht. Ehrlich. Direkt. SNOB.</div></div>
+      <div class="da-block-sub" data-i="da_b2s">Gemeinsam SNOBs Rollenprofil bauen. Was funktioniert? Was nervt? Wir zeigen's dir.</div>
+      <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b2b">Wo SNOB wirklich Wirkung hat, zeigen wir dir ehrlich — und wo nicht. Kein Schönreden, kein Upselling um des Upsellings willen.</div></div>
     </div>
     <div class="da-block" data-r="up" data-delay="3" onclick="toggleDaBlock(this)">
       <div class="da-block-num">03</div>
       <div class="da-block-title" data-i="da_b3t">Bauen</div>
-      <div class="da-block-sub" data-i="da_b3s">Massgeschneidert. Nicht von der Stange.</div>
-      <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b3b">Dann bauen wir. Massgeschneidert auf dein Problem. Kein generisches Produkt, sondern dein digitaler Mitarbeiter — der wächst.</div></div>
+      <div class="da-block-sub" data-i="da_b3s">SNOB wird massgeschneidert für den perfekten Fit. Kein DIY. Nichts von der Stange.</div>
+      <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b3b">Dann bauen wir — exakt auf dein Problem zugeschnitten. Kein generisches Produkt, sondern dein digitaler Mitarbeiter. Der mitwächst, nicht einfach nur läuft.</div></div>
     </div>
   </div>
 </div>
@@ -945,18 +971,101 @@ var T = {
   p3_10:{de:'API-Architektur',en:'API architecture',fr:'Architecture API'},
   p3_11:{de:'Dedicated Manager',en:'Dedicated manager',fr:'Gestionnaire dédié'},
   p3_12:{de:'Aktives Performance-Monitoring',en:'Active performance monitoring',fr:'Surveillance active des performances'},
-  da_title:    {de:'Massgeschneidert.',en:'Tailored.',fr:'Sur mesure.'},
-  da_sub:      {de:'Nicht einfach Tech injizieren und vergessen. Zuerst verstehen wir dein Business — dann bauen wir SNOB exakt darauf.',en:'Not just inject tech and forget. First we understand your business — then we build SNOB exactly on that.',fr:"Pas simplement injecter la technologie et oublier. D'abord nous comprenons votre entreprise — puis nous construisons SNOB exactement sur cette base."},
+  da_label:    {de:'SNOB Deployment',en:'SNOB Deployment',fr:'SNOB Deployment'},
+  da_title:    {de:'Sanft. Chirurgisch.',en:'Delicate. Surgical.',fr:'Délicat. Chirurgical.'},
+  da_sub:      {de:"Wir verstehen beides — Tech und Business. Und wir wissen: die gehören zusammen. Wir spritzen dir nicht die Technologie und verschwinden, bevor's wehtut. Wir begleiten dich Schritt für Schritt:",en:"We understand both — tech and biz. We know they go hand in hand. We don't inject the tech and run away before the pain hits. We guide you step by step:",fr:"Nous comprenons les deux — la tech et le business. Et nous savons qu'ils vont de pair. On ne vous injecte pas la techno pour disparaître avant que ça fasse mal. On vous accompagne, étape par étape :"},
   da_b1t:      {de:'Mappen',en:'Map',fr:'Cartographier'},
-  da_b1s:      {de:'Dein Business. Deine Prozesse. Deine Engpässe.',en:'Your business. Your processes. Your bottlenecks.',fr:'Votre entreprise. Vos processus. Vos goulots.'},
-  da_b1b:      {de:'Wir verstehen dein Business zuerst. Prozesse, Engpässe, echte Hebel — bevor eine einzige Zeile Code geschrieben wird.',en:'We understand your business first. Processes, bottlenecks, real levers — before a single line of code is written.',fr:"Nous comprenons d'abord votre entreprise. Processus, goulots d'étranglement, vrais leviers — avant d'écrire la moindre ligne de code."},
+  da_b1s:      {de:'Dein Business verstehen. Prozesse. Job-to-be-done. Auf Top-Consulting-Niveau.',en:'Understand your business. Process. Job-to-be-done. At top-tier consulting grade.',fr:'Comprendre votre entreprise. Processus. Job-to-be-done. Niveau conseil stratégique.'},
+  da_b1b:      {de:"Wir verstehen dein Geschäft zuerst — Prozesse, Job-to-be-done, echte Hebel. Beratungsniveau, nicht Bauchgefühl. Bevor auch nur eine Zeile Code entsteht.",en:'We understand your business first — processes, job-to-be-done, real leverage points. Consulting-grade, not gut feeling. Before a single line of code.',fr:"Nous comprenons d'abord votre entreprise — processus, job-to-be-done, vrais leviers. Niveau conseil, pas au feeling. Avant la moindre ligne de code."},
   da_b2t:      {de:'Empfehlen',en:'Recommend',fr:'Recommander'},
-  da_b2s:      {de:'Wo wirkt AI wirklich? Wir zeigen es dir.',en:'Where does AI really work? We show you.',fr:"Où l'IA fonctionne-t-elle vraiment? Nous vous le montrons."},
-  da_b2b:      {de:'Wo wirkt AI wirklich? Wir zeigen dir genau, was sich lohnt — und was nicht. Ehrlich. Direkt. SNOB.',en:"Where does AI really work? We show you exactly what's worth it — and what isn't. Honest. Direct. SNOB.",fr:"Où l'IA fonctionne-t-elle vraiment? Nous vous montrons exactement ce qui vaut la peine — et ce qui ne vaut pas. Honnête. Direct. SNOB."},
+  da_b2s:      {de:"Gemeinsam SNOBs Rollenprofil bauen. Was funktioniert? Was nervt? Wir zeigen's dir.",en:"Build SNOB's role profile together. What works? What sucks? We show you.",fr:"Construire ensemble le profil de rôle de SNOB. Qu'est-ce qui marche? Qu'est-ce qui gonfle? On vous montre."},
+  da_b2b:      {de:'Wo SNOB wirklich Wirkung hat, zeigen wir dir ehrlich — und wo nicht. Kein Schönreden, kein Upselling um des Upsellings willen.',en:"We show you honestly where SNOB really makes an impact — and where it doesn't. No sugarcoating, no upselling for the sake of it.",fr:"On vous montre honnêtement où SNOB fait vraiment la différence — et où non. Pas d'enjolivement, pas de vente forcée."},
   da_b3t:      {de:'Bauen',en:'Build',fr:'Construire'},
-  da_b3s:      {de:'Massgeschneidert. Nicht von der Stange.',en:'Tailored. Not off the shelf.',fr:'Sur mesure. Pas générique.'},
-  da_b3b:      {de:'Dann bauen wir. Massgeschneidert auf dein Problem. Kein generisches Produkt, sondern dein digitaler Mitarbeiter — der wächst.',en:'Then we build. Tailored to your problem. Not a generic product, but your digital employee — that grows.',fr:'Ensuite nous construisons. Sur mesure pour votre problème. Pas un produit générique, mais votre employé numérique — qui grandit.'},
-  da_ind_q:      {de:'Welche Branche?',en:'Which industry?',fr:'Votre secteur?'},
+  da_b3s:      {de:'SNOB wird massgeschneidert für den perfekten Fit. Kein DIY. Nichts von der Stange.',en:'SNOB gets tailor-made for perfect fit. No DIY. No off-the-shelf.',fr:'SNOB est fait sur mesure, pour un ajustement parfait. Pas de bricolage. Rien de standard.'},
+  da_b3b:      {de:'Dann bauen wir — exakt auf dein Problem zugeschnitten. Kein generisches Produkt, sondern dein digitaler Mitarbeiter. Der mitwächst, nicht einfach nur läuft.',en:'Then we build — tailored exactly to your problem. Not a generic product, but your digital employee. One that grows with you, not just runs.',fr:"Ensuite on construit — exactement pour votre problème. Pas un produit générique, mais votre employé numérique. Qui évolue avec vous, pas juste qui tourne."},
+  da_ind_q:      {de:'Oder nach Branche',en:'Or by industry',fr:'Ou par secteur'},
+  da_ex_q:       {de:'Beispiele aus der Praxis',en:'Examples from the field',fr:'Exemples concrets'},
+  da_ex_pick:    {de:'← Beispiel wählen',en:'← Select example',fr:'← Choisir un exemple'},
+  dax_frontdesk:      {de:'Front Desk',en:'Front Desk',fr:'Front Desk'},
+  dax_websiteguide:   {de:'Website Guide',en:'Website Guide',fr:'Website Guide'},
+  dax_hotelconcierge: {de:'Hotel Concierge',en:'Hotel Concierge',fr:'Hotel Concierge'},
+  dax_surveys:        {de:'Business Surveys',en:'Business Surveys',fr:'Business Surveys'},
+  da_ex_title_frontdesk:{de:'SNOB Front Desk',en:'SNOB Front Desk',fr:'SNOB Front Desk'},
+  da_ex_tag_frontdesk:{de:'Ein Empfang, der nie zu beschäftigt ist. Oder schlecht gelaunt.',en:'A front desk that is never too busy (or moody).',fr:"Un accueil qui n'est jamais trop occupé. Ni de mauvaise humeur."},
+  da_ex_bul_frontdesk:{
+    de:[['Nimmt jeden Anruf ab, 24/7.','Abends, Wochenenden, Feiertage. Keine Warteschlaufe, keine Combox, keine verpasste Chance. 100+ Sprachen.'],
+        ['Bucht, verschiebt, storniert Termine.','Live-Terminierung während des Gesprächs. Mehrere Kalender und Terminarten, null Doppelbuchungen.'],
+        ['Kennt dein Geschäft in- und auswendig.','Leistungen, Preise, Richtlinien, Team. Antwortet aus deiner Wissensbibliothek. Saubere Übergabe an Menschen, wenn nötig — kein Rätselraten.'],
+        ['Meldet zurück, markiert, eskaliert.',"Zusammenfassung, Transkript, Aufnahme, Aktionen — direkt in dein Postfach, plus Dashboard."],
+        ['Kostet einen Bruchteil.',"Weit unter 1'500 CHF/Monat für eine Teilzeit-Empfangskraft. Keine Einarbeitung, keine Krankheitstage, kein HR-Aufwand."]],
+    en:[['Answers every call, 24/7.','Evenings, weekends, holidays. No hold times, no voicemail, no missed opportunities. 100+ languages.'],
+        ['Books, reschedules, cancels appointments.','Live scheduling during the call. Multiple calendars and appointment types, zero double-bookings.'],
+        ['Knows your business inside out.','Services, prices, policies, team. Answers from your knowledge base. Smooth call handovers when needed — no guessing.'],
+        ['Reports back, flags and escalates.','Summary, transcript, recording, actions — straight to your inbox, plus a dashboard.'],
+        ['Operates at a fraction of the cost.','Way below 1,500 CHF/month for a part-time receptionist. No training, no sick days, no HR.']],
+    fr:[['Répond à chaque appel, 24/7.',"Soirs, week-ends, jours fériés. Pas d'attente, pas de messagerie vocale, pas d'occasion manquée. 100+ langues."],
+        ['Réserve, reporte, annule les rendez-vous.','Planification en direct pendant l\'appel. Plusieurs agendas et types de rendez-vous, zéro double réservation.'],
+        ['Connaît votre entreprise sur le bout des doigts.','Services, prix, politiques, équipe. Répond depuis votre base de connaissances. Transfert fluide vers un humain si besoin — sans tâtonner.'],
+        ['Rapporte, signale, escalade.','Résumé, transcription, enregistrement, actions — directement dans votre boîte mail, plus un tableau de bord.'],
+        ['Coûte une fraction du prix.','Bien en dessous de 1 500 CHF/mois pour une réceptionniste à temps partiel. Pas de formation, pas de congés maladie, pas de RH.']]
+  },
+  da_ex_title_websiteguide:{de:'SNOB Website Guide',en:'SNOB Website Guide',fr:'SNOB Website Guide'},
+  da_ex_tag_websiteguide:{de:'Eine Website, die mit dir spricht — live und persönlich.',en:'A website that talks to you — live and personal.',fr:'Un site qui vous parle — en direct et personnellement.'},
+  da_ex_bul_websiteguide:{
+    de:[['Gibt stummen Seiten eine Stimme.','Kein Menü-Gewühl, kein Scrollen durch FAQ-Wüsten. Sag SNOB, was du suchst, den Rest übernimmt er. International? Kein Problem.'],
+        ['Kennt den Content in- und auswendig.','Fasst zusammen, beantwortet, erklärt fast alles. Kein Skript-Chatbot — ein echter Guide.'],
+        ['Macht aus Fragen Taten.','Antwortet zu Lager, Grössen, Farben, Verfügbarkeit. Empfiehlt Produkte nach geäusserten Vorlieben. Führt zur richtigen Wahl — und zur Kasse.'],
+        ['Verwöhnt Stammkunden.','Bestellstatus, Kaufhistorie, massgeschneiderte Empfehlungen, Feedback. Baut ein Präferenzprofil im Gespräch auf — reibungslos.'],
+        ['Lässt niemanden hängen.','Wenn SNOB nicht weiterweiss, öffnet er ein Support-Ticket mit vollem Kontext. Der Besucher geht weiter. Dein Team übernimmt.']],
+    en:[['Adds voice to silent pages.',"No menu-diving, no scrolling through Q&As. Tell SNOB what you're after, he's got you from there. International? No hay problema."],
+        ['Knows the content inside out.','Summarizes, answers and explains just about anything. Not a scripted chatbot — a personal guide.'],
+        ['Converts questions into actions.','Answers on stock, sizes, colors, availability. Recommends products matching stated preferences. Guides to the right choice, then to checkout.'],
+        ['Pampers returning customers.','Order status, purchase history, tailored recommendations, feedback. Builds a preference profile through conversation — zero friction.'],
+        ["Never leaves them stuck.",'If it can\'t answer, it logs a support ticket with full context. The visitor moves on. Your team dives in.']],
+    fr:[['Donne une voix aux pages silencieuses.','Fini de fouiller les menus, de scroller les FAQ. Dites à SNOB ce que vous cherchez, il s\'occupe du reste. International? No hay problema.'],
+        ['Connaît le contenu sur le bout des doigts.','Résume, répond, explique presque tout. Pas un chatbot scripté — un vrai guide.'],
+        ['Transforme les questions en actions.','Répond sur stock, tailles, couleurs, disponibilité. Recommande des produits selon vos préférences. Guide vers le bon choix, puis à la caisse.'],
+        ['Chouchoute les clients fidèles.',"Statut de commande, historique d'achats, recommandations sur mesure, feedback. Construit un profil de préférences en conversation — sans friction."],
+        ['Ne laisse jamais personne bloqué.','S\'il ne sait pas répondre, il ouvre un ticket support avec tout le contexte. Le visiteur continue. Votre équipe prend le relais.']]
+  },
+  da_ex_title_hotelconcierge:{de:'SNOB Hotel Concierge',en:'SNOB Hotel Concierge',fr:'SNOB Hotel Concierge'},
+  da_ex_tag_hotelconcierge:{de:'Ein persönlicher Concierge für jeden Gast. Jeden Tag.',en:'A personal concierge for every guest. Every day.',fr:'Un concierge personnel pour chaque client. Chaque jour.'},
+  da_ex_bul_hotelconcierge:{
+    de:[['Beantwortet alles, Tag und Nacht.','Hotel, Einrichtungen, Sehenswürdigkeiten, Öffnungszeiten, Wetter. Jede Sprache, Chat oder Anruf.'],
+        ['Plant den perfekten Tag.','Sag, worauf du Lust hast, und bekomm ein Programm passend zu Wetter, Kindern, Tempo.'],
+        ['Bucht sofort.','Spa, Massage, Pool, Tische, Sportanlagen. Bestätigt direkt im Gespräch.'],
+        ['Begleitet weiter.','Kuratiertes Lokalwissen plus Live-Infos in der Tasche — Gäste erkunden wie Einheimische, nicht wie Touristen.'],
+        ['Hebt deinen Concierge aufs nächste Level.','Dein Team beantwortet nicht mehr nur Fragen, sondern steuert Agenten-Fähigkeiten — für unvergessliche Aufenthalte.']],
+    en:[['Answers everything, day or night.','Hotel, facilities, attractions, opening hours, weather. Any language, chat or phone.'],
+        ['Plans the perfect day.','Say what you feel like, get a program that fits the weather, the kids, the pace.'],
+        ['Books it on the spot.','Spa, massage, pool, tables, sport facilities. Confirmed in the conversation.'],
+        ['Comes with them.','Curated local knowledge plus live info in their pocket, so guests explore like regulars, not tourists.'],
+        ['Elevates your concierge.','Your team moves from answering questions to managing agent capabilities, creating memorable stays for every guest.']],
+    fr:[['Répond à tout, jour et nuit.','Hôtel, installations, attractions, horaires, météo. Toutes langues, chat ou téléphone.'],
+        ['Planifie la journée parfaite.','Dites ce qui vous tente, recevez un programme adapté à la météo, aux enfants, au rythme.'],
+        ['Réserve sur-le-champ.','Spa, massage, piscine, tables, installations sportives. Confirmé pendant la conversation.'],
+        ['Les accompagne partout.','Savoir local sélectionné plus infos en direct dans leur poche — les clients explorent comme des habitués, pas comme des touristes.'],
+        ['Fait passer votre concierge au niveau supérieur.',"Votre équipe ne répond plus seulement aux questions, elle pilote les capacités de l'agent — pour des séjours mémorables."]]
+  },
+  da_ex_title_surveys:{de:'SNOB Business Surveys',en:'SNOB Business Surveys',fr:'SNOB Business Surveys'},
+  da_ex_tag_surveys:{de:'Weg mit den toten Fragebögen. Finde raus, was Leute wirklich denken — im Gespräch, nicht per Klick.',en:'Ditch static questionnaires. Find out what people really think — interactively, at any scale.',fr:'Fini les questionnaires figés. Découvrez ce que les gens pensent vraiment — en conversation, à toute échelle.'},
+  da_ex_bul_surveys:{
+    de:[["Gespräch statt Klickstrecke.",'Keine Checkboxen, keine leeren Kommentarfelder. SNOB fragt, hört zu, hakt nach, wo\'s zählt — wie ein guter Interviewer.'],
+        ['Skaliert, ohne Abstriche zu machen.','Persönliche Qualität mit Formular-Reichweite. Hunderte Gespräche, gleiche Tiefe, gleichzeitig.'],
+        ['Erreicht Leute, wo sie sind.','Direktanruf, Web-Link oder gebuchter Termin. Ihre Zeitzone, ihre Sprache.'],
+        ['Funktioniert für jeden Anwendungsfall.','Kundenfeedback, Mitarbeiterzufriedenheit, Prozessdiagnostik, Innovations-Insights, Audit & Compliance.'],
+        ['Liefert die Analyse, nicht den Rohdatenberg.','Jede Antwort erfasst, strukturiert und zum Report verdichtet — landet direkt im Postfach.']],
+    en:[['Conversation, not clickthrough.','No tick-boxes, no blank comment boxes. SNOB asks, listens, and follows up on what matters — the way a good interviewer would.'],
+        ['Scale without the tradeoff.','In-person quality with form-level reach. Hundreds of conversations, same depth, at once.'],
+        ['Reaches people where they are.','Direct calls, a web link, or a booked calendar slot. Their timezone, their language.'],
+        ['Works across every use case.','Customer feedback, employee satisfaction, process diagnostics, innovation insights, audit and compliance.'],
+        ['Delivers the analysis, not the raw data.',"Every response captured, structured, and summarized into a report that lands in the survey owner's inbox."]],
+    fr:[['Conversation, pas clic.','Pas de cases à cocher, pas de champs vides. SNOB pose des questions, écoute, relance sur ce qui compte — comme un bon intervieweur.'],
+        ["L'échelle sans compromis.",'Qualité du face-à-face, portée d\'un formulaire. Des centaines de conversations, même profondeur, en simultané.'],
+        ['Va chercher les gens où ils sont.','Appel direct, lien web, ou créneau réservé. Leur fuseau horaire, leur langue.'],
+        ["Fonctionne pour chaque cas d'usage.",'Feedback client, satisfaction des employés, diagnostic de processus, insights innovation, audit et conformité.'],
+        ['Livre l\'analyse, pas les données brutes.','Chaque réponse capturée, structurée, condensée en rapport — directement dans la boîte mail.']]
+  },
   dac_pharma:    {de:'Pharma',en:'Pharma',fr:'Pharma'},
   dac_industrie: {de:'Industrie',en:'Industry',fr:'Industrie'},
   dac_handel:    {de:'Handel',en:'Retail',fr:'Commerce'},
@@ -1719,12 +1828,56 @@ function toggleChat(){
     });
   }
   window.setDAIndustry=function(key){
-    document.querySelectorAll('.da-chip').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ind')===key);});
+    document.querySelectorAll('.da-chip[data-ind]').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ind')===key);});
     currentInd=key;
     renderList(key);
   };
+
+  // ---- Examples (Front Desk / Website Guide / Hotel Concierge / Business Surveys) ----
+  var currentEx=null;
+  function renderExample(key){
+    var lang=typeof currentLang!=='undefined'?currentLang:'de';
+    var listEl=document.getElementById('da-example-list');
+    var hintEl=document.getElementById('da-example-hint');
+    var titleEl=document.getElementById('da-example-title');
+    var tagEl=document.getElementById('da-example-tagline');
+    if(!listEl)return;
+    if(!key){
+      listEl.innerHTML='';
+      if(titleEl){titleEl.textContent='';titleEl.classList.remove('visible');}
+      if(tagEl){tagEl.textContent='';tagEl.classList.remove('visible');}
+      if(hintEl){hintEl.style.display='block';}
+      return;
+    }
+    var titleKey='da_ex_title_'+key;
+    var tagKey='da_ex_tag_'+key;
+    var bulKey='da_ex_bul_'+key;
+    var titleTxt=(T[titleKey]&&T[titleKey][lang])?T[titleKey][lang]:(T[titleKey]?T[titleKey].de:'');
+    var tagTxt=(T[tagKey]&&T[tagKey][lang])?T[tagKey][lang]:(T[tagKey]?T[tagKey].de:'');
+    var bullets=(T[bulKey]&&T[bulKey][lang])?T[bulKey][lang]:(T[bulKey]?T[bulKey].de:[]);
+    if(hintEl) hintEl.style.display='none';
+    if(titleEl){titleEl.classList.remove('visible');titleEl.textContent=titleTxt;setTimeout(function(){titleEl.classList.add('visible');},20);}
+    if(tagEl){tagEl.classList.remove('visible');tagEl.textContent=tagTxt;setTimeout(function(){tagEl.classList.add('visible');},60);}
+    listEl.innerHTML='';
+    bullets.forEach(function(pair,i){
+      var li=document.createElement('li');
+      var b=document.createElement('b');
+      b.textContent=pair[0]+' ';
+      li.appendChild(b);
+      li.appendChild(document.createTextNode(pair[1]));
+      listEl.appendChild(li);
+      setTimeout(function(){li.classList.add('visible');},100+i*90);
+    });
+  }
+  window.setDAExample=function(key){
+    document.querySelectorAll('.da-chip[data-ex]').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ex')===key);});
+    currentEx=key;
+    renderExample(key);
+  };
+
   window._updateDAUseCases=function(lang){
     if(currentInd) renderList(currentInd);
+    if(currentEx) renderExample(currentEx);
   };
 })();
 
