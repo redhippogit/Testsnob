@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%230a0a0a'/><circle cx='22' cy='10' r='4' fill='%23d946ef'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='14' fill='white' letter-spacing='1'>S</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=DM+Mono:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -22,23 +22,16 @@ body.cursor-click #cx-dot{transform:translate(-50%,-50%) scale(.7);}
 body.cursor-click #cx-ring{width:24px;height:24px;}
 @media(max-width:768px){body{cursor:auto;}a,button{cursor:auto;}}
 #spb{position:fixed;top:0;left:0;height:2px;background:#d946ef;z-index:9999;width:0%;transition:width .05s linear;transform-origin:left;}
-#grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;animation:grainshift 0.5s steps(1) infinite;}
-@keyframes grainshift{0%{background-position:0 0}10%{background-position:-5% -10%}20%{background-position:-15% 5%}30%{background-position:7% -25%}40%{background-position:20% 25%}50%{background-position:-25% 10%}60%{background-position:15% 5%}70%{background-position:0% 15%}80%{background-position:25% 35%}90%{background-position:-10% 10%}100%{background-position:0 0}}
 [data-r]{opacity:0;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
 [data-r="up"]{transform:translateY(60px);}
 [data-r="left"]{transform:translateX(-60px);}
 [data-r="right"]{transform:translateX(60px);}
 [data-r="scale"]{transform:scale(.88);}
-[data-r="skew"]{transform:translateY(40px) skewY(3deg);}
 [data-r].vis{opacity:1;transform:none;}
 [data-delay="1"]{transition-delay:.1s;}
 [data-delay="2"]{transition-delay:.2s;}
 [data-delay="3"]{transition-delay:.3s;}
 [data-delay="4"]{transition-delay:.4s;}
-[data-delay="5"]{transition-delay:.5s;}
-[data-delay="6"]{transition-delay:.6s;}
-[data-delay="7"]{transition-delay:.7s;}
-[data-delay="8"]{transition-delay:.8s;}
 #intro{position:fixed;inset:0;z-index:9000;background:#fff;display:flex;align-items:flex-start;justify-content:flex-start;padding:clamp(28px,5vw,64px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
 #intro.hide{opacity:0;transform:translateY(-20px);pointer-events:none;}
 #intro-out{display:flex;flex-direction:column;}
@@ -50,41 +43,37 @@ body.cursor-click #cx-ring{width:24px;height:24px;}
 .tl.show{opacity:1;height:auto;}
 .cur{display:inline-block;width:.5em;height:.9em;background:currentColor;vertical-align:text-bottom;margin-left:.08em;animation:cur .7s step-end infinite;}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #f0f0f0;transition:padding .4s cubic-bezier(.16,1,.3,1);}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #f0f0f0;transition:padding .4s cubic-bezier(.16,1,.3,1);}
 nav.scrolled{padding:12px 40px;}
-.n-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.4em;color:#0a0a0a;transition:letter-spacing .3s;}
-nav.scrolled .n-logo{letter-spacing:.5em;}
+.n-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.4em;color:#0a0a0a;}
 .n-r{display:flex;align-items:center;gap:20px;}
 .lang-sw{display:flex;list-style:none;}
-.lang-sw li{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#ccc;cursor:none;padding:3px 7px;border-right:1px solid #eee;transition:color .2s;}
+.lang-sw li{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#ccc;padding:3px 7px;border-right:1px solid #eee;transition:color .2s;}
 .lang-sw li:last-child{border-right:none;}
 .lang-sw li:hover,.lang-sw li.active{color:#0a0a0a;}
 .n-signin{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #0a0a0a;padding-bottom:1px;transition:color .2s,border-color .2s;white-space:nowrap;}
 .n-signin:hover{color:#d946ef;border-color:#d946ef;}
 @media(max-width:768px){nav{padding:14px 20px;}.n-r{gap:10px;}.lang-sw li{padding:3px 5px;font-size:10px;}}
 #hero-wrap{position:relative;}
-#hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;cursor:none;}
-#hero-inner{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;will-change:transform;}
-#hero-word{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-size:clamp(140px,30vw,440px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;font-weight:400;text-align:center;will-change:transform;}
+#hero{height:100svh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;position:relative;overflow:hidden;}
+#hero-inner{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;}
+#hero-word{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(140px,30vw,440px);line-height:.85;letter-spacing:-.02em;transition:font-size .6s cubic-bezier(.16,1,.3,1);user-select:none;text-align:center;}
 #hero-word .hl{display:inline-block;opacity:0;transform:translateY(80px) rotate(5deg);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
 #hero-word .hl.in{opacity:1;transform:none;}
 #hero.big #hero-word{font-size:clamp(200px,44vw,600px);}
 .hero-acro{position:absolute;bottom:52px;left:40px;z-index:3;}
-.hero-acro-line{font-size:11px;letter-spacing:.15em;color:#bbb;line-height:2;transition:color .2s;opacity:0;transform:translateX(-20px);}
+.hero-acro-line{font-size:11px;letter-spacing:.15em;color:#bbb;line-height:2;opacity:0;transform:translateX(-20px);}
 .hero-acro-line.in{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),color .2s;}
 .hero-acro-line b{color:#0a0a0a;font-weight:400;}
 .hero-acro-line em{color:#d946ef;font-style:normal;}
 .hero-tagline{position:absolute;bottom:28px;right:40px;z-index:3;font-size:11px;color:#bbb;line-height:2;letter-spacing:.06em;text-align:right;opacity:0;transform:translateX(20px);transition:opacity .7s .6s cubic-bezier(.16,1,.3,1),transform .7s .6s cubic-bezier(.16,1,.3,1);}
 .hero-tagline.in{opacity:1;transform:none;}
-.hero-tagline strong{color:#0a0a0a;font-weight:400;}
 .swiss-plus{color:#ef4444;font-size:16px;font-weight:700;margin-right:8px;line-height:1;}
 .hero-hint{position:absolute;top:28px;right:40px;padding-top:64px;z-index:3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#ddd;white-space:nowrap;opacity:0;animation:fadeup .6s 1.5s forwards;}
 @keyframes fadeup{to{opacity:1;}}
 .hero-ping{position:absolute;top:50%;left:50%;width:500px;height:500px;border-radius:50%;border:1px solid rgba(217,70,239,.08);transform:translate(-50%,-50%) scale(0);animation:ping 3s 2s cubic-bezier(.16,1,.3,1) infinite;}
 @keyframes ping{0%{transform:translate(-50%,-50%) scale(0);opacity:.6}100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}}
-/* NEW: SNOB sub-headline directly under hero word */
-/* (hero-sub removed — "Was ist SNOB?" now lives in #whatssnob, moved directly under hero) */
-@media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(100px,28vw,260px);}#hero.big #hero-word{font-size:clamp(120px,26vw,280px);}.hero-tagline{font-size:10px;}.hero-acro-line{font-size:10px;}#hero{flex-direction:column;align-items:flex-start;justify-content:center;}.hero-acro{position:static;margin-top:32px;}#hero-swiss{position:static;text-align:left;margin-top:20px;font-size:10px;}}
+@media(max-width:768px){#hero{padding:100px 20px 48px;}#hero-word{font-size:clamp(100px,28vw,260px);}#hero{flex-direction:column;align-items:flex-start;justify-content:center;}.hero-acro{position:static;margin-top:32px;}#hero-swiss{position:static;text-align:left;margin-top:20px;font-size:10px;}}
 #cta1{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
 .cta1-label{font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:#999;margin-bottom:20px;}
 .cta1-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,120px);line-height:.88;margin-bottom:52px;}
@@ -96,34 +85,36 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 @media(max-width:768px){#cta1{padding:64px 20px;}.cta1-ring{display:none;}}
 .call-btn{display:inline-flex;align-items:center;justify-content:center;background:#0a0a0a;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3vw,28px);letter-spacing:.08em;padding:20px 56px;text-decoration:none;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;}
 .call-btn::before{content:'';position:absolute;inset:0;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1);}
-.call-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.06);opacity:0;transition:opacity .2s;}
 .call-btn span{position:relative;z-index:1;}
 .call-btn:hover::before{transform:scaleX(1);}
-.call-btn:hover::after{opacity:1;}
 .call-btn:hover{box-shadow:0 20px 60px rgba(217,70,239,.3);}
-#whatssnob{border-bottom:1px solid #f0f0f0;padding:96px 40px;}
-.ws-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:12px;}
+#whatssnob{border-bottom:1px solid #f0f0f0;padding:96px 40px 96px;}
+.ws-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#d946ef;margin-bottom:12px;}
 .ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:20px;}
-.ws-desc{font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-bottom:56px;}
+.ws-desc{font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-bottom:56px;min-height:3.4em;transition:opacity .4s cubic-bezier(.16,1,.3,1);}
+.ws-desc.fade{opacity:0;}
 .ws-acro{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0f0f0;}
-.ws-acro-item{background:#fff;padding:28px 24px;cursor:none;transition:background .3s,transform .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;}
+.ws-acro-item{background:#fff;padding:28px 24px;transition:background .3s;position:relative;overflow:hidden;}
 .ws-acro-item::before{content:'';position:absolute;inset:0;background:#0a0a0a;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
 .ws-acro-item:hover::before{transform:translateY(0);}
 .ws-acro-letter{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,80px);line-height:1;color:#0a0a0a;transition:color .3s;margin-bottom:8px;position:relative;z-index:1;}
 .ws-acro-item:hover .ws-acro-letter{color:#d946ef;}
 .ws-acro-word{font-size:12px;font-weight:500;color:#0a0a0a;transition:color .3s;margin-bottom:4px;letter-spacing:.04em;position:relative;z-index:1;}
 .ws-acro-item:hover .ws-acro-word{color:#fff;}
-.ws-acro-desc{font-size:12px;color:#888;line-height:1.6;transition:color .3s;position:relative;z-index:1;}
-.ws-acro-item:hover .ws-acro-desc{color:#888;}
+.ws-acro-desc{font-size:12px;color:#888;line-height:1.6;position:relative;z-index:1;}
 @media(max-width:768px){#whatssnob{padding:64px 20px;}.ws-acro{grid-template-columns:1fr 1fr;}}
-#snob-flow{padding:80px 40px 96px;border-bottom:1px solid #f0f0f0;}
+#snob-flow{padding:80px 40px 96px;border-bottom:1px solid #f0f0f0;position:relative;}
 .sf-lbl{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:24px;text-align:center;}
 .sf-toggle{display:flex;justify-content:center;gap:8px;margin-bottom:36px;}
-.sf-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
+.sf-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;transition:border-color .2s,color .2s,background .2s;}
 .sf-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .sf-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
 .sf-chip.active:hover{background:#d946ef;border-color:#d946ef;}
 #snob-flow-cvs{display:block;margin:0 auto;width:100%;max-width:1080px;touch-action:none;}
+.sf-tooltip{position:absolute;pointer-events:none;background:#0a0a0a;color:#fff;font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.6;padding:12px 16px;max-width:220px;z-index:20;opacity:0;transform:translate(-50%,-100%) translateY(-10px);transition:opacity .18s ease,transform .18s ease;}
+.sf-tooltip.show{opacity:1;transform:translate(-50%,-100%) translateY(-18px);}
+.sf-tooltip::after{content:'';position:absolute;left:50%;top:100%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#0a0a0a;}
+.sf-tooltip b{color:#d946ef;font-weight:400;display:block;margin-bottom:3px;letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;}
 @media(max-width:768px){#snob-flow{padding:56px 16px 64px;}}
 #calc{padding:96px 40px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
 @media(max-width:768px){#calc{grid-template-columns:1fr;gap:40px;padding:64px 20px;}}
@@ -135,25 +126,23 @@ nav.scrolled .n-logo{letter-spacing:.5em;}
 .sl-row{margin-bottom:32px;}
 .sl-lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;display:flex;justify-content:space-between;margin-bottom:14px;}
 .sl-val{color:#0a0a0a;font-size:12px;font-weight:500;}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:1px;background:#e8e8e8;outline:none;cursor:none;}
+input[type=range]{-webkit-appearance:none;width:100%;height:1px;background:#e8e8e8;outline:none;}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:#0a0a0a;border-radius:50%;transition:transform .15s,background .15s;}
 input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.8);background:#d946ef;}
-input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;border-radius:50%;border:none;}
 .appt-row{margin-bottom:32px;}
 .appt-lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;margin-bottom:14px;}
 .appt-opts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f0f0f0;}
-.appt-opt{background:#fff;padding:16px;cursor:none;transition:all .2s;border:1px solid #f0f0f0;}
+.appt-opt{background:#fff;padding:16px;transition:all .2s;border:1px solid #f0f0f0;}
 .appt-opt:hover{background:#fafafa;}
 .appt-opt.active{border-color:#0a0a0a;background:#fff;}
 .appt-opt-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;margin-bottom:3px;}
 .appt-opt-desc{font-size:11px;color:#bbb;line-height:1.5;letter-spacing:.05em;}
-.appt-opt.active .appt-opt-name{color:#0a0a0a;}
 .calc-out{display:flex;align-items:baseline;gap:12px;margin:32px 0 8px;}
 .calc-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,120px);line-height:1;color:#d946ef;transition:transform .15s cubic-bezier(.16,1,.3,1);}
 .calc-unit{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#888;line-height:1.6;}
 .calc-rec{font-size:12px;letter-spacing:.1em;color:#999;margin-bottom:24px;}
 .calc-rec b{color:#0a0a0a;font-weight:400;}
-.cta-link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:none;border:none;border-bottom:1px solid #0a0a0a;color:#0a0a0a;padding-bottom:2px;cursor:none;transition:color .2s,border-color .2s;}
+.cta-link{font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:none;border:none;border-bottom:1px solid #0a0a0a;color:#0a0a0a;padding-bottom:2px;transition:color .2s,border-color .2s;}
 .cta-link:hover{color:#d946ef;border-color:#d946ef;}
 #pricing{border-bottom:1px solid #f0f0f0;}
 .pr-head{padding:64px 40px 36px;border-bottom:1px solid #f0f0f0;}
@@ -162,7 +151,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);}
 @media(max-width:900px){.pr-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:540px){.pr-grid{grid-template-columns:1fr;}.pr-head{padding:40px 20px 24px;}}
-.pr-col{padding:44px 36px;border-right:1px solid #f0f0f0;display:flex;flex-direction:column;cursor:none;transition:background .3s,box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1);transform-style:preserve-3d;will-change:transform;}
+.pr-col{padding:44px 36px;border-right:1px solid #f0f0f0;display:flex;flex-direction:column;transition:background .3s,box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1);}
 .pr-col:last-child{border-right:none;}
 .pr-col:hover{background:#0a0a0a;box-shadow:0 40px 80px rgba(0,0,0,.12);}
 .pr-tier{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#888;margin-bottom:16px;transition:color .3s;}
@@ -174,44 +163,38 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .pr-list{list-style:none;flex:1;margin-bottom:24px;}
 .pr-list li{font-size:12px;color:#888;padding:6px 0;border-bottom:1px solid #f5f5f5;line-height:1.5;transition:color .3s,border-color .3s;letter-spacing:.04em;}
 .pr-col:hover .pr-list li{color:#666;border-color:#1a1a1a;}
-.pr-list li::before{content:'→';margin-right:8px;opacity:0;transition:opacity .2s,color .3s;color:#d946ef;font-size:10px;}
+.pr-list li::before{content:'→';margin-right:8px;opacity:0;transition:opacity .2s;color:#d946ef;font-size:10px;}
 .pr-col:hover .pr-list li::before{opacity:1;}
-.pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #e8e8e8;color:#ccc;padding:12px;cursor:none;transition:all .3s;display:inline-block;text-decoration:none;}
+.pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #e8e8e8;color:#ccc;padding:12px;transition:all .3s;display:inline-block;text-decoration:none;}
 .pr-col:hover .pr-btn{border-color:#333;color:#666;}
 .pr-col:hover .pr-btn:hover{border-color:#d946ef;color:#d946ef;}
 @media(max-width:640px){.pr-col{border-right:none;border-bottom:1px solid #f0f0f0;padding:28px 20px;}}
 #delicate{border-bottom:1px solid #f0f0f0;padding:96px 40px;}
 .da-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#d946ef;margin-bottom:12px;}
 .da-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:24px;}
-.da-sub{font-size:15px;color:#888;line-height:1.8;max-width:560px;margin-bottom:56px;}
+.da-sub{font-size:15px;color:#888;line-height:1.8;max-width:560px;margin-bottom:44px;}
 .da-int-wrap{margin-bottom:56px;}
 .da-industry{margin-bottom:24px;}
 .da-ind-q{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:14px;}
 .da-ind-chips{display:flex;flex-wrap:wrap;gap:8px;}
-.da-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
+.da-chip{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;transition:border-color .2s,color .2s,background .2s;}
 .da-chip:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .da-chip.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
 .da-chip.active:hover{background:#d946ef;border-color:#d946ef;}
-/* NEW: use-case list replaces counter */
 .da-usecase-wrap{padding:44px 0 16px;border-top:1px solid #f0f0f0;min-height:140px;}
 .da-usecase-hint{font-size:14px;color:#aaa;letter-spacing:.04em;}
 .da-usecase-intro{font-size:14.5px;color:#666;line-height:1.7;max-width:640px;margin-bottom:24px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
 .da-usecase-intro.visible{opacity:1;transform:none;}
-.da-usecase-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f0f0f0;}
-.da-usecase-list li{background:#fff;padding:20px 22px;font-size:13.5px;color:#333;line-height:1.6;display:flex;gap:12px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
-.da-usecase-list li.visible{opacity:1;transform:none;}
-.da-usecase-list li::before{content:'→';color:#d946ef;flex-shrink:0;}
 .da-example-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.5vw,34px);letter-spacing:.02em;color:#0a0a0a;margin-bottom:6px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
 .da-example-title.visible{opacity:1;transform:none;}
 .da-example-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#f0f0f0;}
-.da-example-list li{background:#fff;padding:20px 22px;font-size:13px;color:#555;line-height:1.6;display:flex;gap:12px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
+.da-example-list li{background:#fff;padding:18px 20px;font-size:12.5px;color:#555;line-height:1.55;display:flex;gap:10px;opacity:0;transform:translateY(6px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1);}
 .da-example-list li.visible{opacity:1;transform:none;}
 .da-example-list li::before{content:'→';color:#d946ef;flex-shrink:0;}
 .da-example-list li b{color:#0a0a0a;font-weight:500;}
 @media(max-width:640px){.da-example-list{grid-template-columns:1fr;}}
-@media(max-width:640px){.da-usecase-list{grid-template-columns:1fr;}}
-.da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
-.da-block{background:#fff;padding:36px 28px;cursor:none;transition:background .2s;position:relative;overflow:hidden;}
+.da-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;margin-bottom:52px;}
+.da-block{background:#fff;padding:36px 28px;transition:background .2s;position:relative;overflow:hidden;}
 .da-block::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#d946ef;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
 .da-block:hover::after,.da-block.open::after{transform:scaleX(1);}
 .da-block:hover{background:#fafafa;}
@@ -225,7 +208,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .da-block-body-inner{padding-top:16px;font-size:12px;color:#555;line-height:1.8;border-top:1px solid #f0f0f0;margin-top:12px;}
 @media(max-width:640px){.da-blocks{grid-template-columns:1fr;}.da-block{padding:24px 20px;}#delicate{padding:64px 20px;}}
 #cta2{border-bottom:1px solid #f0f0f0;padding:80px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;min-height:40vh;position:relative;overflow:hidden;}
-#cta2::before{content:'SNOB';font-family:'Bebas Neue',sans-serif;font-size:clamp(200px,30vw,400px);color:#f7f7f7;position:absolute;right:-2%;bottom:-10%;line-height:1;pointer-events:none;user-select:none;z-index:0;}
+#cta2::before{content:'SNOB';font-family:'Bebas Neue',sans-serif;font-size:clamp(200px,30vw,400px);color:#f7f7f7;position:absolute;right:-2%;bottom:-10%;line-height:1;pointer-events:none;z-index:0;}
 .cta2-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);line-height:.9;position:relative;z-index:1;}
 .cta2-right{display:flex;flex-direction:column;align-items:flex-end;gap:16px;position:relative;z-index:1;}
 @media(max-width:768px){#cta2{padding:56px 20px;flex-direction:column;align-items:flex-start;min-height:auto;}.cta2-right{align-items:flex-start;}}
@@ -234,14 +217,13 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .lh-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);line-height:.9;margin-bottom:12px;}
 .lh-sub{font-size:13px;color:#aaa;margin-bottom:36px;letter-spacing:.08em;}
 .lh-tabs{display:flex;gap:8px;margin-bottom:48px;flex-wrap:wrap;}
-.lh-tab{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;cursor:none;transition:border-color .2s,color .2s,background .2s;}
+.lh-tab{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 22px;transition:border-color .2s,color .2s,background .2s;}
 .lh-tab:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .lh-tab.active{background:#0a0a0a;border-color:#0a0a0a;color:#fff;}
 .lh-panel{display:none;}
 .lh-panel.active{display:block;}
 .lh-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#f0f0f0;}
 .lh-trust-card{background:#fff;padding:40px 36px;}
-.lh-trust-icon{font-size:28px;margin-bottom:20px;line-height:1;}
 .lh-trust-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.1;margin-bottom:12px;}
 .lh-trust-body{font-size:12px;line-height:1.9;color:#555;}
 .lh-trust-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;}
@@ -261,7 +243,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#0a0a0a;bo
 .lh-trust-icon svg{display:block;}
 .lh-doc-list{border-top:1px solid #f0f0f0;}
 .lh-doc-item{border-bottom:1px solid #f0f0f0;}
-.lh-doc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;cursor:none;transition:color .2s;gap:20px;}
+.lh-doc-header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;transition:color .2s;gap:20px;}
 .lh-doc-header:hover .lh-doc-header-name{color:#d946ef;}
 .lh-doc-header-l{display:flex;flex-direction:column;gap:5px;}
 .lh-doc-header-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#bbb;}
@@ -286,11 +268,10 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 .f-links a:hover{color:#0a0a0a;}
 .f-copy{font-size:12px;color:#777;line-height:1.9;text-align:right;}
 .f-copy a{color:#555 !important;}
-.f-copy a:hover{color:#0a0a0a !important;}
 .f-founded{color:#999 !important;}
 @media(max-width:640px){footer{flex-direction:column;text-align:center;padding:16px 20px;}.f-links{justify-content:center;}.f-copy{text-align:center;}}
 .fab{position:fixed;bottom:24px;right:24px;z-index:200;}
-.fab-btn{width:44px;height:44px;background:#0a0a0a;border:none;border-radius:50%;cursor:none;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s,transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;}
+.fab-btn{width:44px;height:44px;background:#0a0a0a;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s,transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;}
 .fab-btn:hover{transform:scale(1.1);box-shadow:0 8px 24px rgba(0,0,0,.2);}
 .fab-btn:hover,.fab-btn.on{background:#d946ef;}
 .ico-o{display:block;}.ico-cx{display:none;font-size:10px;color:#fff;}
@@ -302,19 +283,19 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 .cw-av{width:26px;height:26px;background:#0a0a0a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:10px;color:#fff;flex-shrink:0;}
 .cw-name{font-family:'Bebas Neue',sans-serif;font-size:14px;}
 .cw-st{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#bbb;}
-.cw-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:160px;max-height:200px;scrollbar-width:thin;}
+.cw-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:160px;max-height:200px;}
 .msg{max-width:86%;}.msg.bot{align-self:flex-start;}.msg.usr{align-self:flex-end;}
 .mb{padding:8px 11px;font-size:12px;line-height:1.5;animation:mi .25s cubic-bezier(.16,1,.3,1);}
 @keyframes mi{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
 .msg.bot .mb{background:#f7f7f7;color:#555;}
 .msg.usr .mb{background:#0a0a0a;color:#fff;}
 .cw-qr{display:flex;flex-wrap:wrap;gap:4px;padding:0 12px 10px;}
-.qb{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;cursor:none;transition:all .2s;}
+.qb{background:none;border:1px solid #e8e8e8;color:#bbb;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;transition:all .2s;}
 .qb:hover{border-color:#0a0a0a;color:#0a0a0a;}
 .cw-inp{padding:10px 12px;border-top:1px solid #f0f0f0;display:flex;gap:8px;}
 .ci{flex:1;background:transparent;border:none;border-bottom:1px solid #e8e8e8;color:#0a0a0a;font-family:'DM Mono',monospace;font-size:12px;padding:4px 0;outline:none;transition:border-color .2s;cursor:text;}
 .ci:focus{border-color:#0a0a0a;}.ci::placeholder{color:#ccc;}
-.cs{background:#0a0a0a;border:none;color:#fff;width:28px;height:28px;cursor:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:background .2s;}
+.cs{background:#0a0a0a;border:none;color:#fff;width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:background .2s;}
 .cs:hover{background:#d946ef;}
 .ty{display:flex;gap:3px;padding:8px 11px;background:#f7f7f7;width:fit-content;}
 .td{width:4px;height:4px;background:#ccc;border-radius:50%;animation:tb .7s infinite;}
@@ -328,7 +309,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 
 <div id="cx"><div id="cx-dot"></div><div id="cx-ring"></div></div>
 <div id="spb"></div>
-<div id="grain"></div>
 <div id="intro"><div id="intro-out"></div></div>
 
 <nav id="nav">
@@ -343,7 +323,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </nav>
 
-<!-- HERO -->
 <div id="hero-wrap">
 <div id="hero" onclick="this.classList.toggle('big')">
   <div class="hero-ping"></div>
@@ -366,30 +345,27 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
   <div class="hero-hint" data-i="hero_hint">— Tippen —</div>
 </div>
-<!-- "Was ist SNOB?" — full section moved directly under the hero word -->
 </div>
 
-<!-- WHAT IS SNOB (moved up, right under hero) -->
-<div id="whatssnob" style="padding-top:8px;">
+<div id="whatssnob">
   <div class="ws-label" data-r="up" data-i="hero_tagline2">AI Voice Agents. Built by experts.</div>
   <div class="ws-title" data-r="up" data-delay="1" data-i="ws_title">Was ist SNOB?</div>
-  <p class="ws-desc" data-r="up" data-delay="2" data-i="ws_desc">Nimmt ab. Schreibt zurück. Bucht den Termin. 24/7, in jeder Sprache — und beschwert sich nie über Montage.</p>
-
+  <p class="ws-desc" id="wsDesc" data-r="up" data-delay="2">Nimmt ab. Schreibt zurück. Bucht den Termin. 24/7, in jeder Sprache — und beschwert sich nie über Montage.</p>
   <div class="ws-acro">
     <div class="ws-acro-item" data-r="up" data-delay="1">
-      <div class="ws-acro-letter" id="ws-acro-letter-s">S</div>
+      <div class="ws-acro-letter">S</div>
       <div class="ws-acro-word" id="ws-acro-s">Sophisticated</div>
       <div class="ws-acro-desc" data-i="ws_as">Er denkt mit. Versteht Kontext. Reagiert intelligent. Navigiert auch komplexe Gesprächsszenarien.</div>
     </div>
     <div class="ws-acro-item" data-r="up" data-delay="2">
       <div class="ws-acro-letter">N</div>
       <div class="ws-acro-word" id="ws-acro-n">Network</div>
-      <div class="ws-acro-desc" data-i="ws_an">Vernetzt mit 300+ Tools — Kalendern, E-Mail-Clients, CRMs, Bestellungen & Lagerbestand, Task-Management, Formularen & Tabellen — und mehr über API & Webhooks.</div>
+      <div class="ws-acro-desc" data-i="ws_an">Vernetzt mit 300+ Tools — Kalendern, E-Mail-Clients, CRMs, Bestellungen & Lagerbestand — und mehr über API & Webhooks.</div>
     </div>
     <div class="ws-acro-item" data-r="up" data-delay="3">
       <div class="ws-acro-letter">O</div>
       <div class="ws-acro-word" id="ws-acro-o">Operated</div>
-      <div class="ws-acro-desc" data-i="ws_ao">Läuft autonom, rund um die Uhr. Analysiert Ergebnisse, meldet Auffälligkeiten, eskaliert bei Bedarf, erledigt Folgeaktionen.</div>
+      <div class="ws-acro-desc" data-i="ws_ao">Läuft autonom, rund um die Uhr. Analysiert Ergebnisse, meldet Auffälligkeiten, eskaliert bei Bedarf.</div>
     </div>
     <div class="ws-acro-item" data-r="up" data-delay="4">
       <div class="ws-acro-letter">B</div>
@@ -399,7 +375,16 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </div>
 
-<!-- CTA 1 -->
+<div id="snob-flow" data-r="up">
+  <div class="sf-lbl" data-i="sf_lbl">Wie SNOB arbeitet</div>
+  <div class="sf-toggle">
+    <button class="sf-chip active" data-mode="inbound" onclick="setSFMode('inbound')" data-i="sf_mode_in">Inbound</button>
+    <button class="sf-chip" data-mode="outbound" onclick="setSFMode('outbound')" data-i="sf_mode_out">Outbound</button>
+  </div>
+  <canvas id="snob-flow-cvs"></canvas>
+  <div class="sf-tooltip" id="sfTooltip"></div>
+</div>
+
 <div id="cta1">
   <div class="cta1-ring"></div>
   <div class="cta1-ring"></div>
@@ -409,17 +394,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="cta1-note" data-r="up" data-delay="4" data-i="cta1_note">Kostenlos. Kein Pitch. Nur Antworten.</div>
 </div>
 
-<!-- SNOB FLOW -->
-<div id="snob-flow" data-r="up">
-  <div class="sf-lbl" data-i="sf_lbl">Wie SNOB arbeitet</div>
-  <div class="sf-toggle">
-    <button class="sf-chip active" data-mode="inbound" onclick="setSFMode('inbound')" data-i="sf_mode_in">Inbound</button>
-    <button class="sf-chip" data-mode="outbound" onclick="setSFMode('outbound')" data-i="sf_mode_out">Outbound</button>
-  </div>
-  <canvas id="snob-flow-cvs"></canvas>
-</div>
-
-<!-- CALC -->
 <div id="calc">
   <div>
     <div class="calc-label-txt" data-r="left" data-i="calc_lbl">Kalkulator</div>
@@ -449,14 +423,13 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </div>
 
-<!-- PRICING -->
 <div id="pricing">
   <div class="pr-head">
     <div class="pr-head-lbl" data-r="up" data-i="pr_lbl">Pricing</div>
     <div class="pr-head-title" data-r="up" data-delay="1" data-i="pr_title">Klar.<br>Direkt.</div>
   </div>
   <div class="pr-grid">
-    <div class="pr-col tilt" data-r="up" data-delay="1" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
+    <div class="pr-col" data-r="up" data-delay="1" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t1">GoSTART</div>
       <div class="pr-num" data-count="333">333</div>
       <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
@@ -476,7 +449,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       </ul>
       <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn1">Anfragen</a>
     </div>
-    <div class="pr-col tilt" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
+    <div class="pr-col" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t2">GoFULL</div>
       <div class="pr-num" data-count="777">777</div>
       <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
@@ -495,7 +468,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       </ul>
       <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn2">Gespräch</a>
     </div>
-    <div class="pr-col tilt" data-r="up" data-delay="3" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
+    <div class="pr-col" data-r="up" data-delay="3" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t3">Corporate</div>
       <div class="pr-num" style="font-size:40px;line-height:1.2;" data-i="pr_corp_n">AUF<br>ANFRAGE</div>
       <div class="pr-chf" style="margin-top:8px;" data-i="pr_corp_s">Individuell</div>
@@ -518,49 +491,10 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </div>
 
-<!-- DELICATE AI -->
 <div id="delicate">
   <div class="da-label" data-r="up" data-i="da_label">SNOB Deployment</div>
   <div class="da-title" data-r="up" data-delay="1" data-i="da_title">Sanft. Chirurgisch.</div>
   <p class="da-sub" data-r="up" data-delay="2" data-i="da_sub">Wir verstehen beides — Tech und Business. Und wir wissen: die gehören zusammen. Wir spritzen dir nicht die Technologie und verschwinden, bevor's wehtut. Wir begleiten dich Schritt für Schritt:</p>
-
-  <div class="da-int-wrap" data-r="up" data-delay="3">
-    <div class="da-industry">
-      <div class="da-ind-q" data-i="da_ex_q">Beispiele aus der Praxis</div>
-      <div class="da-ind-chips">
-        <button class="da-chip" data-ex="frontdesk"     onclick="setDAExample('frontdesk')"><span data-i="dax_frontdesk">Front Desk</span></button>
-        <button class="da-chip" data-ex="websiteguide"  onclick="setDAExample('websiteguide')"><span data-i="dax_websiteguide">Website Guide</span></button>
-        <button class="da-chip" data-ex="hotelconcierge" onclick="setDAExample('hotelconcierge')"><span data-i="dax_hotelconcierge">Hotel Concierge</span></button>
-        <button class="da-chip" data-ex="surveys"        onclick="setDAExample('surveys')"><span data-i="dax_surveys">Business Surveys</span></button>
-      </div>
-    </div>
-    <div class="da-usecase-wrap" id="da-example-wrap">
-      <div class="da-usecase-hint" id="da-example-hint" data-i="da_ex_pick">← Beispiel wählen</div>
-      <div class="da-example-title" id="da-example-title"></div>
-      <p class="da-usecase-intro" id="da-example-tagline"></p>
-      <ul class="da-example-list" id="da-example-list"></ul>
-    </div>
-  </div>
-
-  <div class="da-int-wrap" data-r="up" data-delay="3" style="margin-top:8px;">
-    <div class="da-industry">
-      <div class="da-ind-q" data-i="da_ind_q">Oder nach Branche</div>
-      <div class="da-ind-chips">
-        <button class="da-chip" data-ind="pharma"   onclick="setDAIndustry('pharma')"><span data-i="dac_pharma">Pharma</span></button>
-        <button class="da-chip" data-ind="industrie" onclick="setDAIndustry('industrie')"><span data-i="dac_industrie">Industrie</span></button>
-        <button class="da-chip" data-ind="handel"   onclick="setDAIndustry('handel')"><span data-i="dac_handel">Handel</span></button>
-        <button class="da-chip" data-ind="gastro"   onclick="setDAIndustry('gastro')"><span data-i="dac_gastro">Gastronomie</span></button>
-        <button class="da-chip" data-ind="it"       onclick="setDAIndustry('it')"><span data-i="dac_it">IT & Komm.</span></button>
-        <button class="da-chip" data-ind="finanzen" onclick="setDAIndustry('finanzen')"><span data-i="dac_finanzen">Finanzen</span></button>
-        <button class="da-chip" data-ind="gesund"   onclick="setDAIndustry('gesund')"><span data-i="dac_gesund">Gesundheit</span></button>
-      </div>
-    </div>
-    <div class="da-usecase-wrap" id="da-usecase-wrap">
-      <div class="da-usecase-hint" id="da-usecase-hint" data-i="da_pick">← Branche wählen</div>
-      <p class="da-usecase-intro" id="da-usecase-intro"></p>
-      <ul class="da-usecase-list" id="da-usecase-list"></ul>
-    </div>
-  </div>
 
   <div class="da-blocks">
     <div class="da-block" data-r="up" data-delay="1" onclick="toggleDaBlock(this)">
@@ -582,9 +516,26 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b3b">Dann bauen wir — exakt auf dein Problem zugeschnitten. Kein generisches Produkt, sondern dein digitaler Mitarbeiter. Der mitwächst, nicht einfach nur läuft.</div></div>
     </div>
   </div>
+
+  <div class="da-int-wrap" data-r="up" data-delay="3">
+    <div class="da-industry">
+      <div class="da-ind-q" data-i="da_ex_q">Beispiele aus der Praxis</div>
+      <div class="da-ind-chips">
+        <button class="da-chip" data-ex="frontdesk"     onclick="setDAExample('frontdesk')"><span data-i="dax_frontdesk">Front Desk</span></button>
+        <button class="da-chip" data-ex="websiteguide"  onclick="setDAExample('websiteguide')"><span data-i="dax_websiteguide">Website Guide</span></button>
+        <button class="da-chip" data-ex="hotelconcierge" onclick="setDAExample('hotelconcierge')"><span data-i="dax_hotelconcierge">Hotel Concierge</span></button>
+        <button class="da-chip" data-ex="surveys"        onclick="setDAExample('surveys')"><span data-i="dax_surveys">Business Surveys</span></button>
+      </div>
+    </div>
+    <div class="da-usecase-wrap" id="da-example-wrap">
+      <div class="da-usecase-hint" id="da-example-hint" data-i="da_ex_pick">← Beispiel wählen</div>
+      <div class="da-example-title" id="da-example-title"></div>
+      <p class="da-usecase-intro" id="da-example-tagline"></p>
+      <ul class="da-example-list" id="da-example-list"></ul>
+    </div>
+  </div>
 </div>
 
-<!-- CTA 2 -->
 <div id="cta2">
   <div class="cta2-text" data-r="left" data-i="cta2_title">Fragen?<br>Ruf SNOB an.</div>
   <div class="cta2-right" data-r="right">
@@ -592,7 +543,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </div>
 
-<!-- LEGAL HUB v2 -->
 <div id="legalhub">
   <div class="lh-label" data-r="up" data-i="lh_lbl">Rechtsdokumente</div>
   <div class="lh-title" data-r="up" data-delay="1" data-i="lh_title">Information Center</div>
@@ -688,70 +638,33 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="lh-panel" id="lh-panel-docs">
     <div class="lh-doc-list">
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header">
-          <div class="lh-doc-header-l">
-            <span class="lh-doc-header-tag" data-i="lh_dtag1">Privacy · GDPR · Swiss FDAP</span>
-            <span class="lh-doc-header-name" data-i="lh_dname1">Datenschutzerklärung</span>
-          </div>
-          <span class="lh-doc-toggle">+</span>
-        </div>
+        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag1">Privacy · GDPR · Swiss FDAP</span><span class="lh-doc-header-name" data-i="lh_dname1">Datenschutzerklärung</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc1_body"></div>
       </div>
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header">
-          <div class="lh-doc-header-l">
-            <span class="lh-doc-header-tag" data-i="lh_dtag2">Terms · AGB</span>
-            <span class="lh-doc-header-name" data-i="lh_dname2">AGB / Terms &amp; Conditions</span>
-          </div>
-          <span class="lh-doc-toggle">+</span>
-        </div>
+        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag2">Terms · AGB</span><span class="lh-doc-header-name" data-i="lh_dname2">AGB / Terms &amp; Conditions</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc2_body"></div>
       </div>
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header">
-          <div class="lh-doc-header-l">
-            <span class="lh-doc-header-tag" data-i="lh_dtag3">DPA · AVV · GDPR Art. 28</span>
-            <span class="lh-doc-header-name" data-i="lh_dname3">Auftragsverarbeitungsvertrag (AVV)</span>
-          </div>
-          <span class="lh-doc-toggle">+</span>
-        </div>
+        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag3">DPA · AVV · GDPR Art. 28</span><span class="lh-doc-header-name" data-i="lh_dname3">Auftragsverarbeitungsvertrag (AVV)</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc3_body"></div>
       </div>
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header">
-          <div class="lh-doc-header-l">
-            <span class="lh-doc-header-tag" data-i="lh_dtag4">Security · Compliance</span>
-            <span class="lh-doc-header-name" data-i="lh_dname4">Technisch-organisatorische Massnahmen (TOMs)</span>
-          </div>
-          <span class="lh-doc-toggle">+</span>
-        </div>
+        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag4">Security · Compliance</span><span class="lh-doc-header-name" data-i="lh_dname4">Technisch-organisatorische Massnahmen (TOMs)</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc4_body"></div>
       </div>
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header">
-          <div class="lh-doc-header-l">
-            <span class="lh-doc-header-tag" data-i="lh_dtag5">Subprocessors · Vendors</span>
-            <span class="lh-doc-header-name" data-i="lh_dname5">Subprocessor-Liste</span>
-          </div>
-          <span class="lh-doc-toggle">+</span>
-        </div>
+        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag5">Subprocessors · Vendors</span><span class="lh-doc-header-name" data-i="lh_dname5">Subprocessor-Liste</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc5_body"></div>
       </div>
       <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header">
-          <div class="lh-doc-header-l">
-            <span class="lh-doc-header-tag" data-i="lh_dtag6">Legal · Impressum</span>
-            <span class="lh-doc-header-name" data-i="lh_dname6">Impressum</span>
-          </div>
-          <span class="lh-doc-toggle">+</span>
-        </div>
+        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag6">Legal · Impressum</span><span class="lh-doc-header-name" data-i="lh_dname6">Impressum</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc6_body"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">goSNOB.ai</div>
   <ul class="f-links">
@@ -783,35 +696,28 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <button class="cs" onclick="sendChat()">→</button>
     </div>
   </div>
-  <button class="fab-btn" id="fabBtn" onclick="toggleChat()">
-    <span class="ico-o">💬</span>
-    <span class="ico-cx">✕</span>
-  </button>
+  <button class="fab-btn" id="fabBtn" onclick="toggleChat()"><span class="ico-o">💬</span><span class="ico-cx">✕</span></button>
 </div>
 
 <script src="https://app.gosnob.ai/embed.js" data-assistant-id="f6d4221d-fada-4e4c-a384-0714b4f574c6"></script>
 
 <script>
 (function(){
-  var cx = document.getElementById('cx');
   var dot = document.getElementById('cx-dot');
   var ring = document.getElementById('cx-ring');
   var mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', function(e){
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px'; dot.style.top  = my + 'px';
-  });
+  document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
   document.addEventListener('mousedown', function(){ document.body.classList.add('cursor-click'); });
-  document.addEventListener('mouseup',   function(){ document.body.classList.remove('cursor-click'); });
+  document.addEventListener('mouseup', function(){ document.body.classList.remove('cursor-click'); });
   document.querySelectorAll('a,button,[onclick]').forEach(function(el){
     el.addEventListener('mouseenter', function(){ document.body.classList.add('cursor-hover'); });
     el.addEventListener('mouseleave', function(){ document.body.classList.remove('cursor-hover'); });
   });
-  function moveCursorTo(x, y){ mx = x; my = y; dot.style.left = x + 'px'; dot.style.top  = y + 'px'; }
-  document.addEventListener('touchstart', function(e){ var t = e.touches[0]; moveCursorTo(t.clientX, t.clientY); document.body.classList.add('cursor-click'); }, {passive:true});
-  document.addEventListener('touchmove', function(e){ var t = e.touches[0]; moveCursorTo(t.clientX, t.clientY); document.body.classList.remove('cursor-click'); }, {passive:true});
+  function moveCursorTo(x,y){ mx=x; my=y; dot.style.left=x+'px'; dot.style.top=y+'px'; }
+  document.addEventListener('touchstart', function(e){ var t=e.touches[0]; moveCursorTo(t.clientX,t.clientY); document.body.classList.add('cursor-click'); }, {passive:true});
+  document.addEventListener('touchmove', function(e){ var t=e.touches[0]; moveCursorTo(t.clientX,t.clientY); document.body.classList.remove('cursor-click'); }, {passive:true});
   document.addEventListener('touchend', function(){ document.body.classList.remove('cursor-click'); document.body.classList.remove('cursor-hover'); }, {passive:true});
-  function loop(){ rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top  = ry + 'px'; requestAnimationFrame(loop); }
+  function loop(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); }
   loop();
 })();
 
@@ -820,122 +726,115 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   window.addEventListener('scroll', function(){
     var s = document.documentElement.scrollTop;
     var h = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (s / h * 100) + '%';
+    bar.style.width = (s/h*100)+'%';
   }, {passive:true});
 })();
 
 (function(){
   var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
+  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY>60); }, {passive:true});
 })();
 
 (function(){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
-  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('[data-r]').forEach(function(el){ io.observe(el); });
 })();
 
 (function(){
   var hero = document.getElementById('hero');
-  var hw   = document.getElementById('hero-word');
+  var hw = document.getElementById('hero-word');
   var acro = document.getElementById('heroAcro');
   hero.addEventListener('mousemove', function(e){
-    var rx = (e.clientX / window.innerWidth  - 0.5) * 12;
-    var ry = (e.clientY / window.innerHeight - 0.5) * 8;
-    hw.style.transform   = 'translate(' + rx + 'px,' + ry + 'px)';
-    if(acro) acro.style.transform = 'translate(' + (-rx*.4) + 'px,' + (-ry*.4) + 'px)';
+    var rx = (e.clientX/window.innerWidth-0.5)*12;
+    var ry = (e.clientY/window.innerHeight-0.5)*8;
+    hw.style.transform = 'translate('+rx+'px,'+ry+'px)';
+    if(acro) acro.style.transform = 'translate('+(-rx*.4)+'px,'+(-ry*.4)+'px)';
   });
-  hero.addEventListener('mouseleave', function(){ hw.style.transform = ''; if(acro) acro.style.transform = ''; });
+  hero.addEventListener('mouseleave', function(){ hw.style.transform=''; if(acro) acro.style.transform=''; });
 })();
 
 (function(){
   document.querySelectorAll('.mag').forEach(function(btn){
     btn.addEventListener('mousemove', function(e){
       var r = btn.getBoundingClientRect();
-      var x = e.clientX - r.left - r.width  / 2;
-      var y = e.clientY - r.top  - r.height / 2;
-      btn.style.transform = 'translate(' + x*.25 + 'px,' + y*.25 + 'px)';
+      var x = e.clientX-r.left-r.width/2;
+      var y = e.clientY-r.top-r.height/2;
+      btn.style.transform = 'translate('+x*.25+'px,'+y*.25+'px)';
     });
-    btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    btn.addEventListener('mouseleave', function(){ btn.style.transform=''; });
   });
 })();
 
 (function(){
   function scramble(el, target, dur){
-    var start = null;
-    var targetNum = parseInt(target);
+    var start=null; var targetNum=parseInt(target);
     function step(ts){
-      if(!start) start = ts;
-      var prog = Math.min((ts - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - prog, 3);
-      if(prog < 0.85){
-        var rand = Math.floor(Math.random() * 1000).toString().padStart(target.length, '0');
-        el.textContent = rand.slice(-target.length);
-      } else {
-        var cur = Math.round(eased * targetNum);
-        el.textContent = cur;
-      }
-      if(prog < 1) requestAnimationFrame(step);
-      else el.textContent = target;
+      if(!start) start=ts;
+      var prog=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-prog,3);
+      if(prog<0.85){
+        var rand=Math.floor(Math.random()*1000).toString().padStart(target.length,'0');
+        el.textContent=rand.slice(-target.length);
+      } else { el.textContent=Math.round(eased*targetNum); }
+      if(prog<1) requestAnimationFrame(step); else el.textContent=target;
     }
     requestAnimationFrame(step);
   }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
-        var el = e.target;
-        var target = el.getAttribute('data-count');
-        if(target) scramble(el, target, 1200);
+        var el=e.target; var target=el.getAttribute('data-count');
+        if(target) scramble(el,target,1200);
         io.unobserve(el);
       }
     });
-  }, {threshold: 0.5});
+  }, {threshold:0.5});
   document.querySelectorAll('[data-count]').forEach(function(el){ io.observe(el); });
 })();
 
 var T = {
-  nav_signin:  {de:'Anmelden',en:'Sign In',fr:'Connexion'},
-  swiss_l1:    {de:'Swiss Hosted. Swiss Secure. Swiss Made.',en:'Swiss Hosted. Swiss Secure. Swiss Made.',fr:'Hébergé en Suisse. Sécurisé. Swiss Made.'},
-  swiss_l2:    {de:'GDPR · revDSG konform · Maximale Sicherheit',en:'GDPR · revDSG compliant · Maximum Security',fr:'Conforme GDPR · revDSG · Sécurité maximale'},
-  swiss_l3:    {de:'Auf Wunsch direkt beim Auftraggeber gehostet.',en:'Hosted on-premise on request.',fr:'Hébergement chez le mandataire sur demande.'},
-  hero_hint:   {de:'— Tippen —',en:'— Tap —',fr:'— Appuyer —'},
-  hero_tagline2: {de:'AI Voice Agents. Built by experts.',en:'AI voice agents. Built by experts.',fr:'Agents vocaux IA. Conçus par des experts.'},
-  acro_s:      {de:'Sophisticated',en:'Sophisticated',fr:'Sophisticated'},
-  acro_n:      {de:'Network',en:'Network',fr:'Network'},
-  acro_o:      {de:'Operated',en:'Operated',fr:'Operated'},
-  acro_b:      {de:'Brain',en:'Brain',fr:'Brain'},
-  cta1_lbl:    {de:'Dein erster SNOB-Anruf',en:'Your first SNOB call',fr:'Votre premier appel SNOB'},
-  cta1_title:  {de:'Hör es selbst.',en:'Hear it yourself.',fr:'Écoutez par vous-même.'},
-  call_btn:    {de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
-  cta1_note:   {de:'Kostenlos. Kein Pitch. Nur Antworten.',en:'Free. No pitch. Just answers.',fr:'Gratuit. Sans pitch. Juste des réponses.'},
-  ws_title:    {de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
-  ws_desc:     {de:'Nimmt ab. Schreibt zurück. Bucht den Termin. 24/7, in jeder Sprache — und beschwert sich nie über Montage.',en:'Picks up. Writes back. Books the appointment. 24/7, in any language — and never complains about Mondays.',fr:'Décroche. Répond. Prend le rendez-vous. 24/7, dans toutes les langues — et ne se plaint jamais du lundi.'},
-  ws_as:       {de:'Er denkt mit. Versteht Kontext. Reagiert intelligent. Navigiert auch komplexe Gesprächsszenarien.',en:'Thinks ahead. Understands context. Responds intelligently. Navigates complex conversation scenarios.',fr:'Anticipe. Comprend le contexte. Répond intelligemment. Gère aussi les scénarios de conversation complexes.'},
-  ws_an:       {de:'Vernetzt mit 300+ Tools — Kalendern, E-Mail-Clients, CRMs, Bestellungen & Lagerbestand, Task-Management, Formularen & Tabellen — und mehr über API & Webhooks.',en:'Connected to 300+ tools — calendars, email clients, CRMs, orders & inventory, task management, forms & spreadsheets — and more over API & webhooks.',fr:'Connecté à plus de 300 outils — calendriers, clients e-mail, CRM, commandes & inventaire, gestion de tâches, formulaires & tableurs — et plus via API & webhooks.'},
-  ws_ao:       {de:'Läuft autonom, rund um die Uhr. Analysiert Ergebnisse, meldet Auffälligkeiten, eskaliert bei Bedarf, erledigt Folgeaktionen.',en:'Runs autonomously 24/7. Analyzes results, flags issues, escalates when needed, follows up with actions.',fr:"Fonctionne de manière autonome, 24/7. Analyse les résultats, signale les anomalies, escalade si nécessaire, effectue les actions de suivi."},
-  ws_ab:       {de:'Lernt aus einer massgeschneiderten Wissensbibliothek (Web, Text, PDF). Vollständig unter deiner Kontrolle.',en:'Learns from a bespoke knowledge library (web, text, PDF). Fully under your control.',fr:"Apprend à partir d'une bibliothèque de connaissances sur mesure (web, texte, PDF). Entièrement sous votre contrôle."},
-  calc_lbl:    {de:'Kalkulator',en:'Calculator',fr:'Calculateur'},
-  calc_title:  {de:'Wie viel<br>brauchst du?',en:'How much<br>do you need?',fr:'Combien<br>vous faut-il?'},
-  calc_sub:    {de:'Beweg den Slider.',en:'Move the slider.',fr:'Bougez le curseur.'},
-  calc_unit:   {de:'Geschätzte<br>Min./Monat',en:'Estimated<br>Min./Month',fr:'Min. estimées<br>/Mois'},
-  cta_link:    {de:'Anfragen →',en:'Enquire →',fr:'Demander →'},
-  appt_lbl:    {de:'Kundentermine',en:'Client appointments',fr:'Rendez-vous clients'},
-  appt_null:   {de:'Keine Termine.',en:"We don't take appointments.",fr:'Pas de rendez-vous.'},
-  appt_chill:  {de:'Wenige Termine/Woche.',en:'Few appointments per week.',fr:'Quelques rendez-vous/semaine.'},
-  appt_buzz:   {de:'Mehrere Terminarten, regelmässig.',en:'Several appointment types, regular volume.',fr:'Plusieurs types, volume régulier.'},
-  appt_hectic: {de:'Viele Terminarten, hohes Volumen.',en:'Many appointment types, high volume.',fr:'Nombreux types, volume maximal.'},
-  pr_lbl:      {de:'Pricing',en:'Pricing',fr:'Tarifs'},
-  pr_title:    {de:'Klar.<br>Direkt.',en:'Clear.<br>Direct.',fr:'Clair.<br>Direct.'},
-  pr_t1:       {de:'GoSTART',en:'GoSTART',fr:'GoSTART'},
-  pr_t2:       {de:'GoFULL',en:'GoFULL',fr:'GoFULL'},
-  pr_t3:       {de:'Corporate',en:'Corporate',fr:'Corporate'},
-  pr_chf:      {de:'CHF / Monat',en:'CHF / Month',fr:'CHF / Mois'},
-  pr_corp_n:   {de:'AUF<br>ANFRAGE',en:'ON<br>REQUEST',fr:'SUR<br>DEMANDE'},
-  pr_corp_s:   {de:'Individuell',en:'Individual',fr:'Individuel'},
-  pr_btn1:     {de:'Anfragen',en:'Get started',fr:'Démarrer'},
-  pr_btn2:     {de:'Gespräch',en:'Talk',fr:'Parler'},
-  pr_btn3:     {de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
+  nav_signin:{de:'Anmelden',en:'Sign In',fr:'Connexion'},
+  swiss_l1:{de:'Swiss Hosted. Swiss Secure. Swiss Made.',en:'Swiss Hosted. Swiss Secure. Swiss Made.',fr:'Hébergé en Suisse. Sécurisé. Swiss Made.'},
+  swiss_l2:{de:'GDPR · revDSG konform · Maximale Sicherheit',en:'GDPR · revDSG compliant · Maximum Security',fr:'Conforme GDPR · revDSG · Sécurité maximale'},
+  swiss_l3:{de:'Auf Wunsch direkt beim Auftraggeber gehostet.',en:'Hosted on-premise on request.',fr:'Hébergement chez le mandataire sur demande.'},
+  hero_hint:{de:'— Tippen —',en:'— Tap —',fr:'— Appuyer —'},
+  hero_tagline2:{de:'AI Voice Agents. Built by experts.',en:'AI voice agents. Built by experts.',fr:'Agents vocaux IA. Conçus par des experts.'},
+  acro_s:{de:'Sophisticated',en:'Sophisticated',fr:'Sophisticated'},
+  acro_n:{de:'Network',en:'Network',fr:'Network'},
+  acro_o:{de:'Operated',en:'Operated',fr:'Operated'},
+  acro_b:{de:'Brain',en:'Brain',fr:'Brain'},
+  cta1_lbl:{de:'Dein erster SNOB-Anruf',en:'Your first SNOB call',fr:'Votre premier appel SNOB'},
+  cta1_title:{de:'Hör es selbst.',en:'Hear it yourself.',fr:'Écoutez par vous-même.'},
+  call_btn:{de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
+  cta1_note:{de:'Kostenlos. Kein Pitch. Nur Antworten.',en:'Free. No pitch. Just answers.',fr:'Gratuit. Sans pitch. Juste des réponses.'},
+  ws_title:{de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
+  ws_as:{de:'Er denkt mit. Versteht Kontext. Reagiert intelligent. Navigiert auch komplexe Gesprächsszenarien.',en:'Thinks ahead. Understands context. Responds intelligently. Navigates complex conversation scenarios.',fr:'Anticipe. Comprend le contexte. Répond intelligemment. Gère aussi les scénarios de conversation complexes.'},
+  ws_an:{de:'Vernetzt mit 300+ Tools — Kalendern, E-Mail-Clients, CRMs, Bestellungen & Lagerbestand — und mehr über API & Webhooks.',en:'Connected to 300+ tools — calendars, email clients, CRMs, orders & inventory — and more over API & webhooks.',fr:'Connecté à plus de 300 outils — calendriers, clients e-mail, CRM, commandes & inventaire — et plus via API & webhooks.'},
+  ws_ao:{de:'Läuft autonom, rund um die Uhr. Analysiert Ergebnisse, meldet Auffälligkeiten, eskaliert bei Bedarf.',en:'Runs autonomously 24/7. Analyzes results, flags issues, escalates when needed.',fr:'Fonctionne de manière autonome, 24/7. Analyse les résultats, signale les anomalies, escalade si nécessaire.'},
+  ws_ab:{de:'Lernt aus einer massgeschneiderten Wissensbibliothek (Web, Text, PDF). Vollständig unter deiner Kontrolle.',en:'Learns from a bespoke knowledge library (web, text, PDF). Fully under your control.',fr:"Apprend à partir d'une bibliothèque de connaissances sur mesure (web, texte, PDF). Entièrement sous votre contrôle."},
+  calc_lbl:{de:'Kalkulator',en:'Calculator',fr:'Calculateur'},
+  calc_title:{de:'Wie viel<br>brauchst du?',en:'How much<br>do you need?',fr:'Combien<br>vous faut-il?'},
+  calc_sub:{de:'Beweg den Slider.',en:'Move the slider.',fr:'Bougez le curseur.'},
+  calc_unit:{de:'Geschätzte<br>Min./Monat',en:'Estimated<br>Min./Month',fr:'Min. estimées<br>/Mois'},
+  cta_link:{de:'Anfragen →',en:'Enquire →',fr:'Demander →'},
+  appt_lbl:{de:'Kundentermine',en:'Client appointments',fr:'Rendez-vous clients'},
+  appt_null:{de:'Keine Termine.',en:"We don't take appointments.",fr:'Pas de rendez-vous.'},
+  appt_chill:{de:'Wenige Termine/Woche.',en:'Few appointments per week.',fr:'Quelques rendez-vous/semaine.'},
+  appt_buzz:{de:'Mehrere Terminarten, regelmässig.',en:'Several appointment types, regular volume.',fr:'Plusieurs types, volume régulier.'},
+  appt_hectic:{de:'Viele Terminarten, hohes Volumen.',en:'Many appointment types, high volume.',fr:'Nombreux types, volume maximal.'},
+  pr_lbl:{de:'Pricing',en:'Pricing',fr:'Tarifs'},
+  pr_title:{de:'Klar.<br>Direkt.',en:'Clear.<br>Direct.',fr:'Clair.<br>Direct.'},
+  pr_t1:{de:'GoSTART',en:'GoSTART',fr:'GoSTART'},
+  pr_t2:{de:'GoFULL',en:'GoFULL',fr:'GoFULL'},
+  pr_t3:{de:'Corporate',en:'Corporate',fr:'Corporate'},
+  pr_chf:{de:'CHF / Monat',en:'CHF / Month',fr:'CHF / Mois'},
+  pr_corp_n:{de:'AUF<br>ANFRAGE',en:'ON<br>REQUEST',fr:'SUR<br>DEMANDE'},
+  pr_corp_s:{de:'Individuell',en:'Individual',fr:'Individuel'},
+  pr_btn1:{de:'Anfragen',en:'Get started',fr:'Démarrer'},
+  pr_btn2:{de:'Gespräch',en:'Talk',fr:'Parler'},
+  pr_btn3:{de:'CALL SNOB',en:'CALL SNOB',fr:'APPELER SNOB'},
   p1_01:{de:'AI Concierge Voice Agent',en:'AI Concierge Voice Agent',fr:'Agent vocal IA concierge'},
   p1_02:{de:'Dedizierte Telefonnummer',en:'Dedicated phone line',fr:'Ligne téléphonique dédiée'},
   p1_03:{de:'Editierbare Wissensbibliothek',en:'Editable knowledge library',fr:'Bibliothèque de connaissances éditable'},
@@ -971,263 +870,222 @@ var T = {
   p3_10:{de:'API-Architektur',en:'API architecture',fr:'Architecture API'},
   p3_11:{de:'Dedicated Manager',en:'Dedicated manager',fr:'Gestionnaire dédié'},
   p3_12:{de:'Aktives Performance-Monitoring',en:'Active performance monitoring',fr:'Surveillance active des performances'},
-  da_label:    {de:'SNOB Deployment',en:'SNOB Deployment',fr:'SNOB Deployment'},
-  da_title:    {de:'Sanft. Chirurgisch.',en:'Delicate. Surgical.',fr:'Délicat. Chirurgical.'},
-  da_sub:      {de:"Wir verstehen beides — Tech und Business. Und wir wissen: die gehören zusammen. Wir spritzen dir nicht die Technologie und verschwinden, bevor's wehtut. Wir begleiten dich Schritt für Schritt:",en:"We understand both — tech and biz. We know they go hand in hand. We don't inject the tech and run away before the pain hits. We guide you step by step:",fr:"Nous comprenons les deux — la tech et le business. Et nous savons qu'ils vont de pair. On ne vous injecte pas la techno pour disparaître avant que ça fasse mal. On vous accompagne, étape par étape :"},
-  da_b1t:      {de:'Mappen',en:'Map',fr:'Cartographier'},
-  da_b1s:      {de:'Dein Business verstehen. Prozesse. Job-to-be-done. Auf Top-Consulting-Niveau.',en:'Understand your business. Process. Job-to-be-done. At top-tier consulting grade.',fr:'Comprendre votre entreprise. Processus. Job-to-be-done. Niveau conseil stratégique.'},
-  da_b1b:      {de:"Wir verstehen dein Geschäft zuerst — Prozesse, Job-to-be-done, echte Hebel. Beratungsniveau, nicht Bauchgefühl. Bevor auch nur eine Zeile Code entsteht.",en:'We understand your business first — processes, job-to-be-done, real leverage points. Consulting-grade, not gut feeling. Before a single line of code.',fr:"Nous comprenons d'abord votre entreprise — processus, job-to-be-done, vrais leviers. Niveau conseil, pas au feeling. Avant la moindre ligne de code."},
-  da_b2t:      {de:'Empfehlen',en:'Recommend',fr:'Recommander'},
-  da_b2s:      {de:"Gemeinsam SNOBs Rollenprofil bauen. Was funktioniert? Was nervt? Wir zeigen's dir.",en:"Build SNOB's role profile together. What works? What sucks? We show you.",fr:"Construire ensemble le profil de rôle de SNOB. Qu'est-ce qui marche? Qu'est-ce qui gonfle? On vous montre."},
-  da_b2b:      {de:'Wo SNOB wirklich Wirkung hat, zeigen wir dir ehrlich — und wo nicht. Kein Schönreden, kein Upselling um des Upsellings willen.',en:"We show you honestly where SNOB really makes an impact — and where it doesn't. No sugarcoating, no upselling for the sake of it.",fr:"On vous montre honnêtement où SNOB fait vraiment la différence — et où non. Pas d'enjolivement, pas de vente forcée."},
-  da_b3t:      {de:'Bauen',en:'Build',fr:'Construire'},
-  da_b3s:      {de:'SNOB wird massgeschneidert für den perfekten Fit. Kein DIY. Nichts von der Stange.',en:'SNOB gets tailor-made for perfect fit. No DIY. No off-the-shelf.',fr:'SNOB est fait sur mesure, pour un ajustement parfait. Pas de bricolage. Rien de standard.'},
-  da_b3b:      {de:'Dann bauen wir — exakt auf dein Problem zugeschnitten. Kein generisches Produkt, sondern dein digitaler Mitarbeiter. Der mitwächst, nicht einfach nur läuft.',en:'Then we build — tailored exactly to your problem. Not a generic product, but your digital employee. One that grows with you, not just runs.',fr:"Ensuite on construit — exactement pour votre problème. Pas un produit générique, mais votre employé numérique. Qui évolue avec vous, pas juste qui tourne."},
-  da_ind_q:      {de:'Oder nach Branche',en:'Or by industry',fr:'Ou par secteur'},
-  da_ex_q:       {de:'Beispiele aus der Praxis',en:'Examples from the field',fr:'Exemples concrets'},
-  da_ex_pick:    {de:'← Beispiel wählen',en:'← Select example',fr:'← Choisir un exemple'},
-  dax_frontdesk:      {de:'Front Desk',en:'Front Desk',fr:'Front Desk'},
-  dax_websiteguide:   {de:'Website Guide',en:'Website Guide',fr:'Website Guide'},
-  dax_hotelconcierge: {de:'Hotel Concierge',en:'Hotel Concierge',fr:'Hotel Concierge'},
-  dax_surveys:        {de:'Business Surveys',en:'Business Surveys',fr:'Business Surveys'},
+  da_label:{de:'SNOB Deployment',en:'SNOB Deployment',fr:'SNOB Deployment'},
+  da_title:{de:'Sanft. Chirurgisch.',en:'Delicate. Surgical.',fr:'Délicat. Chirurgical.'},
+  da_sub:{de:"Wir verstehen beides — Tech und Business. Und wir wissen: die gehören zusammen. Wir spritzen dir nicht die Technologie und verschwinden, bevor's wehtut. Wir begleiten dich Schritt für Schritt:",en:"We understand both — tech and biz. We know they go hand in hand. We don't inject the tech and run away before the pain hits. We guide you step by step:",fr:"Nous comprenons les deux — la tech et le business. Et nous savons qu'ils vont de pair. On ne vous injecte pas la techno pour disparaître avant que ça fasse mal. On vous accompagne, étape par étape :"},
+  da_b1t:{de:'Mappen',en:'Map',fr:'Cartographier'},
+  da_b1s:{de:'Dein Business verstehen. Prozesse. Job-to-be-done. Auf Top-Consulting-Niveau.',en:'Understand your business. Process. Job-to-be-done. At top-tier consulting grade.',fr:'Comprendre votre entreprise. Processus. Job-to-be-done. Niveau conseil stratégique.'},
+  da_b1b:{de:"Wir verstehen dein Geschäft zuerst — Prozesse, Job-to-be-done, echte Hebel. Beratungsniveau, nicht Bauchgefühl. Bevor auch nur eine Zeile Code entsteht.",en:'We understand your business first — processes, job-to-be-done, real leverage points. Consulting-grade, not gut feeling. Before a single line of code.',fr:"Nous comprenons d'abord votre entreprise — processus, job-to-be-done, vrais leviers. Niveau conseil, pas au feeling. Avant la moindre ligne de code."},
+  da_b2t:{de:'Empfehlen',en:'Recommend',fr:'Recommander'},
+  da_b2s:{de:"Gemeinsam SNOBs Rollenprofil bauen. Was funktioniert? Was nervt? Wir zeigen's dir.",en:"Build SNOB's role profile together. What works? What sucks? We show you.",fr:"Construire ensemble le profil de rôle de SNOB. Qu'est-ce qui marche? Qu'est-ce qui gonfle? On vous montre."},
+  da_b2b:{de:'Wo SNOB wirklich Wirkung hat, zeigen wir dir ehrlich — und wo nicht. Kein Schönreden, kein Upselling um des Upsellings willen.',en:"We show you honestly where SNOB really makes an impact — and where it doesn't. No sugarcoating, no upselling for the sake of it.",fr:"On vous montre honnêtement où SNOB fait vraiment la différence — et où non. Pas d'enjolivement, pas de vente forcée."},
+  da_b3t:{de:'Bauen',en:'Build',fr:'Construire'},
+  da_b3s:{de:'SNOB wird massgeschneidert für den perfekten Fit. Kein DIY. Nichts von der Stange.',en:'SNOB gets tailor-made for perfect fit. No DIY. No off-the-shelf.',fr:'SNOB est fait sur mesure, pour un ajustement parfait. Pas de bricolage. Rien de standard.'},
+  da_b3b:{de:'Dann bauen wir — exakt auf dein Problem zugeschnitten. Kein generisches Produkt, sondern dein digitaler Mitarbeiter. Der mitwächst, nicht einfach nur läuft.',en:'Then we build — tailored exactly to your problem. Not a generic product, but your digital employee. One that grows with you, not just runs.',fr:"Ensuite on construit — exactement pour votre problème. Pas un produit générique, mais votre employé numérique. Qui évolue avec vous, pas juste qui tourne."},
+  da_ex_q:{de:'Beispiele aus der Praxis',en:'Examples from the field',fr:'Exemples concrets'},
+  da_ex_pick:{de:'← Beispiel wählen',en:'← Select example',fr:'← Choisir un exemple'},
+  dax_frontdesk:{de:'Front Desk',en:'Front Desk',fr:'Front Desk'},
+  dax_websiteguide:{de:'Website Guide',en:'Website Guide',fr:'Website Guide'},
+  dax_hotelconcierge:{de:'Hotel Concierge',en:'Hotel Concierge',fr:'Hotel Concierge'},
+  dax_surveys:{de:'Business Surveys',en:'Business Surveys',fr:'Business Surveys'},
   da_ex_title_frontdesk:{de:'SNOB Front Desk',en:'SNOB Front Desk',fr:'SNOB Front Desk'},
   da_ex_tag_frontdesk:{de:'Ein Empfang, der nie zu beschäftigt ist. Oder schlecht gelaunt.',en:'A front desk that is never too busy (or moody).',fr:"Un accueil qui n'est jamais trop occupé. Ni de mauvaise humeur."},
   da_ex_bul_frontdesk:{
-    de:[['Nimmt jeden Anruf ab, 24/7.','Abends, Wochenenden, Feiertage. Keine Warteschlaufe, keine Combox, keine verpasste Chance. 100+ Sprachen.'],
-        ['Bucht, verschiebt, storniert Termine.','Live-Terminierung während des Gesprächs. Mehrere Kalender und Terminarten, null Doppelbuchungen.'],
-        ['Kennt dein Geschäft in- und auswendig.','Leistungen, Preise, Richtlinien, Team. Antwortet aus deiner Wissensbibliothek. Saubere Übergabe an Menschen, wenn nötig — kein Rätselraten.'],
-        ['Meldet zurück, markiert, eskaliert.',"Zusammenfassung, Transkript, Aufnahme, Aktionen — direkt in dein Postfach, plus Dashboard."],
-        ['Kostet einen Bruchteil.',"Weit unter 1'500 CHF/Monat für eine Teilzeit-Empfangskraft. Keine Einarbeitung, keine Krankheitstage, kein HR-Aufwand."]],
-    en:[['Answers every call, 24/7.','Evenings, weekends, holidays. No hold times, no voicemail, no missed opportunities. 100+ languages.'],
-        ['Books, reschedules, cancels appointments.','Live scheduling during the call. Multiple calendars and appointment types, zero double-bookings.'],
-        ['Knows your business inside out.','Services, prices, policies, team. Answers from your knowledge base. Smooth call handovers when needed — no guessing.'],
-        ['Reports back, flags and escalates.','Summary, transcript, recording, actions — straight to your inbox, plus a dashboard.'],
-        ['Operates at a fraction of the cost.','Way below 1,500 CHF/month for a part-time receptionist. No training, no sick days, no HR.']],
-    fr:[['Répond à chaque appel, 24/7.',"Soirs, week-ends, jours fériés. Pas d'attente, pas de messagerie vocale, pas d'occasion manquée. 100+ langues."],
-        ['Réserve, reporte, annule les rendez-vous.','Planification en direct pendant l\'appel. Plusieurs agendas et types de rendez-vous, zéro double réservation.'],
-        ['Connaît votre entreprise sur le bout des doigts.','Services, prix, politiques, équipe. Répond depuis votre base de connaissances. Transfert fluide vers un humain si besoin — sans tâtonner.'],
-        ['Rapporte, signale, escalade.','Résumé, transcription, enregistrement, actions — directement dans votre boîte mail, plus un tableau de bord.'],
-        ['Coûte une fraction du prix.','Bien en dessous de 1 500 CHF/mois pour une réceptionniste à temps partiel. Pas de formation, pas de congés maladie, pas de RH.']]
+    de:[['24/7 erreichbar.','Keine Warteschlaufe, keine Combox. 100+ Sprachen.'],
+        ['Bucht & verschiebt live.','Mehrere Kalender, null Doppelbuchungen.'],
+        ['Kennt dein Geschäft.','Preise, Team, Richtlinien — aus deiner Wissensbibliothek.'],
+        ['Meldet & eskaliert.','Zusammenfassung, Transkript direkt in dein Postfach.'],
+        ['Bruchteil der Kosten.',"Weit unter 1'500 CHF/Monat, ohne HR-Aufwand."]],
+    en:[['Available 24/7.','No hold times, no voicemail. 100+ languages.'],
+        ['Books live.','Multiple calendars, zero double-bookings.'],
+        ['Knows your business.','Prices, team, policies — from your knowledge base.'],
+        ['Reports & escalates.','Summary, transcript, straight to your inbox.'],
+        ['A fraction of the cost.','Way below 1,500 CHF/month, no HR overhead.']],
+    fr:[['Disponible 24/7.',"Pas d'attente, pas de messagerie. 100+ langues."],
+        ['Réserve en direct.','Plusieurs agendas, zéro double réservation.'],
+        ['Connaît votre entreprise.','Prix, équipe, politiques — depuis votre base de connaissances.'],
+        ['Rapporte & escalade.','Résumé, transcription, dans votre boîte mail.'],
+        ['Une fraction du coût.','Bien en dessous de 1 500 CHF/mois, sans RH.']]
   },
   da_ex_title_websiteguide:{de:'SNOB Website Guide',en:'SNOB Website Guide',fr:'SNOB Website Guide'},
   da_ex_tag_websiteguide:{de:'Eine Website, die mit dir spricht — live und persönlich.',en:'A website that talks to you — live and personal.',fr:'Un site qui vous parle — en direct et personnellement.'},
   da_ex_bul_websiteguide:{
-    de:[['Gibt stummen Seiten eine Stimme.','Kein Menü-Gewühl, kein Scrollen durch FAQ-Wüsten. Sag SNOB, was du suchst, den Rest übernimmt er. International? Kein Problem.'],
-        ['Kennt den Content in- und auswendig.','Fasst zusammen, beantwortet, erklärt fast alles. Kein Skript-Chatbot — ein echter Guide.'],
-        ['Macht aus Fragen Taten.','Antwortet zu Lager, Grössen, Farben, Verfügbarkeit. Empfiehlt Produkte nach geäusserten Vorlieben. Führt zur richtigen Wahl — und zur Kasse.'],
-        ['Verwöhnt Stammkunden.','Bestellstatus, Kaufhistorie, massgeschneiderte Empfehlungen, Feedback. Baut ein Präferenzprofil im Gespräch auf — reibungslos.'],
-        ['Lässt niemanden hängen.','Wenn SNOB nicht weiterweiss, öffnet er ein Support-Ticket mit vollem Kontext. Der Besucher geht weiter. Dein Team übernimmt.']],
-    en:[['Adds voice to silent pages.',"No menu-diving, no scrolling through Q&As. Tell SNOB what you're after, he's got you from there. International? No hay problema."],
-        ['Knows the content inside out.','Summarizes, answers and explains just about anything. Not a scripted chatbot — a personal guide.'],
-        ['Converts questions into actions.','Answers on stock, sizes, colors, availability. Recommends products matching stated preferences. Guides to the right choice, then to checkout.'],
-        ['Pampers returning customers.','Order status, purchase history, tailored recommendations, feedback. Builds a preference profile through conversation — zero friction.'],
-        ["Never leaves them stuck.",'If it can\'t answer, it logs a support ticket with full context. The visitor moves on. Your team dives in.']],
-    fr:[['Donne une voix aux pages silencieuses.','Fini de fouiller les menus, de scroller les FAQ. Dites à SNOB ce que vous cherchez, il s\'occupe du reste. International? No hay problema.'],
-        ['Connaît le contenu sur le bout des doigts.','Résume, répond, explique presque tout. Pas un chatbot scripté — un vrai guide.'],
-        ['Transforme les questions en actions.','Répond sur stock, tailles, couleurs, disponibilité. Recommande des produits selon vos préférences. Guide vers le bon choix, puis à la caisse.'],
-        ['Chouchoute les clients fidèles.',"Statut de commande, historique d'achats, recommandations sur mesure, feedback. Construit un profil de préférences en conversation — sans friction."],
-        ['Ne laisse jamais personne bloqué.','S\'il ne sait pas répondre, il ouvre un ticket support avec tout le contexte. Le visiteur continue. Votre équipe prend le relais.']]
+    de:[['Gibt Seiten eine Stimme.','Kein Menü-Gewühl. Sag, was du suchst.'],
+        ['Kennt den Content.','Fasst zusammen, erklärt — echter Guide, kein Skript.'],
+        ['Macht aus Fragen Taten.','Lager, Grössen, Empfehlungen — bis zur Kasse.'],
+        ['Verwöhnt Stammkunden.','Bestellstatus, Präferenzprofil, reibungslos.'],
+        ['Lässt niemanden hängen.','Öffnet ein Support-Ticket mit vollem Kontext.']],
+    en:[['Adds voice to pages.',"No menu-diving. Tell SNOB what you're after."],
+        ['Knows the content.','Summarizes, explains — a real guide, not a script.'],
+        ['Converts questions to actions.','Stock, sizes, recommendations — to checkout.'],
+        ['Pampers returning customers.','Order status, preference profile, zero friction.'],
+        ['Never leaves them stuck.','Logs a support ticket with full context.']],
+    fr:[['Donne une voix aux pages.','Fini de fouiller les menus.'],
+        ['Connaît le contenu.','Résume, explique — un vrai guide.'],
+        ['Transforme les questions en actions.','Stock, tailles, recommandations — jusqu\'à la caisse.'],
+        ['Chouchoute les clients fidèles.','Statut de commande, profil de préférences.'],
+        ['Ne laisse jamais personne bloqué.','Ouvre un ticket support avec tout le contexte.']]
   },
   da_ex_title_hotelconcierge:{de:'SNOB Hotel Concierge',en:'SNOB Hotel Concierge',fr:'SNOB Hotel Concierge'},
   da_ex_tag_hotelconcierge:{de:'Ein persönlicher Concierge für jeden Gast. Jeden Tag.',en:'A personal concierge for every guest. Every day.',fr:'Un concierge personnel pour chaque client. Chaque jour.'},
   da_ex_bul_hotelconcierge:{
-    de:[['Beantwortet alles, Tag und Nacht.','Hotel, Einrichtungen, Sehenswürdigkeiten, Öffnungszeiten, Wetter. Jede Sprache, Chat oder Anruf.'],
-        ['Plant den perfekten Tag.','Sag, worauf du Lust hast, und bekomm ein Programm passend zu Wetter, Kindern, Tempo.'],
-        ['Bucht sofort.','Spa, Massage, Pool, Tische, Sportanlagen. Bestätigt direkt im Gespräch.'],
-        ['Begleitet weiter.','Kuratiertes Lokalwissen plus Live-Infos in der Tasche — Gäste erkunden wie Einheimische, nicht wie Touristen.'],
-        ['Hebt deinen Concierge aufs nächste Level.','Dein Team beantwortet nicht mehr nur Fragen, sondern steuert Agenten-Fähigkeiten — für unvergessliche Aufenthalte.']],
-    en:[['Answers everything, day or night.','Hotel, facilities, attractions, opening hours, weather. Any language, chat or phone.'],
-        ['Plans the perfect day.','Say what you feel like, get a program that fits the weather, the kids, the pace.'],
-        ['Books it on the spot.','Spa, massage, pool, tables, sport facilities. Confirmed in the conversation.'],
-        ['Comes with them.','Curated local knowledge plus live info in their pocket, so guests explore like regulars, not tourists.'],
-        ['Elevates your concierge.','Your team moves from answering questions to managing agent capabilities, creating memorable stays for every guest.']],
-    fr:[['Répond à tout, jour et nuit.','Hôtel, installations, attractions, horaires, météo. Toutes langues, chat ou téléphone.'],
-        ['Planifie la journée parfaite.','Dites ce qui vous tente, recevez un programme adapté à la météo, aux enfants, au rythme.'],
-        ['Réserve sur-le-champ.','Spa, massage, piscine, tables, installations sportives. Confirmé pendant la conversation.'],
-        ['Les accompagne partout.','Savoir local sélectionné plus infos en direct dans leur poche — les clients explorent comme des habitués, pas comme des touristes.'],
-        ['Fait passer votre concierge au niveau supérieur.',"Votre équipe ne répond plus seulement aux questions, elle pilote les capacités de l'agent — pour des séjours mémorables."]]
+    de:[['Beantwortet alles, Tag & Nacht.','Hotel, Sehenswürdigkeiten, Wetter. Jede Sprache.'],
+        ['Plant den perfekten Tag.','Programm passend zu Wetter, Kindern, Tempo.'],
+        ['Bucht sofort.','Spa, Tische, Sportanlagen — direkt im Gespräch.'],
+        ['Begleitet weiter.','Lokalwissen im Gespräch, wie ein Einheimischer.'],
+        ['Hebt deinen Concierge.','Team steuert Agenten-Fähigkeiten für mehr Wirkung.']],
+    en:[['Answers everything, day/night.','Hotel, attractions, weather. Any language.'],
+        ['Plans the perfect day.','Program fitting weather, kids, pace.'],
+        ['Books on the spot.','Spa, tables, sport — confirmed in conversation.'],
+        ['Comes along.','Local knowledge, guests explore like regulars.'],
+        ['Elevates your concierge.','Team manages agent capabilities for more impact.']],
+    fr:[['Répond à tout, jour/nuit.','Hôtel, attractions, météo. Toutes langues.'],
+        ['Planifie la journée parfaite.','Programme adapté météo, enfants, rythme.'],
+        ['Réserve sur-le-champ.','Spa, tables, sport — confirmé en conversation.'],
+        ['Les accompagne.','Savoir local, comme des habitués.'],
+        ['Fait progresser votre concierge.',"L'équipe pilote les capacités de l'agent."]]
   },
   da_ex_title_surveys:{de:'SNOB Business Surveys',en:'SNOB Business Surveys',fr:'SNOB Business Surveys'},
-  da_ex_tag_surveys:{de:'Weg mit den toten Fragebögen. Finde raus, was Leute wirklich denken — im Gespräch, nicht per Klick.',en:'Ditch static questionnaires. Find out what people really think — interactively, at any scale.',fr:'Fini les questionnaires figés. Découvrez ce que les gens pensent vraiment — en conversation, à toute échelle.'},
+  da_ex_tag_surveys:{de:'Weg mit den toten Fragebögen. Finde raus, was Leute wirklich denken.',en:'Ditch static questionnaires. Find out what people really think.',fr:'Fini les questionnaires figés. Découvrez ce que les gens pensent vraiment.'},
   da_ex_bul_surveys:{
-    de:[["Gespräch statt Klickstrecke.",'Keine Checkboxen, keine leeren Kommentarfelder. SNOB fragt, hört zu, hakt nach, wo\'s zählt — wie ein guter Interviewer.'],
-        ['Skaliert, ohne Abstriche zu machen.','Persönliche Qualität mit Formular-Reichweite. Hunderte Gespräche, gleiche Tiefe, gleichzeitig.'],
-        ['Erreicht Leute, wo sie sind.','Direktanruf, Web-Link oder gebuchter Termin. Ihre Zeitzone, ihre Sprache.'],
-        ['Funktioniert für jeden Anwendungsfall.','Kundenfeedback, Mitarbeiterzufriedenheit, Prozessdiagnostik, Innovations-Insights, Audit & Compliance.'],
-        ['Liefert die Analyse, nicht den Rohdatenberg.','Jede Antwort erfasst, strukturiert und zum Report verdichtet — landet direkt im Postfach.']],
-    en:[['Conversation, not clickthrough.','No tick-boxes, no blank comment boxes. SNOB asks, listens, and follows up on what matters — the way a good interviewer would.'],
-        ['Scale without the tradeoff.','In-person quality with form-level reach. Hundreds of conversations, same depth, at once.'],
-        ['Reaches people where they are.','Direct calls, a web link, or a booked calendar slot. Their timezone, their language.'],
-        ['Works across every use case.','Customer feedback, employee satisfaction, process diagnostics, innovation insights, audit and compliance.'],
-        ['Delivers the analysis, not the raw data.',"Every response captured, structured, and summarized into a report that lands in the survey owner's inbox."]],
-    fr:[['Conversation, pas clic.','Pas de cases à cocher, pas de champs vides. SNOB pose des questions, écoute, relance sur ce qui compte — comme un bon intervieweur.'],
-        ["L'échelle sans compromis.",'Qualité du face-à-face, portée d\'un formulaire. Des centaines de conversations, même profondeur, en simultané.'],
-        ['Va chercher les gens où ils sont.','Appel direct, lien web, ou créneau réservé. Leur fuseau horaire, leur langue.'],
-        ["Fonctionne pour chaque cas d'usage.",'Feedback client, satisfaction des employés, diagnostic de processus, insights innovation, audit et conformité.'],
-        ['Livre l\'analyse, pas les données brutes.','Chaque réponse capturée, structurée, condensée en rapport — directement dans la boîte mail.']]
+    de:[['Gespräch statt Klickstrecke.','SNOB fragt, hört zu, hakt nach — wie ein guter Interviewer.'],
+        ['Skaliert ohne Abstriche.','Persönliche Qualität, hunderte Gespräche gleichzeitig.'],
+        ['Erreicht Leute, wo sie sind.','Direktanruf, Web-Link oder Termin.'],
+        ['Für jeden Anwendungsfall.','Feedback, Zufriedenheit, Compliance.'],
+        ['Liefert die Analyse.','Strukturierter Report direkt im Postfach.']],
+    en:[['Conversation, not clickthrough.','SNOB asks, listens, follows up — like a good interviewer.'],
+        ['Scales without tradeoffs.','In-person quality, hundreds at once.'],
+        ['Reaches people where they are.','Direct calls, a web link, or a booked slot.'],
+        ['Works for every use case.','Feedback, satisfaction, compliance.'],
+        ['Delivers the analysis.','Structured report straight to the inbox.']],
+    fr:[['Conversation, pas clic.','SNOB pose des questions, écoute, relance.'],
+        ["L'échelle sans compromis.",'Qualité du face-à-face, des centaines en simultané.'],
+        ['Va chercher les gens où ils sont.','Appel direct, lien web, ou créneau réservé.'],
+        ["Pour chaque cas d'usage.",'Feedback, satisfaction, conformité.'],
+        ["Livre l'analyse.",'Rapport structuré, directement dans la boîte mail.']]
   },
-  dac_pharma:    {de:'Pharma',en:'Pharma',fr:'Pharma'},
-  dac_industrie: {de:'Industrie',en:'Industry',fr:'Industrie'},
-  dac_handel:    {de:'Handel',en:'Retail',fr:'Commerce'},
-  dac_gastro:    {de:'Gastronomie',en:'Hospitality',fr:'Restauration'},
-  dac_it:        {de:'IT & Komm.',en:'IT & Comm.',fr:'IT & Comm.'},
-  dac_finanzen:  {de:'Finanzen',en:'Finance',fr:'Finance'},
-  dac_gesund:    {de:'Gesundheit',en:'Healthcare',fr:'Santé'},
-  da_pick:    {de:'← Branche wählen',en:'← Select industry',fr:'← Choisir le secteur'},
-  da_uc_intro_pharma:{de:'Regulierte Prozesse, hohe Ansprüche, wenig Zeit. SNOB übernimmt die repetitiven Kommunikationsaufgaben deines Aussendienst- und Compliance-Teams — dokumentiert, nachvollziehbar, rund um die Uhr.',en:'Regulated processes, high standards, little time. SNOB takes over the repetitive communication tasks of your field-force and compliance team — documented, traceable, around the clock.',fr:'Processus réglementés, exigences élevées, peu de temps. SNOB prend en charge les tâches de communication répétitives de vos équipes terrain et conformité — documentées, traçables, 24/7.'},
-  da_uc_pharma:{
-    de:['Compliance-Anfragen automatisch beantworten','Arztgespräche terminieren','Pharmacovigilanz-Meldungen erfassen','Aussendienst-Support entlasten','Produktinformationen mehrsprachig bereitstellen','Follow-up-Calls nach Klinikbesuchen'],
-    en:['Automatically answer compliance inquiries','Schedule physician meetings','Capture pharmacovigilance reports','Relieve field-force support','Provide product information in multiple languages','Follow-up calls after clinic visits'],
-    fr:['Répondre automatiquement aux demandes de conformité','Planifier les rendez-vous médicaux','Enregistrer les signalements de pharmacovigilance','Soulager le support terrain','Fournir des informations produit multilingues','Appels de suivi après visite clinique']
-  },
-  da_uc_intro_industrie:{de:'Ausfälle kosten Geld, jede Minute zählt. SNOB nimmt Serviceanfragen entgegen, koordiniert Einsätze und hält deinen Innendienst frei für das, was wirklich Aufmerksamkeit braucht.',en:'Downtime costs money, every minute counts. SNOB takes in service requests, coordinates deployments, and frees up your back office for what actually needs attention.',fr:"Les pannes coûtent cher, chaque minute compte. SNOB reçoit les demandes de service, coordonne les interventions et libère votre back-office pour ce qui compte vraiment."},
-  da_uc_industrie:{
-    de:['Serviceanfragen entgegennehmen','Techniker-Einsätze koordinieren','Störungen automatisch melden','Ersatzteil-Bestellungen aufnehmen','Wartungstermine proaktiv vorschlagen','Statusupdates an Kunden versenden'],
-    en:['Take in service requests','Coordinate technician deployments','Automatically report incidents','Capture spare-part orders','Proactively suggest maintenance dates','Send status updates to customers'],
-    fr:['Recevoir les demandes de service','Coordonner les interventions techniciens','Signaler automatiquement les incidents','Enregistrer les commandes de pièces','Proposer proactivement des dates de maintenance','Envoyer des mises à jour aux clients']
-  },
-  da_uc_intro_handel:{de:'Kunden erwarten sofortige Antworten — egal um welche Uhrzeit. SNOB beantwortet Produktfragen, verfolgt Bestellungen und entlastet dein Support-Team im Tagesgeschäft.',en:'Customers expect instant answers — no matter the time. SNOB answers product questions, tracks orders, and relieves your support team in day-to-day business.',fr:"Les clients attendent des réponses immédiates — à toute heure. SNOB répond aux questions produits, suit les commandes et soulage votre équipe support au quotidien."},
-  da_uc_handel:{
-    de:['Produktfragen beantworten','Bestellstatus mitteilen','Reklamationen aufnehmen','Lagerbestände abfragen','Retouren-Prozesse einleiten','Cross-Selling-Hinweise geben'],
-    en:['Answer product questions','Share order status','Log complaints','Check stock levels','Initiate return processes','Suggest cross-sell opportunities'],
-    fr:['Répondre aux questions produits','Communiquer le statut de commande','Enregistrer les réclamations','Consulter les stocks','Initier les processus de retour','Suggérer des ventes croisées']
-  },
-  da_uc_intro_gastro:{de:'Das Telefon klingelt genau dann, wenn du keine Hand frei hast. SNOB nimmt Reservationen entgegen, kennt deine Stammgäste und hält dir den Rücken frei fürs Geschäft.',en:'The phone rings exactly when your hands are full. SNOB takes reservations, knows your regulars, and keeps your back clear for the business.',fr:"Le téléphone sonne toujours au mauvais moment. SNOB prend les réservations, connaît vos habitués et vous laisse les mains libres pour votre commerce."},
-  da_uc_gastro:{
-    de:['Reservationen entgegennehmen','Stammgäste beim Namen begrüssen','Tischplanung optimieren','Allergene-Fragen beantworten','Öffnungszeiten & Events kommunizieren','No-Show-Erinnerungen versenden'],
-    en:['Take reservations','Greet regulars by name','Optimize table planning','Answer allergen questions','Communicate opening hours & events','Send no-show reminders'],
-    fr:['Prendre les réservations','Accueillir les habitués par leur nom','Optimiser la gestion des tables','Répondre aux questions allergènes','Communiquer horaires & événements','Envoyer des rappels anti no-show']
-  },
-  da_uc_intro_it:{de:'First-Level-Anfragen fressen Zeit, die für echte Probleme fehlt. SNOB übernimmt Standardsupport, qualifiziert Tickets und eskaliert nur, was wirklich zu deinem Team muss.',en:"First-level requests eat time you need for real problems. SNOB handles standard support, qualifies tickets, and escalates only what truly needs your team.",fr:"Les demandes de premier niveau consomment le temps nécessaire aux vrais problèmes. SNOB gère le support standard, qualifie les tickets et n'escalade que ce qui doit vraiment atteindre votre équipe."},
-  da_uc_it:{
-    de:['First-Level-Support übernehmen','Tickets qualifizieren & routen','Komplexe Fälle weiterleiten','Onboarding-Fragen beantworten','Passwort-Resets & Standardanfragen lösen','SLA-Status proaktiv kommunizieren'],
-    en:['Handle first-level support','Qualify & route tickets','Escalate complex cases','Answer onboarding questions','Resolve password resets & standard requests','Proactively communicate SLA status'],
-    fr:['Assurer le support niveau 1','Qualifier et acheminer les tickets','Escalader les cas complexes','Répondre aux questions onboarding','Résoudre réinitialisations de mot de passe & demandes standards','Communiquer proactivement le statut SLA']
-  },
-  da_uc_intro_finanzen:{de:'Vertrauen entsteht durch Verlässlichkeit — auch ausserhalb der Bürozeiten. SNOB beantwortet Kontoanfragen konform, qualifiziert Leads und dokumentiert jede Interaktion FINMA-tauglich.',en:'Trust is built through reliability — even outside office hours. SNOB answers account inquiries compliantly, qualifies leads, and documents every interaction FINMA-ready.',fr:"La confiance se construit par la fiabilité — même hors des heures de bureau. SNOB répond aux demandes de compte en conformité, qualifie les leads et documente chaque interaction pour la FINMA."},
-  da_uc_finanzen:{
-    de:['Kontoanfragen beantworten','Beratungstermine buchen','Leads qualifizieren','FINMA-konform dokumentieren','Erste Risikoeinschätzung durchführen','Zahlungserinnerungen versenden'],
-    en:['Answer account inquiries','Book advisory appointments','Qualify leads','Document FINMA-compliant','Perform initial risk assessment','Send payment reminders'],
-    fr:['Répondre aux demandes de compte','Réserver des rendez-vous conseil','Qualifier les leads','Documenter conformément FINMA','Effectuer une première évaluation des risques','Envoyer des rappels de paiement']
-  },
-  da_uc_intro_gesund:{de:'Deine Praxis soll für Patienten da sein — nicht am Telefon hängen. SNOB übernimmt Terminorganisation und Standardfragen, damit sich dein Team aufs Wesentliche konzentrieren kann.',en:'Your practice should be there for patients — not stuck on the phone. SNOB handles appointment organization and standard questions, so your team can focus on what matters.',fr:"Votre cabinet doit être présent pour les patients — pas au téléphone. SNOB gère l'organisation des rendez-vous et les questions standards, pour que votre équipe se concentre sur l'essentiel."},
-  da_uc_gesund:{
-    de:['Termine buchen & verschieben','Patientenfragen beantworten','Praxis-Team entlasten','Nachsorge-Erinnerungen versenden','Rezept-Anfragen vorqualifizieren','Wartezeiten kommunizieren'],
-    en:['Book & reschedule appointments','Answer patient questions','Relieve the practice team','Send follow-up reminders','Pre-qualify prescription requests','Communicate wait times'],
-    fr:['Réserver et reporter des rendez-vous','Répondre aux questions patients',"Soulager l'équipe du cabinet",'Envoyer des rappels de suivi','Pré-qualifier les demandes de prescription',"Communiquer les temps d'attente"]
-  },
-  cta2_title:  {de:'Fragen?<br>Ruf SNOB an.',en:'Questions?<br>Call SNOB.',fr:'Des questions?<br>Appelez SNOB.'},
-  lh_lbl:      {de:'Rechtsdokumente',en:'Legal Documents',fr:'Documents Légaux'},
-  lh_title:    {de:'Information Center',en:'Information Center',fr:"Centre d'Information"},
-  lh_sub:      {de:'Für Kunden, Unternehmen und Legal-Profis.',en:'For customers, businesses and legal professionals.',fr:'Pour clients, entreprises et professionnels juridiques.'},
-  lh_tab_k:    {de:'Für Kunden',en:'For Customers',fr:'Pour les clients'},
-  lh_tab_dpo:  {de:'Unternehmen & DPO',en:'Business & DPO',fr:'Entreprise & DPO'},
-  lh_tab_docs: {de:'Dokumente',en:'Documents',fr:'Documents'},
-  lh_k1_h:    {de:'Deine Daten. Immer in der Schweiz.',en:'Your data. Always in Switzerland.',fr:'Vos données. Toujours en Suisse.'},
-  lh_k1_b:    {de:'Standardmässig hosten und verarbeiten wir alle Daten ausschliesslich in der Schweiz. Auf Wunsch: dedizierte CH-Exklusiv-Infrastruktur oder vollständiges On-Premise-Hosting beim Kunden — jeweils auf Anfrage, immer innerhalb der Schweiz.',en:"By default, we host and process all data exclusively in Switzerland. On request: dedicated CH-exclusive infrastructure or full on-premise hosting at the client's site — always on request, always within Switzerland.",fr:'Par défaut, nous hébergeons et traitons toutes les données exclusivement en Suisse. Sur demande: infrastructure suisse exclusive dédiée ou hébergement on-premise complet chez le client — toujours sur demande, toujours en Suisse.'},
-  lh_k2_h:    {de:'Du besitzt deine Daten',en:'You own your data',fr:'Vous possédez vos données'},
-  lh_k2_b:    {de:'goSNOB verarbeitet Daten nur in deinem Auftrag. Du bleibst jederzeit Data Controller. Kein Verkauf, keine Weitergabe.',en:'goSNOB processes data only on your behalf. You remain Data Controller at all times. No selling, no sharing.',fr:"goSNOB ne traite les données qu'en votre nom. Vous restez Data Controller. Aucune vente, aucun partage."},
-  lh_k2_tag:  {de:'Kein Weiterverkauf',en:'No resale',fr:'Sans revente'},
-  lh_k3_h:    {de:'Zertifiziert & geprüft',en:'Certified & audited',fr:'Certifié & audité'},
-  lh_k3_b:    {de:'Vollständige GDPR- und Swiss FDAP-Konformität. Alle Partner ISO 27001 & 9001 zertifiziert, EU-ansässig und regelmässig auditiert.',en:'Full GDPR and Swiss FDAP compliance. All partners ISO 27001 & 9001 certified, EU-based and regularly audited.',fr:'Conformité GDPR et Swiss FDAP complète. Tous les partenaires ISO 27001 & 9001, basés en UE et régulièrement audités.'},
+  cta2_title:{de:'Fragen?<br>Ruf SNOB an.',en:'Questions?<br>Call SNOB.',fr:'Des questions?<br>Appelez SNOB.'},
+  lh_lbl:{de:'Rechtsdokumente',en:'Legal Documents',fr:'Documents Légaux'},
+  lh_title:{de:'Information Center',en:'Information Center',fr:"Centre d'Information"},
+  lh_sub:{de:'Für Kunden, Unternehmen und Legal-Profis.',en:'For customers, businesses and legal professionals.',fr:'Pour clients, entreprises et professionnels juridiques.'},
+  lh_tab_k:{de:'Für Kunden',en:'For Customers',fr:'Pour les clients'},
+  lh_tab_dpo:{de:'Unternehmen & DPO',en:'Business & DPO',fr:'Entreprise & DPO'},
+  lh_tab_docs:{de:'Dokumente',en:'Documents',fr:'Documents'},
+  lh_k1_h:{de:'Deine Daten. Immer in der Schweiz.',en:'Your data. Always in Switzerland.',fr:'Vos données. Toujours en Suisse.'},
+  lh_k1_b:{de:'Standardmässig hosten und verarbeiten wir alle Daten ausschliesslich in der Schweiz. Auf Wunsch: dedizierte CH-Exklusiv-Infrastruktur oder vollständiges On-Premise-Hosting beim Kunden — jeweils auf Anfrage, immer innerhalb der Schweiz.',en:"By default, we host and process all data exclusively in Switzerland. On request: dedicated CH-exclusive infrastructure or full on-premise hosting at the client's site — always on request, always within Switzerland.",fr:'Par défaut, nous hébergeons et traitons toutes les données exclusivement en Suisse. Sur demande: infrastructure suisse exclusive dédiée ou hébergement on-premise complet chez le client — toujours sur demande, toujours en Suisse.'},
+  lh_k2_h:{de:'Du besitzt deine Daten',en:'You own your data',fr:'Vous possédez vos données'},
+  lh_k2_b:{de:'goSNOB verarbeitet Daten nur in deinem Auftrag. Du bleibst jederzeit Data Controller. Kein Verkauf, keine Weitergabe.',en:'goSNOB processes data only on your behalf. You remain Data Controller at all times. No selling, no sharing.',fr:"goSNOB ne traite les données qu'en votre nom. Vous restez Data Controller. Aucune vente, aucun partage."},
+  lh_k2_tag:{de:'Kein Weiterverkauf',en:'No resale',fr:'Sans revente'},
+  lh_k3_h:{de:'Zertifiziert & geprüft',en:'Certified & audited',fr:'Certifié & audité'},
+  lh_k3_b:{de:'Vollständige GDPR- und Swiss FDAP-Konformität. Alle Partner ISO 27001 & 9001 zertifiziert, EU-ansässig und regelmässig auditiert.',en:'Full GDPR and Swiss FDAP compliance. All partners ISO 27001 & 9001 certified, EU-based and regularly audited.',fr:'Conformité GDPR et Swiss FDAP complète. Tous les partenaires ISO 27001 & 9001, basés en UE et régulièrement audités.'},
   lh_dpo_intro:{de:'goSNOB agiert als Data Processor gemäss GDPR Art. 28 und Swiss FDAP. Unsere Kunden sind Data Controllers. Alle Verarbeitungstätigkeiten sind dokumentiert, auditierbar und vertraglich abgesichert.',en:'goSNOB acts as Data Processor under GDPR Art. 28 and Swiss FDAP. Our customers are Data Controllers. All processing activities are documented, auditable and contractually secured.',fr:"goSNOB agit en tant que Data Processor selon GDPR Art. 28 et la LPD suisse. Nos clients sont Data Controllers. Toutes les activités sont documentées et sécurisées contractuellement."},
-  lh_b1_t:    {de:'Data Subprocessors — Vendors',en:'Data Subprocessors — Vendors',fr:'Sous-traitants — Fournisseurs'},
-  lh_dp1:     {de:'GDPR-konform & auditiert',en:'GDPR compliant & audited',fr:'Conforme GDPR & audité'},
-  lh_dp2:     {de:'ISO 27001 & ISO 9001 zertifiziert',en:'ISO 27001 & ISO 9001 certified',fr:'Certifié ISO 27001 & 9001'},
-  lh_dp3:     {de:'EU-ansässig (alle Key Subprocessors)',en:'EU-based (all key subprocessors)',fr:'Basés en UE (tous les sous-traitants clés)'},
-  lh_dp4:     {de:'DP Activity Mapping vorhanden',en:'DP activity mapping in place',fr:'Cartographie des activités DP en place'},
-  lh_dp5:     {de:'Vendor Qualification Prozess',en:'Vendor qualification process',fr:'Processus de qualification des fournisseurs'},
-  lh_dp6:     {de:'DPA + TOMs in place',en:'DPA + TOMs in place',fr:'DPA + TOMs en place'},
-  lh_b2_t:    {de:'Data Residence & Hosting',en:'Data Residence & Hosting',fr:'Résidence des données & hébergement'},
-  lh_dr1:     {de:'Schweiz — Standard (immer)',en:'Switzerland — Default (always)',fr:'Suisse — Standard (toujours)'},
-  lh_dr2:     {de:'CH Exklusiv — Dedizierte CH-Infrastruktur',en:'CH Exclusive — Dedicated CH infrastructure',fr:'CH Exclusif — Infrastructure CH dédiée'},
-  lh_dr3:     {de:'On-Premise — verfügbar',en:'On-premise — available',fr:'On-premise — disponible'},
-  lh_dr4:     {de:'Kein Hosting ausserhalb der Schweiz',en:'No hosting outside Switzerland',fr:'Aucun hébergement hors de Suisse'},
-  lh_dr5:     {de:'GDPR + Swiss FDAP konform',en:'GDPR + Swiss FDAP compliant',fr:'Conforme GDPR + Swiss FDAP'},
-  lh_b3_t:    {de:'Rollen & Verantwortung',en:'Roles & Responsibility',fr:'Rôles & Responsabilité'},
-  lh_ro1:     {de:'goSNOB = Data Processor',en:'goSNOB = Data Processor',fr:'goSNOB = Data Processor'},
-  lh_ro2:     {de:'Kunden = Data Controllers',en:'Customers = Data Controllers',fr:'Clients = Data Controllers'},
-  lh_ro3:     {de:'AVV / DPA auf Anfrage',en:'DPA on request',fr:'DPA sur demande'},
-  lh_ro4:     {de:'Verzeichnis von Verarbeitungstätigkeiten',en:'Record of processing activities',fr:'Registre des activités de traitement'},
-  lh_ro5:     {de:'Betroffenenrechte prozessual abgesichert',en:'Data subject rights procedurally secured',fr:'Droits des personnes concernées sécurisés'},
-  lh_b4_t:    {de:'Data Transfers — AI & Workflows',en:'Data Transfers — AI & Workflows',fr:'Transferts de données — IA & Workflows'},
-  lh_dt1:     {de:'KI-Verarbeitung innerhalb EU/CH',en:'AI processing within EU/CH',fr:"Traitement IA au sein de l'UE/CH"},
-  lh_dt2:     {de:'Drittland-Transfers via EU SCC',en:'Third-country transfers via EU SCC',fr:'Transferts pays tiers via EU SCC'},
-  lh_dt3:     {de:'Pseudonymisierung wo möglich',en:'Pseudonymisation where possible',fr:'Pseudonymisation dans la mesure du possible'},
-  lh_dt4:     {de:'Verschlüsselung in transit & at rest',en:'Encryption in transit & at rest',fr:'Chiffrement en transit & au repos'},
-  lh_dt5:     {de:'Audit-Logs für alle Datenflüsse',en:'Audit logs for all data flows',fr:"Journaux d'audit pour tous les flux de données"},
+  lh_b1_t:{de:'Data Subprocessors — Vendors',en:'Data Subprocessors — Vendors',fr:'Sous-traitants — Fournisseurs'},
+  lh_dp1:{de:'GDPR-konform & auditiert',en:'GDPR compliant & audited',fr:'Conforme GDPR & audité'},
+  lh_dp2:{de:'ISO 27001 & ISO 9001 zertifiziert',en:'ISO 27001 & ISO 9001 certified',fr:'Certifié ISO 27001 & 9001'},
+  lh_dp3:{de:'EU-ansässig (alle Key Subprocessors)',en:'EU-based (all key subprocessors)',fr:'Basés en UE (tous les sous-traitants clés)'},
+  lh_dp4:{de:'DP Activity Mapping vorhanden',en:'DP activity mapping in place',fr:'Cartographie des activités DP en place'},
+  lh_dp5:{de:'Vendor Qualification Prozess',en:'Vendor qualification process',fr:'Processus de qualification des fournisseurs'},
+  lh_dp6:{de:'DPA + TOMs in place',en:'DPA + TOMs in place',fr:'DPA + TOMs en place'},
+  lh_b2_t:{de:'Data Residence & Hosting',en:'Data Residence & Hosting',fr:'Résidence des données & hébergement'},
+  lh_dr1:{de:'Schweiz — Standard (immer)',en:'Switzerland — Default (always)',fr:'Suisse — Standard (toujours)'},
+  lh_dr2:{de:'CH Exklusiv — Dedizierte CH-Infrastruktur',en:'CH Exclusive — Dedicated CH infrastructure',fr:'CH Exclusif — Infrastructure CH dédiée'},
+  lh_dr3:{de:'On-Premise — verfügbar',en:'On-premise — available',fr:'On-premise — disponible'},
+  lh_dr4:{de:'Kein Hosting ausserhalb der Schweiz',en:'No hosting outside Switzerland',fr:'Aucun hébergement hors de Suisse'},
+  lh_dr5:{de:'GDPR + Swiss FDAP konform',en:'GDPR + Swiss FDAP compliant',fr:'Conforme GDPR + Swiss FDAP'},
+  lh_b3_t:{de:'Rollen & Verantwortung',en:'Roles & Responsibility',fr:'Rôles & Responsabilité'},
+  lh_ro1:{de:'goSNOB = Data Processor',en:'goSNOB = Data Processor',fr:'goSNOB = Data Processor'},
+  lh_ro2:{de:'Kunden = Data Controllers',en:'Customers = Data Controllers',fr:'Clients = Data Controllers'},
+  lh_ro3:{de:'AVV / DPA auf Anfrage',en:'DPA on request',fr:'DPA sur demande'},
+  lh_ro4:{de:'Verzeichnis von Verarbeitungstätigkeiten',en:'Record of processing activities',fr:'Registre des activités de traitement'},
+  lh_ro5:{de:'Betroffenenrechte prozessual abgesichert',en:'Data subject rights procedurally secured',fr:'Droits des personnes concernées sécurisés'},
+  lh_b4_t:{de:'Data Transfers — AI & Workflows',en:'Data Transfers — AI & Workflows',fr:'Transferts de données — IA & Workflows'},
+  lh_dt1:{de:'KI-Verarbeitung innerhalb EU/CH',en:'AI processing within EU/CH',fr:"Traitement IA au sein de l'UE/CH"},
+  lh_dt2:{de:'Drittland-Transfers via EU SCC',en:'Third-country transfers via EU SCC',fr:'Transferts pays tiers via EU SCC'},
+  lh_dt3:{de:'Pseudonymisierung wo möglich',en:'Pseudonymisation where possible',fr:'Pseudonymisation dans la mesure du possible'},
+  lh_dt4:{de:'Verschlüsselung in transit & at rest',en:'Encryption in transit & at rest',fr:'Chiffrement en transit & au repos'},
+  lh_dt5:{de:'Audit-Logs für alle Datenflüsse',en:'Audit logs for all data flows',fr:"Journaux d'audit pour tous les flux de données"},
   lh_dpo_note:{de:'Für individuelle DPA/AVV-Verträge, TOM-Dokumentation oder Subprocessor-Listen:',en:'For individual DPA contracts, TOM documentation or subprocessor lists:',fr:'Pour des contrats DPA individuels, documentation TOMs ou listes de sous-traitants:'},
-  lh_dtag1:   {de:'Privacy · GDPR · Swiss FDAP',en:'Privacy · GDPR · Swiss FDAP',fr:'Confidentialité · RGPD · LPD'},
-  lh_dname1:  {de:'Datenschutzerklärung',en:'Privacy Policy',fr:'Politique de confidentialité'},
+  lh_dtag1:{de:'Privacy · GDPR · Swiss FDAP',en:'Privacy · GDPR · Swiss FDAP',fr:'Confidentialité · RGPD · LPD'},
+  lh_dname1:{de:'Datenschutzerklärung',en:'Privacy Policy',fr:'Politique de confidentialité'},
   lh_doc1_body:{
     de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Verantwortliche Stelle</div><p>goSNOB AG, Schweiz<br>Kontakt: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Erhobene Daten</div><ul><li>Kontaktdaten (Name, E-Mail, Telefon)</li><li>Nutzungsdaten (Anrufprotokolle, Chat-Verläufe)</li><li>Technische Daten (IP-Adresse, Geräteinformationen)</li><li>Unternehmensdaten (Firmenname, Branche)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Zweck &amp; Rechtsgrundlagen</div><ul><li>Erbringung von KI-Dienstleistungen (Art. 6 Abs. 1 lit. b DSGVO)</li><li>Vertragserfüllung und Kundenbetreuung (revDSG)</li><li>Sicherheit und Missbrauchsprävention</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Datenspeicherung &amp; Löschung</div><p>Alle Daten werden ausschliesslich in der Schweiz gespeichert. Löschung nach Vertragsende oder auf Anfrage, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Ihre Rechte</div><ul><li>Auskunft, Berichtigung, Löschung</li><li>Einschränkung der Verarbeitung</li><li>Datenübertragbarkeit</li><li>Widerspruch gegen Verarbeitung</li></ul><p style="margin-top:12px">Anfragen an: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
     en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Responsible Party</div><p>goSNOB AG, Switzerland<br>Contact: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Data Collected</div><ul><li>Contact data (name, email, phone)</li><li>Usage data (call logs, chat histories)</li><li>Technical data (IP address, device information)</li><li>Business data (company name, industry)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Purpose &amp; Legal Basis</div><ul><li>Provision of AI services (Art. 6(1)(b) GDPR)</li><li>Contract fulfilment and customer support (Swiss FDAP)</li><li>Security and fraud prevention</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Data Retention &amp; Deletion</div><p>All data stored exclusively in Switzerland. Deleted after contract end or on request, unless statutory retention obligations apply.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Your Rights</div><ul><li>Access, correction, erasure</li><li>Restriction of processing</li><li>Data portability</li><li>Objection to processing</li></ul><p style="margin-top:12px">Requests: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
     fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Responsable du traitement</div><p>goSNOB AG, Suisse<br>Contact : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Données collectées</div><ul><li>Données de contact (nom, e-mail, téléphone)</li><li>Données d\'utilisation (journaux d\'appels, historiques de chat)</li><li>Données techniques (adresse IP, informations sur l\'appareil)</li><li>Données d\'entreprise (nom, secteur)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Finalités &amp; bases légales</div><ul><li>Fourniture de services IA (Art. 6(1)(b) RGPD)</li><li>Exécution du contrat et assistance client (LPD suisse)</li><li>Sécurité et prévention des fraudes</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Conservation &amp; suppression</div><p>Toutes les données sont hébergées exclusivement en Suisse. Supprimées à la fin du contrat ou sur demande, sauf obligations légales.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Vos droits</div><ul><li>Accès, rectification, effacement</li><li>Limitation du traitement</li><li>Portabilité des données</li><li>Opposition au traitement</li></ul><p style="margin-top:12px">Demandes : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
   },
-  lh_dtag2:   {de:'Terms · AGB',en:'Terms · AGB',fr:'CGV · Terms'},
-  lh_dname2:  {de:'AGB / Terms & Conditions',en:'Terms & Conditions',fr:'Conditions Générales'},
-  lh_dtag3:   {de:'DPA · AVV · GDPR Art. 28',en:'DPA · AVV · GDPR Art. 28',fr:'DPA · AVV · RGPD Art. 28'},
-  lh_dname3:  {de:'Auftragsverarbeitungsvertrag (AVV)',en:'Data Processing Agreement (DPA)',fr:'Accord de traitement des données (DPA)'},
-  lh_dtag4:   {de:'Security · Compliance',en:'Security · Compliance',fr:'Sécurité · Conformité'},
-  lh_dname4:  {de:'Technisch-organisatorische Massnahmen (TOMs)',en:'Technical & Organisational Measures (TOMs)',fr:'Mesures techniques & organisationnelles (TOMs)'},
-  lh_dtag5:   {de:'Subprocessors · Vendors',en:'Subprocessors · Vendors',fr:'Sous-traitants · Fournisseurs'},
-  lh_dname5:  {de:'Subprocessor-Liste',en:'Subprocessor List',fr:'Liste des sous-traitants'},
-  lh_dtag6:   {de:'Legal · Impressum',en:'Legal · Imprint',fr:'Légal · Mentions légales'},
-  lh_dname6:  {de:'Impressum',en:'Legal Notice',fr:'Mentions légales'},
+  lh_dtag2:{de:'Terms · AGB',en:'Terms · AGB',fr:'CGV · Terms'},
+  lh_dname2:{de:'AGB / Terms & Conditions',en:'Terms & Conditions',fr:'Conditions Générales'},
+  lh_dtag3:{de:'DPA · AVV · GDPR Art. 28',en:'DPA · AVV · GDPR Art. 28',fr:'DPA · AVV · RGPD Art. 28'},
+  lh_dname3:{de:'Auftragsverarbeitungsvertrag (AVV)',en:'Data Processing Agreement (DPA)',fr:'Accord de traitement des données (DPA)'},
+  lh_dtag4:{de:'Security · Compliance',en:'Security · Compliance',fr:'Sécurité · Conformité'},
+  lh_dname4:{de:'Technisch-organisatorische Massnahmen (TOMs)',en:'Technical & Organisational Measures (TOMs)',fr:'Mesures techniques & organisationnelles (TOMs)'},
+  lh_dtag5:{de:'Subprocessors · Vendors',en:'Subprocessors · Vendors',fr:'Sous-traitants · Fournisseurs'},
+  lh_dname5:{de:'Subprocessor-Liste',en:'Subprocessor List',fr:'Liste des sous-traitants'},
+  lh_dtag6:{de:'Legal · Impressum',en:'Legal · Imprint',fr:'Légal · Mentions légales'},
+  lh_dname6:{de:'Impressum',en:'Legal Notice',fr:'Mentions légales'},
   lh_doc2_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Übersicht</div><p>Diese AGB regeln die Nutzung der KI-Voice-Agent-Dienste von goSNOB.ai und bilden einen rechtsverbindlichen Vertrag zwischen dem Nutzer und goSNOB. Massgebendes Recht: Schweiz.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements &amp; Preise</div><ul><li><strong>GoSTART:</strong> 333 CHF/Monat · 300 Minuten inkl. · Überschuss: 0.25 CHF/Min.</li><li><strong>GoFULL:</strong> 777 CHF/Monat · 2.000 Minuten inkl. · Überschuss: 0.15 CHF/Min.</li><li><strong>Corporate:</strong> Individuell auf Anfrage</li></ul><p style="margin-top:8px;font-size:12px;color:#aaa;">Zahlung via Stripe · monatlich im Voraus · Preisanpassung mit 30 Tagen Vorankündigung.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Wesentliche Punkte</div><ul><li>Kündigungsfrist: 30 Tage vor Verlängerungsdatum</li><li>Datenschutz: Nutzer bleibt Data Controller · goSNOB ist Data Processor</li><li>Haftungsbegrenzung: max. 12 Monatsgebühren</li><li>Gerichtsstand: Basel-Stadt, Schweiz</li><li>Aufzeichnungen: 90 Tage Standard-Aufbewahrung</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Kontakt</div><p>Für den vollständigen Vertragstext: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Overview</div><p>These Terms govern use of goSNOB.ai AI voice agent services and form a legally binding contract between the user and goSNOB. Governing law: Switzerland.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subscription Plans</div><ul><li><strong>GoSTART:</strong> 333 CHF/month · 300 minutes incl. · Overage: 0.25 CHF/min.</li><li><strong>GoFULL:</strong> 777 CHF/month · 2,000 minutes incl. · Overage: 0.15 CHF/min.</li><li><strong>Corporate:</strong> Custom pricing on request</li></ul><p style="margin-top:8px;font-size:12px;color:#aaa;">Payment via Stripe · monthly in advance · price changes with 30 days notice.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Key Points</div><ul><li>Cancellation: 30 days before renewal date</li><li>Data: user remains Data Controller · goSNOB is Data Processor</li><li>Liability cap: max. 12 months fees paid</li><li>Jurisdiction: Basel-Stadt, Switzerland</li><li>Recordings: 90-day default retention</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>For the full contract text: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Aperçu</div><p>Ces CGV régissent l\'utilisation des services d\'agents vocaux IA de goSNOB.ai et constituent un contrat juridiquement contraignant. Droit applicable : Suisse.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements</div><ul><li><strong>GoSTART :</strong> 333 CHF/mois · 300 min. incl. · Dépassement : 0.25 CHF/min.</li><li><strong>GoFULL :</strong> 777 CHF/mois · 2 000 min. incl. · Dépassement : 0.15 CHF/min.</li><li><strong>Corporate :</strong> Tarif individuel sur demande</li></ul><p style="margin-top:8px;font-size:12px;color:#aaa;">Paiement via Stripe · mensuel d\'avance · modifications tarifaires avec 30 jours de préavis.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Points clés</div><ul><li>Résiliation : 30 jours avant renouvellement</li><li>Données : le client reste Responsable du traitement · goSNOB est Sous-traitant</li><li>Responsabilité : limitée à 12 mois de frais payés</li><li>Juridiction : Bâle-Ville, Suisse</li><li>Enregistrements : conservation standard 90 jours</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>Pour le texte contractuel complet : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
+    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Übersicht</div><p>Diese AGB regeln die Nutzung der KI-Voice-Agent-Dienste von goSNOB.ai und bilden einen rechtsverbindlichen Vertrag zwischen dem Nutzer und goSNOB. Massgebendes Recht: Schweiz.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements &amp; Preise</div><ul><li><strong>GoSTART:</strong> 333 CHF/Monat · 300 Minuten inkl. · Überschuss: 0.25 CHF/Min.</li><li><strong>GoFULL:</strong> 777 CHF/Monat · 2.000 Minuten inkl. · Überschuss: 0.15 CHF/Min.</li><li><strong>Corporate:</strong> Individuell auf Anfrage</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Wesentliche Punkte</div><ul><li>Kündigungsfrist: 30 Tage vor Verlängerungsdatum</li><li>Datenschutz: Nutzer bleibt Data Controller · goSNOB ist Data Processor</li><li>Haftungsbegrenzung: max. 12 Monatsgebühren</li><li>Gerichtsstand: Basel-Stadt, Schweiz</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Kontakt</div><p>Für den vollständigen Vertragstext: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Overview</div><p>These Terms govern use of goSNOB.ai AI voice agent services. Governing law: Switzerland.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subscription Plans</div><ul><li><strong>GoSTART:</strong> 333 CHF/month · 300 minutes incl.</li><li><strong>GoFULL:</strong> 777 CHF/month · 2,000 minutes incl.</li><li><strong>Corporate:</strong> Custom pricing on request</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Key Points</div><ul><li>Cancellation: 30 days before renewal date</li><li>Data: user remains Data Controller · goSNOB is Data Processor</li><li>Liability cap: max. 12 months fees paid</li><li>Jurisdiction: Basel-Stadt, Switzerland</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>For the full contract text: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Aperçu</div><p>Ces CGV régissent l\'utilisation des services d\'agents vocaux IA de goSNOB.ai. Droit applicable : Suisse.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements</div><ul><li><strong>GoSTART :</strong> 333 CHF/mois</li><li><strong>GoFULL :</strong> 777 CHF/mois</li><li><strong>Corporate :</strong> Tarif individuel sur demande</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Points clés</div><ul><li>Résiliation : 30 jours avant renouvellement</li><li>Données : le client reste Responsable du traitement</li><li>Responsabilité : limitée à 12 mois de frais payés</li><li>Juridiction : Bâle-Ville, Suisse</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>Pour le texte contractuel complet : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
   },
   lh_doc3_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Rollen</div><ul><li><strong>Auftragsverarbeiter:</strong> goSNOB AG (verarbeitet Daten im Auftrag)</li><li><strong>Verantwortlicher:</strong> Kunde (bestimmt Zweck und Mittel)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Gegenstand der Verarbeitung</div><p>Verarbeitung personenbezogener Daten im Rahmen der KI-Dienstleistungen (Anrufe, Chats, Workflows) gemäss Weisung des Auftraggebers.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Pflichten von goSNOB</div><ul><li>Verarbeitung nur nach dokumentierter Weisung</li><li>Vertraulichkeit aller beteiligten Personen</li><li>Technische und organisatorische Massnahmen (TOMs) einhalten</li><li>Meldung bei Datenschutzvorfällen (max. 72h)</li><li>Unterstützung bei Betroffenenanfragen</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Unterauftragsverarbeiter</div><p>goSNOB setzt geprüfte Unterauftragsverarbeiter ein (siehe Subprocessor-Liste). Kunde wird über Änderungen informiert.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individuelle AVV</div><p>Für einen individuell unterzeichneten AVV: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Roles</div><ul><li><strong>Data Processor:</strong> goSNOB AG (processes data on behalf of client)</li><li><strong>Data Controller:</strong> Customer (determines purpose and means)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subject of Processing</div><p>Processing of personal data within AI services (calls, chats, workflows) per customer instructions.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">goSNOB Obligations</div><ul><li>Processing only per documented instructions</li><li>Confidentiality of all involved persons</li><li>Implementation of technical &amp; organisational measures (TOMs)</li><li>Breach notification (max. 72h)</li><li>Support with data subject requests</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Sub-processors</div><p>goSNOB uses vetted sub-processors (see Subprocessor List). Customer notified of changes.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individual DPA</div><p>For a custom signed DPA: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Rôles</div><ul><li><strong>Sous-traitant :</strong> goSNOB AG (traite les données pour le compte du client)</li><li><strong>Responsable du traitement :</strong> Client (détermine finalités et moyens)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Objet du traitement</div><p>Traitement de données personnelles dans le cadre des services IA (appels, chats, workflows) selon les instructions du client.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Obligations de goSNOB</div><ul><li>Traitement uniquement sur instruction documentée</li><li>Confidentialité de toutes les personnes impliquées</li><li>Mise en œuvre des mesures TOMs</li><li>Notification en cas de violation (max. 72h)</li><li>Soutien aux demandes des personnes concernées</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Sous-traitants</div><p>goSNOB fait appel à des sous-traitants vérifiés (voir liste). Client informé des modifications.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">DPA individuel</div><p>Pour un DPA signé individuellement : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
+    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Rollen</div><ul><li><strong>Auftragsverarbeiter:</strong> goSNOB AG</li><li><strong>Verantwortlicher:</strong> Kunde</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Pflichten von goSNOB</div><ul><li>Verarbeitung nur nach dokumentierter Weisung</li><li>Vertraulichkeit aller beteiligten Personen</li><li>TOMs einhalten</li><li>Meldung bei Datenschutzvorfällen (max. 72h)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individuelle AVV</div><p>Für einen individuell unterzeichneten AVV: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Roles</div><ul><li><strong>Data Processor:</strong> goSNOB AG</li><li><strong>Data Controller:</strong> Customer</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">goSNOB Obligations</div><ul><li>Processing only per documented instructions</li><li>Confidentiality of all involved persons</li><li>Implementation of TOMs</li><li>Breach notification (max. 72h)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individual DPA</div><p>For a custom signed DPA: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Rôles</div><ul><li><strong>Sous-traitant :</strong> goSNOB AG</li><li><strong>Responsable du traitement :</strong> Client</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Obligations de goSNOB</div><ul><li>Traitement uniquement sur instruction documentée</li><li>Confidentialité de toutes les personnes impliquées</li><li>Mise en œuvre des mesures TOMs</li><li>Notification en cas de violation (max. 72h)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">DPA individuel</div><p>Pour un DPA signé individuellement : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
   },
   lh_doc4_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Zugangskontrolle</div><ul><li>Multi-Faktor-Authentifizierung</li><li>Rollenbasierte Zugriffssteuerung (RBAC)</li><li>Automatische Sitzungsabmeldung nach Inaktivität</li><li>Protokollierung aller Zugriffsversuche</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Verschlüsselung</div><ul><li>TLS 1.3 für alle Datenübertragungen (in transit)</li><li>AES-256 für alle gespeicherten Daten (at rest)</li><li>Ende-zu-Ende-Verschlüsselung für Sprachdaten</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Verfügbarkeit &amp; Integrität</div><ul><li>Tägliche verschlüsselte Backups, georedundant in der Schweiz</li><li>Automatische Failover-Systeme</li><li>Regelmässige Disaster-Recovery-Tests</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring &amp; Incident Response</div><ul><li>24/7 Sicherheitsmonitoring</li><li>Automatische Anomalieerkennung</li><li>Meldepflicht bei Datenpannen innerhalb 72 Stunden</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Organisatorische Massnahmen</div><ul><li>ISO 27001 Zertifizierung (Partnersystem)</li><li>Regelmässige Sicherheitsschulungen</li><li>Jährliche externe Sicherheitsaudits</li></ul></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Access Control</div><ul><li>Multi-factor authentication</li><li>Role-based access control (RBAC)</li><li>Automatic session timeout after inactivity</li><li>Logging of all access attempts</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Encryption</div><ul><li>TLS 1.3 for all data transfers (in transit)</li><li>AES-256 for all stored data (at rest)</li><li>End-to-end encryption for voice data</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Availability &amp; Integrity</div><ul><li>Daily encrypted backups, geo-redundant in Switzerland</li><li>Automatic failover systems</li><li>Regular disaster recovery tests</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring &amp; Incident Response</div><ul><li>24/7 security monitoring</li><li>Automatic anomaly detection</li><li>Breach notification within 72 hours</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Organisational Measures</div><ul><li>ISO 27001 certification (partner systems)</li><li>Regular security training</li><li>Annual external security audits</li></ul></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Contrôle d\'accès</div><ul><li>Authentification multi-facteurs</li><li>Contrôle d\'accès basé sur les rôles (RBAC)</li><li>Déconnexion automatique après inactivité</li><li>Journalisation de toutes les tentatives d\'accès</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Chiffrement</div><ul><li>TLS 1.3 pour toutes les transmissions (en transit)</li><li>AES-256 pour toutes les données stockées (au repos)</li><li>Chiffrement de bout en bout pour les données vocales</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Disponibilité &amp; intégrité</div><ul><li>Sauvegardes quotidiennes chiffrées, géo-redondantes en Suisse</li><li>Systèmes de basculement automatique</li><li>Tests de reprise après sinistre réguliers</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Surveillance &amp; incidents</div><ul><li>Surveillance sécurité 24/7</li><li>Détection automatique des anomalies</li><li>Notification de violation dans les 72 heures</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Mesures organisationnelles</div><ul><li>Certification ISO 27001 (systèmes partenaires)</li><li>Formations sécurité régulières</li><li>Audits externes annuels</li></ul></div>'
+    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Zugangskontrolle</div><ul><li>Multi-Faktor-Authentifizierung</li><li>Rollenbasierte Zugriffssteuerung (RBAC)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Verschlüsselung</div><ul><li>TLS 1.3 in transit</li><li>AES-256 at rest</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring</div><ul><li>24/7 Sicherheitsmonitoring</li><li>Meldepflicht innerhalb 72 Stunden</li></ul></div>',
+    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Access Control</div><ul><li>Multi-factor authentication</li><li>Role-based access control (RBAC)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Encryption</div><ul><li>TLS 1.3 in transit</li><li>AES-256 at rest</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Monitoring</div><ul><li>24/7 security monitoring</li><li>Breach notification within 72 hours</li></ul></div>',
+    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Contrôle d\'accès</div><ul><li>Authentification multi-facteurs</li><li>Contrôle d\'accès basé sur les rôles (RBAC)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Chiffrement</div><ul><li>TLS 1.3 en transit</li><li>AES-256 au repos</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Surveillance</div><ul><li>Surveillance sécurité 24/7</li><li>Notification de violation dans les 72 heures</li></ul></div>'
   },
   lh_doc5_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastruktur</div><ul><li><strong>Hetzner Online GmbH</strong> — Server-Hosting, Schweiz / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS-Schutz, EU-Datenverarbeitung</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">KI &amp; Sprachverarbeitung</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-Text, EU-Region, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-Speech, EU-Region</li><li><strong>Anthropic PBC</strong> — LLM-Verarbeitung, SOC 2 Type II</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Kommunikation &amp; Telefonie</div><ul><li><strong>Twilio Inc.</strong> — Telefonie-Infrastruktur, ISO 27001</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Hinweis</div><p>Alle Unterauftragsverarbeiter wurden qualifiziert, haben DPAs und TOMs implementiert. Vollständige, aktuelle Liste auf Anfrage: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastructure</div><ul><li><strong>Hetzner Online GmbH</strong> — Server hosting, Switzerland / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS protection, EU data processing</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">AI &amp; Speech Processing</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-text, EU region, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-speech, EU region</li><li><strong>Anthropic PBC</strong> — LLM processing, SOC 2 Type II</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Communication &amp; Telephony</div><ul><li><strong>Twilio Inc.</strong> — Telephony infrastructure, ISO 27001</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Note</div><p>All sub-processors have been qualified and implemented DPAs and TOMs. Full current list on request: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; infrastructure</div><ul><li><strong>Hetzner Online GmbH</strong> — Hébergement, Suisse / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, protection DDoS, traitement UE</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">IA &amp; traitement vocal</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-text, région UE, SOC 2</li><li><strong>ElevenLabs Inc.</strong> — Text-to-speech, région UE</li><li><strong>Anthropic PBC</strong> — Traitement LLM, SOC 2 Type II</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Communication &amp; téléphonie</div><ul><li><strong>Twilio Inc.</strong> — Infrastructure téléphonie, ISO 27001</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Remarque</div><p>Tous les sous-traitants ont été qualifiés et ont mis en place des DPAs et TOMs. Liste complète et actuelle sur demande : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
+    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastruktur</div><ul><li><strong>Hetzner Online GmbH</strong> — Server-Hosting, Schweiz / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS-Schutz</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">KI &amp; Sprachverarbeitung</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-Text, EU-Region</li><li><strong>ElevenLabs Inc.</strong> — Text-to-Speech, EU-Region</li><li><strong>Anthropic PBC</strong> — LLM-Verarbeitung</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Hinweis</div><p>Vollständige Liste auf Anfrage: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; Infrastructure</div><ul><li><strong>Hetzner Online GmbH</strong> — Server hosting, Switzerland / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, DDoS protection</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">AI &amp; Speech Processing</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-text, EU region</li><li><strong>ElevenLabs Inc.</strong> — Text-to-speech, EU region</li><li><strong>Anthropic PBC</strong> — LLM processing</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Note</div><p>Full list on request: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Cloud &amp; infrastructure</div><ul><li><strong>Hetzner Online GmbH</strong> — Hébergement, Suisse / DE, ISO 27001</li><li><strong>Cloudflare Inc.</strong> — CDN, protection DDoS</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">IA &amp; traitement vocal</div><ul><li><strong>Deepgram Inc.</strong> — Speech-to-text, région UE</li><li><strong>ElevenLabs Inc.</strong> — Text-to-speech, région UE</li><li><strong>Anthropic PBC</strong> — Traitement LLM</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Remarque</div><p>Liste complète sur demande : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
   },
   lh_doc6_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Angaben gemäss OR Art. 944</div><p><strong>goSNOB AG</strong><br>Schweiz<br>E-Mail: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web: gosnob.ai</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Gründer</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Haftungsausschluss</div><p>Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. goSNOB AG übernimmt keine Gewähr für Richtigkeit, Vollständigkeit und Aktualität.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Urheberrecht</div><p>Alle Inhalte dieser Website sind urheberrechtlich geschützt. Vervielfältigung oder Verwendung ohne ausdrückliche Genehmigung untersagt.</p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Company Information</div><p><strong>goSNOB AG</strong><br>Switzerland<br>Email: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web: gosnob.ai</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Founders</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Disclaimer</div><p>The contents of this website have been prepared with the utmost care. goSNOB AG accepts no liability for accuracy, completeness or currency of the content.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Copyright</div><p>All content on this website is protected by copyright. Reproduction or use without explicit permission is prohibited.</p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Informations légales</div><p><strong>goSNOB AG</strong><br>Suisse<br>E-mail : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a><br>Web : gosnob.ai</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Fondateurs</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Avertissement</div><p>Les contenus de ce site ont été préparés avec le plus grand soin. goSNOB AG décline toute responsabilité quant à l\'exactitude, l\'exhaustivité ou l\'actualité des informations.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Droits d\'auteur</div><p>Tout le contenu de ce site est protégé par le droit d\'auteur. Toute reproduction ou utilisation sans autorisation expresse est interdite.</p></div>'
+    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Angaben gemäss OR Art. 944</div><p><strong>goSNOB AG</strong><br>Schweiz<br>E-Mail: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Gründer</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div>',
+    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Company Information</div><p><strong>goSNOB AG</strong><br>Switzerland<br>Email: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Founders</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div>',
+    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Informations légales</div><p><strong>goSNOB AG</strong><br>Suisse<br>E-mail : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Fondateurs</div><p>Timothy Jordi &amp; Jan Mironiuk</p></div>'
   },
-  f_priv:      {de:'Datenschutz',en:'Privacy',fr:'Confidentialité'},
-  f_agb:       {de:'AGB',en:'T&C',fr:'CGV'},
-  f_imp:       {de:'Impressum',en:'Imprint',fr:'Mentions légales'},
-  f_founded:   {de:'Founded by Timothy Jordi & Jan Mironiuk · Swiss Made',en:'Founded by Timothy Jordi & Jan Mironiuk · Swiss Made',fr:'Fondé par Timothy Jordi & Jan Mironiuk · Swiss Made'},
-  chat_st:     {de:'Online',en:'Online',fr:'En ligne'},
-  chat_ph:     {de:'Frag SNOB...',en:'Ask SNOB...',fr:'Demandez à SNOB...'},
-  qb1:         {de:'Preise',en:'Pricing',fr:'Tarifs'},
-  qb2:         {de:'AI Calls',en:'AI Calls',fr:'Appels IA'},
-  qb3:         {de:'Demo',en:'Demo',fr:'Démo'},
-  qb4:         {de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
-  sf_lbl:      {de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'},
-  sf_mode_in:  {de:'Inbound',en:'Inbound',fr:'Entrant'},
-  sf_mode_out: {de:'Outbound',en:'Outbound',fr:'Sortant'}
+  f_priv:{de:'Datenschutz',en:'Privacy',fr:'Confidentialité'},
+  f_agb:{de:'AGB',en:'T&C',fr:'CGV'},
+  f_imp:{de:'Impressum',en:'Imprint',fr:'Mentions légales'},
+  f_founded:{de:'Founded by Timothy Jordi & Jan Mironiuk · Swiss Made',en:'Founded by Timothy Jordi & Jan Mironiuk · Swiss Made',fr:'Fondé par Timothy Jordi & Jan Mironiuk · Swiss Made'},
+  chat_st:{de:'Online',en:'Online',fr:'En ligne'},
+  chat_ph:{de:'Frag SNOB...',en:'Ask SNOB...',fr:'Demandez à SNOB...'},
+  qb1:{de:'Preise',en:'Pricing',fr:'Tarifs'},
+  qb2:{de:'AI Calls',en:'AI Calls',fr:'Appels IA'},
+  qb3:{de:'Demo',en:'Demo',fr:'Démo'},
+  qb4:{de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
+  sf_lbl:{de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'},
+  sf_mode_in:{de:'Inbound',en:'Inbound',fr:'Entrant'},
+  sf_mode_out:{de:'Outbound',en:'Outbound',fr:'Sortant'}
+};
+
+var WS_DESC_VARIANTS = {
+  de:[
+    'Nimmt ab. Schreibt zurück. Bucht den Termin. 24/7, in jeder Sprache — und beschwert sich nie über Montage.',
+    'Beantwortet jeden Anruf. Kennt dein Geschäft. Eskaliert nur, wenn nötig — nie gelangweilt, nie krank.',
+    'Führt Gespräche wie ein Mensch. Arbeitet wie eine Maschine. Rund um die Uhr, in 100+ Sprachen.'
+  ],
+  en:[
+    'Picks up. Writes back. Books the appointment. 24/7, in any language — and never complains about Mondays.',
+    'Answers every call. Knows your business. Escalates only when needed — never bored, never sick.',
+    'Talks like a human. Works like a machine. Around the clock, in 100+ languages.'
+  ],
+  fr:[
+    'Décroche. Répond. Prend le rendez-vous. 24/7, dans toutes les langues — et ne se plaint jamais du lundi.',
+    'Répond à chaque appel. Connaît votre entreprise. Escalade seulement si nécessaire — jamais fatigué.',
+    'Parle comme un humain. Travaille comme une machine. 24/7, dans plus de 100 langues.'
+  ]
 };
 
 var SL_CALLS = {de:'Calls / Woche',en:'Calls / week',fr:'Appels / semaine'};
-var REC_LBL  = {de:'Empfehlung',en:'Recommendation',fr:'Recommandation'};
-var CALC_REC = {
-  de:{gostart:'GoSTART — 333 CHF / Monat',gofull:'GoFULL — 777 CHF / Monat'},
-  en:{gostart:'GoSTART — 333 CHF / Month',gofull:'GoFULL — 777 CHF / Month'},
-  fr:{gostart:'GoSTART — 333 CHF / Mois',gofull:'GoFULL — 777 CHF / Mois'}
-};
-var CALC_MSG = {
-  de:{gostart:'Perfekt für den Start.',gofull:'Du brauchst das volle Programm.'},
-  en:{gostart:'Perfect for getting started.',gofull:'You need the full package.'},
-  fr:{gostart:'Parfait pour commencer.',gofull:'Vous avez besoin du programme complet.'}
-};
+var REC_LBL = {de:'Empfehlung',en:'Recommendation',fr:'Recommandation'};
+var CALC_REC = {de:{gostart:'GoSTART — 333 CHF / Monat',gofull:'GoFULL — 777 CHF / Monat'},en:{gostart:'GoSTART — 333 CHF / Month',gofull:'GoFULL — 777 CHF / Month'},fr:{gostart:'GoSTART — 333 CHF / Mois',gofull:'GoFULL — 777 CHF / Mois'}};
+var CALC_MSG = {de:{gostart:'Perfekt für den Start.',gofull:'Du brauchst das volle Programm.'},en:{gostart:'Perfect for getting started.',gofull:'You need the full package.'},fr:{gostart:'Parfait pour commencer.',gofull:'Vous avez besoin du programme complet.'}};
 var CHAT_R = {
-  de:{preise:'GoSTART 333 CHF/Monat · GoFULL 777 CHF/Monat · Corporate auf Anfrage.',calls:'Einmal konfigurieren — SNOB übernimmt alles. Inbound & Outbound, multilingual, 24/7.',demo:'Teste SNOB direkt: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Schweizer AI-Plattform für Calls, Chat und Geschäftsprozesse. Kein Code, kein Aufwand.',def:'Schreib uns: team@gosnob.com'},
+  de:{preise:'GoSTART 333 CHF/Monat · GoFULL 777 CHF/Monat · Corporate auf Anfrage.',calls:'Einmal konfigurieren — SNOB übernimmt alles. Inbound & Outbound, multilingual, 24/7.',demo:'Teste SNOB direkt: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Schweizer AI-Plattform für Calls, Chat und Geschäftsprozesse.',def:'Schreib uns: team@gosnob.com'},
   en:{preise:'GoSTART 333 CHF/month · GoFULL 777 CHF/month · Corporate on request.',calls:'Configure once — SNOB handles everything. Inbound & Outbound, multilingual, 24/7.',demo:'Try SNOB directly: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Swiss AI platform for calls, chat and business processes.',def:'Write us: team@gosnob.com'},
   fr:{preise:'GoSTART 333 CHF/mois · GoFULL 777 CHF/mois · Corporate sur demande.',calls:'Configurer une fois — SNOB gère tout. Entrant & Sortant, multilingue, 24/7.',demo:'Testez SNOB directement: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. IA suisse pour appels, chat et processus.',def:'Écrivez-nous: team@gosnob.com'}
 };
@@ -1261,6 +1119,7 @@ function setLang(lang){
   if(lc) lc.innerHTML=SL_CALLS[lang]+' <span class="sl-val" id="vC">'+cV+'</span>';
   doCalc();
   if(window._updateDAUseCases) window._updateDAUseCases(lang);
+  if(window._setWsDesc) window._setWsDesc();
 }
 
 function setLHTab(tab){
@@ -1376,6 +1235,31 @@ function toggleChat(){
 })();
 
 (function(){
+  var idx=0;
+  var el=null;
+  function setDesc(){
+    el = el || document.getElementById('wsDesc');
+    if(!el) return;
+    var vals = WS_DESC_VARIANTS[currentLang] || WS_DESC_VARIANTS.de;
+    el.textContent = vals[idx % vals.length];
+  }
+  window._setWsDesc = setDesc;
+  function rotateDesc(){
+    el = el || document.getElementById('wsDesc');
+    if(!el) return;
+    el.classList.add('fade');
+    setTimeout(function(){
+      var vals = WS_DESC_VARIANTS[currentLang] || WS_DESC_VARIANTS.de;
+      idx=(idx+1)%vals.length;
+      el.textContent = vals[idx];
+      el.classList.remove('fade');
+    },400);
+  }
+  setDesc();
+  setInterval(rotateDesc,5200);
+})();
+
+(function(){
   document.body.style.overflow='hidden';
   var LINES=[
     {langs:['Initialisiere KI...','Initialisiere KI...','Initialisation IA...'],cls:'muted'},
@@ -1469,22 +1353,13 @@ function toggleChat(){
   }
 })();
 
-/* HERO brain canvas (simplified, kept for visual continuity) */
 (function(){
   var hero = document.getElementById('hero');
   var canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;';
   hero.insertBefore(canvas, hero.firstChild);
   var ctx = canvas.getContext('2d');
-  var W, H, particles = [], raf = null, startTime = null;
-  window._heroInput = window._heroInput || {mx:0, my:0, sx:0, sy:0, active:false};
-  var HI = window._heroInput;
-  hero.addEventListener('mousemove', function(e) {
-    HI.mx = e.clientX/window.innerWidth  - 0.5;
-    HI.my = e.clientY/window.innerHeight - 0.5;
-    HI.active = true;
-  }, {passive:true});
-  hero.addEventListener('mouseleave', function(){ HI.active = false; });
+  var W, H, particles = [], raf = null;
   function sampleBrain(N, bw, bh) {
     var oc = document.createElement('canvas'); oc.width = bw; oc.height = bh;
     var ox = oc.getContext('2d');
@@ -1504,7 +1379,14 @@ function toggleChat(){
     var scale = Math.min(W,H)*0.6;
     var pts = sampleBrain(140, Math.round(scale), Math.round(scale));
     particles = pts.map(function(b) {
-      return { tx: W/2+b.x, ty: H/2+b.y, cx: W/2, cy: H/2, al: 0.4+Math.random()*0.4, r: 1+Math.random()*1.6 };
+      return {
+        bx: W/2+b.x, by: H/2+b.y,
+        cx: W/2+b.x, cy: H/2+b.y,
+        al: 0.4+Math.random()*0.4, r: 1+Math.random()*1.6,
+        phX: Math.random()*Math.PI*2, phY: Math.random()*Math.PI*2,
+        spX: 0.4+Math.random()*0.5, spY: 0.4+Math.random()*0.5,
+        ampX: 3+Math.random()*4, ampY: 3+Math.random()*4
+      };
     });
   }
   function resize(){ W = canvas.offsetWidth; H = canvas.offsetHeight; canvas.width = W; canvas.height = H; initParticles(); }
@@ -1513,8 +1395,11 @@ function toggleChat(){
   function draw(ts){
     raf = requestAnimationFrame(draw);
     ctx.clearRect(0,0,W,H);
+    var t = ts*0.001;
     particles.forEach(function(p){
-      p.cx += (p.tx - p.cx)*0.06; p.cy += (p.ty - p.cy)*0.06;
+      var tx = p.bx + Math.sin(t*p.spX + p.phX)*p.ampX;
+      var ty = p.by + Math.cos(t*p.spY + p.phY)*p.ampY;
+      p.cx += (tx - p.cx)*0.06; p.cy += (ty - p.cy)*0.06;
       var g = ctx.createRadialGradient(p.cx,p.cy,0,p.cx,p.cy,p.r*3);
       g.addColorStop(0,'rgba(217,70,239,'+p.al+')'); g.addColorStop(1,'rgba(217,70,239,0)');
       ctx.beginPath(); ctx.arc(p.cx,p.cy,p.r*3,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
@@ -1528,10 +1413,6 @@ function toggleChat(){
   });
   heroIO.observe(hero);
 })();
-
-['#ws-title','.cta1-title','.cta2-text','.pr-head-title','.calc-title'].forEach(function(sel){
-  document.querySelectorAll(sel).forEach(function(el){ el.style.transform=''; el.style.willChange=''; });
-});
 
 (function(){
   var N=14, trail=[];
@@ -1557,29 +1438,6 @@ function toggleChat(){
 })();
 
 (function(){
-  var style=document.createElement('style');
-  style.textContent='[data-r]{transform-origin:center bottom;}[data-r="up"]{transform:translateY(80px) rotateX(-28deg);opacity:0;}[data-r="left"]{transform:translateX(-80px) rotateY(22deg);opacity:0;}[data-r="right"]{transform:translateX(80px) rotateY(-22deg);opacity:0;}[data-r="scale"]{transform:scale(.84) rotateX(-18deg);opacity:0;}[data-r].vis{opacity:1;transform:none;}';
-  document.head.appendChild(style);
-  ['#whatssnob','#calc','#pricing','#delicate','#cta1','#legalhub'].forEach(function(sel){
-    var el=document.querySelector(sel);
-    if(el){ el.style.perspective='1400px'; el.style.perspectiveOrigin='50% 0%'; }
-  });
-})();
-
-(function(){
-  var style=document.createElement('style');
-  style.textContent='.shock{position:fixed;pointer-events:none;border-radius:50%;border:2px solid rgba(217,70,239,.7);transform:translate(-50%,-50%) scale(0);animation:shockwave .75s cubic-bezier(.16,1,.3,1) forwards;z-index:99998;}@keyframes shockwave{to{transform:translate(-50%,-50%) scale(10);opacity:0;border-width:0;}}';
-  document.head.appendChild(style);
-  document.addEventListener('click', function(e){
-    var d=document.createElement('div');
-    d.className='shock';
-    d.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;width:56px;height:56px;';
-    document.body.appendChild(d);
-    setTimeout(function(){d.remove();},850);
-  });
-})();
-
-(function(){
   var l=document.createElement('link');
   l.rel='stylesheet';
   l.href='https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400&display=swap';
@@ -1591,7 +1449,7 @@ function toggleChat(){
   document.head.appendChild(l);
 })();
 
-/* ====== SNOB FLOW — bigger canvas, clearly visible line-art icons ====== */
+/* SNOB FLOW canvas — sources/knowledge nodes + hover tooltips */
 (function(){
   var cvs = document.getElementById('snob-flow-cvs');
   if(!cvs) return;
@@ -1603,6 +1461,8 @@ function toggleChat(){
   var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
   var pulses = [];
   var lastPulse = 0;
+  var hoverNode = null;
+  var tooltipEl = document.getElementById('sfTooltip');
 
   function gl(o){ var l = typeof currentLang !== 'undefined' ? currentLang : 'de'; return o[l] || o.de; }
 
@@ -1613,15 +1473,29 @@ function toggleChat(){
     analytics:{de:'Analytics',en:'Analytics',fr:'Analytique'},
     storage:{de:'Datenspeicher',en:'Data Storage',fr:'Stockage'},
     appts:{de:'Termine',en:'Appointments',fr:'Rendez-vous'},
+    sources:{de:'300+ Quellen',en:'300+ Sources',fr:'300+ Sources'},
+    knowledge:{de:'Wissensbibliothek',en:'Knowledge Library',fr:'Bibliothèque'},
+    languages:{de:'100+ Sprachen',en:'100+ Languages',fr:'100+ Langues'},
     mode_lbl:{inbound:{de:'INBOUND',en:'INBOUND',fr:'ENTRANT'},outbound:{de:'OUTBOUND',en:'OUTBOUND',fr:'SORTANT'}}
+  };
+
+  var TIP = {
+    phone:{de:['Anruf','Nimmt jeden Anruf entgegen, 24/7 in 100+ Sprachen.'],en:['Phone','Answers every call, 24/7 in 100+ languages.'],fr:['Appel','Répond à chaque appel, 24/7 en 100+ langues.']},
+    chat:{de:['Web','Chat & Voice direkt auf deiner Website.'],en:['Web','Chat & voice right on your website.'],fr:['Web','Chat & voix directement sur votre site.']},
+    megaphone:{de:['Kampagnen','Startet Outbound-Kampagnen aus Leadlisten.'],en:['Campaigns','Launches outbound campaigns from lead lists.'],fr:['Campagnes','Lance des campagnes sortantes depuis vos leads.']},
+    bars:{de:['Analytics','Erfasst Fakten, Verhalten & Zufriedenheit je Gespräch.'],en:['Analytics','Captures facts, behavior & satisfaction per call.'],fr:['Analytique','Capture faits, comportement & satisfaction par appel.']},
+    db:{de:['Datenspeicher','Speichert & überträgt Daten an CRM und E-Mail.'],en:['Data Storage','Stores & transfers data to CRM and email.'],fr:['Stockage','Stocke & transfère les données vers CRM et e-mail.']},
+    calendar:{de:['Termine','Bucht, verschiebt und storniert live im Gespräch.'],en:['Appointments','Books, reschedules and cancels live in the call.'],fr:['Rendez-vous','Réserve, reporte et annule en direct.']},
+    sources:{de:['300+ Quellen','Kalender, CRMs, Bestellungen, APIs & Webhooks.'],en:['300+ Sources','Calendars, CRMs, orders, APIs & webhooks.'],fr:['300+ Sources','Calendriers, CRM, commandes, API & webhooks.']},
+    knowledge:{de:['Wissensbibliothek','Persistent: PDF, DOCX, TXT & Web-Content.'],en:['Knowledge Library','Persistent: PDF, DOCX, TXT & web content.'],fr:['Bibliothèque','Persistante : PDF, DOCX, TXT & contenu web.']}
   };
 
   function resize(){
     var sec = document.getElementById('snob-flow');
     var pw = sec ? sec.getBoundingClientRect().width : 900;
     W = Math.max(320, Math.min(pw - (isTouch ? 24 : 48), 1080));
-    H = isTouch ? Math.round(W * 0.62) : Math.round(W * 0.5);
-    H = isTouch ? Math.max(H, 420) : Math.max(H, 480);
+    H = isTouch ? Math.round(W * 0.72) : Math.round(W * 0.6);
+    H = isTouch ? Math.max(H, 480) : Math.max(H, 560);
     cvs.width  = Math.round(W * DPR);
     cvs.height = Math.round(H * DPR);
     cvs.style.width  = W + 'px';
@@ -1630,19 +1504,22 @@ function toggleChat(){
   }
 
   function lo(){
-    var snobR = isTouch ? 72 : 96;
-    var nodeR = isTouch ? 42 : 54;
-    var snobX = W * 0.5, snobY = H * 0.5;
+    var snobR = isTouch ? 68 : 90;
+    var nodeR = isTouch ? 38 : 50;
+    var smallR = isTouch ? 30 : 38;
+    var snobX = W * 0.5, snobY = H * 0.44;
     var lx = W * 0.155, rx = W * 0.845;
     var inputs = sfMode === 'inbound'
-      ? [{x:lx,y:H*0.26,lbl:LBL.phone,icn:'phone'},{x:lx,y:H*0.74,lbl:LBL.web,icn:'chat'}]
-      : [{x:lx,y:H*0.5,lbl:LBL.campaign,icn:'megaphone'}];
+      ? [{x:lx,y:H*0.30,lbl:LBL.phone,icn:'phone',tip:'phone'},{x:lx,y:H*0.58,lbl:LBL.web,icn:'chat',tip:'chat'}]
+      : [{x:lx,y:H*0.44,lbl:LBL.campaign,icn:'megaphone',tip:'megaphone'}];
     var outputs = [
-      {x:rx,y:H*0.20,lbl:LBL.analytics,pink:true,icn:'bars'},
-      {x:rx,y:H*0.5, lbl:LBL.storage,icn:'db'},
-      {x:rx,y:H*0.80,lbl:LBL.appts,icn:'calendar'}
+      {x:rx,y:H*0.20,lbl:LBL.analytics,pink:true,icn:'bars',tip:'bars'},
+      {x:rx,y:H*0.44, lbl:LBL.storage,icn:'db',tip:'db'},
+      {x:rx,y:H*0.68,lbl:LBL.appts,icn:'calendar',tip:'calendar'}
     ];
-    return {snobX:snobX,snobY:snobY,snobR:snobR,nodeR:nodeR,inputs:inputs,outputs:outputs};
+    var sourcesNode = {x:snobX, y:H*0.10, r:smallR, lbl:LBL.sources, icn:'sources', tip:'sources'};
+    var knowledgeNode = {x:snobX, y:H*0.86, r:smallR, lbl:LBL.knowledge, icn:'knowledge', tip:'knowledge'};
+    return {snobX:snobX,snobY:snobY,snobR:snobR,nodeR:nodeR,inputs:inputs,outputs:outputs,sourcesNode:sourcesNode,knowledgeNode:knowledgeNode};
   }
 
   function circ(x,y,r,fill,strok,sw){
@@ -1651,7 +1528,6 @@ function toggleChat(){
     if(strok){ctx.strokeStyle=strok;ctx.lineWidth=sw||1;ctx.stroke();}
   }
 
-  // Line-art icons — stroke width scales with node radius so they stay crisp at any size
   function icn(type,x,y,r,col){
     var s = r * 0.62;
     var lw = Math.max(2, r * 0.045);
@@ -1710,6 +1586,17 @@ function toggleChat(){
       ctx.moveTo(-s*.22,-s*.5);ctx.lineTo(-s*.22,-s*.15);
       ctx.moveTo(s*.22,-s*.5);ctx.lineTo(s*.22,-s*.15);
       ctx.stroke();
+    } else if(type==='sources'){
+      for(var k=0;k<6;k++){
+        var ang=k*(Math.PI*2/6);
+        ctx.beginPath();ctx.arc(Math.cos(ang)*s*.55,Math.sin(ang)*s*.55,s*.14,0,Math.PI*2);ctx.fill();
+      }
+      ctx.beginPath();ctx.arc(0,0,s*.18,0,Math.PI*2);ctx.fill();
+    } else if(type==='knowledge'){
+      ctx.beginPath();
+      ctx.moveTo(-s*.55,-s*.4);ctx.lineTo(-s*.1,-s*.4);ctx.lineTo(-s*.1,s*.5);ctx.lineTo(-s*.55,s*.5);ctx.closePath();ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(s*.55,-s*.4);ctx.lineTo(s*.1,-s*.4);ctx.lineTo(s*.1,s*.5);ctx.lineTo(s*.55,s*.5);ctx.closePath();ctx.stroke();
     }
     ctx.restore();
   }
@@ -1740,6 +1627,54 @@ function toggleChat(){
       pulses.push({x1:layout.snobX+layout.snobR,y1:layout.snobY,x2:out.x-layout.nodeR,y2:out.y,t:0,s:0.007});
     }
   }
+
+  function allHoverNodes(layout){
+    var nodes=[];
+    layout.inputs.forEach(function(n){ nodes.push({x:n.x,y:n.y,r:layout.nodeR,tip:n.tip}); });
+    layout.outputs.forEach(function(n){ nodes.push({x:n.x,y:n.y,r:layout.nodeR,tip:n.tip}); });
+    nodes.push({x:layout.sourcesNode.x,y:layout.sourcesNode.y,r:layout.sourcesNode.r,tip:layout.sourcesNode.tip});
+    nodes.push({x:layout.knowledgeNode.x,y:layout.knowledgeNode.y,r:layout.knowledgeNode.r,tip:layout.knowledgeNode.tip});
+    return nodes;
+  }
+
+  function showTooltip(node){
+    if(!tooltipEl) return;
+    var data = TIP[node.tip];
+    if(!data) return;
+    var pair = data[typeof currentLang!=='undefined'?currentLang:'de'] || data.de;
+    tooltipEl.innerHTML = '<b>'+pair[0]+'</b>'+pair[1];
+    tooltipEl.style.left = node.x + 'px';
+    tooltipEl.style.top = (node.y - node.r) + 'px';
+    tooltipEl.classList.add('show');
+  }
+  function hideTooltip(){ if(tooltipEl) tooltipEl.classList.remove('show'); }
+
+  function handlePointer(px,py){
+    var layout = lo();
+    var nodes = allHoverNodes(layout);
+    var found = null;
+    nodes.forEach(function(n){
+      var dx=px-n.x, dy=py-n.y;
+      if(Math.sqrt(dx*dx+dy*dy) <= n.r+6) found = n;
+    });
+    if(found !== hoverNode){
+      hoverNode = found;
+      if(found){ showTooltip(found); cvs.style.cursor='pointer'; }
+      else { hideTooltip(); cvs.style.cursor='default'; }
+    } else if(found){
+      showTooltip(found);
+    }
+  }
+  cvs.addEventListener('mousemove', function(e){
+    var r = cvs.getBoundingClientRect();
+    handlePointer(e.clientX-r.left, e.clientY-r.top);
+  });
+  cvs.addEventListener('mouseleave', function(){ hoverNode=null; hideTooltip(); });
+  cvs.addEventListener('touchstart', function(e){
+    var t = e.touches[0]; var r = cvs.getBoundingClientRect();
+    handlePointer(t.clientX-r.left, t.clientY-r.top);
+  }, {passive:true});
+
   function draw(now){
     raf=requestAnimationFrame(draw);
     ctx.clearRect(0,0,W,H);
@@ -1748,21 +1683,33 @@ function toggleChat(){
 
     layout.inputs.forEach(function(n){ ln(n.x+layout.nodeR,n.y,layout.snobX-layout.snobR,layout.snobY); });
     layout.outputs.forEach(function(o){ ln(layout.snobX+layout.snobR,layout.snobY,o.x-layout.nodeR,o.y); });
+    ln(layout.snobX,layout.snobY-layout.snobR,layout.sourcesNode.x,layout.sourcesNode.y+layout.sourcesNode.r,'rgba(217,70,239,0.18)',1.4);
+    ln(layout.snobX,layout.snobY+layout.snobR,layout.knowledgeNode.x,layout.knowledgeNode.y-layout.knowledgeNode.r,'rgba(217,70,239,0.18)',1.4);
 
     pulses=pulses.filter(function(p){return p.t<1;});
     pulses.forEach(function(p){ p.t+=p.s; pDot(p.x1+(p.x2-p.x1)*p.t,p.y1+(p.y2-p.y1)*p.t,Math.sin(p.t*Math.PI)); });
 
-    var nodeLblSz = isTouch ? 13 : 15;
+    var nodeLblSz = isTouch ? 12 : 14;
     layout.inputs.forEach(function(n){
-      circ(n.x,n.y,layout.nodeR,'#fff','rgba(0,0,0,0.12)',1.4);
-      icn(n.icn,n.x,n.y,layout.nodeR,'#8a8a8a');
-      drawTxt(n.x,n.y+layout.nodeR+26,gl(n.lbl),nodeLblSz,'#555');
+      var hv = hoverNode && hoverNode.tip===n.tip;
+      circ(n.x,n.y,layout.nodeR,'#fff',hv?'rgba(217,70,239,0.5)':'rgba(0,0,0,0.12)',hv?2:1.4);
+      icn(n.icn,n.x,n.y,layout.nodeR,hv?'#d946ef':'#8a8a8a');
+      drawTxt(n.x,n.y+layout.nodeR+24,gl(n.lbl),nodeLblSz,hv?'#d946ef':'#555');
     });
     layout.outputs.forEach(function(o){
-      circ(o.x,o.y,layout.nodeR,'#fff',o.pink?'rgba(217,70,239,0.35)':'rgba(0,0,0,0.12)',o.pink?1.8:1.4);
-      icn(o.icn,o.x,o.y,layout.nodeR,o.pink?'#d946ef':'#8a8a8a');
-      drawTxt(o.x,o.y+layout.nodeR+26,gl(o.lbl),nodeLblSz,o.pink?'#d946ef':'#555');
+      var hv = hoverNode && hoverNode.tip===o.tip;
+      circ(o.x,o.y,layout.nodeR,'#fff',(o.pink||hv)?'rgba(217,70,239,0.4)':'rgba(0,0,0,0.12)',(o.pink||hv)?1.8:1.4);
+      icn(o.icn,o.x,o.y,layout.nodeR,(o.pink||hv)?'#d946ef':'#8a8a8a');
+      drawTxt(o.x,o.y+layout.nodeR+24,gl(o.lbl),nodeLblSz,(o.pink||hv)?'#d946ef':'#555');
     });
+
+    [layout.sourcesNode,layout.knowledgeNode].forEach(function(sn){
+      var hv = hoverNode && hoverNode.tip===sn.tip;
+      circ(sn.x,sn.y,sn.r,'#fdf5fe',hv?'rgba(217,70,239,0.5)':'rgba(217,70,239,0.2)',hv?2:1.2);
+      icn(sn.icn,sn.x,sn.y,sn.r,hv?'#d946ef':'#c084dc');
+    });
+    drawTxt(layout.sourcesNode.x,layout.sourcesNode.y-layout.sourcesNode.r-12,gl(LBL.sources),10.5,'#c084dc');
+    drawTxt(layout.knowledgeNode.x,layout.knowledgeNode.y+layout.knowledgeNode.r+20,gl(LBL.knowledge),10.5,'#c084dc');
 
     var pulseAl=0.06+0.05*Math.sin(now*0.0018);
     var gg=ctx.createRadialGradient(layout.snobX,layout.snobY,layout.snobR,layout.snobX,layout.snobY,layout.snobR+50);
@@ -1770,15 +1717,18 @@ function toggleChat(){
     ctx.beginPath();ctx.arc(layout.snobX,layout.snobY,layout.snobR+50,0,Math.PI*2);ctx.fillStyle=gg;ctx.fill();
     circ(layout.snobX,layout.snobY,layout.snobR,'#0a0a0a');
     ctx.textAlign='center';ctx.fillStyle='#fff';
-    ctx.font='400 '+(isTouch?28:34)+'px "Bebas Neue",sans-serif';
+    ctx.font='400 '+(isTouch?26:32)+'px "Bebas Neue",sans-serif';
     ctx.fillText('SNOB',layout.snobX,layout.snobY-2);
     ctx.fillStyle='rgba(255,255,255,0.4)';
-    ctx.font='400 '+(isTouch?10:11)+'px "DM Mono",monospace';
-    ctx.fillText(gl(LBL.mode_lbl[sfMode]),layout.snobX,layout.snobY+22);
+    ctx.font='400 '+(isTouch?9:10)+'px "DM Mono",monospace';
+    ctx.fillText(gl(LBL.mode_lbl[sfMode]),layout.snobX,layout.snobY+20);
+    ctx.fillStyle='rgba(255,255,255,0.35)';
+    ctx.font='400 8.5px "DM Mono",monospace';
+    ctx.fillText(gl(LBL.languages),layout.snobX,layout.snobY+34);
   }
   window.setSFMode=function(newMode){
     if(sfMode===newMode)return;
-    sfMode=newMode; pulses=[];
+    sfMode=newMode; pulses=[]; hoverNode=null; hideTooltip();
     document.querySelectorAll('.sf-chip').forEach(function(c){ c.classList.toggle('active',c.getAttribute('data-mode')===newMode); });
   };
   resize();
@@ -1793,47 +1743,7 @@ function toggleChat(){
   io.observe(cvs);
 })();
 
-/* ====== DELICATE AI — use-case list (replaces number counter) ====== */
 (function(){
-  var IND_KEY_MAP={pharma:'da_uc_pharma',industrie:'da_uc_industrie',handel:'da_uc_handel',gastro:'da_uc_gastro',it:'da_uc_it',finanzen:'da_uc_finanzen',gesund:'da_uc_gesund'};
-  var currentInd=null;
-  function renderList(key){
-    var lang=typeof currentLang!=='undefined'?currentLang:'de';
-    var listEl=document.getElementById('da-usecase-list');
-    var hintEl=document.getElementById('da-usecase-hint');
-    var introEl=document.getElementById('da-usecase-intro');
-    if(!listEl)return;
-    if(!key){
-      listEl.innerHTML='';
-      if(introEl){introEl.textContent='';introEl.classList.remove('visible');}
-      if(hintEl){hintEl.style.display='block';}
-      return;
-    }
-    var tKey=IND_KEY_MAP[key];
-    var introKey='da_uc_intro_'+key;
-    var items=(T[tKey]&&T[tKey][lang])?T[tKey][lang]:(T[tKey]?T[tKey].de:[]);
-    var introTxt=(T[introKey]&&T[introKey][lang])?T[introKey][lang]:(T[introKey]?T[introKey].de:'');
-    if(hintEl) hintEl.style.display='none';
-    if(introEl){
-      introEl.classList.remove('visible');
-      introEl.textContent=introTxt;
-      setTimeout(function(){introEl.classList.add('visible');},20);
-    }
-    listEl.innerHTML='';
-    items.forEach(function(txt,i){
-      var li=document.createElement('li');
-      li.textContent=txt;
-      listEl.appendChild(li);
-      setTimeout(function(){li.classList.add('visible');},80+i*90);
-    });
-  }
-  window.setDAIndustry=function(key){
-    document.querySelectorAll('.da-chip[data-ind]').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ind')===key);});
-    currentInd=key;
-    renderList(key);
-  };
-
-  // ---- Examples (Front Desk / Website Guide / Hotel Concierge / Business Surveys) ----
   var currentEx=null;
   function renderExample(key){
     var lang=typeof currentLang!=='undefined'?currentLang:'de';
@@ -1874,16 +1784,11 @@ function toggleChat(){
     currentEx=key;
     renderExample(key);
   };
-
   window._updateDAUseCases=function(lang){
-    if(currentInd) renderList(currentInd);
     if(currentEx) renderExample(currentEx);
   };
 })();
 
-/* Initialize language content on page load — without this, elements that rely
-   entirely on the T object (e.g. legal document bodies) stay empty until the
-   user manually clicks a language switcher. */
 setLang('de');
 </script>
 </body>
