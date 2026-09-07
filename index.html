@@ -115,7 +115,13 @@ nav.scrolled{padding:12px 40px;}
 .sf-tooltip.show{opacity:1;transform:translate(-50%,-100%) translateY(-18px);}
 .sf-tooltip::after{content:'';position:absolute;left:50%;top:100%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#0a0a0a;}
 .sf-tooltip b{color:#d946ef;font-weight:400;display:block;margin-bottom:3px;letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;}
-@media(max-width:768px){#snob-flow{padding:56px 16px 64px;}}
+.sf-hello{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,32px);color:#0a0a0a;margin-bottom:6px;letter-spacing:.02em;}
+.sf-carousels{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:28px;}
+.sf-carousel{text-align:center;}
+.sf-carousel-lbl{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#ccc;margin-bottom:6px;}
+.sf-carousel-val{font-size:13px;color:#d946ef;font-weight:500;min-height:1.4em;transition:opacity .35s ease;letter-spacing:.02em;}
+.sf-carousel-val.fade{opacity:0;}
+@media(max-width:768px){#snob-flow{padding:56px 16px 64px;}.sf-carousels{gap:24px;}}
 #calc{padding:96px 40px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
 @media(max-width:768px){#calc{grid-template-columns:1fr;gap:40px;padding:64px 20px;}}
 .calc-label-txt{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:10px;}
@@ -380,6 +386,17 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="sf-toggle">
     <button class="sf-chip active" data-mode="inbound" onclick="setSFMode('inbound')" data-i="sf_mode_in">Inbound</button>
     <button class="sf-chip" data-mode="outbound" onclick="setSFMode('outbound')" data-i="sf_mode_out">Outbound</button>
+  </div>
+  <div class="sf-hello" id="sfHello" data-i="sf_hello">Hello...</div>
+  <div class="sf-carousels">
+    <div class="sf-carousel">
+      <div class="sf-carousel-lbl" data-i="sf_car_lang_lbl">100+ Sprachen — z.B.</div>
+      <div class="sf-carousel-val" id="sfLangCarousel">Deutsch</div>
+    </div>
+    <div class="sf-carousel">
+      <div class="sf-carousel-lbl" data-i="sf_car_tool_lbl">300+ Quellen — z.B.</div>
+      <div class="sf-carousel-val" id="sfToolCarousel">Kalender</div>
+    </div>
   </div>
   <canvas id="snob-flow-cvs"></canvas>
   <div class="sf-tooltip" id="sfTooltip"></div>
@@ -1059,8 +1076,50 @@ var T = {
   qb4:{de:'Was ist SNOB?',en:'What is SNOB?',fr:"Qu'est-ce que SNOB?"},
   sf_lbl:{de:'Wie SNOB arbeitet',en:'How SNOB works',fr:'Comment SNOB fonctionne'},
   sf_mode_in:{de:'Inbound',en:'Inbound',fr:'Entrant'},
-  sf_mode_out:{de:'Outbound',en:'Outbound',fr:'Sortant'}
+  sf_mode_out:{de:'Outbound',en:'Outbound',fr:'Sortant'},
+  sf_hello:{de:'Hallo...',en:'Hello...',fr:'Bonjour...'},
+  sf_car_lang_lbl:{de:'100+ Sprachen — z.B.',en:'100+ languages — e.g.',fr:'100+ langues — p.ex.'},
+  sf_car_tool_lbl:{de:'300+ Quellen — z.B.',en:'300+ sources — e.g.',fr:'300+ sources — p.ex.'}
 };
+
+/* Rotating language & tool carousels for the flow diagram (point 1 refinement) */
+var SF_LANG_CAROUSEL = ['Deutsch','English','Français','Italiano','中文','العربية'];
+var SF_TOOL_CAROUSEL = {
+  de:['Kalender','Spreadsheets','Task Management','Bestell-Datenbank','Kundendatenbank','Produktkatalog','Lagerbestände','Social Media','Wetterprognose','Verkehrsinfo','API & Webhooks'],
+  en:['Calendars','Spreadsheets','Task Management','Order Database','Customer Database','Product Catalog','Inventory Levels','Social Media','Weather Forecast','Traffic Info','API & Webhooks'],
+  fr:['Calendriers','Tableurs','Gestion de tâches','Base de commandes','Base clients','Catalogue produits',"Niveaux d'inventaire",'Réseaux sociaux','Prévisions météo','Infos trafic','API & webhooks']
+};
+var SF_OUT_ACTIONS = {
+  analytics:{de:'Flaggen · Eskalieren · Lernen',en:'Flag · Escalate · Learn',fr:'Signaler · Escalader · Apprendre'},
+  storage:{de:'Strukturieren · Speichern · Senden',en:'Structure · Store · Send',fr:'Structurer · Stocker · Envoyer'},
+  appts:{de:'Buchen · Verschieben · Stornieren',en:'Book · Reschedule · Cancel',fr:'Réserver · Reporter · Annuler'}
+};
+(function(){
+  var langIdx=0, toolIdx=0;
+  var langEl=null, toolEl=null;
+  function tick(el, getVal, advance){
+    if(!el) return;
+    el.classList.add('fade');
+    setTimeout(function(){
+      advance();
+      el.textContent = getVal();
+      el.classList.remove('fade');
+    },350);
+  }
+  function rotateLang(){
+    langEl = langEl || document.getElementById('sfLangCarousel');
+    tick(langEl, function(){ return SF_LANG_CAROUSEL[langIdx]; }, function(){ langIdx=(langIdx+1)%SF_LANG_CAROUSEL.length; });
+  }
+  function rotateTool(){
+    toolEl = toolEl || document.getElementById('sfToolCarousel');
+    tick(toolEl, function(){
+      var list = SF_TOOL_CAROUSEL[currentLang] || SF_TOOL_CAROUSEL.de;
+      return list[toolIdx % list.length];
+    }, function(){ toolIdx=(toolIdx+1)%(SF_TOOL_CAROUSEL[currentLang]||SF_TOOL_CAROUSEL.de).length; });
+  }
+  setInterval(rotateLang,1900);
+  setInterval(rotateTool,2300);
+})();
 
 var WS_DESC_VARIANTS = {
   de:[
@@ -1482,12 +1541,15 @@ function toggleChat(){
   var TIP = {
     phone:{de:['Anruf','Nimmt jeden Anruf entgegen, 24/7 in 100+ Sprachen.'],en:['Phone','Answers every call, 24/7 in 100+ languages.'],fr:['Appel','Répond à chaque appel, 24/7 en 100+ langues.']},
     chat:{de:['Web','Chat & Voice direkt auf deiner Website.'],en:['Web','Chat & voice right on your website.'],fr:['Web','Chat & voix directement sur votre site.']},
-    megaphone:{de:['Kampagnen','Startet Outbound-Kampagnen aus Leadlisten.'],en:['Campaigns','Launches outbound campaigns from lead lists.'],fr:['Campagnes','Lance des campagnes sortantes depuis vos leads.']},
-    bars:{de:['Analytics','Erfasst Fakten, Verhalten & Zufriedenheit je Gespräch.'],en:['Analytics','Captures facts, behavior & satisfaction per call.'],fr:['Analytique','Capture faits, comportement & satisfaction par appel.']},
-    db:{de:['Datenspeicher','Speichert & überträgt Daten an CRM und E-Mail.'],en:['Data Storage','Stores & transfers data to CRM and email.'],fr:['Stockage','Stocke & transfère les données vers CRM et e-mail.']},
+    megaphone:{de:['Kampagnen','SNOBs eigener Skill — kein externer Input. Startet Outbound-Kampagnen aus deinen Leadlisten.'],en:['Campaigns',"SNOB's own skill — not an external input. Launches outbound campaigns from your lead lists."],fr:['Campagnes',"Compétence propre de SNOB — pas une entrée externe. Lance des campagnes depuis vos leads."]},
+    bars:{de:['Analytics','Erfasst Fakten, Verhalten & Zufriedenheit. Flaggt, eskaliert, lernt dazu.'],en:['Analytics','Captures facts, behavior & satisfaction. Flags, escalates, learns.'],fr:['Analytique','Capture faits, comportement & satisfaction. Signale, escalade, apprend.']},
+    db:{de:['Datenspeicher','Strukturiert, speichert & sendet Daten an CRM und E-Mail.'],en:['Data Storage','Structures, stores & sends data to CRM and email.'],fr:['Stockage','Structure, stocke & envoie les données vers CRM et e-mail.']},
     calendar:{de:['Termine','Bucht, verschiebt und storniert live im Gespräch.'],en:['Appointments','Books, reschedules and cancels live in the call.'],fr:['Rendez-vous','Réserve, reporte et annule en direct.']},
-    sources:{de:['300+ Quellen','Kalender, CRMs, Bestellungen, APIs & Webhooks.'],en:['300+ Sources','Calendars, CRMs, orders, APIs & webhooks.'],fr:['300+ Sources','Calendriers, CRM, commandes, API & webhooks.']},
-    knowledge:{de:['Wissensbibliothek','Persistent: PDF, DOCX, TXT & Web-Content.'],en:['Knowledge Library','Persistent: PDF, DOCX, TXT & web content.'],fr:['Bibliothèque','Persistante : PDF, DOCX, TXT & contenu web.']}
+    sources:{de:['300+ Quellen · Real Time','Kalender, CRMs, Bestellungen, APIs & Webhooks — live verbunden.'],en:['300+ Sources · Real Time','Calendars, CRMs, orders, APIs & webhooks — live connected.'],fr:['300+ Sources · Temps réel','Calendriers, CRM, commandes, API & webhooks — connectés en direct.']},
+    knowledge:{de:['Persistent Knowledge','Bleibt erhalten: PDF, DOCX, TXT & Web-Content.'],en:['Persistent Knowledge','Stays persistent: PDF, DOCX, TXT & web content.'],fr:['Connaissance persistante','Reste disponible : PDF, DOCX, TXT & contenu web.']},
+    leadsdb:{de:['Leads-Datenbank','Bestehende Kontakte aus deiner Datenbank.'],en:['Leads Database','Existing contacts from your database.'],fr:['Base de leads','Contacts existants de votre base de données.']},
+    leadsevent:{de:['Event-getriggert','Leads, die durch ein Ereignis ausgelöst werden.'],en:['Event-triggered','Leads triggered by an event.'],fr:['Déclenché par événement','Leads déclenchés par un événement.']},
+    leadsmanual:{de:['Manuell','Von Hand hinzugefügte Leads.'],en:['Manual','Manually added leads.'],fr:['Manuel','Leads ajoutés manuellement.']}
   };
 
   function resize(){
@@ -1519,7 +1581,17 @@ function toggleChat(){
     ];
     var sourcesNode = {x:snobX, y:H*0.10, r:smallR, lbl:LBL.sources, icn:'sources', tip:'sources'};
     var knowledgeNode = {x:snobX, y:H*0.86, r:smallR, lbl:LBL.knowledge, icn:'knowledge', tip:'knowledge'};
-    return {snobX:snobX,snobY:snobY,snobR:snobR,nodeR:nodeR,inputs:inputs,outputs:outputs,sourcesNode:sourcesNode,knowledgeNode:knowledgeNode};
+    var leadNodes = null;
+    if(sfMode === 'outbound'){
+      var leadR = isTouch ? 22 : 27;
+      var lx2 = W * 0.045;
+      leadNodes = [
+        {x:lx2,y:H*0.28,r:leadR,icn:'db',tip:'leadsdb',lbl:{de:'Datenbank',en:'Database',fr:'Base de données'}},
+        {x:lx2,y:H*0.44,r:leadR,icn:'bars',tip:'leadsevent',lbl:{de:'Event',en:'Event',fr:'Événement'}},
+        {x:lx2,y:H*0.60,r:leadR,icn:'knowledge',tip:'leadsmanual',lbl:{de:'Manuell',en:'Manual',fr:'Manuel'}}
+      ];
+    }
+    return {snobX:snobX,snobY:snobY,snobR:snobR,nodeR:nodeR,inputs:inputs,outputs:outputs,sourcesNode:sourcesNode,knowledgeNode:knowledgeNode,leadNodes:leadNodes};
   }
 
   function circ(x,y,r,fill,strok,sw){
@@ -1634,6 +1706,7 @@ function toggleChat(){
     layout.outputs.forEach(function(n){ nodes.push({x:n.x,y:n.y,r:layout.nodeR,tip:n.tip}); });
     nodes.push({x:layout.sourcesNode.x,y:layout.sourcesNode.y,r:layout.sourcesNode.r,tip:layout.sourcesNode.tip});
     nodes.push({x:layout.knowledgeNode.x,y:layout.knowledgeNode.y,r:layout.knowledgeNode.r,tip:layout.knowledgeNode.tip});
+    if(layout.leadNodes){ layout.leadNodes.forEach(function(n){ nodes.push({x:n.x,y:n.y,r:n.r,tip:n.tip}); }); }
     return nodes;
   }
 
@@ -1685,6 +1758,9 @@ function toggleChat(){
     layout.outputs.forEach(function(o){ ln(layout.snobX+layout.snobR,layout.snobY,o.x-layout.nodeR,o.y); });
     ln(layout.snobX,layout.snobY-layout.snobR,layout.sourcesNode.x,layout.sourcesNode.y+layout.sourcesNode.r,'rgba(217,70,239,0.18)',1.4);
     ln(layout.snobX,layout.snobY+layout.snobR,layout.knowledgeNode.x,layout.knowledgeNode.y-layout.knowledgeNode.r,'rgba(217,70,239,0.18)',1.4);
+    if(layout.leadNodes && layout.inputs[0]){
+      layout.leadNodes.forEach(function(n){ ln(n.x+n.r,n.y,layout.inputs[0].x-layout.nodeR,layout.inputs[0].y,'rgba(0,0,0,0.1)',1.2); });
+    }
 
     pulses=pulses.filter(function(p){return p.t<1;});
     pulses.forEach(function(p){ p.t+=p.s; pDot(p.x1+(p.x2-p.x1)*p.t,p.y1+(p.y2-p.y1)*p.t,Math.sin(p.t*Math.PI)); });
@@ -1696,11 +1772,16 @@ function toggleChat(){
       icn(n.icn,n.x,n.y,layout.nodeR,hv?'#d946ef':'#8a8a8a');
       drawTxt(n.x,n.y+layout.nodeR+24,gl(n.lbl),nodeLblSz,hv?'#d946ef':'#555');
     });
+    var OUT_ACTION_KEY = {bars:'analytics',db:'storage',calendar:'appts'};
     layout.outputs.forEach(function(o){
       var hv = hoverNode && hoverNode.tip===o.tip;
       circ(o.x,o.y,layout.nodeR,'#fff',(o.pink||hv)?'rgba(217,70,239,0.4)':'rgba(0,0,0,0.12)',(o.pink||hv)?1.8:1.4);
       icn(o.icn,o.x,o.y,layout.nodeR,(o.pink||hv)?'#d946ef':'#8a8a8a');
       drawTxt(o.x,o.y+layout.nodeR+24,gl(o.lbl),nodeLblSz,(o.pink||hv)?'#d946ef':'#555');
+      var actKey = OUT_ACTION_KEY[o.icn];
+      if(actKey && SF_OUT_ACTIONS[actKey]){
+        drawTxt(o.x,o.y+layout.nodeR+24+(isTouch?14:16),gl(SF_OUT_ACTIONS[actKey]),isTouch?8.5:9.5,'#c084dc');
+      }
     });
 
     [layout.sourcesNode,layout.knowledgeNode].forEach(function(sn){
@@ -1710,6 +1791,15 @@ function toggleChat(){
     });
     drawTxt(layout.sourcesNode.x,layout.sourcesNode.y-layout.sourcesNode.r-12,gl(LBL.sources),10.5,'#c084dc');
     drawTxt(layout.knowledgeNode.x,layout.knowledgeNode.y+layout.knowledgeNode.r+20,gl(LBL.knowledge),10.5,'#c084dc');
+
+    if(layout.leadNodes){
+      layout.leadNodes.forEach(function(n){
+        var hv = hoverNode && hoverNode.tip===n.tip;
+        circ(n.x,n.y,n.r,'#fff',hv?'rgba(217,70,239,0.5)':'rgba(0,0,0,0.12)',hv?2:1.2);
+        icn(n.icn,n.x,n.y,n.r,hv?'#d946ef':'#8a8a8a');
+        drawTxt(n.x,n.y+n.r+16,gl(n.lbl),isTouch?9:10,hv?'#d946ef':'#888');
+      });
+    }
 
     var pulseAl=0.06+0.05*Math.sin(now*0.0018);
     var gg=ctx.createRadialGradient(layout.snobX,layout.snobY,layout.snobR,layout.snobX,layout.snobY,layout.snobR+50);
