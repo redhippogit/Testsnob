@@ -115,13 +115,9 @@ nav.scrolled{padding:12px 40px;}
 .sf-tooltip.show{opacity:1;transform:translate(-50%,0) translateY(0) scaleY(1);}
 .sf-tooltip::before{content:'';position:absolute;left:50%;bottom:100%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:#0a0a0a;}
 .sf-tooltip b{color:#d946ef;font-weight:400;display:block;margin-bottom:3px;letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;}
-.sf-hello{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,32px);color:#0a0a0a;margin-bottom:6px;letter-spacing:.02em;}
-.sf-carousels{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:28px;}
-.sf-carousel{text-align:center;}
-.sf-carousel-lbl{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#ccc;margin-bottom:6px;}
-.sf-carousel-val{font-size:13px;color:#d946ef;font-weight:500;min-height:1.4em;transition:opacity .35s ease;letter-spacing:.02em;}
-.sf-carousel-val.fade{opacity:0;}
-@media(max-width:768px){#snob-flow{padding:56px 16px 64px;}.sf-carousels{gap:24px;}}
+.sf-hello{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,32px);color:#d946ef;margin-bottom:28px;letter-spacing:.02em;transition:opacity .4s ease;}
+.sf-hello.fade{opacity:0;}
+@media(max-width:768px){#snob-flow{padding:56px 16px 64px;}}
 #calc{padding:96px 40px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
 @media(max-width:768px){#calc{grid-template-columns:1fr;gap:40px;padding:64px 20px;}}
 .calc-label-txt{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:10px;}
@@ -388,16 +384,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     <button class="sf-chip" data-mode="outbound" onclick="setSFMode('outbound')" data-i="sf_mode_out">Outbound</button>
   </div>
   <div class="sf-hello" id="sfHello" data-i="sf_hello">Hello...</div>
-  <div class="sf-carousels">
-    <div class="sf-carousel">
-      <div class="sf-carousel-lbl" data-i="sf_car_lang_lbl">100+ Sprachen — z.B.</div>
-      <div class="sf-carousel-val" id="sfLangCarousel">Deutsch</div>
-    </div>
-    <div class="sf-carousel">
-      <div class="sf-carousel-lbl" data-i="sf_car_tool_lbl">300+ Quellen — z.B.</div>
-      <div class="sf-carousel-val" id="sfToolCarousel">Kalender</div>
-    </div>
-  </div>
   <canvas id="snob-flow-cvs"></canvas>
   <div class="sf-tooltip" id="sfTooltip"></div>
 </div>
@@ -435,7 +421,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <div class="calc-big" id="rN">650</div>
       <div class="calc-unit" data-i="calc_unit">Geschätzte<br>Min./Monat</div>
     </div>
-    <div class="calc-rec" id="rRec">Empfehlung: <b>GoSTART — 333 CHF / Monat</b></div>
+    <div class="calc-rec" id="rRec">Empfehlung: <b>GoSTART — 120 CHF / Monat</b></div>
     <button class="cta-link" data-i="cta_link" onclick="openCalcMail()">Anfragen →</button>
   </div>
 </div>
@@ -448,15 +434,15 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
   <div class="pr-grid">
     <div class="pr-col" data-r="up" data-delay="1" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t1">GoSTART</div>
-      <div class="pr-num" data-count="333">333</div>
+      <div class="pr-num" data-count="120">120</div>
       <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
       <ul class="pr-list">
         <li data-i="p1_01">AI Concierge Voice Agent</li>
         <li data-i="p1_02">Dedizierte Telefonnummer</li>
         <li data-i="p1_03">Editierbare Wissensbibliothek</li>
         <li data-i="p1_04">Einfache Terminierung (6 Terminarten)</li>
-        <li data-i="p1_05">300 Minuten inklusive</li>
-        <li data-i="p1_06">0.25 CHF / Extra-Minute</li>
+        <li data-i="p1_05">0 Minuten inklusive</li>
+        <li data-i="p1_06">0.20 CHF / Extra-Minute</li>
         <li data-i="p1_07">10 parallele Calls</li>
         <li data-i="p1_08">DE / EN / FR</li>
         <li data-i="p1_09">Call-Weiterleitungen</li>
@@ -468,12 +454,12 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
     </div>
     <div class="pr-col" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t2">GoFULL</div>
-      <div class="pr-num" data-count="777">777</div>
+      <div class="pr-num" data-count="300">300</div>
       <div class="pr-chf" data-i="pr_chf">CHF / Monat</div>
       <ul class="pr-list">
         <li data-i="p2_01">Alles aus GoSTART</li>
         <li data-i="p2_02">Komplexe Terminierung (30 Terminarten)</li>
-        <li data-i="p2_03">2.000 Minuten inklusive</li>
+        <li data-i="p2_03">1.500 Minuten inklusive</li>
         <li data-i="p2_04">0.15 CHF / Extra-Minute</li>
         <li data-i="p2_05">100 parallele Calls</li>
         <li data-i="p2_06">DE / EN / FR + 2 Sprachen</li>
@@ -856,8 +842,8 @@ var T = {
   p1_02:{de:'Dedizierte Telefonnummer',en:'Dedicated phone line',fr:'Ligne téléphonique dédiée'},
   p1_03:{de:'Editierbare Wissensbibliothek',en:'Editable knowledge library',fr:'Bibliothèque de connaissances éditable'},
   p1_04:{de:'Einfache Terminierung (6 Terminarten)',en:'Simple scheduling (6 appointment types)',fr:'Planification simple (6 types)'},
-  p1_05:{de:'300 Minuten inklusive',en:'300 minutes included',fr:'300 minutes incluses'},
-  p1_06:{de:'0.25 CHF / Extra-Minute',en:'0.25 CHF / extra minute',fr:'0.25 CHF / minute supplémentaire'},
+  p1_05:{de:'0 Minuten inklusive',en:'0 minutes included',fr:'0 minute incluse'},
+  p1_06:{de:'0.20 CHF / Extra-Minute',en:'0.20 CHF / extra minute',fr:'0.20 CHF / minute supplémentaire'},
   p1_07:{de:'10 parallele Calls',en:'10 parallel calls',fr:'10 appels en parallèle'},
   p1_08:{de:'DE / EN / FR',en:'DE / EN / FR',fr:'DE / EN / FR'},
   p1_09:{de:'Call-Weiterleitungen',en:'Call transfers',fr:"Transferts d'appels"},
@@ -866,7 +852,7 @@ var T = {
   p1_12:{de:'Enterprise-Sicherheit & Compliance',en:'Enterprise security & compliance',fr:'Sécurité & conformité enterprise'},
   p2_01:{de:'Alles aus GoSTART',en:'All from GoSTART',fr:'Tout du GoSTART'},
   p2_02:{de:'Komplexe Terminierung (30 Terminarten)',en:'Complex scheduling (30 appointment types)',fr:'Planification complexe (30 types)'},
-  p2_03:{de:'2.000 Minuten inklusive',en:'2,000 minutes included',fr:'2 000 minutes incluses'},
+  p2_03:{de:'1.500 Minuten inklusive',en:'1,500 minutes included',fr:'1 500 minutes incluses'},
   p2_04:{de:'0.15 CHF / Extra-Minute',en:'0.15 CHF / extra minute',fr:'0.15 CHF / minute supplémentaire'},
   p2_05:{de:'100 parallele Calls',en:'100 parallel calls',fr:'100 appels en parallèle'},
   p2_06:{de:'DE / EN / FR + 2 Sprachen',en:'DE / EN / FR + 2 languages',fr:'DE / EN / FR + 2 langues'},
@@ -1040,9 +1026,9 @@ var T = {
   lh_dtag6:{de:'Legal · Impressum',en:'Legal · Imprint',fr:'Légal · Mentions légales'},
   lh_dname6:{de:'Impressum',en:'Legal Notice',fr:'Mentions légales'},
   lh_doc2_body:{
-    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Übersicht</div><p>Diese AGB regeln die Nutzung der KI-Voice-Agent-Dienste von goSNOB.ai und bilden einen rechtsverbindlichen Vertrag zwischen dem Nutzer und goSNOB. Massgebendes Recht: Schweiz.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements &amp; Preise</div><ul><li><strong>GoSTART:</strong> 333 CHF/Monat · 300 Minuten inkl. · Überschuss: 0.25 CHF/Min.</li><li><strong>GoFULL:</strong> 777 CHF/Monat · 2.000 Minuten inkl. · Überschuss: 0.15 CHF/Min.</li><li><strong>Corporate:</strong> Individuell auf Anfrage</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Wesentliche Punkte</div><ul><li>Kündigungsfrist: 30 Tage vor Verlängerungsdatum</li><li>Datenschutz: Nutzer bleibt Data Controller · goSNOB ist Data Processor</li><li>Haftungsbegrenzung: max. 12 Monatsgebühren</li><li>Gerichtsstand: Basel-Stadt, Schweiz</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Kontakt</div><p>Für den vollständigen Vertragstext: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Overview</div><p>These Terms govern use of goSNOB.ai AI voice agent services. Governing law: Switzerland.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subscription Plans</div><ul><li><strong>GoSTART:</strong> 333 CHF/month · 300 minutes incl.</li><li><strong>GoFULL:</strong> 777 CHF/month · 2,000 minutes incl.</li><li><strong>Corporate:</strong> Custom pricing on request</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Key Points</div><ul><li>Cancellation: 30 days before renewal date</li><li>Data: user remains Data Controller · goSNOB is Data Processor</li><li>Liability cap: max. 12 months fees paid</li><li>Jurisdiction: Basel-Stadt, Switzerland</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>For the full contract text: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
-    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Aperçu</div><p>Ces CGV régissent l\'utilisation des services d\'agents vocaux IA de goSNOB.ai. Droit applicable : Suisse.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements</div><ul><li><strong>GoSTART :</strong> 333 CHF/mois</li><li><strong>GoFULL :</strong> 777 CHF/mois</li><li><strong>Corporate :</strong> Tarif individuel sur demande</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Points clés</div><ul><li>Résiliation : 30 jours avant renouvellement</li><li>Données : le client reste Responsable du traitement</li><li>Responsabilité : limitée à 12 mois de frais payés</li><li>Juridiction : Bâle-Ville, Suisse</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>Pour le texte contractuel complet : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
+    de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Übersicht</div><p>Diese AGB regeln die Nutzung der KI-Voice-Agent-Dienste von goSNOB.ai und bilden einen rechtsverbindlichen Vertrag zwischen dem Nutzer und goSNOB. Massgebendes Recht: Schweiz.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements &amp; Preise</div><ul><li><strong>GoSTART:</strong> 120 CHF/Monat · 0 Minuten inkl. · Überschuss: 0.20 CHF/Min.</li><li><strong>GoFULL:</strong> 300 CHF/Monat · 1.500 Minuten inkl. · Überschuss: 0.15 CHF/Min.</li><li><strong>Corporate:</strong> Individuell auf Anfrage</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Wesentliche Punkte</div><ul><li>Kündigungsfrist: 30 Tage vor Verlängerungsdatum</li><li>Datenschutz: Nutzer bleibt Data Controller · goSNOB ist Data Processor</li><li>Haftungsbegrenzung: max. 12 Monatsgebühren</li><li>Gerichtsstand: Basel-Stadt, Schweiz</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Kontakt</div><p>Für den vollständigen Vertragstext: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    en:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Overview</div><p>These Terms govern use of goSNOB.ai AI voice agent services. Governing law: Switzerland.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Subscription Plans</div><ul><li><strong>GoSTART:</strong> 120 CHF/month · 0 minutes incl. · Overage: 0.20 CHF/min.</li><li><strong>GoFULL:</strong> 300 CHF/month · 1,500 minutes incl. · Overage: 0.15 CHF/min.</li><li><strong>Corporate:</strong> Custom pricing on request</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Key Points</div><ul><li>Cancellation: 30 days before renewal date</li><li>Data: user remains Data Controller · goSNOB is Data Processor</li><li>Liability cap: max. 12 months fees paid</li><li>Jurisdiction: Basel-Stadt, Switzerland</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>For the full contract text: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
+    fr:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Aperçu</div><p>Ces CGV régissent l\'utilisation des services d\'agents vocaux IA de goSNOB.ai. Droit applicable : Suisse.</p></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Abonnements</div><ul><li><strong>GoSTART :</strong> 120 CHF/mois · 0 minute incl. · Dépassement : 0.20 CHF/min.</li><li><strong>GoFULL :</strong> 300 CHF/mois · 1 500 minutes incl. · Dépassement : 0.15 CHF/min.</li><li><strong>Corporate :</strong> Tarif individuel sur demande</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Points clés</div><ul><li>Résiliation : 30 jours avant renouvellement</li><li>Données : le client reste Responsable du traitement</li><li>Responsabilité : limitée à 12 mois de frais payés</li><li>Juridiction : Bâle-Ville, Suisse</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Contact</div><p>Pour le texte contractuel complet : <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>'
   },
   lh_doc3_body:{
     de:'<div class="lh-doc-sec"><div class="lh-doc-sec-t">Rollen</div><ul><li><strong>Auftragsverarbeiter:</strong> goSNOB AG</li><li><strong>Verantwortlicher:</strong> Kunde</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Pflichten von goSNOB</div><ul><li>Verarbeitung nur nach dokumentierter Weisung</li><li>Vertraulichkeit aller beteiligten Personen</li><li>TOMs einhalten</li><li>Meldung bei Datenschutzvorfällen (max. 72h)</li></ul></div><div class="lh-doc-sec"><div class="lh-doc-sec-t">Individuelle AVV</div><p>Für einen individuell unterzeichneten AVV: <a href="mailto:team@gosnob.com" style="color:#0a0a0a">team@gosnob.com</a></p></div>',
@@ -1091,48 +1077,25 @@ var SF_LANG_CAROUSEL = [
   {name:'中文',hello:'你好...'},
   {name:'العربية',hello:'مرحباً...'}
 ];
-var SF_TOOL_CAROUSEL = {
-  de:['Kalender','Spreadsheets','Task Management','Bestell-Datenbank','Kundendatenbank','Produktkatalog','Lagerbestände','Social Media','Wetterprognose','Verkehrsinfo','API & Webhooks'],
-  en:['Calendars','Spreadsheets','Task Management','Order Database','Customer Database','Product Catalog','Inventory Levels','Social Media','Weather Forecast','Traffic Info','API & Webhooks'],
-  fr:['Calendriers','Tableurs','Gestion de tâches','Base de commandes','Base clients','Catalogue produits',"Niveaux d'inventaire",'Réseaux sociaux','Prévisions météo','Infos trafic','API & webhooks']
-};
 var SF_OUT_ACTIONS = {
   analytics:{de:'Flaggen · Eskalieren · Lernen',en:'Flag · Escalate · Learn',fr:'Signaler · Escalader · Apprendre'},
   storage:{de:'Strukturieren · Speichern · Senden',en:'Structure · Store · Send',fr:'Structurer · Stocker · Envoyer'},
   appts:{de:'Buchen · Verschieben · Stornieren',en:'Book · Reschedule · Cancel',fr:'Réserver · Reporter · Annuler'}
 };
 (function(){
-  var langIdx=0, toolIdx=0;
-  var langEl=null, toolEl=null, helloEl=null;
-  function tick(el, getVal, advance){
-    if(!el) return;
-    el.classList.add('fade');
-    setTimeout(function(){
-      advance();
-      el.textContent = getVal();
-      el.classList.remove('fade');
-    },350);
-  }
-  function rotateLang(){
-    langEl = langEl || document.getElementById('sfLangCarousel');
+  var idx=0;
+  var helloEl=null;
+  function rotateHello(){
     helloEl = helloEl || document.getElementById('sfHello');
-    if(helloEl) helloEl.classList.add('fade');
-    tick(langEl, function(){ return SF_LANG_CAROUSEL[langIdx].name; }, function(){
-      langIdx=(langIdx+1)%SF_LANG_CAROUSEL.length;
-    });
+    if(!helloEl) return;
+    helloEl.classList.add('fade');
     setTimeout(function(){
-      if(helloEl){ helloEl.textContent = SF_LANG_CAROUSEL[langIdx].hello; helloEl.classList.remove('fade'); }
+      idx=(idx+1)%SF_LANG_CAROUSEL.length;
+      helloEl.textContent = SF_LANG_CAROUSEL[idx].hello;
+      helloEl.classList.remove('fade');
     },350);
   }
-  function rotateTool(){
-    toolEl = toolEl || document.getElementById('sfToolCarousel');
-    tick(toolEl, function(){
-      var list = SF_TOOL_CAROUSEL[currentLang] || SF_TOOL_CAROUSEL.de;
-      return list[toolIdx % list.length];
-    }, function(){ toolIdx=(toolIdx+1)%(SF_TOOL_CAROUSEL[currentLang]||SF_TOOL_CAROUSEL.de).length; });
-  }
-  setInterval(rotateLang,1900);
-  setInterval(rotateTool,2300);
+  setInterval(rotateHello,2400);
 })();
 
 var WS_DESC_VARIANTS = {
@@ -1155,12 +1118,12 @@ var WS_DESC_VARIANTS = {
 
 var SL_CALLS = {de:'Calls / Woche',en:'Calls / week',fr:'Appels / semaine'};
 var REC_LBL = {de:'Empfehlung',en:'Recommendation',fr:'Recommandation'};
-var CALC_REC = {de:{gostart:'GoSTART — 333 CHF / Monat',gofull:'GoFULL — 777 CHF / Monat'},en:{gostart:'GoSTART — 333 CHF / Month',gofull:'GoFULL — 777 CHF / Month'},fr:{gostart:'GoSTART — 333 CHF / Mois',gofull:'GoFULL — 777 CHF / Mois'}};
+var CALC_REC = {de:{gostart:'GoSTART — 120 CHF / Monat',gofull:'GoFULL — 300 CHF / Monat'},en:{gostart:'GoSTART — 120 CHF / Month',gofull:'GoFULL — 300 CHF / Month'},fr:{gostart:'GoSTART — 120 CHF / Mois',gofull:'GoFULL — 300 CHF / Mois'}};
 var CALC_MSG = {de:{gostart:'Perfekt für den Start.',gofull:'Du brauchst das volle Programm.'},en:{gostart:'Perfect for getting started.',gofull:'You need the full package.'},fr:{gostart:'Parfait pour commencer.',gofull:'Vous avez besoin du programme complet.'}};
 var CHAT_R = {
-  de:{preise:'GoSTART 333 CHF/Monat · GoFULL 777 CHF/Monat · Corporate auf Anfrage.',calls:'Einmal konfigurieren — SNOB übernimmt alles. Inbound & Outbound, multilingual, 24/7.',demo:'Teste SNOB direkt: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Schweizer AI-Plattform für Calls, Chat und Geschäftsprozesse.',def:'Schreib uns: team@gosnob.com'},
-  en:{preise:'GoSTART 333 CHF/month · GoFULL 777 CHF/month · Corporate on request.',calls:'Configure once — SNOB handles everything. Inbound & Outbound, multilingual, 24/7.',demo:'Try SNOB directly: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Swiss AI platform for calls, chat and business processes.',def:'Write us: team@gosnob.com'},
-  fr:{preise:'GoSTART 333 CHF/mois · GoFULL 777 CHF/mois · Corporate sur demande.',calls:'Configurer une fois — SNOB gère tout. Entrant & Sortant, multilingue, 24/7.',demo:'Testez SNOB directement: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. IA suisse pour appels, chat et processus.',def:'Écrivez-nous: team@gosnob.com'}
+  de:{preise:'GoSTART 120 CHF/Monat · GoFULL 300 CHF/Monat · Corporate auf Anfrage.',calls:'Einmal konfigurieren — SNOB übernimmt alles. Inbound & Outbound, multilingual, 24/7.',demo:'Teste SNOB direkt: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Schweizer AI-Plattform für Calls, Chat und Geschäftsprozesse.',def:'Schreib uns: team@gosnob.com'},
+  en:{preise:'GoSTART 120 CHF/month · GoFULL 300 CHF/month · Corporate on request.',calls:'Configure once — SNOB handles everything. Inbound & Outbound, multilingual, 24/7.',demo:'Try SNOB directly: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. Swiss AI platform for calls, chat and business processes.',def:'Write us: team@gosnob.com'},
+  fr:{preise:'GoSTART 120 CHF/mois · GoFULL 300 CHF/mois · Corporate sur demande.',calls:'Configurer une fois — SNOB gère tout. Entrant & Sortant, multilingue, 24/7.',demo:'Testez SNOB directement: app.gosnob.ai',snob:'SNOB = Sophisticated Network-Operated Brain. IA suisse pour appels, chat et processus.',def:'Écrivez-nous: team@gosnob.com'}
 };
 
 var currentLang = 'de';
@@ -1227,7 +1190,7 @@ function doCalc(){
   setTimeout(function(){n.style.transform='';},120);
   var pct=(calls-10)/290*100;
   document.getElementById('sC').style.background='linear-gradient(to right,#0a0a0a '+pct+'%,#e8e8e8 '+pct+'%)';
-  var plan=(calls>=150||currentAppt==='hectic'||(calls>=100&&calls<=140&&currentAppt==='buzz'))?'gofull':'gostart';
+  var plan=(calls>=70||currentAppt==='hectic'||(calls>=50&&calls<=69&&currentAppt==='buzz'))?'gofull':'gostart';
   var sub=document.getElementById('calcSub');
   sub.className='calc-sub '+plan;
   sub.textContent=CALC_MSG[currentLang][plan];
@@ -1752,7 +1715,7 @@ function toggleChat(){
   }
   function hideTooltip(){ if(tooltipEl) tooltipEl.classList.remove('show'); }
 
-  function handlePointer(px,py){
+  function nodeAt(px,py){
     var layout = lo();
     var nodes = allHoverNodes(layout);
     var found = null;
@@ -1760,22 +1723,40 @@ function toggleChat(){
       var dx=px-n.x, dy=py-n.y;
       if(Math.sqrt(dx*dx+dy*dy) <= n.r+6) found = n;
     });
-    if(found !== hoverNode){
-      hoverNode = found;
-      if(found){ showTooltip(found); cvs.style.cursor='pointer'; }
-      else { hideTooltip(); cvs.style.cursor='default'; }
+    return found;
+  }
+  function handleHoverMove(px,py){
+    var found = nodeAt(px,py);
+    cvs.style.cursor = found ? 'pointer' : 'default';
+  }
+  function handleClick(px,py){
+    var found = nodeAt(px,py);
+    if(found && hoverNode && found.tip===hoverNode.tip){
+      hoverNode=null; hideTooltip();
     } else if(found){
-      showTooltip(found);
+      hoverNode=found; showTooltip(found);
+    } else {
+      hoverNode=null; hideTooltip();
     }
   }
   cvs.addEventListener('mousemove', function(e){
     var r = cvs.getBoundingClientRect();
-    handlePointer(e.clientX-r.left, e.clientY-r.top);
+    handleHoverMove(e.clientX-r.left, e.clientY-r.top);
   });
-  cvs.addEventListener('mouseleave', function(){ hoverNode=null; hideTooltip(); });
-  cvs.addEventListener('touchstart', function(e){
-    var t = e.touches[0]; var r = cvs.getBoundingClientRect();
-    handlePointer(t.clientX-r.left, t.clientY-r.top);
+  cvs.addEventListener('click', function(e){
+    var r = cvs.getBoundingClientRect();
+    handleClick(e.clientX-r.left, e.clientY-r.top);
+  });
+  cvs.addEventListener('touchend', function(e){
+    e.preventDefault();
+    var t = e.changedTouches[0]; var r = cvs.getBoundingClientRect();
+    handleClick(t.clientX-r.left, t.clientY-r.top);
+  }, {passive:false});
+  document.addEventListener('click', function(e){
+    if(e.target !== cvs){ hoverNode=null; hideTooltip(); }
+  });
+  document.addEventListener('touchend', function(e){
+    if(e.target !== cvs){ hoverNode=null; hideTooltip(); }
   }, {passive:true});
 
   function draw(now){
