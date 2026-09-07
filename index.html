@@ -1786,7 +1786,6 @@ function toggleChat(){
     layout.inputs.forEach(function(n){ ln(n.x+layout.nodeR,n.y,layout.snobX-layout.snobR,layout.snobY); });
     layout.outputs.forEach(function(o){ ln(layout.snobX+layout.snobR,layout.snobY,o.x-layout.nodeR,o.y); });
     ln(layout.snobX,layout.snobY-layout.snobR,layout.sourcesNode.x,layout.sourcesNode.y+layout.sourcesNode.r,'rgba(217,70,239,0.18)',1.4);
-    drawTxt(layout.snobX+18,(layout.snobY-layout.snobR+layout.sourcesNode.y+layout.sourcesNode.r)/2,gl(LBL.languages),9,'#c084dc');
     ln(layout.snobX,layout.snobY+layout.snobR,layout.knowledgeNode.x,layout.knowledgeNode.y-layout.knowledgeNode.r,'rgba(217,70,239,0.18)',1.4);
     if(layout.leadNodes && layout.inputs[0]){
       layout.leadNodes.forEach(function(n){ ln(n.x+n.r,n.y,layout.inputs[0].x-layout.nodeR,layout.inputs[0].y,'rgba(0,0,0,0.1)',1.2); });
