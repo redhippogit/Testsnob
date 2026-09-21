@@ -90,8 +90,8 @@ nav.scrolled{padding:12px 40px;}
 .call-btn:hover::before{transform:scaleX(1);}
 .call-btn:hover{box-shadow:0 20px 60px rgba(217,70,239,.3);}
 #whatssnob{border-bottom:1px solid #f0f0f0;padding:96px 40px 96px;}
-.ws-label{font-size:clamp(16px,2vw,20px);letter-spacing:.01em;text-transform:none;color:#d946ef;margin-bottom:10px;font-weight:500;font-family:'DM Mono',monospace;}
-.ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:20px;}
+.ws-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#d946ef;margin-top:14px;margin-bottom:24px;}
+.ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:0;}
 .ws-desc{font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-bottom:56px;min-height:3.4em;transition:opacity .4s cubic-bezier(.16,1,.3,1);}
 .ws-desc.fade{opacity:0;}
 .ws-acro{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f0f0f0;}
@@ -350,8 +350,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 </div>
 
 <div id="whatssnob">
-  <div class="ws-label" data-r="up" data-i="hero_tagline2">AI Voice Agents. Built by experts.</div>
-  <div class="ws-title" data-r="up" data-delay="1" data-i="ws_title">Was ist SNOB?</div>
+  <div class="ws-title" data-r="up" data-i="ws_title">Was ist SNOB?</div>
+  <div class="ws-label" data-r="up" data-delay="1" data-i="hero_tagline2">AI Voice Agents. Built by experts.</div>
   <p class="ws-desc" id="wsDesc" data-r="up" data-delay="2">Nimmt ab. Schreibt zurück. Bucht den Termin. 24/7, in jeder Sprache — und beschwert sich nie über Montage.</p>
   <div class="ws-acro">
     <div class="ws-acro-item" data-r="up" data-delay="1">
@@ -1175,11 +1175,8 @@ function doCalc(){
 doCalc();
 
 function openCalcMail(){
-  var calls=document.getElementById('sC').value;
-  var mins=document.getElementById('rN').textContent;
   var subj=encodeURIComponent('Anfrage goSNOB');
-  var body=encodeURIComponent('Hallo goSNOB-Team,\n\nich interessiere mich für euren Service. Geschätzte Calls/Woche: '+calls+', geschätzte Minuten/Monat: '+mins+'.\n\nBitte meldet euch bei mir.\n');
-  window.location.href='mailto:team@gosnob.com?subject='+subj+'&body='+body;
+  window.location.href='mailto:team@gosnob.com?subject='+subj;
 }
 
 var chatOpen=false;
