@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>goSNOB.ai — Sophisticated Network-Operated Brain</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%230a0a0a'/><circle cx='22' cy='10' r='4' fill='%23d946ef'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='14' fill='white' letter-spacing='1'>S</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%230a0a0a'/><circle cx='9' cy='7' r='1.3' fill='%23d946ef' fill-opacity='.55'/><circle cx='23' cy='8' r='1.7' fill='%23d946ef' fill-opacity='.7'/><circle cx='26' cy='14' r='1.1' fill='%23d946ef' fill-opacity='.5'/><circle cx='6' cy='22' r='1.4' fill='%23d946ef' fill-opacity='.6'/><circle cx='24' cy='25' r='1.2' fill='%23d946ef' fill-opacity='.55'/><circle cx='20' cy='4' r='0.9' fill='%23d946ef' fill-opacity='.45'/><text x='16' y='22' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='15' fill='white' letter-spacing='1'>S</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=DM+Mono:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -46,6 +46,7 @@ body.cursor-click #cx-ring{width:24px;height:24px;}
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #f0f0f0;transition:padding .4s cubic-bezier(.16,1,.3,1);}
 nav.scrolled{padding:12px 40px;}
 .n-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.4em;color:#0a0a0a;}
+.logo-ai{color:#d946ef;}
 .n-r{display:flex;align-items:center;gap:20px;}
 .lang-sw{display:flex;list-style:none;}
 .lang-sw li{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#ccc;padding:3px 7px;border-right:1px solid #eee;transition:color .2s;}
@@ -89,7 +90,7 @@ nav.scrolled{padding:12px 40px;}
 .call-btn:hover::before{transform:scaleX(1);}
 .call-btn:hover{box-shadow:0 20px 60px rgba(217,70,239,.3);}
 #whatssnob{border-bottom:1px solid #f0f0f0;padding:96px 40px 96px;}
-.ws-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#d946ef;margin-bottom:12px;}
+.ws-label{font-size:clamp(16px,2vw,20px);letter-spacing:.01em;text-transform:none;color:#d946ef;margin-bottom:10px;font-weight:500;font-family:'DM Mono',monospace;}
 .ws-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,108px);line-height:.9;margin-bottom:20px;}
 .ws-desc{font-size:15px;color:#555;line-height:1.7;max-width:600px;margin-bottom:56px;min-height:3.4em;transition:opacity .4s cubic-bezier(.16,1,.3,1);}
 .ws-desc.fade{opacity:0;}
@@ -164,8 +165,8 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.8);background:#d
 .pr-col:hover .pr-list li{color:#666;border-color:#1a1a1a;}
 .pr-list li::before{content:'→';margin-right:8px;opacity:0;transition:opacity .2s;color:#d946ef;font-size:10px;}
 .pr-col:hover .pr-list li::before{opacity:1;}
-.pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #e8e8e8;color:#ccc;padding:12px;transition:all .3s;display:inline-block;text-decoration:none;}
-.pr-col:hover .pr-btn{border-color:#333;color:#666;}
+.pr-btn{font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:none;border:1px solid #d946ef;color:#d946ef;padding:12px;transition:all .3s;display:inline-block;text-decoration:none;text-align:center;}
+.pr-col:hover .pr-btn{border-color:#d946ef;color:#d946ef;background:rgba(217,70,239,.08);}
 .pr-col:hover .pr-btn:hover{border-color:#d946ef;color:#d946ef;}
 @media(max-width:640px){.pr-col{border-right:none;border-bottom:1px solid #f0f0f0;padding:28px 20px;}}
 #delicate{border-bottom:1px solid #f0f0f0;padding:96px 40px;}
@@ -265,6 +266,8 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 .f-links{display:flex;gap:16px;list-style:none;flex-wrap:wrap;}
 .f-links a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#888;text-decoration:none;transition:color .2s;}
 .f-links a:hover{color:#0a0a0a;}
+.f-note{font-size:12px;color:#888;text-decoration:none;border-bottom:1px solid #ddd;transition:color .2s,border-color .2s;}
+.f-note:hover{color:#0a0a0a;border-color:#0a0a0a;}
 .f-copy{font-size:12px;color:#777;line-height:1.9;text-align:right;}
 .f-copy a{color:#555 !important;}
 .f-founded{color:#999 !important;}
@@ -311,7 +314,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
 <div id="intro"><div id="intro-out"></div></div>
 
 <nav id="nav">
-  <div class="n-logo">goSNOB.ai</div>
+  <div class="n-logo">goSNOB<span class="logo-ai">.ai</span></div>
   <div class="n-r">
     <ul class="lang-sw">
       <li class="active" onclick="setLang('de')">DE</li>
@@ -446,7 +449,7 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <li data-i="p1_11">Anpassbare Call-Analytics</li>
         <li data-i="p1_12">Enterprise-Sicherheit & Compliance</li>
       </ul>
-      <a class="pr-btn" href="https://app.gosnob.ai/register" target="_blank" rel="noopener" data-i="pr_btn1">Anfragen</a>
+      <a class="pr-btn" href="mailto:team@gosnob.com?subject=Anfrage%20GoSTART" data-i="pr_btn1">Anfragen</a>
     </div>
     <div class="pr-col" data-r="up" data-delay="2" onclick="document.getElementById('delicate').scrollIntoView({behavior:'smooth'})">
       <div class="pr-tier" data-i="pr_t2">GoFULL</div>
@@ -513,24 +516,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
       <div class="da-block-title" data-i="da_b3t">Bauen</div>
       <div class="da-block-sub" data-i="da_b3s">SNOB wird massgeschneidert für den perfekten Fit. Kein DIY. Nichts von der Stange.</div>
       <div class="da-block-body"><div class="da-block-body-inner" data-i="da_b3b">Dann bauen wir — exakt auf dein Problem zugeschnitten. Kein generisches Produkt, sondern dein digitaler Mitarbeiter. Der mitwächst, nicht einfach nur läuft.</div></div>
-    </div>
-  </div>
-
-  <div class="da-int-wrap" data-r="up" data-delay="3">
-    <div class="da-industry">
-      <div class="da-ind-q" data-i="da_ex_q">Beispiele aus der Praxis</div>
-      <div class="da-ind-chips">
-        <button class="da-chip" data-ex="frontdesk"     onclick="setDAExample('frontdesk')"><span data-i="dax_frontdesk">Front Desk</span></button>
-        <button class="da-chip" data-ex="websiteguide"  onclick="setDAExample('websiteguide')"><span data-i="dax_websiteguide">Website Guide</span></button>
-        <button class="da-chip" data-ex="hotelconcierge" onclick="setDAExample('hotelconcierge')"><span data-i="dax_hotelconcierge">Hotel Concierge</span></button>
-        <button class="da-chip" data-ex="surveys"        onclick="setDAExample('surveys')"><span data-i="dax_surveys">Business Surveys</span></button>
-      </div>
-    </div>
-    <div class="da-usecase-wrap" id="da-example-wrap">
-      <div class="da-usecase-hint" id="da-example-hint" data-i="da_ex_pick">← Beispiel wählen</div>
-      <div class="da-example-title" id="da-example-title"></div>
-      <p class="da-usecase-intro" id="da-example-tagline"></p>
-      <ul class="da-example-list" id="da-example-list"></ul>
     </div>
   </div>
 </div>
@@ -631,7 +616,6 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         </ul>
       </div>
     </div>
-    <div class="lh-dpo-note" data-i="lh_dpo_note">Für individuelle DPA/AVV-Verträge, TOM-Dokumentation oder Subprocessor-Listen: <a href="mailto:team@gosnob.com">team@gosnob.com</a></div>
   </div>
 
   <div class="lh-panel" id="lh-panel-docs">
@@ -644,33 +628,13 @@ footer{padding:20px 40px;display:flex;justify-content:space-between;align-items:
         <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag2">Terms · AGB</span><span class="lh-doc-header-name" data-i="lh_dname2">AGB / Terms &amp; Conditions</span></div><span class="lh-doc-toggle">+</span></div>
         <div class="lh-doc-body" data-i="lh_doc2_body"></div>
       </div>
-      <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag3">DPA · AVV · GDPR Art. 28</span><span class="lh-doc-header-name" data-i="lh_dname3">Auftragsverarbeitungsvertrag (AVV)</span></div><span class="lh-doc-toggle">+</span></div>
-        <div class="lh-doc-body" data-i="lh_doc3_body"></div>
-      </div>
-      <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag4">Security · Compliance</span><span class="lh-doc-header-name" data-i="lh_dname4">Technisch-organisatorische Massnahmen (TOMs)</span></div><span class="lh-doc-toggle">+</span></div>
-        <div class="lh-doc-body" data-i="lh_doc4_body"></div>
-      </div>
-      <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag5">Subprocessors · Vendors</span><span class="lh-doc-header-name" data-i="lh_dname5">Subprocessor-Liste</span></div><span class="lh-doc-toggle">+</span></div>
-        <div class="lh-doc-body" data-i="lh_doc5_body"></div>
-      </div>
-      <div class="lh-doc-item" onclick="toggleLHDoc(this)">
-        <div class="lh-doc-header"><div class="lh-doc-header-l"><span class="lh-doc-header-tag" data-i="lh_dtag6">Legal · Impressum</span><span class="lh-doc-header-name" data-i="lh_dname6">Impressum</span></div><span class="lh-doc-toggle">+</span></div>
-        <div class="lh-doc-body" data-i="lh_doc6_body"></div>
-      </div>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="f-logo">goSNOB.ai</div>
-  <ul class="f-links">
-    <li><a href="https://redhippogit.github.io/Leagal/" target="_blank" data-i="f_priv">Datenschutz</a></li>
-    <li><a href="https://redhippogit.github.io/Leagal/" target="_blank" data-i="f_agb">AGB</a></li>
-    <li><a href="https://redhippogit.github.io/Leagal/" target="_blank" data-i="f_imp">Impressum</a></li>
-  </ul>
+  <div class="f-logo">goSNOB<span class="logo-ai">.ai</span></div>
+  <a class="f-note" href="#legalhub" onclick="setLHTab('docs');document.getElementById('legalhub').scrollIntoView({behavior:'smooth'});return false;" data-i="f_docs_note">Vollständige Version auf Anfrage erhältlich →</a>
   <div class="f-copy">
     © 2026 goSNOB.ai · Basel · <a href="mailto:team@gosnob.com" style="color:#555;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0a0a0a'" onmouseout="this.style.color='#555'">team@gosnob.com</a><br>
     <span class="f-founded" data-i="f_founded">Founded by Timothy Jordi &amp; Jan Mironiuk · Swiss Made</span>
@@ -1049,6 +1013,7 @@ var T = {
   f_priv:{de:'Datenschutz',en:'Privacy',fr:'Confidentialité'},
   f_agb:{de:'AGB',en:'T&C',fr:'CGV'},
   f_imp:{de:'Impressum',en:'Imprint',fr:'Mentions légales'},
+  f_docs_note:{de:'Vollständige Version auf Anfrage erhältlich →',en:'Full version available on request →',fr:'Version complète disponible sur demande →'},
   f_founded:{de:'Founded by Timothy Jordi & Jan Mironiuk · Swiss Made',en:'Founded by Timothy Jordi & Jan Mironiuk · Swiss Made',fr:'Fondé par Timothy Jordi & Jan Mironiuk · Swiss Made'},
   chat_st:{de:'Online',en:'Online',fr:'En ligne'},
   chat_ph:{de:'Frag SNOB...',en:'Ask SNOB...',fr:'Demandez à SNOB...'},
@@ -1166,7 +1131,6 @@ function setLang(lang){
   var lc=document.getElementById('lbl_calls');
   if(lc) lc.innerHTML=SL_CALLS[lang]+' <span class="sl-val" id="vC">'+cV+'</span>';
   doCalc();
-  if(window._updateDAUseCases) window._updateDAUseCases(lang);
   if(window._setWsDesc) window._setWsDesc();
 }
 
@@ -1878,7 +1842,10 @@ function toggleChat(){
     var w = 44 + e*196;
     var h = 44 + e*90;
     var rad = 12 + e*10;
+    var margin = 8;
     var x = node.x - w/2, y = node.y - h/2;
+    x = Math.max(margin, Math.min(x, W - w - margin));
+    y = Math.max(margin, Math.min(y, H - h - margin));
     ctx.save();
     ctx.globalAlpha = Math.min(1, e/0.35);
     roundRectPath(x,y,w,h,rad);
@@ -1921,52 +1888,6 @@ function toggleChat(){
     });
   });
   io.observe(cvs);
-})();
-
-(function(){
-  var currentEx=null;
-  function renderExample(key){
-    var lang=typeof currentLang!=='undefined'?currentLang:'de';
-    var listEl=document.getElementById('da-example-list');
-    var hintEl=document.getElementById('da-example-hint');
-    var titleEl=document.getElementById('da-example-title');
-    var tagEl=document.getElementById('da-example-tagline');
-    if(!listEl)return;
-    if(!key){
-      listEl.innerHTML='';
-      if(titleEl){titleEl.textContent='';titleEl.classList.remove('visible');}
-      if(tagEl){tagEl.textContent='';tagEl.classList.remove('visible');}
-      if(hintEl){hintEl.style.display='block';}
-      return;
-    }
-    var titleKey='da_ex_title_'+key;
-    var tagKey='da_ex_tag_'+key;
-    var bulKey='da_ex_bul_'+key;
-    var titleTxt=(T[titleKey]&&T[titleKey][lang])?T[titleKey][lang]:(T[titleKey]?T[titleKey].de:'');
-    var tagTxt=(T[tagKey]&&T[tagKey][lang])?T[tagKey][lang]:(T[tagKey]?T[tagKey].de:'');
-    var bullets=(T[bulKey]&&T[bulKey][lang])?T[bulKey][lang]:(T[bulKey]?T[bulKey].de:[]);
-    if(hintEl) hintEl.style.display='none';
-    if(titleEl){titleEl.classList.remove('visible');titleEl.textContent=titleTxt;setTimeout(function(){titleEl.classList.add('visible');},20);}
-    if(tagEl){tagEl.classList.remove('visible');tagEl.textContent=tagTxt;setTimeout(function(){tagEl.classList.add('visible');},60);}
-    listEl.innerHTML='';
-    bullets.forEach(function(pair,i){
-      var li=document.createElement('li');
-      var b=document.createElement('b');
-      b.textContent=pair[0]+' ';
-      li.appendChild(b);
-      li.appendChild(document.createTextNode(pair[1]));
-      listEl.appendChild(li);
-      setTimeout(function(){li.classList.add('visible');},100+i*90);
-    });
-  }
-  window.setDAExample=function(key){
-    document.querySelectorAll('.da-chip[data-ex]').forEach(function(c){c.classList.toggle('active',c.getAttribute('data-ex')===key);});
-    currentEx=key;
-    renderExample(key);
-  };
-  window._updateDAUseCases=function(lang){
-    if(currentEx) renderExample(currentEx);
-  };
 })();
 
 setLang('de');
